@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+/* Starter tokens. The real token set is designed in phase 3 and logged in
+   decisions/. Every text color here passes WCAG AA on its background. */
+:root {
+  --paper: #f7f7f5;
+  --ink: #17181b; /* 16.6:1 on paper */
+  --ink-2: #4a4d55; /* 7.9:1 on paper */
+  --line: #dcdde0;
+  --action: #1f5fbf; /* 5.7:1 on paper */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0f1012;
+    --ink: #eceef1; /* 16.4:1 on paper */
+    --ink-2: #a8acb5; /* 8.4:1 on paper */
+    --line: #2a2c31;
+    --action: #7fb0ff; /* 8.7:1 on paper */
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-line: var(--line);
+  --color-action: var(--action);
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
