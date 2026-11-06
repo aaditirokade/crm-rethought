@@ -66,7 +66,7 @@ function Home({ go, waiting }: { go: (s: Screen) => void; waiting: number }) {
       </p>
       <h1 className="text-h2 font-semibold">Hi {me.short}</h1>
 
-      <section aria-labelledby="m-next" className="mt-4 rounded-[10px] border border-line bg-surface p-4">
+      <section aria-labelledby="m-next" className="mt-4 rounded-2xl border border-line bg-surface p-4">
         <p className="font-mono text-meta tracking-wide text-ink-2">NEXT UP · IN 55 MIN</p>
         <h2 id="m-next" className="mt-1 text-h3 font-semibold">
           {next.time} · {a?.name}
@@ -91,7 +91,7 @@ function Home({ go, waiting }: { go: (s: Screen) => void; waiting: number }) {
         </button>
       </section>
 
-      <button type="button" className="mt-3 flex w-full items-center justify-between rounded-[10px] bg-draft p-4 text-left" onClick={() => go("approve")}>
+      <button type="button" className="mt-3 flex w-full items-center justify-between rounded-2xl bg-draft p-4 text-left" onClick={() => go("approve")}>
         <span>
           <span className="sig-draft-tag">DRAFT</span>
           <span className="mt-1 block font-semibold">{waiting ? `${waiting} lines wait for you` : "Nothing waiting"}</span>
@@ -102,7 +102,7 @@ function Home({ go, waiting }: { go: (s: Screen) => void; waiting: number }) {
         </span>
       </button>
 
-      <button type="button" className="mt-3 w-full rounded-[10px] border border-line-strong bg-surface px-4 py-3 text-left text-ink-2" onClick={() => go("ask")}>
+      <button type="button" className="mt-3 w-full rounded-2xl border border-line-strong bg-surface px-4 py-3 text-left text-ink-2" onClick={() => go("ask")}>
         Ask about any account{"…"}
       </button>
 
@@ -110,7 +110,7 @@ function Home({ go, waiting }: { go: (s: Screen) => void; waiting: number }) {
         <h2 id="m-later" className="font-mono text-meta tracking-wide text-ink-2">
           LATER TODAY
         </h2>
-        <ul className="mt-2 divide-y divide-line rounded-[10px] border border-line bg-surface">
+        <ul className="mt-2 divide-y divide-line rounded-2xl border border-line bg-surface">
           {later.map((m) => (
             <li key={m.id} className="flex items-baseline gap-3 px-4 py-3">
               <span className="font-mono text-small">{m.time}</span>
@@ -152,7 +152,7 @@ function Brief({ back }: { back: () => void }) {
                     <FixBox sug={x} />
                   </li>
                 ) : (
-                  <li key={x.id} className="rounded-[10px] border border-line bg-surface p-3">
+                  <li key={x.id} className="rounded-2xl border border-line bg-surface p-3">
                     <p>
                       {x.tag ? <span className="proto-tag">{x.tag}</span> : null}
                       {textOf(s, x)}
@@ -201,11 +201,11 @@ function Approve() {
             {queue.length} LEFT · {originOf(cur).label.toUpperCase()}
           </p>
           <div className="relative mt-2">
-            {queue[1] ? <div aria-hidden="true" className="absolute inset-x-3 -bottom-2 h-full rounded-[14px] border border-line bg-surface" /> : null}
+            {queue[1] ? <div aria-hidden="true" className="absolute inset-x-3 -bottom-2 h-full rounded-3xl border border-line bg-surface" /> : null}
             <article
               aria-roledescription="card"
               aria-label="Line to approve"
-              className="mob-card relative rounded-[14px] border border-line-strong bg-draft p-4"
+              className="mob-card relative rounded-3xl border border-line-strong bg-draft p-4"
               style={{
                 transform: `translateX(${leaving ? leaving * 420 : dx}px) rotate(${(leaving ? leaving * 420 : dx) / 30}deg)`,
                 transition: dragging ? "none" : "transform 220ms ease",
@@ -250,14 +250,14 @@ function Approve() {
           </div>
         </>
       ) : (
-        <div className="mt-6 rounded-[14px] border border-line p-6 text-center">
+        <div className="mt-6 rounded-3xl border border-line p-6 text-center">
           <p className="text-h2 font-semibold">All clear</p>
           <p className="mt-1 text-ink-2">Every draft has been approved or dismissed.</p>
         </div>
       )}
 
       {approved ? (
-        <div className="mt-6 rounded-[10px] border border-line bg-surface p-3">
+        <div className="mt-6 rounded-2xl border border-line bg-surface p-3">
           <p className="text-small">
             <span className="font-semibold">{approved} approved</span> and waiting to be saved to the record.
           </p>
@@ -304,7 +304,7 @@ function AskScreen() {
         ))}
       </div>
       {answer ? (
-        <section key={answer.question} aria-label="Answer" className="mt-4 rounded-[10px] border border-line bg-surface p-4">
+        <section key={answer.question} aria-label="Answer" className="mt-4 rounded-2xl border border-line bg-surface p-4">
           <p className="font-mono text-meta tracking-wide text-ink-2">{new Set(answer.segments.flatMap((x) => x.cite ?? [])).size} SOURCES · READ ONLY</p>
           <p className="mt-2 leading-relaxed">
             {answer.segments.map((seg, i) => (
@@ -322,7 +322,7 @@ function AskScreen() {
           {answer.stats.length ? (
             <dl className="mt-3 grid grid-cols-3 gap-2">
               {answer.stats.map((st) => (
-                <div key={st.label} className="rounded-[6px] bg-surface-2 p-2">
+                <div key={st.label} className="rounded-2xl bg-surface-2 p-2">
                   <dt className="font-mono text-[0.625rem] leading-tight tracking-wide text-ink-2">{st.label.toUpperCase()}</dt>
                   <dd className="text-h3 font-semibold">
                     {st.value < 0 ? `−${Math.abs(st.value)}` : st.value}
@@ -409,7 +409,7 @@ function VoiceNote() {
 
       {lines.length ? (
         <>
-          <ul className="mt-4 space-y-1 rounded-[10px] border border-line bg-surface p-1.5">
+          <ul className="mt-4 space-y-1 rounded-2xl border border-line bg-surface p-1.5">
             {lines.map((x) => (
               <GateLine key={x.id} sug={x} />
             ))}

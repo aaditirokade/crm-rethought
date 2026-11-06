@@ -64,7 +64,7 @@ export function AccountView({ id }: { id: string }) {
       </dl>
 
       {waiting.length ? (
-        <p className="mt-4 rounded-[4px] bg-draft px-3 py-2 text-small">
+        <p className="mt-4 rounded-xl bg-draft px-3 py-2 text-small">
           <span className="sig-draft-tag mr-2">DRAFT</span>
           {waiting.length} {waiting.length === 1 ? "line" : "lines"} for this account {waiting.length === 1 ? "is" : "are"} waiting for
           approval and not in the record yet.{" "}

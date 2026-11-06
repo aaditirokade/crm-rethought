@@ -57,7 +57,7 @@ export function Opportunities() {
                       );
                     })}
                   </ul>
-                  <p className="mt-3 rounded-[4px] bg-surface-2 px-3 py-2 text-small">
+                  <p className="mt-3 rounded-xl bg-surface-2 px-3 py-2 text-small">
                     <span className="font-mono text-meta tracking-wide text-ink-2">SUGGESTED NEXT MOVE · </span>
                     {NEXT_MOVE[r.account.id]}
                   </p>

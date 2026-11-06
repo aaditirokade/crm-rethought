@@ -25,3 +25,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Planning prompts rewritten in the same format: refined prompt, why, what came back, my call
 - Imports: AI column mapping, fixes approved as rules, people only choices, notes on timelines (decision 0014)
 - Floating dock instead of the sidebar, and the first version of the mobile app at /mobile (decisions 0015, 0016)
+- Canvas design system replaces Signal: space instead of boxes, Geist, soft lifted cards, a violet material for AI drafts (decision 0017)

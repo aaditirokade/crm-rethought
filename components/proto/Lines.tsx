@@ -48,7 +48,7 @@ export function FixBox({ sug }: { sug: Suggestion }) {
   const s = useProto();
   const e = entryOf(s, sug.id);
   return (
-    <div className={`mt-3 rounded-[4px] border p-3 ${e.status === "pending" ? "sig-row-draft border-transparent" : "border-line"}`}>
+    <div className={`mt-3 rounded-xl border p-3 ${e.status === "pending" ? "sig-row-draft border-transparent" : "border-line"}`}>
       {e.status === "pending" ? (
         <>
           <span className="sig-draft-tag">DRAFT · RECORD FIX</span>
@@ -85,7 +85,7 @@ export function FixBox({ sug }: { sug: Suggestion }) {
 /** Something only a person may act on. The AI names it and stops. */
 export function FlagBox() {
   return (
-    <div className="mt-3 rounded-[4px] border border-line-strong p-3">
+    <div className="mt-3 rounded-xl border border-line-strong p-3">
       <span className="font-mono text-meta tracking-wide text-warn">{"▲"} PEOPLE ONLY</span>
       <p className="mt-1.5 text-small">
         Merging records stays with people. Check both contacts on the account page and merge them yourself if they are
@@ -115,7 +115,7 @@ export function GateLine({ sug }: { sug: Suggestion }) {
   }
 
   return (
-    <li className={`@container rounded-[4px] px-3 py-3 ${e.status === "pending" ? "sig-row-draft" : ""}`}>
+    <li className={`@container rounded-xl px-3 py-3 ${e.status === "pending" ? "sig-row-draft" : ""}`}>
       {editing ? (
         <form
           onSubmit={(ev) => {
@@ -193,7 +193,7 @@ export function EmailDraft({ sug, body }: { sug: Suggestion; body: string }) {
   const [open, setOpen] = useState(false);
   const panel = `email-${sug.id}`;
   return (
-    <li className="rounded-[4px] px-3 py-3">
+    <li className="rounded-xl px-3 py-3">
       <span className="font-mono text-meta tracking-wide text-ink-2">EMAIL DRAFT · YOU SEND IT</span>
       <p className="mt-1">{sug.text}</p>
       <Meta sources={sug.sources} confidence={sug.confidence} />
@@ -219,7 +219,7 @@ export function EmailDraft({ sug, body }: { sug: Suggestion; body: string }) {
         ) : null}
       </div>
       {open ? (
-        <div id={panel} className="mt-3 rounded-[4px] border border-line bg-surface-2 p-3">
+        <div id={panel} className="mt-3 rounded-xl border border-line bg-surface-2 p-3">
           <p className="whitespace-pre-line text-small leading-relaxed">{body}</p>
           <p className="mt-3 font-mono text-meta text-ink-2">THE AI NEVER SENDS EMAIL TO A CUSTOMER.</p>
         </div>

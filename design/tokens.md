@@ -1,51 +1,49 @@
-# Tokens · Signal
+# Tokens · Canvas
 
-**As of:** 2026-11-06 · Phase 3 · [Decision 0010](../decisions/0010-visual-direction-signal.md) · Live with computed contrast at [/tokens](https://crm-rethought.vercel.app/tokens) · Source: [app/globals.css](../app/globals.css), [content/tokens.ts](../content/tokens.ts)
+**As of:** 2026-11-06 · [Decision 0017](../decisions/0017-canvas.md) (replaces Signal, [decision 0010](../decisions/0010-visual-direction-signal.md)) · Live with computed contrast at [/tokens](https://crm-rethought.vercel.app/tokens) · Source: [app/globals.css](../app/globals.css), [content/tokens.ts](../content/tokens.ts)
 
 ## Principles
 
-1. **Mono is the machine.** Sources, times, status and AI tags are set in Plex Mono. What people say and decide is set in Plex Sans.
-2. **Accent means decide.** The accent marks Approve and the DRAFT tag: the places a person has to decide. Never decoration.
-3. **Drafts look unfinished.** A line waiting for approval sits on a tint with a DRAFT tag. Approval removes both and stamps who and when.
+1. **Space, not boxes.** Sections are grouped by space and type on one canvas. Only things you act on lift off the page.
+2. **The AI has a material.** Anything the AI drafted carries a soft violet tint and edge. Approval turns it into plain ink, stamped with who and when.
+3. **Ink means decide.** Approve and other decisions are solid ink buttons. Violet belongs to the AI; ink belongs to the person.
 4. **Never color alone.** Every status pairs color with a word.
 
 ## Color
 
 | Token | Role | Light | Dark | Lowest contrast (light / dark) |
 | --- | --- | --- | --- | --- |
-| bg | Page background | #f4f5f7 | #0d0f13 | |
-| surface | Cards, panels, controls | #ffffff | #151820 | |
-| surface-2 | Hover, sunken areas, gates | #eceef2 | #1c2029 | |
-| draft | Behind lines the AI drafted | #eef2ff | #182038 | |
-| ink | Text people read | #111318 | #e8eaf0 | 16.0 / 13.4 |
-| ink-2 | Quiet text, metadata | #535866 | #9aa1b0 | 6.1 / 6.2 |
-| accent | Primary action, DRAFT tag | #2853f0 | #7d9bff | 5.0 / 6.2 |
-| accent-ink | Label on the accent | #ffffff | #0b1020 | 5.9 / 7.2 |
-| good | Approved, healthy | #17784a | #5fd39b | 4.7 / 8.7 |
-| warn | Needs a look | #8a5a00 | #f2c062 | 5.1 / 9.6 |
-| risk | At risk, overdue | #c0362c | #ff8a80 | 4.7 / 7.1 |
-| line-strong | Control borders (3:1) | #7f8594 | #687080 | 3.2 / 3.3 |
-| line | Dividers, decorative | #dde0e6 | #262a34 | |
-
-Text ratios are the lowest across bg, surface, surface-2 and draft.
+| bg | The canvas | #f6f4f0 | #141312 | |
+| surface | Cards you act on | #ffffff | #1d1c1a | |
+| surface-2 | Chips, inputs, inner groups | #efece6 | #262421 | |
+| draft | Behind lines the AI drafted | #f3f0ff | #221f33 | |
+| ink | Text; primary buttons | #1d1b18 | #efece6 | 14.6 / 13.1 |
+| ink-2 | Quiet text, labels | #5c5850 | #aca69b | 6.0 / 6.4 |
+| accent | The AI: drafts, Ask, waiting counts | #5b3fd9 | #b3a1ff | 5.6 / 7.0 |
+| accent-ink | Text on the accent | #ffffff | #16132b | 6.6 / 8.1 |
+| good | Approved, healthy | #1d7348 | #6fd3a0 | 4.9 / 8.5 |
+| warn | Needs a look | #8a5a00 | #f0c062 | 5.0 / 9.2 |
+| risk | At risk, overdue | #b8352b | #ff8d82 | 5.0 / 6.9 |
+| line-strong | Control borders (3:1) | #8c867c | #7a7469 | 3.1 / 3.3 |
+| line | Hairlines, rare | #e9e5de | #2b2926 | |
 
 ## Type
 
-IBM Plex Sans and IBM Plex Mono, loaded with `next/font`.
+Geist, loaded with `next/font`. One face for everything; labels use tabular figures.
 
-| Step | Size / line height | Font |
+| Step | Size / line height | Weight |
 | --- | --- | --- |
-| h1 | 28 / 36 | Sans 600 |
-| h2 | 20 / 28 | Sans 600 |
-| h3 | 16 / 24 | Sans 600 |
-| body | 14 / 22 | Sans 400 |
-| small | 13 / 20 | Sans 400 |
-| meta | 12 / 16 | Mono 400 |
+| h1 | 34 / 40 | 600, tracking −2% |
+| h2 | 22 / 30 | 600 |
+| h3 | 17 / 24 | 600 |
+| body | 15 / 24 | 400 |
+| small | 13.5 / 21 | 400 |
+| label | 12 / 18 | 500, tabular |
 
-## Space and shape
+## Space, shape, depth
 
-A 4px grid (4, 8, 12, 16, 24, 32, 48). Corners: 4px on controls, 6px on cards. No shadows; borders do the work.
+A 4px grid. Pills for controls and chips; 12 to 20px corners for cards. Two soft shadows: `--shadow` for cards, `--shadow-lift` for the dock, drawers and highlighted items.
 
 ## Signature components
 
-`.sig-source` (source chip: mono, kind in caps, then date or moment) · `.sig-draft-tag` · `.sig-approved-tag` · `.sig-row-draft` · `.sig-btn` and `.sig-btn-primary`. All in `app/globals.css`.
+`.sig-source` (source chip: a soft pill) · `.sig-draft-tag` (violet pill with a dot) · `.sig-approved-tag` · `.sig-row-draft` (violet tint and edge) · `.sig-btn` and `.sig-btn-primary` (ink pill). All in `app/globals.css`.

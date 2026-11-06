@@ -53,7 +53,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
 
       <header className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 pt-4 lg:pl-32 lg:pr-8">
         <Link href="/prototype" className="flex items-center gap-2 font-semibold">
-          <span aria-hidden="true" className="grid h-7 w-7 place-items-center rounded-[6px] bg-ink font-mono text-meta text-bg">
+          <span aria-hidden="true" className="grid h-7 w-7 place-items-center rounded-2xl bg-ink font-mono text-meta text-bg">
             CR
           </span>
           CRM Rethought

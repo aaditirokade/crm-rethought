@@ -46,7 +46,7 @@ export function Pipeline() {
               <li
                 key={stage}
                 aria-labelledby={`col-${stage}`}
-                className={`pipe-col rounded-[6px] border p-2 ${over === stage ? "border-accent bg-draft" : "border-line bg-surface-2"}`}
+                className={`pipe-col rounded-2xl border p-2 ${over === stage ? "border-accent bg-draft" : "border-line bg-surface-2"}`}
                 onDragOver={(e) => {
                   e.preventDefault();
                   setOver(stage);
@@ -71,7 +71,7 @@ export function Pipeline() {
                         key={`${o.id}-${o.stage}`}
                         draggable
                         onDragStart={(e) => e.dataTransfer.setData("text/plain", o.id)}
-                        className="pipe-card cursor-grab rounded-[4px] border border-line bg-surface p-3 active:cursor-grabbing"
+                        className="pipe-card cursor-grab rounded-xl border border-line bg-surface p-3 active:cursor-grabbing"
                       >
                         <p className="text-small font-semibold">
                           <Link href={`/prototype/accounts/${o.account}`} className="hover:underline">
@@ -109,7 +109,7 @@ export function Pipeline() {
                     );
                   })}
                   {gs.map((g) => (
-                    <li key={g.id} className="pipe-ghost rounded-[4px] border border-dashed border-accent bg-draft p-3">
+                    <li key={g.id} className="pipe-ghost rounded-xl border border-dashed border-accent bg-draft p-3">
                       <span className="sig-draft-tag">{g.kind === "opp" ? "SUGGESTED NEW" : "SUGGESTED MOVE"}</span>
                       <p className="mt-1 text-small font-semibold">{account(g.account)?.name}</p>
                       <p className="text-small">{g.text}</p>

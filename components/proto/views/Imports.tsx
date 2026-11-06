@@ -116,7 +116,7 @@ export function Imports() {
           {imp.mappingOk ? <span className="sig-approved-tag">{"✓"} CONFIRMED BY DANIEL</span> : <span className="sig-draft-tag">DRAFT MAPPING</span>}
         </div>
         <p className="text-small text-ink-2">The AI matched each column to a field and says why. Change any of them before you confirm.</p>
-        <ul className={`mt-3 divide-y divide-line rounded-[4px] ${imp.mappingOk ? "" : "sig-row-draft"}`}>
+        <ul className={`mt-3 divide-y divide-line rounded-xl ${imp.mappingOk ? "" : "sig-row-draft"}`}>
           {COLUMNS.map((c) => (
             <li key={c.col} className="grid gap-2 px-3 py-3 sm:grid-cols-[10rem_14rem_minmax(0,1fr)] sm:items-center">
               <span className="font-mono text-meta font-medium tracking-wide">{c.col.toUpperCase()}</span>
@@ -163,7 +163,7 @@ export function Imports() {
           {RULES.map((r) => {
             const d = imp.rules[r.id];
             return (
-              <li key={r.id} className={`rounded-[4px] border p-3 ${d ? "border-line" : r.kind === "fix" ? "sig-row-draft border-transparent" : "border-line-strong"}`}>
+              <li key={r.id} className={`rounded-xl border p-3 ${d ? "border-line" : r.kind === "fix" ? "sig-row-draft border-transparent" : "border-line-strong"}`}>
                 <div className="flex flex-wrap items-center gap-2">
                   {r.kind === "fix" ? (
                     d === "approved" ? (
@@ -184,10 +184,10 @@ export function Imports() {
                     <ul className="mt-2 space-y-1">
                       {r.preview.map((p) => (
                         <li key={p.before} className="flex flex-wrap items-center gap-2 font-mono text-meta">
-                          <span className="rounded-[3px] bg-surface-2 px-1.5 py-0.5 line-through decoration-ink-2">{p.before}</span>
+                          <span className="rounded-md bg-surface-2 px-1.5 py-0.5 line-through decoration-ink-2">{p.before}</span>
                           <span aria-hidden="true">{"→"}</span>
                           <span className="sr-only">becomes</span>
-                          <span className="rounded-[3px] border border-good px-1.5 py-0.5 text-good">{p.after}</span>
+                          <span className="rounded-md border border-good px-1.5 py-0.5 text-good">{p.after}</span>
                         </li>
                       ))}
                     </ul>

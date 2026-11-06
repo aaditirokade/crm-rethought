@@ -94,7 +94,7 @@ export function Triage() {
       </div>
 
       {cur ? (
-        <div key={cur.id} className="triage-card mt-5 rounded-[6px] bg-draft p-5">
+        <div key={cur.id} className="triage-card mt-5 rounded-2xl bg-draft p-5">
           <p className="font-mono text-meta tracking-wide text-ink-2">
             {i + 1} OF {queue.length} · {originOf(cur).label.toUpperCase()}
           </p>
@@ -153,7 +153,7 @@ export function Triage() {
           ) : null}
         </div>
       ) : (
-        <div className="triage-card mt-5 rounded-[6px] border border-line p-6 text-center">
+        <div className="triage-card mt-5 rounded-2xl border border-line p-6 text-center">
           <p className="text-h2 font-semibold">Inbox zero</p>
           <p className="mt-1 text-ink-2">
             You decided {done} {done === 1 ? "line" : "lines"}. Approved log lines still need Save below; record fixes and

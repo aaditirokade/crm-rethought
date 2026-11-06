@@ -5,23 +5,23 @@ import { contrast } from "@/lib/contrast";
 
 export const metadata: Metadata = {
   title: "Design tokens · CRM Rethought",
-  description: "Signal, the token set for CRM Rethought: color with contrast checks, type, space, shape and the signature components.",
+  description: "Canvas, the design system for CRM Rethought: color with contrast checks, type, space, shape and the signature components.",
 };
 
 const PRINCIPLES = [
-  ["Mono is the machine", "Sources, times, status and AI tags are set in Plex Mono. What people say and decide is set in Plex Sans."],
-  ["Accent means decide", "The accent marks Approve and the DRAFT tag: the places a person has to decide. Never decoration."],
-  ["Drafts look unfinished", "A line waiting for approval sits on a tint with a DRAFT tag. Approval removes both and stamps who and when."],
+  ["Space, not boxes", "Sections are grouped by space and type on one canvas. Only things you act on lift off the page."],
+  ["The AI has a material", "Anything the AI drafted carries a soft violet tint and edge. Approval turns it into plain ink, stamped with who and when."],
+  ["Ink means decide", "Approve and other decisions are solid ink buttons. Violet belongs to the AI; ink belongs to the person."],
   ["Never color alone", "Every status pairs color with a word. A risk is red and says why."],
 ];
 
 const TYPE = [
-  { name: "h1", spec: "28 / 36 · Sans 600", cls: "text-h1 font-semibold", sample: "Fernhill Outfitters" },
-  { name: "h2", spec: "20 / 28 · Sans 600", cls: "text-h2 font-semibold", sample: "What changed since Oct 14" },
-  { name: "h3", spec: "16 / 24 · Sans 600", cls: "text-h3 font-semibold", sample: "Promises still open" },
-  { name: "body", spec: "14 / 22 · Sans 400", cls: "text-body", sample: "Sam Reyes asked for pricing on 12 new stores opening in the spring." },
-  { name: "small", spec: "13 / 20 · Sans 400", cls: "text-small text-ink-2", sample: "Quarterly review · Today, 10:00 · 45 min" },
-  { name: "meta", spec: "12 / 16 · Mono 400", cls: "font-mono text-meta text-ink-2", sample: "EMAIL · NOV 3 · CONFIDENCE MEDIUM" },
+  { name: "h1", spec: "34 / 40 · Geist 600", cls: "text-h1 font-semibold", sample: "Fernhill Outfitters" },
+  { name: "h2", spec: "22 / 30 · Geist 600", cls: "text-h2 font-semibold", sample: "What changed since Oct 14" },
+  { name: "h3", spec: "17 / 24 · Geist 600", cls: "text-h3 font-semibold", sample: "Promises still open" },
+  { name: "body", spec: "15 / 24 · Geist 400", cls: "text-body", sample: "Sam Reyes asked for pricing on 12 new stores opening in the spring." },
+  { name: "small", spec: "13.5 / 21 · Geist 400", cls: "text-small text-ink-2", sample: "Quarterly review · Today, 10:00 · 45 min" },
+  { name: "label", spec: "12 / 18 · Geist 500, tabular", cls: "font-mono text-meta tracking-wide text-ink-2", sample: "EMAIL · NOV 3 · CONFIDENCE MEDIUM" },
 ];
 
 const SPACE = [4, 8, 12, 16, 24, 32, 48];
@@ -68,11 +68,11 @@ export default function Tokens() {
         </Link>{" "}
         / Tokens
       </p>
-      <h1 className="mt-2 text-h1 font-semibold">Signal</h1>
+      <h1 className="mt-2 text-h1 font-semibold">Canvas</h1>
       <p className="mt-2 max-w-2xl text-ink-2">
-        The token set for CRM Rethought, chosen from three directions (decision 0010). A dense, precise work tool:
-        IBM Plex Sans and Mono, cool grays, one electric blue. Every ratio on this page is computed from the token
-        values.
+        The design system for CRM Rethought (decision 0017), replacing Signal&rsquo;s boxed look. A warm canvas, one
+        friendly face (Geist), soft lifted cards only where you act, and a violet material for anything the AI drafted.
+        Every ratio on this page is computed from the token values.
       </p>
 
       <section aria-labelledby="h-principles" className="mt-10">
@@ -81,7 +81,7 @@ export default function Tokens() {
         </h2>
         <dl className="mt-4 grid gap-4 sm:grid-cols-2">
           {PRINCIPLES.map(([t, d]) => (
-            <div key={t} className="rounded-[6px] border border-line bg-surface p-4">
+            <div key={t} className="rounded-2xl border border-line bg-surface p-4">
               <dt className="font-semibold">{t}</dt>
               <dd className="mt-1 text-ink-2">{d}</dd>
             </div>
@@ -98,7 +98,7 @@ export default function Tokens() {
           for control borders.
         </p>
         <div
-          className="relative mt-4 overflow-x-auto rounded-[6px] border border-line bg-surface"
+          className="relative mt-4 overflow-x-auto rounded-2xl border border-line bg-surface"
           role="region"
           aria-label="Color tokens table"
           tabIndex={0}
@@ -149,7 +149,7 @@ export default function Tokens() {
         <h2 id="h-space" className="text-h2 font-semibold">
           Space and shape
         </h2>
-        <p className="mt-1 text-small text-ink-2">A 4px grid. Corners: 4px on controls, 6px on cards. No shadows; borders do the work.</p>
+        <p className="mt-1 text-small text-ink-2">A 4px grid. Corners: pills for controls and chips, 12 to 20px for cards. Soft shadows lift what you act on; hairlines are rare.</p>
         <ul className="mt-4 flex flex-wrap items-end gap-5">
           {SPACE.map((n) => (
             <li key={n} className="flex flex-col items-center gap-1">
@@ -165,7 +165,7 @@ export default function Tokens() {
           Signature components
         </h2>
         <div className="mt-4 grid gap-6 lg:grid-cols-2">
-          <div className="rounded-[6px] border border-line bg-surface p-4">
+          <div className="rounded-2xl border border-line bg-surface p-4">
             <h3 className="text-h3 font-semibold">Source chip and tags</h3>
             <div className="mt-3 flex flex-wrap items-center gap-2">
               <span className="sig-source">
@@ -200,9 +200,9 @@ export default function Tokens() {
             </ul>
           </div>
 
-          <div className="rounded-[6px] border border-line bg-surface p-4">
+          <div className="rounded-2xl border border-line bg-surface p-4">
             <h3 className="text-h3 font-semibold">Draft, then approved</h3>
-            <div className="sig-row-draft mt-3 rounded-[4px] p-3">
+            <div className="sig-row-draft mt-3 rounded-xl p-3">
               <span className="sig-draft-tag">DRAFT</span>
               <p className="mt-1.5">Lena Ortiz, your day to day contact, has left Fernhill.</p>
               <div className="mt-2 flex flex-wrap items-center gap-2">
@@ -220,7 +220,7 @@ export default function Tokens() {
                 </button>
               </div>
             </div>
-            <div className="mt-3 rounded-[4px] p-3">
+            <div className="mt-3 rounded-xl p-3">
               <span className="sig-approved-tag">{"✓"} APPROVED BY DANIEL · NOV 12 10:44</span>
               <p className="mt-1.5">Fernhill will renew all 40 stores on Jan 25.</p>
               <div className="mt-2 flex flex-wrap items-center gap-2">

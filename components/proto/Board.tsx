@@ -39,7 +39,7 @@ export function DayStrip({ s, focus }: { s: State; focus: string[] }) {
     const dim = focus.length > 0 && !focus.includes(m.account);
     const hit = focus.includes(m.account);
     return (
-      <div className={`board-item border border-line bg-surface p-3 ${dim ? "is-dim" : ""} ${hit ? "is-hit" : ""}`}>
+      <div className={`board-item rounded-2xl bg-surface-2 p-3 ${dim ? "is-dim" : ""} ${hit ? "is-hit" : ""}`}>
         <p className="font-mono text-meta tracking-wide text-ink-2">
           {m.time} · {m.length.toUpperCase()}
         </p>
@@ -85,14 +85,14 @@ export function DayStrip({ s, focus }: { s: State; focus: string[] }) {
               {label(h)}
             </span>
           ))}
-          <div className="absolute inset-x-0 top-7 h-6 rounded-[4px] bg-surface-2" />
+          <div className="absolute inset-x-0 top-7 h-6 rounded-xl bg-surface-2" />
           {today.map((m) => {
             const st = toHours(m.time);
             const hit = focus.includes(m.account);
             return (
               <span
                 key={m.id}
-                className={`board-block absolute top-7 h-6 rounded-[4px] ${hit ? "is-hit" : ""}`}
+                className={`board-block absolute top-7 h-6 rounded-xl ${hit ? "is-hit" : ""}`}
                 style={{ left: pct(st), width: `${(minutes(m.length) / 60 / (END - START)) * 100}%` }}
               />
             );

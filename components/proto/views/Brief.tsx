@@ -175,7 +175,7 @@ export function Brief({ id }: { id: string }) {
             </section>
           ) : null}
 
-          <section className="rounded-[6px] border border-dashed border-line-strong p-4">
+          <section className="rounded-2xl border border-dashed border-line-strong p-4">
             <h2 className="font-mono text-meta tracking-wide text-ink-2">HOW TO READ THIS BRIEF</h2>
             <p className="mt-2 text-small text-ink-2">
               Every line links to where it came from. Pin or dismiss freely; only a record fix changes shared data, and

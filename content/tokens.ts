@@ -1,4 +1,4 @@
-/** Signal color tokens. Mirrors app/globals.css; the /tokens page checks contrast from these values. */
+/** Canvas color tokens (decision 0017). Mirrors app/globals.css; the /tokens page checks contrast from these values. */
 export type Mode = { bg: string; surface: string; surface2: string; draft: string } & Record<string, string>;
 
 export type ColorToken = {
@@ -11,22 +11,22 @@ export type ColorToken = {
 };
 
 export const BACKGROUNDS = {
-  light: { bg: "#f4f5f7", surface: "#ffffff", surface2: "#eceef2", draft: "#eef2ff", accent: "#2853f0" },
-  dark: { bg: "#0d0f13", surface: "#151820", surface2: "#1c2029", draft: "#182038", accent: "#7d9bff" },
+  light: { bg: "#f6f4f0", surface: "#ffffff", surface2: "#efece6", draft: "#f3f0ff", accent: "#5b3fd9", ink: "#1d1b18" },
+  dark: { bg: "#141312", surface: "#1d1c1a", surface2: "#262421", draft: "#221f33", accent: "#b3a1ff", ink: "#efece6" },
 };
 
 export const COLORS: ColorToken[] = [
-  { name: "bg", role: "Page background", light: "#f4f5f7", dark: "#0d0f13", check: "background" },
-  { name: "surface", role: "Cards, panels, controls", light: "#ffffff", dark: "#151820", check: "background" },
-  { name: "surface-2", role: "Hover, sunken areas, gates", light: "#eceef2", dark: "#1c2029", check: "background" },
-  { name: "draft", role: "Behind lines the AI drafted", light: "#eef2ff", dark: "#182038", check: "background" },
-  { name: "ink", role: "Text people read", light: "#111318", dark: "#e8eaf0", check: "text" },
-  { name: "ink-2", role: "Quiet text, metadata", light: "#535866", dark: "#9aa1b0", check: "text" },
-  { name: "accent", role: "The one primary action; draft tags", light: "#2853f0", dark: "#7d9bff", check: "text" },
-  { name: "accent-ink", role: "Label on the accent", light: "#ffffff", dark: "#0b1020", check: "on-accent" },
-  { name: "good", role: "Approved, healthy", light: "#17784a", dark: "#5fd39b", check: "text" },
-  { name: "warn", role: "Needs a look", light: "#8a5a00", dark: "#f2c062", check: "text" },
-  { name: "risk", role: "At risk, overdue", light: "#c0362c", dark: "#ff8a80", check: "text" },
-  { name: "line-strong", role: "Control borders", light: "#7f8594", dark: "#687080", check: "border" },
-  { name: "line", role: "Dividers (decorative)", light: "#dde0e6", dark: "#262a34", check: "decorative" },
+  { name: "bg", role: "The canvas everything sits on", light: "#f6f4f0", dark: "#141312", check: "background" },
+  { name: "surface", role: "Things that lift: cards you act on", light: "#ffffff", dark: "#1d1c1a", check: "background" },
+  { name: "surface-2", role: "Quiet fills: chips, inputs, inner groups", light: "#efece6", dark: "#262421", check: "background" },
+  { name: "draft", role: "Behind lines the AI drafted", light: "#f3f0ff", dark: "#221f33", check: "background" },
+  { name: "ink", role: "Text people read; primary buttons", light: "#1d1b18", dark: "#efece6", check: "text" },
+  { name: "ink-2", role: "Quiet text, labels", light: "#5c5850", dark: "#aca69b", check: "text" },
+  { name: "accent", role: "The AI's color: drafts, Ask, waiting counts", light: "#5b3fd9", dark: "#b3a1ff", check: "text" },
+  { name: "accent-ink", role: "Text on the accent", light: "#ffffff", dark: "#16132b", check: "on-accent" },
+  { name: "good", role: "Approved, healthy", light: "#1d7348", dark: "#6fd3a0", check: "text" },
+  { name: "warn", role: "Needs a look", light: "#8a5a00", dark: "#f0c062", check: "text" },
+  { name: "risk", role: "At risk, overdue", light: "#b8352b", dark: "#ff8d82", check: "text" },
+  { name: "line-strong", role: "Control borders", light: "#8c867c", dark: "#7a7469", check: "border" },
+  { name: "line", role: "Hairlines, rarely used", light: "#e9e5de", dark: "#2b2926", check: "decorative" },
 ];
