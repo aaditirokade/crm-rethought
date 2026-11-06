@@ -15,7 +15,7 @@ export default function Log() {
       <p className="mt-1 text-ink-2">{LOG.meeting} · drafted from the transcript, waiting for you</p>
 
       <div className="mt-8 grid gap-10 lg:grid-cols-[18rem_minmax(0,1fr)]">
-        <aside aria-labelledby="h-transcript" className="lg:border-r lg:border-line lg:pr-8">
+        <aside aria-labelledby="h-transcript" className="order-2 lg:order-1 lg:border-r lg:border-line lg:pr-8">
           <h2 id="h-transcript" className="text-lg font-semibold">
             Transcript moments
           </h2>
@@ -30,7 +30,9 @@ export default function Log() {
             ))}
           </ol>
         </aside>
-        <LogReview sections={LOG.sections} account={LOG.account} emailDraft={LOG.emailDraft} />
+        <div className="order-1 min-w-0 lg:order-2">
+          <LogReview sections={LOG.sections} account={LOG.account} emailDraft={LOG.emailDraft} />
+        </div>
       </div>
     </main>
   );
