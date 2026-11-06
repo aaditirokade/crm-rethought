@@ -13,3 +13,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0007 | [Converge: build the meeting loop first](0007-converge-meeting-loop.md) | 2026-11-06 |
 | 0008 | [AI drafts; people decide](0008-ai-drafts-people-decide.md) | 2026-11-06 |
 | 0009 | [Wireframes in code, in grayscale](0009-wireframes-in-code.md) | 2026-11-06 |
+| 0010 | [Visual direction: Signal](0010-visual-direction-signal.md) | 2026-11-06 |

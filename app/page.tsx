@@ -22,6 +22,11 @@ export default function Home() {
           </Link>
         </li>
         <li>
+          <Link className="text-action underline underline-offset-4" href="/tokens">
+            Design tokens
+          </Link>
+        </li>
+        <li>
           <a className="text-action underline underline-offset-4" href={`${REPO}/tree/main/prompts`}>
             Prompt log
           </a>

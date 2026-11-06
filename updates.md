@@ -15,3 +15,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Phase 2 closed (where AI belongs, decision 0008); Phase 3 information architecture and grayscale wireframes of the meeting loop (decision 0009)
 - Wireframe fixes from the browser check (landmarks, phone header, log first on phones); pin magic-string so Tailwind builds on every Node version
 - Three visual directions on one brief fragment, light and dark, at /directions
+- Signal token set: colors with contrast, IBM Plex type scale, space, shape and signature components, live at /tokens (decision 0010)
