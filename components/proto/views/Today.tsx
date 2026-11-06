@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { EVENTS } from "@/content/more";
 import { account, forMeeting, MEETINGS, NOW } from "@/content/prototype";
+import { groupByOrigin } from "../groups";
 import { SourceChip } from "../Source";
-import { entryOf, me, pending, saved, tasks, useProto } from "../store";
+import { allSugs, entryOf, me, pending, saved, tasks, useProto } from "../store";
 
 export function Today() {
   const s = useProto();
@@ -11,7 +13,8 @@ export function Today() {
   const later = MEETINGS.filter((m) => m.day !== "Today");
   const waiting = pending(s);
   const myTasks = tasks(s);
-  const groups = MEETINGS.map((m) => ({ m, items: waiting.filter((w) => w.meeting === m.id) })).filter((g) => g.items.length);
+  const groups = groupByOrigin(waiting);
+  const unlogged = EVENTS.filter((e) => !allSugs(s).some((x) => x.meeting === `event:${e.id}` && entryOf(s, x.id).status === "saved"));
 
   return (
     <div>
@@ -84,6 +87,7 @@ export function Today() {
               {later.map((m) => {
                 const a = account(m.account);
                 const ready = m.fromLog ? saved(s, (x) => x.meeting === m.fromLog && x.kind !== "fix").length > 0 : true;
+                const label = m.fromLog ? (ready ? "✓ BRIEF BUILT FROM YOUR APPROVED LOG" : "WAITING FOR TODAY’S LOG TO BE APPROVED") : "BRIEF READY";
                 return (
                   <li key={m.id} className="grid gap-3 p-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
                     <div>
@@ -93,8 +97,9 @@ export function Today() {
                       <p className="text-small text-ink-2">
                         {m.day}, {m.time} · {m.context}
                       </p>
-                      <p className={`mt-1 font-mono text-meta tracking-wide ${ready ? "text-good" : "text-ink-2"}`}>
-                        {ready ? "✓ BRIEF BUILT FROM YOUR APPROVED LOG" : "WAITING FOR TODAY’S LOG TO BE APPROVED"}
+                      <p className="mt-1 flex flex-wrap gap-x-3 font-mono text-meta tracking-wide">
+                        <span className={m.fromLog && ready ? "text-good" : "text-ink-2"}>{label}</span>
+                        {m.highStakes ? <span className="text-warn">▲ HIGH STAKES · NOT RECORDED</span> : null}
                       </p>
                     </div>
                     <Link href={`/prototype/brief/${m.id}`} className="sig-btn">
@@ -115,17 +120,14 @@ export function Today() {
             <p className="mt-1 text-small text-ink-2">Nothing here reaches the record until you approve it.</p>
             {groups.length ? (
               <ul className="proto-card mt-3 divide-y divide-line">
-                {groups.map(({ m, items }) => (
-                  <li key={m.id} className="p-4">
-                    <p className="font-semibold">{account(m.account)?.name}</p>
+                {groups.map(({ origin, items }) => (
+                  <li key={origin.key} className="p-4">
+                    <p className="font-semibold">{origin.label}</p>
                     <p className="text-small text-ink-2">
-                      {items.length} {items.length === 1 ? "line" : "lines"} from the {m.title.toLowerCase()}
+                      {items.length} {items.length === 1 ? "line" : "lines"} to approve
                     </p>
-                    <Link
-                      href={items.some((x) => x.kind !== "fix") ? `/prototype/log/${m.id}` : `/prototype/brief/${m.id}`}
-                      className="mt-2 inline-block text-small font-medium underline underline-offset-4"
-                    >
-                      Review<span className="sr-only"> {account(m.account)?.name}</span>
+                    <Link href={origin.href} className="mt-2 inline-block text-small font-medium underline underline-offset-4">
+                      Review<span className="sr-only"> {origin.label}</span>
                     </Link>
                   </li>
                 ))}
@@ -134,6 +136,28 @@ export function Today() {
               <p className="proto-card mt-3 p-4 text-small text-ink-2">All clear.</p>
             )}
           </section>
+
+          {unlogged.length ? (
+            <section aria-labelledby="h-unrecorded">
+              <h2 id="h-unrecorded" className="text-h3 font-semibold">
+                Ended without a recording
+              </h2>
+              <p className="mt-1 text-small text-ink-2">From your calendar. Anything worth logging?</p>
+              <ul className="proto-card mt-3 divide-y divide-line">
+                {unlogged.map((e) => (
+                  <li key={e.id} className="p-4">
+                    <p className="font-semibold">{e.title}</p>
+                    <p className="text-small text-ink-2">
+                      {account(e.account)?.name} · {e.day} · with {e.with}
+                    </p>
+                    <Link href={`/prototype/quick-log/${e.id}`} className="sig-btn mt-2">
+                      Log it from notes
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
 
           <section aria-labelledby="h-tasks">
             <h2 id="h-tasks" className="text-h3 font-semibold">

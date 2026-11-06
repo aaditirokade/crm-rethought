@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { EVENTS } from "@/content/more";
 import { SOURCES, SUGGESTIONS, type Source } from "@/content/prototype";
 import { entryOf, textOf, useProto } from "./store";
 
@@ -18,6 +19,13 @@ export function useSource(id: string): Source | undefined {
       title: `Approved log line · ${e.at ?? "Nov 12"}`,
       excerpt: `“${textOf(s, sug)}” Approved by Daniel. It came from the call at ${SOURCES[sug.sources[0]]?.when ?? "the call"}.`,
     };
+  }
+  if (id.startsWith("note:")) {
+    const evId = id.slice(5);
+    const ev = EVENTS.find((e) => e.id === evId);
+    const note = s.notes[evId];
+    if (!ev || !note) return undefined;
+    return { id, kind: "NOTE", when: "Your words", title: `Your notes · ${ev.title}`, excerpt: note.text };
   }
   return SOURCES[id];
 }

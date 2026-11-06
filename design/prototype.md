@@ -13,13 +13,21 @@ One scenario, start to finish: Daniel Okoro (account manager, persona 2) on Thur
 5. **Next brief** (`/prototype/brief/fernhill-pricing`): Monday's brief is built only from lines a person approved. Dismissed lines never appear. Before the log is saved, it is empty and says why.
 6. **Review** (`/prototype/review`): every pending line across accounts, approved in one sitting.
 
+7. **Opportunities** (`/prototype/opportunities`): who to reach out to this week, ranked by reasons with sources; move up, move down, snooze. New opportunities and stage changes the AI spotted wait for approval ([decision 0011](../decisions/0011-widen-scope.md)).
+8. **Log from notes** (`/prototype/quick-log/expo`): a booth chat with no recording. Write a few sentences (or use the sample), choose Standard or High stakes, and each sentence becomes a line to approve.
+9. **High stakes brief** (`/prototype/brief/harbor-owner`): not recorded, and the line the AI is unsure of stays hidden until you ask.
+10. **Lists in plain words** (`/prototype/accounts`): type "quiet for 2 weeks with more than 10 stores", remove any chip that's wrong, see why each account matches, save the list.
+11. **Interactions** (any account page): filter by type, and see who on our side last spoke to each person.
+
 Also: Brightwater's brief flags a possible duplicate contact, and the AI stops there, because merging is people only ([decision 0008](../decisions/0008-ai-drafts-people-decide.md)).
 
 ## How it works
 
+- Lists are parsed by a small rule set (`lib/listQuery.ts`) so the prototype is honest about what it understood; a live product would have a language model draft the same chips.
+- Lines drafted from notes are one per sentence, each linked back to the notes as its source.
 - State lives in the browser (localStorage) through a small external store (`components/proto/store.ts`), so approvals carry across pages and reloads. "Reset demo" starts the day again.
 - The account record is derived: base data plus every saved change. Nothing the AI drafted changes it until a person approves.
-- Deals at risk and Imports appear in the navigation as later.
+- Imports appears in the navigation as later. Deals at risk became the ranked outreach on Opportunities.
 
 ## Checks
 

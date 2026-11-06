@@ -1,19 +1,33 @@
 "use client";
 
 import Link from "next/link";
-import { MEETINGS } from "@/content/prototype";
+import { useState } from "react";
+import { MEETINGS, type InteractionType } from "@/content/prototype";
 import { Health, PageHead } from "../bits";
 import { SourceChip } from "../Source";
-import { liveAccount, pending, useProto } from "../store";
+import { liveAccount, liveOpps, pending, useProto } from "../store";
+
+const FILTERS: { name: string; types: InteractionType[] }[] = [
+  { name: "All", types: [] },
+  { name: "Calls and video", types: ["Call", "Video"] },
+  { name: "In person and events", types: ["In person", "Event"] },
+  { name: "Email", types: ["Email"] },
+  { name: "Tickets", types: ["Ticket"] },
+];
 
 export function AccountView({ id }: { id: string }) {
   const s = useProto();
+  const [filter, setFilter] = useState("All");
   const a = liveAccount(s, id);
   if (!a) return null;
   const waiting = pending(s, (x) => x.account === id);
   const logMeeting = MEETINGS.find((m) => m.account === id && m.hasLog);
   const names = a.people.map((p) => p.name);
   const dupes = new Set(names.filter((n, i) => names.indexOf(n) !== i));
+  const types = FILTERS.find((f) => f.name === filter)?.types ?? [];
+  const shown = a.timeline.filter((t) => !types.length || types.includes(t.type));
+  const opps = liveOpps(s).filter((o) => o.account === id);
+  const lastWith = (name: string) => a.timeline.find((t) => t.with?.split(", ").includes(name));
 
   return (
     <div>
@@ -52,7 +66,7 @@ export function AccountView({ id }: { id: string }) {
         <p className="mt-4 rounded-[4px] bg-draft px-3 py-2 text-small">
           <span className="sig-draft-tag mr-2">DRAFT</span>
           {waiting.length} {waiting.length === 1 ? "line" : "lines"} for this account {waiting.length === 1 ? "is" : "are"} waiting for
-          approval and {waiting.length === 1 ? "is" : "are"} not in the record yet.{" "}
+          approval and not in the record yet.{" "}
           <Link href={logMeeting ? `/prototype/log/${logMeeting.id}` : "/prototype/review"} className="font-medium underline underline-offset-4">
             Review
           </Link>
@@ -62,43 +76,46 @@ export function AccountView({ id }: { id: string }) {
       <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem]">
         <section aria-labelledby="h-timeline">
           <h2 id="h-timeline" className="text-h3 font-semibold">
-            Timeline
+            Interactions
           </h2>
-          <p className="text-small text-ink-2">Only what a person approved. Newest first.</p>
+          <p className="text-small text-ink-2">Only what a person approved or logged. Newest first.</p>
+          <div className="mt-3 flex flex-wrap gap-2" role="group" aria-label="Filter interactions by type">
+            {FILTERS.map((f) => (
+              <button key={f.name} type="button" className="sig-btn" aria-pressed={filter === f.name} onClick={() => setFilter(f.name)}>
+                {f.name}
+              </button>
+            ))}
+          </div>
           <ol className="mt-3 space-y-3">
-            {a.approvedLog.length ? (
-              <li className="proto-card p-4">
-                <p className="font-mono text-meta tracking-wide text-ink-2">NOV 12 · QUARTERLY REVIEW</p>
-                <p className="mt-0.5 font-semibold">Call log · approved by Daniel</p>
-                <ul className="mt-3 space-y-3">
-                  {a.approvedLog.map((l) => (
-                    <li key={l.sug.id}>
-                      <span className="sig-approved-tag">
-                        {"✓"} {l.at}
-                      </span>
-                      <p className="mt-0.5">{l.text}</p>
-                      <div className="mt-1 flex flex-wrap gap-2">
-                        {l.sug.sources.map((src) => (
-                          <SourceChip key={src} id={src} />
-                        ))}
-                      </div>
+            {shown.length === 0 ? <li className="proto-card p-4 text-small text-ink-2">No interactions of this type.</li> : null}
+            {shown.map((t) => (
+              <li key={t.key} className="proto-card p-4">
+                <p className="flex flex-wrap gap-x-2 font-mono text-meta tracking-wide text-ink-2">
+                  <span>{t.date.toUpperCase()}</span>
+                  <span>· {t.type.toUpperCase()}</span>
+                  <span>· {t.ours.toUpperCase()}</span>
+                  {t.highStakes ? <span className="text-warn">· HIGH STAKES</span> : null}
+                </p>
+                <p className="mt-0.5 font-semibold">{t.title}</p>
+                {t.with ? <p className="text-small text-ink-2">With {t.with}</p> : null}
+                <ul className="mt-2 space-y-2">
+                  {t.lines.map((l) => (
+                    <li key={l.text}>
+                      {l.at ? <span className="sig-approved-tag">{"✓"} {l.at}</span> : null}
+                      <p>{l.text}</p>
+                      {l.sources.length ? (
+                        <div className="mt-1 flex flex-wrap gap-2">
+                          {l.sources.map((src) => (
+                            <SourceChip key={src} id={src} />
+                          ))}
+                        </div>
+                      ) : null}
                     </li>
                   ))}
                 </ul>
-              </li>
-            ) : null}
-            {a.history.map((h) => (
-              <li key={h.date + h.title} className="proto-card p-4">
-                <p className="font-mono text-meta tracking-wide text-ink-2">{h.date.toUpperCase()}</p>
-                <p className="mt-0.5 font-semibold">{h.title}</p>
-                <ul className="mt-2 list-disc space-y-1 pl-5">
-                  {h.lines.map((l) => (
-                    <li key={l}>{l}</li>
-                  ))}
-                </ul>
-                {h.source ? (
+                {t.source ? (
                   <div className="mt-2">
-                    <SourceChip id={h.source} />
+                    <SourceChip id={t.source} />
                   </div>
                 ) : null}
               </li>
@@ -109,31 +126,46 @@ export function AccountView({ id }: { id: string }) {
         <aside className="space-y-6">
           <section aria-labelledby="h-people" className="proto-card p-4">
             <h2 id="h-people" className="text-h3 font-semibold">
-              People
+              People and coverage
             </h2>
+            <p className="text-small text-ink-2">Who on our side last spoke to each person.</p>
             <ul className="mt-3 space-y-3">
-              {a.people.map((p, i) => (
-                <li key={p.name + i}>
-                  <p className={`font-medium ${p.leftAt ? "text-ink-2 line-through" : ""}`}>{p.name}</p>
-                  <p className="text-small text-ink-2">{p.role}</p>
-                  {p.leftAt ? <p className="font-mono text-meta text-ink-2">LEFT · MARKED BY DANIEL {p.leftAt}</p> : null}
-                  {p.added ? <p className="font-mono text-meta text-good">{"✓"} ADDED BY DANIEL {p.added}</p> : null}
-                  {dupes.has(p.name) ? (
-                    <p className="font-mono text-meta text-warn">{"▲"} POSSIBLE DUPLICATE · MERGE IS PEOPLE ONLY</p>
-                  ) : null}
+              {a.people.map((p, i) => {
+                const last = lastWith(p.name);
+                return (
+                  <li key={p.name + i}>
+                    <p className={`font-medium ${p.leftAt ? "text-ink-2 line-through" : ""}`}>{p.name}</p>
+                    <p className="text-small text-ink-2">{p.role}</p>
+                    <p className="font-mono text-meta text-ink-2">
+                      {last ? `LAST: ${last.ours.toUpperCase()} · ${last.date.toUpperCase()} · ${last.type.toUpperCase()}` : "NO CONTACT LOGGED"}
+                    </p>
+                    {p.leftAt ? <p className="font-mono text-meta text-ink-2">LEFT · MARKED BY DANIEL {p.leftAt}</p> : null}
+                    {p.added ? <p className="font-mono text-meta text-good">{"✓"} ADDED BY DANIEL {p.added}</p> : null}
+                    {dupes.has(p.name) ? <p className="font-mono text-meta text-warn">{"▲"} POSSIBLE DUPLICATE · MERGE IS PEOPLE ONLY</p> : null}
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+          <section aria-labelledby="h-opps" className="proto-card p-4">
+            <h2 id="h-opps" className="text-h3 font-semibold">
+              Opportunities
+            </h2>
+            <ul className="mt-3 space-y-3 text-small">
+              {opps.map((o) => (
+                <li key={o.id}>
+                  <p className="font-medium">{o.name}</p>
+                  <p className="font-mono text-meta text-ink-2">
+                    {o.stage.toUpperCase()} · CLOSE {o.close.toUpperCase()}
+                  </p>
+                  {o.addedAt ? <p className="font-mono text-meta text-good">{"✓"} ADDED BY DANIEL {o.addedAt}</p> : null}
+                  {o.changedAt ? <p className="font-mono text-meta text-good">{"✓"} STAGE SET BY DANIEL {o.changedAt}</p> : null}
                 </li>
               ))}
             </ul>
-          </section>
-          <section aria-labelledby="h-deals" className="proto-card p-4">
-            <h2 id="h-deals" className="text-h3 font-semibold">
-              Deals
-            </h2>
-            <ul className="mt-3 space-y-2 text-small">
-              {a.deals.map((d) => (
-                <li key={d}>{d}</li>
-              ))}
-            </ul>
+            <Link href="/prototype/opportunities" className="mt-3 inline-block text-small font-medium underline underline-offset-4">
+              All opportunities
+            </Link>
           </section>
         </aside>
       </div>

@@ -14,7 +14,7 @@
   --ink-2: #535866; /* 6.1:1 or more */
   --line: #dde0e6; /* decorative dividers only */
   --line-strong: #7f8594; /* control borders, 3.2:1 or more */
-  --accent: #2853f0; /* 5.0:1 or more; the one primary action per view */
+  --accent: #2853f0; /* 5.0:1 or more; Approve and the DRAFT tag, where a person decides */
   --accent-hover: #1f45d6;
   --accent-ink: #ffffff; /* 5.9:1 on accent */
   --draft: #eef2ff; /* tint behind lines the AI drafted */
@@ -161,6 +161,15 @@ button.sig-source:hover {
 }
 .sig-btn:hover {
   background: var(--surface-2);
+}
+.sig-btn[aria-pressed="true"] {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--bg);
+}
+.sig-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 .sig-btn-primary {
   border-color: var(--accent);

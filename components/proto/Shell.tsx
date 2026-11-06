@@ -4,15 +4,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { actions, me, pending, useProto } from "./store";
 
-const LATER = ["Deals at risk", "Imports"];
+const LATER = ["Imports"];
 
 export function Shell({ children }: { children: React.ReactNode }) {
   const s = useProto();
   const path = usePathname();
   const waiting = pending(s).length;
   const nav = [
-    { href: "/prototype", label: "Today", current: path === "/prototype" || path.startsWith("/prototype/brief") || path.startsWith("/prototype/log") },
+    { href: "/prototype", label: "Today", current: path === "/prototype" || path.startsWith("/prototype/brief") || path.startsWith("/prototype/log") || path.startsWith("/prototype/quick-log") },
     { href: "/prototype/accounts", label: "Accounts", current: path.startsWith("/prototype/accounts") },
+    { href: "/prototype/opportunities", label: "Opportunities", current: path.startsWith("/prototype/opportunities") },
     { href: "/prototype/review", label: "Review", current: path.startsWith("/prototype/review"), count: waiting },
   ];
   return (
@@ -30,7 +31,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
           </p>
         </div>
         <nav aria-label="Main" className="px-2 pb-2 lg:px-3 lg:pt-4">
-          <ul className="flex gap-1 lg:flex-col">
+          <ul className="flex flex-wrap gap-1 lg:flex-col">
             {nav.map((n) => (
               <li key={n.href}>
                 <Link href={n.href} aria-current={n.current ? "page" : undefined} className="proto-nav">

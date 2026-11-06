@@ -1,16 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { account, MEETINGS, SUGGESTIONS } from "@/content/prototype";
 import { PageHead } from "../bits";
+import { groupByOrigin } from "../groups";
 import { GateLine } from "../Lines";
-import { actions, entryOf, isGated, useProto } from "../store";
+import { actions, allSugs, entryOf, isGated, useProto } from "../store";
 
 export function Review() {
   const s = useProto();
-  const open = SUGGESTIONS.filter((x) => isGated(x) && entryOf(s, x.id).status !== "saved");
+  const open = allSugs(s).filter((x) => isGated(x) && entryOf(s, x.id).status !== "saved");
   const approved = open.filter((x) => entryOf(s, x.id).status === "approved").length;
-  const groups = MEETINGS.map((m) => ({ m, items: open.filter((x) => x.meeting === m.id) })).filter((g) => g.items.length);
+  const groups = groupByOrigin(open);
 
   return (
     <div>
@@ -22,14 +22,14 @@ export function Review() {
         </div>
       ) : (
         <div className="mt-8 space-y-8">
-          {groups.map(({ m, items }) => (
-            <section key={m.id} aria-labelledby={`h-${m.id}`}>
-              <h2 id={`h-${m.id}`} className="text-h3 font-semibold">
-                {account(m.account)?.name} · {m.title}
+          {groups.map(({ origin, items }) => (
+            <section key={origin.key} aria-labelledby={`h-${origin.key.replace(/[^a-z0-9]/gi, "")}`}>
+              <h2 id={`h-${origin.key.replace(/[^a-z0-9]/gi, "")}`} className="text-h3 font-semibold">
+                {origin.label}
               </h2>
               <p className="text-small text-ink-2">
-                {m.day}, {m.time} ·{" "}
-                <Link href={items.some((x) => x.kind !== "fix") ? `/prototype/log/${m.id}` : `/prototype/brief/${m.id}`} className="underline underline-offset-4">
+                {origin.when ? `${origin.when} · ` : ""}
+                <Link href={origin.href} className="underline underline-offset-4">
                   Open in context
                 </Link>
               </p>
@@ -45,14 +45,9 @@ export function Review() {
       <div className="sticky bottom-0 mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-line bg-bg py-4">
         <p className="font-mono text-meta tracking-wide">
           <span className="font-medium">{approved} APPROVED</span>
-          <span className="text-ink-2"> · RECORD FIXES SAVE AS SOON AS YOU APPROVE THEM</span>
+          <span className="text-ink-2"> · RECORD FIXES AND OPPORTUNITY CHANGES SAVE AS SOON AS YOU APPROVE THEM</span>
         </p>
-        <button
-          type="button"
-          className="sig-btn sig-btn-primary disabled:cursor-not-allowed disabled:opacity-50"
-          disabled={approved === 0}
-          onClick={() => actions.save()}
-        >
+        <button type="button" className="sig-btn sig-btn-primary" disabled={approved === 0} onClick={() => actions.save()}>
           Save {approved || ""} approved {approved === 1 ? "line" : "lines"}
         </button>
       </div>

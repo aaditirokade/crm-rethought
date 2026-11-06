@@ -4,14 +4,15 @@
  */
 
 export type Confidence = "High" | "Medium";
-export type SourceKind = "EMAIL" | "TICKET" | "CALL" | "USAGE" | "RECORD" | "LOG";
+export type SourceKind = "EMAIL" | "TICKET" | "CALL" | "USAGE" | "RECORD" | "LOG" | "NOTE" | "CALENDAR";
 
 export type Source = { id: string; kind: SourceKind; when: string; title: string; excerpt: string };
 
 export type Effect =
   | { type: "personLeft"; account: string; person: string }
   | { type: "addPerson"; account: string; person: { name: string; role: string } }
-  | { type: "addDeal"; account: string; deal: string }
+  | { type: "addOpp"; account: string; opp: Opp }
+  | { type: "stage"; account: string; opp: string; to: Stage }
   | { type: "nextStep"; account: string; text: string }
   | { type: "task"; text: string; due: string; account: string };
 
@@ -22,8 +23,9 @@ export type Effect =
  * flag: something only a person may act on (a merge); the AI never offers to do it.
  * log, task, record: drafted after a call; approved line by line, then saved together.
  * email: a draft the person sends themselves.
+ * opp, stage: a new opportunity or a stage change the AI spotted; written to the record only when approved.
  */
-export type Kind = "brief" | "fix" | "flag" | "log" | "task" | "record" | "email";
+export type Kind = "brief" | "fix" | "flag" | "log" | "task" | "record" | "email" | "opp" | "stage";
 
 export type Suggestion = {
   id: string;
@@ -38,7 +40,11 @@ export type Suggestion = {
   effect?: Effect;
 };
 
-export const GATED: Kind[] = ["fix", "log", "task", "record"];
+export const GATED: Kind[] = ["fix", "log", "task", "record", "opp", "stage"];
+
+export type Stage = "Idea" | "Qualified" | "Proposal" | "Committed";
+export type Opp = { id: string; account: string; name: string; stage: Stage; close: string };
+export type InteractionType = "Video" | "Call" | "In person" | "Event" | "Email" | "Ticket";
 
 export const ME = { name: "Daniel Okoro", short: "Daniel", role: "Account Manager", company: "Larkspur" };
 export const NOW = { day: "Thu, Nov 12", time: "9:05 AM", stamp: "NOV 12" };
@@ -62,6 +68,12 @@ export const SOURCES: Record<string, Source> = {
   bwDup: { id: "bwDup", kind: "RECORD", when: "Contacts", title: "Brightwater record · contacts", excerpt: "Omar Haddad · omar.haddad@brightwater.example and Omar Haddad · o.haddad@brightwater.example, both Store Operations." },
   kEmail: { id: "kEmail", kind: "EMAIL", when: "Nov 9", title: "Mei Tanaka to Daniel", excerpt: "“We’re planning to open Pacific and Mountain next year. Can we talk about adding both regions?”" },
   kRecord: { id: "kRecord", kind: "RECORD", when: "Contract", title: "Kestrel record · contract", excerpt: "22 stores, Atlantic and Central regions, renews Aug 1, 2027." },
+  hEmail: { id: "hEmail", kind: "EMAIL", when: "Oct 22", title: "Daniel to Theo Marsh", excerpt: "Sent the Q3 summary and the renewal proposal for 12 stores. No reply since." },
+  hRecord: { id: "hRecord", kind: "RECORD", when: "Renewal", title: "Harbor Lane record · renewal", excerpt: "Renewal on Feb 14, 2027 · 12 stores · proposal sent Oct 22." },
+  hPress: { id: "hPress", kind: "EMAIL", when: "Nov 8", title: "Industry newsletter", excerpt: "\u201cHarbor Lane Books is said to be reviewing its analytics tools ahead of a refit.\u201d Unconfirmed." },
+  aRecord: { id: "aRecord", kind: "CALENDAR", when: "Dec 1", title: "Calendar · Alder & Finch renewal kickoff", excerpt: "Renewal kickoff with Ruth Calloway, Dec 1, 2:00." },
+  aTicket: { id: "aTicket", kind: "TICKET", when: "4877", title: "Ticket 4877 · open since Nov 10", excerpt: "\u201cHoliday markdown alerts fire twice for some stores.\u201d" },
+  expo: { id: "expo", kind: "CALENDAR", when: "Nov 10", title: "Calendar · RetailTech Expo, booth duty", excerpt: "Booth 214, 10:00 to 4:00. No recording." },
   kUsage: { id: "kUsage", kind: "USAGE", when: "Nov 9", title: "Quarterly usage, Kestrel", excerpt: "Dashboard views up 18% on last quarter; 9 of 11 regional managers active weekly." },
 };
 
@@ -74,12 +86,14 @@ export type Account = {
   stores: number;
   renewal: string;
   health: "Healthy" | "Needs a look" | "At risk";
+  renewalDate: string;
+  openTicket?: string;
+  lastTouchDays: number;
   healthWhy: string;
   lastTouch: string;
   nextStep: string;
   people: Person[];
-  deals: string[];
-  history: { date: string; title: string; lines: string[]; source?: string }[];
+  history: { date: string; title: string; type: InteractionType; ours: string; lines: string[]; source?: string; with?: string }[];
 };
 
 export const ACCOUNTS: Account[] = [
@@ -89,6 +103,9 @@ export const ACCOUNTS: Account[] = [
     segment: "Outdoor retail",
     stores: 40,
     renewal: "Jan 25",
+    renewalDate: "2027-01-25",
+    openTicket: "t4821",
+    lastTouchDays: 29,
     health: "Needs a look",
     healthWhy: "dashboard use down after a reorg",
     lastTouch: "Oct 14",
@@ -97,13 +114,15 @@ export const ACCOUNTS: Account[] = [
       { name: "Sam Reyes", role: "VP Merchandising" },
       { name: "Lena Ortiz", role: "Retail Ops Lead, day to day contact" },
     ],
-    deals: ["Renewal · 40 stores · Jan 25"],
     history: [
-      { date: "Nov 5", title: "Ticket 4821 opened", lines: ["Late data refresh for Northeast stores."], source: "t4821" },
-      { date: "Oct 27", title: "Ticket 4790 opened and closed", lines: ["Refresh failed for 6 stores; rerun on Oct 29."], source: "t4790" },
+      { date: "Nov 5", title: "Ticket 4821 opened", type: "Ticket", ours: "Support", with: "Priya Nair", lines: ["Late data refresh for Northeast stores."], source: "t4821" },
+      { date: "Oct 27", title: "Ticket 4790 opened and closed", type: "Ticket", ours: "Support", with: "Lena Ortiz", lines: ["Refresh failed for 6 stores; rerun on Oct 29."], source: "t4790" },
       {
         date: "Oct 14",
-        title: "Call log · approved by Daniel",
+        title: "Quarterly call · approved by Daniel",
+        type: "Video",
+        ours: "Daniel Okoro",
+        with: "Sam Reyes",
         lines: ["Promised a custom markdown report by Nov 1.", "Sam wants store traffic views by region."],
         source: "promise",
       },
@@ -115,6 +134,8 @@ export const ACCOUNTS: Account[] = [
     segment: "Grocery",
     stores: 18,
     renewal: "Oct 1",
+    renewalDate: "2027-10-01",
+    lastTouchDays: 14,
     health: "Needs a look",
     healthWhy: "2 of 5 store managers not active",
     lastTouch: "Oct 29",
@@ -124,8 +145,7 @@ export const ACCOUNTS: Account[] = [
       { name: "Omar Haddad", role: "Store Operations" },
       { name: "Omar Haddad", role: "Store Operations (second record)" },
     ],
-    deals: ["New customer · 18 stores · signed Oct 20"],
-    history: [{ date: "Oct 29", title: "Kickoff call log · approved by Daniel", lines: ["SSO needed before full rollout.", "Training for store managers promised by Nov 15."], source: "bwKickoff" }],
+    history: [{ date: "Oct 29", title: "Kickoff call · approved by Daniel", type: "Video", ours: "Daniel Okoro", with: "Dana Whitfield", lines: ["SSO needed before full rollout.", "Training for store managers promised by Nov 15."], source: "bwKickoff" }],
   },
   {
     id: "kestrel",
@@ -133,13 +153,14 @@ export const ACCOUNTS: Account[] = [
     segment: "Home goods",
     stores: 22,
     renewal: "Aug 1",
+    renewalDate: "2027-08-01",
+    lastTouchDays: 3,
     health: "Healthy",
     healthWhy: "usage up 18% this quarter",
     lastTouch: "Nov 9",
     nextStep: "Expansion call, Nov 12",
     people: [{ name: "Mei Tanaka", role: "Director of Regional Ops" }],
-    deals: ["Renewal · 22 stores · Aug 1"],
-    history: [{ date: "Nov 9", title: "Email from Mei Tanaka", lines: ["Asked about adding Pacific and Mountain regions."], source: "kEmail" }],
+    history: [{ date: "Nov 9", title: "Email from Mei Tanaka", type: "Email", ours: "Daniel Okoro", with: "Mei Tanaka", lines: ["Asked about adding Pacific and Mountain regions."], source: "kEmail" }],
   },
   {
     id: "alder",
@@ -147,13 +168,15 @@ export const ACCOUNTS: Account[] = [
     segment: "Apparel",
     stores: 64,
     renewal: "Mar 3",
+    renewalDate: "2027-03-03",
+    openTicket: "aTicket",
+    lastTouchDays: 8,
     health: "Healthy",
     healthWhy: "weekly use steady",
     lastTouch: "Nov 4",
     nextStep: "Renewal kickoff, Dec 1",
     people: [{ name: "Ruth Calloway", role: "Head of Planning" }],
-    deals: ["Renewal · 64 stores · Mar 3"],
-    history: [{ date: "Nov 4", title: "Call log · approved by Daniel", lines: ["Happy with weekly reports; wants a holiday view."] }],
+    history: [{ date: "Oct 30", title: "Store visit, Portland flagship", type: "In person", ours: "Ana Ruiz (Solutions)", with: "Ruth Calloway", lines: ["Walked the holiday floor plan; wants markdown alerts by store."] }, { date: "Nov 4", title: "Planning call · approved by Daniel", type: "Call", ours: "Daniel Okoro", with: "Ruth Calloway", lines: ["Happy with weekly reports; wants a holiday view."] }],
   },
   {
     id: "harbor",
@@ -161,13 +184,14 @@ export const ACCOUNTS: Account[] = [
     segment: "Books",
     stores: 12,
     renewal: "Feb 14",
+    renewalDate: "2027-02-14",
+    lastTouchDays: 21,
     health: "At risk",
     healthWhy: "no reply in 21 days",
     lastTouch: "Oct 22",
     nextStep: "None set",
     people: [{ name: "Theo Marsh", role: "Owner" }],
-    deals: ["Renewal · 12 stores · Feb 14"],
-    history: [{ date: "Oct 22", title: "Email to Theo Marsh", lines: ["Sent the Q3 summary; no reply yet."] }],
+    history: [{ date: "Oct 22", title: "Email to Theo Marsh", type: "Email", ours: "Daniel Okoro", with: "Theo Marsh", lines: ["Sent the Q3 summary and renewal proposal; no reply yet."], source: "hEmail" }],
   },
 ];
 
@@ -185,6 +209,9 @@ export type Meeting = {
   hasLog?: boolean;
   /** This brief is built from the approved log of another meeting. */
   fromLog?: string;
+  type: InteractionType;
+  /** High stakes: not recorded, drafts only from the owner’s notes, medium confidence lines hidden. */
+  highStakes?: boolean;
 };
 
 export const MEETINGS: Meeting[] = [
@@ -199,6 +226,7 @@ export const MEETINGS: Meeting[] = [
     lastTouch: "Last spoke Oct 14 · 29 days ago",
     attendees: ["Sam Reyes", "Priya Nair"],
     hasLog: true,
+    type: "Video",
   },
   {
     id: "brightwater-checkin",
@@ -210,6 +238,7 @@ export const MEETINGS: Meeting[] = [
     context: "Week 3 of onboarding",
     lastTouch: "Last spoke Oct 29 · 14 days ago",
     attendees: ["Dana Whitfield", "Omar Haddad"],
+    type: "Video",
   },
   {
     id: "kestrel-expansion",
@@ -221,6 +250,7 @@ export const MEETINGS: Meeting[] = [
     context: "Asked about 2 more regions",
     lastTouch: "Last spoke Nov 9 · 3 days ago",
     attendees: ["Mei Tanaka"],
+    type: "Call",
   },
   {
     id: "fernhill-pricing",
@@ -233,6 +263,20 @@ export const MEETINGS: Meeting[] = [
     lastTouch: "Last spoke today",
     attendees: ["Sam Reyes", "Priya Nair"],
     fromLog: "fernhill-qbr",
+    type: "Video",
+  },
+  {
+    id: "harbor-owner",
+    account: "harbor",
+    title: "Renewal talk with the owner",
+    day: "Wed, Nov 18",
+    time: "9:00",
+    length: "45 min",
+    context: "In person, at their main store",
+    lastTouch: "Last touch Oct 22 · 21 days ago",
+    attendees: ["Theo Marsh"],
+    type: "In person",
+    highStakes: true,
   },
 ];
 
@@ -280,7 +324,7 @@ export const SUGGESTIONS: Suggestion[] = [
   { id: "l5", meeting: F, account: "fernhill", kind: "task", section: "Follow ups", text: "Get a fix date for the late refreshes from support.", sources: ["c2655"], confidence: "High", effect: { type: "task", text: "Get a refresh fix date from support for Fernhill", due: "Fri, Nov 13", account: "fernhill" } },
   { id: "e1", meeting: F, account: "fernhill", kind: "email", section: "Follow ups", text: "Follow up email to Sam and Priya: recap, the two dates, the overdue report.", sources: ["c1240", "c2655", "promise"], confidence: "Medium" },
   { id: "l7", meeting: F, account: "fernhill", kind: "record", section: "Record updates", text: "Add Priya Nair, Retail Ops Manager, as day to day contact.", sources: ["c0410"], confidence: "High", effect: { type: "addPerson", account: "fernhill", person: { name: "Priya Nair", role: "Retail Ops Manager, day to day contact" } } },
-  { id: "l8", meeting: F, account: "fernhill", kind: "record", section: "Record updates", text: "Add an expansion deal: 12 new stores, spring.", sources: ["c1205"], confidence: "Medium", effect: { type: "addDeal", account: "fernhill", deal: "Expansion · 12 new stores · spring" } },
+  { id: "l8", meeting: F, account: "fernhill", kind: "record", section: "Record updates", text: "Add an expansion deal: 12 new stores, spring.", sources: ["c1205"], confidence: "Medium", effect: { type: "addOpp", account: "fernhill", opp: { id: "fern-exp", account: "fernhill", name: "Expansion · 12 new stores", stage: "Idea", close: "Spring" } } },
   { id: "l9", meeting: F, account: "fernhill", kind: "record", section: "Record updates", text: "Set next step: send pricing by Nov 16.", sources: ["c1240"], confidence: "High", effect: { type: "nextStep", account: "fernhill", text: "Send pricing by Nov 16, then pricing call" } },
 
   // Brightwater brief
@@ -292,6 +336,16 @@ export const SUGGESTIONS: Suggestion[] = [
   // Kestrel brief
   { id: "k1", meeting: K, account: "kestrel", kind: "brief", section: "What changed since Nov 9", text: "Mei Tanaka asked about adding the Pacific and Mountain regions next year.", sources: ["kEmail"], confidence: "High" },
   { id: "k2", meeting: K, account: "kestrel", kind: "brief", section: "What changed since Nov 9", text: "Dashboard use is up 18% on last quarter; 9 of 11 regional managers use it weekly.", sources: ["kUsage"], confidence: "High" },
+  // Harbor Lane brief: a high stakes meeting
+  { id: "h1", meeting: "harbor-owner", account: "harbor", kind: "brief", section: "What changed since Oct 22", text: "No reply to the Q3 summary and renewal proposal since Oct 22.", sources: ["hEmail"], confidence: "High" },
+  { id: "h2", meeting: "harbor-owner", account: "harbor", kind: "brief", section: "What changed since Oct 22", text: "The renewal on Feb 14 covers 12 stores.", sources: ["hRecord"], confidence: "High" },
+  { id: "h3", meeting: "harbor-owner", account: "harbor", kind: "brief", section: "What changed since Oct 22", text: "Harbor Lane may be reviewing other analytics tools.", sources: ["hPress"], confidence: "Medium" },
+
+  // Opportunities the AI spotted; written to the record only when approved
+  { id: "o1", meeting: "", account: "kestrel", kind: "opp", section: "Opportunities", text: "Open an opportunity: Kestrel expansion to the Pacific and Mountain regions.", sources: ["kEmail"], confidence: "Medium", effect: { type: "addOpp", account: "kestrel", opp: { id: "kes-exp", account: "kestrel", name: "Expansion · Pacific and Mountain", stage: "Idea", close: "Next year" } } },
+  { id: "o2", meeting: "", account: "fernhill", kind: "stage", section: "Opportunities", text: "Move the Fernhill renewal from Proposal to Committed: Sam said they are renewing all 40 stores.", sources: ["c1205"], confidence: "High", effect: { type: "stage", account: "fernhill", opp: "fern-renewal", to: "Committed" } },
+  { id: "o3", meeting: "", account: "harbor", kind: "stage", section: "Opportunities", text: "Move the Harbor Lane renewal back to Qualified: no reply to the proposal in 21 days.", sources: ["hEmail"], confidence: "Medium", effect: { type: "stage", account: "harbor", opp: "harbor-renewal", to: "Qualified" } },
+
   { id: "k3", meeting: K, account: "kestrel", kind: "brief", section: "Suggested agenda", text: "Ask how many stores each new region adds; today’s contract covers 22.", sources: ["kRecord", "kEmail"], confidence: "Medium" },
 ];
 

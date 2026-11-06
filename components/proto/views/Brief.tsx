@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { forMeeting, meeting, type Suggestion } from "@/content/prototype";
 import { PageHead } from "../bits";
 import { BriefLine, FixBox, FlagBox } from "../Lines";
@@ -29,6 +30,7 @@ function fromApprovedLog(s: State, sourceMeeting: string): { section: string; it
 
 export function Brief({ id }: { id: string }) {
   const s = useProto();
+  const [showHidden, setShowHidden] = useState(false);
   const m = meeting(id);
   const a = m ? liveAccount(s, m.account) : undefined;
   if (!m || !a) return null;
@@ -43,6 +45,12 @@ export function Brief({ id }: { id: string }) {
           else acc.push({ section: x.section, items: [x] });
           return acc;
         }, []);
+
+  // High stakes: lines the AI is unsure of stay hidden unless the person asks to see them.
+  const hidden = m.highStakes ? groups.flatMap((g) => g.items).filter((x) => x.confidence === "Medium").length : 0;
+  if (m.highStakes && !showHidden) {
+    for (const g of groups) g.items = g.items.filter((x) => x.confidence !== "Medium");
+  }
 
   const pins = groups.flatMap((g) => g.items).filter((x) => s.pinned.includes(x.id) && entryOf(s, x.id).status !== "dismissed");
   const waitingFromLog = m.fromLog ? pending(s, (x) => x.meeting === m.fromLog).length : 0;
@@ -67,7 +75,9 @@ export function Brief({ id }: { id: string }) {
         }
       />
       <p className="mt-3 font-mono text-meta tracking-wide text-ink-2">
-        {m.fromLog
+        {m.highStakes
+          ? "HIGH STAKES · NOT RECORDED · DRAFTS ONLY FROM YOUR NOTES · LINES THE AI IS UNSURE OF ARE HIDDEN"
+          : m.fromLog
           ? `BUILT ONLY FROM LINES APPROVED IN THE NOV 12 LOG · ${total} LINES`
           : `DRAFTED BY AI FROM ${new Set(groups.flatMap((g) => g.items.flatMap((x) => x.sources))).size} SOURCES · A PRIVATE DRAFT, NOTHING HERE SAVES`}
       </p>
@@ -106,6 +116,16 @@ export function Brief({ id }: { id: string }) {
               </ul>
             </section>
           ))}
+          {hidden ? (
+            <p className="flex flex-wrap items-center gap-3 text-small text-ink-2">
+              {showHidden
+                ? `Showing ${hidden} medium confidence ${hidden === 1 ? "line" : "lines"} for this high stakes meeting.`
+                : `${hidden} medium confidence ${hidden === 1 ? "line is" : "lines are"} hidden for this high stakes meeting.`}
+              <button type="button" className="sig-btn" aria-pressed={showHidden} onClick={() => setShowHidden(!showHidden)}>
+                {showHidden ? "Hide again" : "Show anyway"}
+              </button>
+            </p>
+          ) : null}
           {m.fromLog && groups.length && waitingFromLog ? (
             <p className="text-small text-ink-2">
               {waitingFromLog} more lines from Nov 12 are still waiting for approval, so they are not in this brief.{" "}

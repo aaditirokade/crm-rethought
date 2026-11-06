@@ -17,3 +17,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Three visual directions on one brief fragment, light and dark, at /directions
 - Signal token set: colors with contrast, IBM Plex type scale, space, shape and signature components, live at /tokens (decision 0010)
 - Working prototype of the full meeting loop at /prototype: brief, log, approvals, account record and the next brief built from approved lines
+- Opportunities with ranked outreach, interactions across types with high stakes rules, and lists in plain words (decision 0011)
