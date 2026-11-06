@@ -1,13 +1,12 @@
 # Prompt log
 
-Every working session gets one file: `YYYY-MM-DD-NN-topic.md`. Prompts are kept as written, with typos cleaned up and nothing else changed. Failed or dropped ideas stay in: they show the judgment.
+Every working session gets one file: `YYYY-MM-DD-NN-topic.md`. Prompts are edited for clarity; what came back and what I decided are recorded as they happened. Failed or dropped ideas stay in: they show the judgment.
 
 Each entry has five parts:
 
 ```markdown
 ### Prompt N · Topic
-**As written:** what I asked, word for word
-**Refined prompt:** what I would write now, with context, constraints and checks spelled out
+**Prompt:** what I asked, edited for clarity, with context, constraints and checks spelled out
 **Why:** what I was trying to find out or make
 **What came back:** a short summary of the answer
 **My call:** what I decided, kept or threw away
