@@ -8,3 +8,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 
 ## 2026-11-06
 - Phase 1 research: interview guide, five simulated interviews, synthesis and the four flows (decision 0006)
+- AGENTS.md: working rules, including building the case study as we go
