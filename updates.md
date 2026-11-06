@@ -10,3 +10,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Phase 1 research: interview guide, five simulated interviews, synthesis and the four flows (decision 0006)
 - AGENTS.md: working rules, including building the case study as we go
 - Converge: build the meeting loop first (decision 0007)
+- Competitive analysis of seven AI sales products, and the choices so far justified in the case study
