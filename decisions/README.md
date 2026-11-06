@@ -10,3 +10,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0004 | [Name: CRM Rethought for now](0004-name.md) | 2026-11-05 |
 | 0005 | [Tooling: VS Code, terminal, free local Coder](0005-tooling.md) | 2026-11-05 |
 | 0006 | [The four flows to build in depth](0006-four-flows.md) | 2026-11-06 |
+| 0007 | [Converge: build the meeting loop first](0007-converge-meeting-loop.md) | 2026-11-06 |
