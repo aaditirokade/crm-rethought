@@ -6,7 +6,7 @@ One scenario, start to finish: Daniel Okoro (account manager, persona 2) on Thur
 
 ## Try the loop
 
-1. **Today** (`/prototype`): three meetings, what is waiting for approval, your tasks.
+1. **Today** (`/prototype`): a living board. **Ask** at the top: try the suggested questions, ask about any account by name, or press **Play demo** to watch three questions typed and answered in a row ([decision 0012](../decisions/0012-ask-and-living-board.md)). Below it, your day as a time strip with a now line, and a pulse tile per account (usage trend, renewal countdown, top reason, drafts waiting). The accounts an answer is about light up.
 2. **Meeting brief** (`/prototype/brief/fernhill-qbr`): what changed since Oct 14, every line with a source. Approve the record fix: Lena Ortiz is marked as left on the account.
 3. **Log a call** (`/prototype/log/fernhill-qbr`): approve, edit or dismiss each drafted line, then save. Open the email draft; there is no send button.
 4. **Account** (`/prototype/accounts/fernhill`): saved lines land on the timeline with who approved them and when; Priya is added, the next step changes.

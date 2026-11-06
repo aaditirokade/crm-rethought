@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef } from "react";
+import { useState } from "react";
+import { createPortal } from "react-dom";
 import { EVENTS } from "@/content/more";
 import { SOURCES, SUGGESTIONS, type Source } from "@/content/prototype";
 import { entryOf, textOf, useProto } from "./store";
@@ -30,42 +31,53 @@ export function useSource(id: string): Source | undefined {
   return SOURCES[id];
 }
 
-/** The signature source chip. Opens a drawer with the excerpt the line rests on. */
+/**
+ * The signature source chip. Opens a drawer with the excerpt the line rests on.
+ * The drawer is portaled to the body only while open, so a chip can sit inside any text.
+ */
 export function SourceChip({ id }: { id: string }) {
-  const ref = useRef<HTMLDialogElement>(null);
+  const [open, setOpen] = useState(false);
   const src = useSource(id);
   if (!src) return null;
   const titleId = `src-${id.replace(/[^a-z0-9]/gi, "")}-${Math.abs(hash(id))}`;
   return (
     <>
-      <button type="button" className="sig-source" onClick={() => ref.current?.showModal()}>
+      <button type="button" className="sig-source" onClick={() => setOpen(true)}>
         <b>{src.kind}</b> {src.when}
         <span className="sr-only">, open source</span>
       </button>
-      <dialog
-        ref={ref}
-        aria-labelledby={titleId}
-        className="sig proto-drawer"
-        onClick={(e) => {
-          if (e.target === ref.current) ref.current?.close();
-        }}
-      >
-        <div className="flex h-full flex-col p-6">
-          <p className="font-mono text-meta tracking-wide text-ink-2">
-            SOURCE · {src.kind} · {src.when}
-          </p>
-          <h2 id={titleId} className="mt-1 text-h3 font-semibold">
-            {src.title}
-          </h2>
-          <blockquote className="mt-5 border-l-2 border-line-strong pl-4 leading-relaxed">{src.excerpt}</blockquote>
-          <p className="mt-6 text-small text-ink-2">
-            In a live product this opens the email, ticket, record or call recording at this exact moment.
-          </p>
-          <form method="dialog" className="mt-auto pt-6">
-            <button className="sig-btn">Close</button>
-          </form>
-        </div>
-      </dialog>
+      {open
+        ? createPortal(
+            <dialog
+              ref={(el) => {
+                if (el && !el.open) el.showModal();
+              }}
+              aria-labelledby={titleId}
+              className="sig proto-drawer"
+              onClose={() => setOpen(false)}
+              onClick={(e) => {
+                if (e.target === e.currentTarget) e.currentTarget.close();
+              }}
+            >
+              <div className="flex h-full flex-col p-6">
+                <p className="font-mono text-meta tracking-wide text-ink-2">
+                  SOURCE · {src.kind} · {src.when}
+                </p>
+                <h2 id={titleId} className="mt-1 text-h3 font-semibold">
+                  {src.title}
+                </h2>
+                <blockquote className="mt-5 border-l-2 border-line-strong pl-4 leading-relaxed">{src.excerpt}</blockquote>
+                <p className="mt-6 text-small text-ink-2">
+                  In a live product this opens the email, ticket, record or call recording at this exact moment.
+                </p>
+                <form method="dialog" className="mt-auto pt-6">
+                  <button className="sig-btn">Close</button>
+                </form>
+              </div>
+            </dialog>,
+            document.body,
+          )
+        : null}
     </>
   );
 }

@@ -15,3 +15,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0009 | [Wireframes in code, in grayscale](0009-wireframes-in-code.md) | 2026-11-06 |
 | 0010 | [Visual direction: Signal](0010-visual-direction-signal.md) | 2026-11-06 |
 | 0011 | [Widen the prototype: opportunities, interactions, lists](0011-widen-scope.md) | 2026-11-06 |
+| 0012 | [Ask, and a Today screen that reacts](0012-ask-and-living-board.md) | 2026-11-06 |

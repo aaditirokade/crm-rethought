@@ -369,3 +369,128 @@ button.sig-source:hover {
   border-radius: 6px;
   background: var(--surface);
 }
+
+/* Ask and the living board */
+.ask-wrap {
+  border-color: var(--line-strong);
+}
+.ask-input {
+  font-size: 1rem;
+  padding: 0.625rem 0.75rem;
+}
+.ask-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 360ms ease;
+}
+.ask-panel.is-open {
+  grid-template-rows: 1fr;
+}
+.ask-panel > div {
+  overflow: hidden;
+}
+.ask-step {
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 240ms ease, transform 240ms ease, color 240ms ease;
+}
+.ask-step.is-in {
+  opacity: 1;
+  transform: none;
+}
+.ask-spin {
+  display: inline-block;
+  animation: ask-spin 900ms linear infinite;
+}
+@keyframes ask-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.ask-claim {
+  text-decoration: underline dotted var(--line-strong);
+  text-underline-offset: 4px;
+}
+.ask-cite {
+  display: inline-block;
+  animation: ask-pop 260ms ease both;
+}
+@keyframes ask-pop {
+  from {
+    opacity: 0;
+    transform: translateY(3px) scale(0.96);
+  }
+}
+.ask-caret {
+  display: inline-block;
+  width: 0.5em;
+  height: 1.05em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: var(--accent);
+  animation: ask-blink 900ms steps(2) infinite;
+}
+@keyframes ask-blink {
+  50% {
+    opacity: 0;
+  }
+}
+.ask-stats > div,
+.ask-next {
+  animation: ask-pop 320ms ease both;
+}
+.ask-stats > div:nth-child(2) {
+  animation-delay: 80ms;
+}
+.ask-stats > div:nth-child(3) {
+  animation-delay: 160ms;
+}
+.board-item {
+  transition: opacity 300ms ease, box-shadow 300ms ease, transform 300ms ease;
+  border-radius: 6px;
+}
+.board-item.is-dim {
+  opacity: 0.45;
+}
+.board-item.is-hit {
+  box-shadow: 0 0 0 2px var(--accent);
+  animation: board-pulse 1.4s ease 1;
+}
+@keyframes board-pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--accent);
+  }
+  40% {
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 25%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+}
+.board-block {
+  background: var(--ink-2);
+  transition: background 300ms ease;
+}
+.board-block.is-hit {
+  background: var(--accent);
+}
+.board-now {
+  background: var(--risk);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ask-panel,
+  .ask-step,
+  .board-item,
+  .board-block {
+    transition: none;
+  }
+  .ask-spin,
+  .ask-cite,
+  .ask-caret,
+  .ask-stats > div,
+  .ask-next,
+  .board-item.is-hit {
+    animation: none;
+  }
+}
+
