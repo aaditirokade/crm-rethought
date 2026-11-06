@@ -20,3 +20,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Opportunities with ranked outreach, interactions across types with high stakes rules, and lists in plain words (decision 0011)
 - Ask on Today: animated, sourced answers about any account, with a Play demo mode; Today rebuilt as a living board (decision 0012)
 - Portfolio map, relationship web and interaction strip, pipeline with ghost moves, and triage mode (decision 0013)
+- Prompt log: each prompt kept as written, plus a refined prompt and my call (format updated in prompts/README.md and AGENTS.md)
