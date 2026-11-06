@@ -19,6 +19,8 @@ One scenario, start to finish: Daniel Okoro (account manager, persona 2) on Thur
 10. **Lists in plain words** (`/prototype/accounts`): type "quiet for 2 weeks with more than 10 stores", remove any chip that's wrong, see why each account matches, save the list.
 11. **Interactions** (any account page): filter by type, and see who on our side last spoke to each person.
 
+12. **Pictures on every tab** ([decision 0013](../decisions/0013-tab-upgrades.md)): the portfolio map on Accounts; who talks to whom and the 8 week strip on an account; the pipeline with ghost moves (drag, or use the card menu) on Opportunities; triage mode with keys on Review.
+
 Also: Brightwater's brief flags a possible duplicate contact, and the AI stops there, because merging is people only ([decision 0008](../decisions/0008-ai-drafts-people-decide.md)).
 
 ## How it works

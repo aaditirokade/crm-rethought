@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
+import { Triage } from "../Triage";
 import { PageHead } from "../bits";
 import { groupByOrigin } from "../groups";
 import { GateLine } from "../Lines";
@@ -11,11 +13,22 @@ export function Review() {
   const open = allSugs(s).filter((x) => isGated(x) && entryOf(s, x.id).status !== "saved");
   const approved = open.filter((x) => entryOf(s, x.id).status === "approved").length;
   const groups = groupByOrigin(open);
+  const [mode, setMode] = useState<"list" | "triage">("list");
 
   return (
     <div>
       <PageHead title="Review" sub="Every line waiting for you, across accounts. Approving here is the same as approving in place." />
-      {groups.length === 0 ? (
+      <div className="mt-4 flex gap-2" role="group" aria-label="Review mode">
+        <button type="button" className="sig-btn" aria-pressed={mode === "list"} onClick={() => setMode("list")}>
+          List
+        </button>
+        <button type="button" className="sig-btn" aria-pressed={mode === "triage"} onClick={() => setMode("triage")}>
+          Triage, one at a time
+        </button>
+      </div>
+      {mode === "triage" ? (
+        <Triage />
+      ) : groups.length === 0 ? (
         <div className="proto-card mt-8 p-5">
           <p className="font-semibold">Nothing waiting</p>
           <p className="mt-1 text-ink-2">Everything the AI drafted has been approved, edited or dismissed.</p>

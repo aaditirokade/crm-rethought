@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { MEETINGS, type InteractionType } from "@/content/prototype";
 import { Health, PageHead } from "../bits";
+import { InteractionStrip, RelationshipWeb } from "../AccountVisuals";
 import { SourceChip } from "../Source";
 import { liveAccount, liveOpps, pending, useProto } from "../store";
 
@@ -72,6 +73,11 @@ export function AccountView({ id }: { id: string }) {
           </Link>
         </p>
       ) : null}
+
+      <div className="mt-6 space-y-6">
+        <RelationshipWeb a={a} />
+        <InteractionStrip a={a} />
+      </div>
 
       <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem]">
         <section aria-labelledby="h-timeline">

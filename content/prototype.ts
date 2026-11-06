@@ -126,6 +126,9 @@ export const ACCOUNTS: Account[] = [
         lines: ["Promised a custom markdown report by Nov 1.", "Sam wants store traffic views by region."],
         source: "promise",
       },
+      { date: "Sep 30", title: "Email to Lena Ortiz", type: "Email", ours: "Daniel Okoro", with: "Lena Ortiz", lines: ["Shared the Q4 rollout plan for store dashboards."] },
+      { date: "Sep 24", title: "Weekly check in", type: "Call", ours: "Daniel Okoro", with: "Lena Ortiz", lines: ["Lena asked for a regional view; agreed to scope it."] },
+      { date: "Oct 7", title: "Training session", type: "Video", ours: "Ana Ruiz (Solutions)", with: "Lena Ortiz", lines: ["Trained 12 store leads on the traffic dashboard."] },
     ],
   },
   {

@@ -14,6 +14,7 @@ import {
   type InteractionType,
   type Opp,
   type Person,
+  type Stage,
   type Suggestion,
 } from "@/content/prototype";
 
@@ -35,10 +36,12 @@ export type State = {
   order: string[];
   snoozed: string[];
   lists: SavedList[];
+  /** Stage moves a person made directly (drag or menu). A person's own move needs no approval. */
+  moves: Record<string, { stage: Stage; at: string }>;
 };
 
 const KEY = "crm-rethought-prototype-v2";
-const INITIAL: State = { entries: {}, pinned: [], clock: 0, message: "", custom: [], notes: {}, order: [], snoozed: [], lists: [] };
+const INITIAL: State = { entries: {}, pinned: [], clock: 0, message: "", custom: [], notes: {}, order: [], snoozed: [], lists: [], moves: {} };
 
 let state: State = INITIAL;
 let loaded = false;
@@ -203,6 +206,16 @@ export const actions = {
       message: on ? `${name} is back on this week’s list.` : `${name} snoozed until next week.`,
     });
   },
+  moveOpp(id: string, stage: Stage) {
+    const at = stamp(state.clock);
+    const opp = liveOpps(state).find((o) => o.id === id);
+    commit({
+      ...state,
+      clock: state.clock + 1,
+      moves: { ...state.moves, [id]: { stage, at } },
+      message: `${opp?.name ?? "Opportunity"} moved to ${stage}.`,
+    });
+  },
   saveList(list: Omit<SavedList, "id">) {
     const id = `list-${state.lists.length + 1}`;
     commit({ ...state, lists: [...state.lists, { ...list, id }], message: `Saved the list “${list.name}”.` });
@@ -231,8 +244,8 @@ export function saved(s: State, filter?: (sug: Suggestion) => boolean) {
 }
 
 /** Opportunities as the record shows them now: base plus approved additions and stage changes. */
-export function liveOpps(s: State): (Opp & { changedAt?: string; addedAt?: string })[] {
-  const opps: (Opp & { changedAt?: string; addedAt?: string })[] = OPPS.map((o) => ({ ...o }));
+export function liveOpps(s: State): (Opp & { changedAt?: string; addedAt?: string; movedAt?: string })[] {
+  const opps: (Opp & { changedAt?: string; addedAt?: string; movedAt?: string })[] = OPPS.map((o) => ({ ...o }));
   for (const sug of saved(s)) {
     const eff = sug.effect;
     const at = entryOf(s, sug.id).at;
@@ -243,6 +256,13 @@ export function liveOpps(s: State): (Opp & { changedAt?: string; addedAt?: strin
         o.stage = eff.to;
         o.changedAt = at;
       }
+    }
+  }
+  for (const o of opps) {
+    const m = s.moves?.[o.id];
+    if (m) {
+      o.stage = m.stage;
+      o.movedAt = m.at;
     }
   }
   return opps;

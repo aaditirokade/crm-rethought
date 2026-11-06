@@ -4,6 +4,8 @@ import Link from "next/link";
 import { ACCOUNTS } from "@/content/prototype";
 import { Health, PageHead } from "../bits";
 import { Lists } from "./Lists";
+import { PortfolioMap } from "../PortfolioMap";
+import type { LiveAccount } from "../store";
 import { liveAccount, pending, useProto } from "../store";
 
 export function Accounts() {
@@ -11,6 +13,7 @@ export function Accounts() {
   return (
     <div>
       <PageHead title="Accounts" sub={`${ACCOUNTS.length} accounts you own`} />
+      <PortfolioMap accounts={ACCOUNTS.map((a) => liveAccount(s, a.id)).filter(Boolean) as LiveAccount[]} />
       <Lists />
       <div className="proto-card relative mt-6 overflow-x-auto" role="region" aria-label="Accounts table" tabIndex={0}>
         <table className="w-full min-w-[46rem] text-left">

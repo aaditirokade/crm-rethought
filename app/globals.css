@@ -493,4 +493,46 @@ button.sig-source:hover {
     animation: none;
   }
 }
+.map-dot {
+  cursor: pointer;
+  outline: none;
+}
+.map-dot:hover circle,
+.map-dot:focus-visible circle {
+  fill-opacity: 0.35;
+  stroke-width: 2.5;
+}
+.map-dot:focus-visible text:first-of-type {
+  text-decoration: underline;
+}
+.pipe-card,
+.pipe-ghost {
+  animation: pipe-in 320ms ease both;
+}
+@keyframes pipe-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pipe-card,
+  .pipe-ghost {
+    animation: none;
+  }
+}
+.triage-ring {
+  transition: stroke-dashoffset 400ms ease;
+}
+.triage-card {
+  animation: pipe-in 260ms ease both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .triage-ring {
+    transition: none;
+  }
+  .triage-card {
+    animation: none;
+  }
+}
 

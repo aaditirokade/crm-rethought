@@ -16,3 +16,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0010 | [Visual direction: Signal](0010-visual-direction-signal.md) | 2026-11-06 |
 | 0011 | [Widen the prototype: opportunities, interactions, lists](0011-widen-scope.md) | 2026-11-06 |
 | 0012 | [Ask, and a Today screen that reacts](0012-ask-and-living-board.md) | 2026-11-06 |
+| 0013 | [Pictures instead of lists on every tab](0013-tab-upgrades.md) | 2026-11-06 |

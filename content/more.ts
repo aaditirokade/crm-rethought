@@ -54,3 +54,14 @@ export const EVENTS = [
       "Sam stopped by the booth. He wants a demo of the new forecasting view for his planners. He asked if we can include it in the renewal.",
   },
 ];
+
+/** Moments worth marking on an account's 8 week strip, each with its source. */
+export const MOMENTS: Record<string, { date: string; text: string; source: string }[]> = {
+  fernhill: [
+    { date: "2026-10-20", text: "Reorg", source: "usage" },
+    { date: "2026-11-03", text: "Lena left", source: "bounce" },
+  ],
+  harbor: [{ date: "2026-10-22", text: "Proposal sent", source: "hEmail" }],
+  brightwater: [{ date: "2026-10-29", text: "Kickoff", source: "bwKickoff" }],
+};
+
