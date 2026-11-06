@@ -4,7 +4,7 @@
  */
 
 export type Confidence = "High" | "Medium";
-export type SourceKind = "EMAIL" | "TICKET" | "CALL" | "USAGE" | "RECORD" | "LOG" | "NOTE" | "CALENDAR";
+export type SourceKind = "EMAIL" | "TICKET" | "CALL" | "USAGE" | "RECORD" | "LOG" | "NOTE" | "CALENDAR" | "FILE";
 
 export type Source = { id: string; kind: SourceKind; when: string; title: string; excerpt: string };
 
@@ -74,6 +74,7 @@ export const SOURCES: Record<string, Source> = {
   aRecord: { id: "aRecord", kind: "CALENDAR", when: "Dec 1", title: "Calendar · Alder & Finch renewal kickoff", excerpt: "Renewal kickoff with Ruth Calloway, Dec 1, 2:00." },
   aTicket: { id: "aTicket", kind: "TICKET", when: "4877", title: "Ticket 4877 · open since Nov 10", excerpt: "\u201cHoliday markdown alerts fire twice for some stores.\u201d" },
   expo: { id: "expo", kind: "CALENDAR", when: "Nov 10", title: "Calendar · RetailTech Expo, booth duty", excerpt: "Booth 214, 10:00 to 4:00. No recording." },
+  importFile: { id: "importFile", kind: "FILE", when: "214 rows", title: "retailtech-expo-leads.csv", excerpt: "Imported by Daniel Okoro after approving the column mapping and each fix. Booth notes are kept as notes, not facts." },
   kUsage: { id: "kUsage", kind: "USAGE", when: "Nov 9", title: "Quarterly usage, Kestrel", excerpt: "Dashboard views up 18% on last quarter; 9 of 11 regional managers active weekly." },
 };
 

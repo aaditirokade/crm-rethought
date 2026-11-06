@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { actions, me, pending, useProto } from "./store";
 
-const LATER = ["Imports"];
 
 export function Shell({ children }: { children: React.ReactNode }) {
   const s = useProto();
@@ -15,6 +14,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
     { href: "/prototype/accounts", label: "Accounts", current: path.startsWith("/prototype/accounts") },
     { href: "/prototype/opportunities", label: "Opportunities", current: path.startsWith("/prototype/opportunities") },
     { href: "/prototype/review", label: "Review", current: path.startsWith("/prototype/review"), count: waiting },
+    { href: "/prototype/imports", label: "Imports", current: path.startsWith("/prototype/imports") },
   ];
   return (
     <div className="sig min-h-svh lg:grid lg:grid-cols-[13.5rem_minmax(0,1fr)]">
@@ -43,15 +43,6 @@ export function Shell({ children }: { children: React.ReactNode }) {
                     </span>
                   ) : null}
                 </Link>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-6 hidden px-2 font-mono text-meta tracking-wide text-ink-2 lg:block">LATER</p>
-          <ul className="mt-1 hidden lg:block">
-            {LATER.map((l) => (
-              <li key={l} className="px-2 py-1.5 text-small text-ink-2">
-                {l}
-                <span className="sr-only"> (not built yet)</span>
               </li>
             ))}
           </ul>

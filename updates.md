@@ -23,3 +23,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Prompt log: each prompt kept as written, plus a refined prompt and my call (format updated in prompts/README.md and AGENTS.md)
 - Prompt log: refined prompts only, edited for clarity
 - Planning prompts rewritten in the same format: refined prompt, why, what came back, my call
+- Imports: AI column mapping, fixes approved as rules, people only choices, notes on timelines (decision 0014)

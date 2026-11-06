@@ -2,6 +2,7 @@
 
 import { useSyncExternalStore } from "react";
 import { EVENTS, OPPS, SIGNALS } from "@/content/more";
+import { SAMPLE } from "@/content/imports";
 import {
   ACCOUNTS,
   BASE_TASKS,
@@ -38,10 +39,12 @@ export type State = {
   lists: SavedList[];
   /** Stage moves a person made directly (drag or menu). A person's own move needs no approval. */
   moves: Record<string, { stage: Stage; at: string }>;
+  /** The import: the mapping a person confirmed, each rule's decision, and when it ran. */
+  imp: { mapping: Record<string, string>; mappingOk: boolean; rules: Record<string, string>; doneAt?: string };
 };
 
 const KEY = "crm-rethought-prototype-v2";
-const INITIAL: State = { entries: {}, pinned: [], clock: 0, message: "", custom: [], notes: {}, order: [], snoozed: [], lists: [], moves: {} };
+const INITIAL: State = { entries: {}, pinned: [], clock: 0, message: "", custom: [], notes: {}, order: [], snoozed: [], lists: [], moves: {}, imp: { mapping: {}, mappingOk: false, rules: {} } };
 
 let state: State = INITIAL;
 let loaded = false;
@@ -216,6 +219,22 @@ export const actions = {
       message: `${opp?.name ?? "Opportunity"} moved to ${stage}.`,
     });
   },
+  setMapping(col: string, field: string) {
+    commit({ ...state, imp: { ...state.imp, mapping: { ...state.imp.mapping, [col]: field }, mappingOk: false }, message: `${col} will go into ${field}.` });
+  },
+  confirmMapping(ok: boolean) {
+    commit({ ...state, imp: { ...state.imp, mappingOk: ok }, message: ok ? "Column mapping confirmed." : "Mapping reopened." });
+  },
+  decideRule(id: string, decision: string, message: string) {
+    commit({ ...state, imp: { ...state.imp, rules: { ...state.imp.rules, [id]: decision } }, message });
+  },
+  runImport(n: number) {
+    const at = stamp(state.clock);
+    commit({ ...state, clock: state.clock + 1, imp: { ...state.imp, doneAt: at }, message: `Imported ${n} contacts. Nothing else changed.` });
+  },
+  undoImport() {
+    commit({ ...state, imp: { ...state.imp, doneAt: undefined }, message: "Import undone." });
+  },
   saveList(list: Omit<SavedList, "id">) {
     const id = `list-${state.lists.length + 1}`;
     commit({ ...state, lists: [...state.lists, { ...list, id }], message: `Saved the list “${list.name}”.` });
@@ -326,6 +345,21 @@ export function liveAccount(s: State, id: string): LiveAccount | undefined {
     if (m) {
       lastTouch = "Nov 12";
       lastTouchDays = 0;
+    }
+  }
+
+  if (s.imp?.doneAt) {
+    const rows = SAMPLE.filter((r) => r.account === id && !(id === "fernhill" && r.name === "Sam Reyes" && s.imp.rules.dupes === "skip"));
+    if (rows.length) {
+      groups.set("import", {
+        key: "import",
+        date: "Nov 10",
+        title: "RetailTech Expo leads · imported by Daniel",
+        type: "Event",
+        ours: "Daniel Okoro",
+        with: [...new Set(rows.map((r) => r.name))].join(", "),
+        lines: rows.filter((r) => r.note).map((r) => ({ text: `Note from ${r.name}: \u201c${r.note}\u201d`, at: s.imp.doneAt, sources: ["importFile"] })),
+      });
     }
   }
 
