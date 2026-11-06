@@ -11,3 +11,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - AGENTS.md: working rules, including building the case study as we go
 - Converge: build the meeting loop first (decision 0007)
 - Competitive analysis of seven AI sales products, and the choices so far justified in the case study
+- Competitive analysis widened to 13 products, with a coverage grid; decision 0007 notes the narrower difference

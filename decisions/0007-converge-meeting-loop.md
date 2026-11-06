@@ -16,3 +16,5 @@
 **Risk:** HubSpot is testing a research agent that briefs reps before calls, and Attio logs calls as you speak ([desk research](../research/desk-research.md)). The difference here is the connection between the two and a source on every line.
 
 **Revisit if:** design shows the brief and the log cannot share one pattern, or Deals at risk turns out to be the stronger interview demo.
+
+**Update, same day:** the [competitive analysis](../research/competitive-analysis.md) found Sybill and Sentra already open briefs with what changed. The decision stands; the difference is the trust layer around the loop (a source on every line, approval in place, only approved logs feeding the next brief), not "what changed" alone.
