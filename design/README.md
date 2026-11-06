@@ -7,3 +7,4 @@
 | [wireframes.md](wireframes.md) | The coded grayscale wireframes: routes, what each screen tests, open questions (Phase 3) |
 | [/directions](https://crm-rethought.vercel.app/directions) | Three visual directions (Ledger, Signal, Margin note) on the same brief fragment, light and dark, contrast printed on the page |
 | [tokens.md](tokens.md) | Signal, the token set: principles, color with contrast, type, space, signature components (live at /tokens) |
+| [prototype.md](prototype.md) | The working prototype of the meeting loop: what to try, how state works, checks (live at /prototype) |

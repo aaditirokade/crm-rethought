@@ -17,6 +17,11 @@ export default function Home() {
       </p>
       <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm">
         <li>
+          <Link className="text-action underline underline-offset-4" href="/prototype">
+            Working prototype
+          </Link>
+        </li>
+        <li>
           <Link className="text-action underline underline-offset-4" href="/wireframes">
             Wireframes
           </Link>

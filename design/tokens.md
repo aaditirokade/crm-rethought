@@ -5,8 +5,8 @@
 ## Principles
 
 1. **Mono is the machine.** Sources, times, status and AI tags are set in Plex Mono. What people say and decide is set in Plex Sans.
-2. **One accent, one action.** The accent marks the single primary action on a view, and the DRAFT tag. Nothing else.
-3. **Drafts look unfinished.** A line the AI drafted sits on a tint with a DRAFT tag. Approval removes both and stamps who and when.
+2. **Accent means decide.** The accent marks Approve and the DRAFT tag: the places a person has to decide. Never decoration.
+3. **Drafts look unfinished.** A line waiting for approval sits on a tint with a DRAFT tag. Approval removes both and stamps who and when.
 4. **Never color alone.** Every status pairs color with a word.
 
 ## Color

@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 
 const PRINCIPLES = [
   ["Mono is the machine", "Sources, times, status and AI tags are set in Plex Mono. What people say and decide is set in Plex Sans."],
-  ["One accent, one action", "The accent marks the single primary action on a view, and the DRAFT tag. Nothing else."],
-  ["Drafts look unfinished", "A line the AI drafted sits on a tint with a DRAFT tag. Approval removes both and stamps who and when."],
+  ["Accent means decide", "The accent marks Approve and the DRAFT tag: the places a person has to decide. Never decoration."],
+  ["Drafts look unfinished", "A line waiting for approval sits on a tint with a DRAFT tag. Approval removes both and stamps who and when."],
   ["Never color alone", "Every status pairs color with a word. A risk is red and says why."],
 ];
 
