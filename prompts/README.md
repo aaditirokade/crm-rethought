@@ -18,3 +18,4 @@ Each entry has five parts:
 | Date | Session | Tool |
 | --- | --- | --- |
 | 2026-11-05 | [01 · Planning, industry, research approach, naming](2026-11-05-01-planning.md) | Claude (desktop app) |
+| 2026-11-06 | [01 · Phase 1 research](2026-11-06-01-research.md) | Claude (desktop app) |

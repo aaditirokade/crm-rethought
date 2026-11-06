@@ -5,3 +5,6 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 ## 2026-11-05
 - Phase 0 scaffold: Next.js app, README, prompt log, decisions, desk research and five simulated personas
 - Live on Vercel: link in the README; setup prompts added to the prompt log
+
+## 2026-11-06
+- Phase 1 research: interview guide, five simulated interviews, synthesis and the four flows (decision 0006)

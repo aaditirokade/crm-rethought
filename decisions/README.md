@@ -9,3 +9,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0003 | [Research: simulated interviews, labeled](0003-simulated-research.md) | 2026-11-05 |
 | 0004 | [Name: CRM Rethought for now](0004-name.md) | 2026-11-05 |
 | 0005 | [Tooling: VS Code, terminal, free local Coder](0005-tooling.md) | 2026-11-05 |
+| 0006 | [The four flows to build in depth](0006-four-flows.md) | 2026-11-06 |
