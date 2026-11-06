@@ -2,6 +2,8 @@
 
 A B2B CRM for account teams, redesigned from the ground up with AI inside every workflow, and built in the open with AI as a teammate.
 
+**Live:** [crm-rethought.vercel.app](https://crm-rethought.vercel.app/)
+
 **Concept prototype · sample data.** Every company, person and number in this repo is made up. User research is simulated and labeled SIMULATED wherever it appears.
 
 ## The question
