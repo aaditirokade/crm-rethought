@@ -22,3 +22,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Portfolio map, relationship web and interaction strip, pipeline with ghost moves, and triage mode (decision 0013)
 - Prompt log: each prompt kept as written, plus a refined prompt and my call (format updated in prompts/README.md and AGENTS.md)
 - Prompt log: refined prompts only, edited for clarity
+- Planning prompts rewritten in the same format: refined prompt, why, what came back, my call

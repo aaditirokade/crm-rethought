@@ -12,8 +12,6 @@ Each entry has five parts:
 **My call:** what I decided, kept or threw away
 ```
 
-The first session file uses an older format (Prompt, Kept / dropped, My edit).
-
 ## Sessions
 
 | Date | Session | Tool |
