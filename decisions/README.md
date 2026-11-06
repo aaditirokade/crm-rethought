@@ -11,3 +11,5 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0005 | [Tooling: VS Code, terminal, free local Coder](0005-tooling.md) | 2026-11-05 |
 | 0006 | [The four flows to build in depth](0006-four-flows.md) | 2026-11-06 |
 | 0007 | [Converge: build the meeting loop first](0007-converge-meeting-loop.md) | 2026-11-06 |
+| 0008 | [AI drafts; people decide](0008-ai-drafts-people-decide.md) | 2026-11-06 |
+| 0009 | [Wireframes in code, in grayscale](0009-wireframes-in-code.md) | 2026-11-06 |

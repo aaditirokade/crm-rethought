@@ -1,6 +1,8 @@
+import Link from "next/link";
+
 const REPO = "https://github.com/aaditirokade/crm-rethought";
 
-/** Phase 0 placeholder: proves the pipeline (commit, push, live) before any design work. */
+/** Placeholder home until Phase 4: links to the wireframes and the open repo. */
 export default function Home() {
   return (
     <main className="mx-auto flex min-h-svh max-w-2xl flex-col justify-center px-6 py-16">
@@ -14,6 +16,11 @@ export default function Home() {
         Built in the open: every prompt, decision and commit lives in the repo.
       </p>
       <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+        <li>
+          <Link className="text-action underline underline-offset-4" href="/wireframes">
+            Wireframes
+          </Link>
+        </li>
         <li>
           <a className="text-action underline underline-offset-4" href={`${REPO}/tree/main/prompts`}>
             Prompt log

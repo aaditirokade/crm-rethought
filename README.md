@@ -19,6 +19,8 @@ Design and code are done by Aaditi Rokade, prompting LLMs in VS Code and the ter
 | `prompts/` | Every working session: the prompts as written, what came back, what was kept or dropped, and what was changed by hand |
 | `decisions/` | One short record per design or product decision, with the reasoning |
 | `research/` | Desk research with linked sources, and simulated personas and interviews (labeled SIMULATED) |
+| `design/` | Where AI belongs, information architecture, and notes on the wireframes |
+| `app/wireframes/` | Coded grayscale wireframes of the meeting loop, live at /wireframes |
 | `app/` | The prototype (Next.js, React, TypeScript, Tailwind) |
 | `updates.md` | One line per commit |
 
