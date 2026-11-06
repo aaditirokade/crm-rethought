@@ -21,6 +21,7 @@ Design and code are done by Aaditi Rokade, prompting LLMs in VS Code and the ter
 | `research/` | Desk research with linked sources, and simulated personas and interviews (labeled SIMULATED) |
 | `design/` | Where AI belongs, information architecture, and notes on the wireframes |
 | `app/prototype/` | The working prototype of the meeting loop, live at /prototype |
+| `app/mobile/` | The phone app for the minutes between meetings, live at /mobile |
 | `app/wireframes/` | Coded grayscale wireframes of the meeting loop, live at /wireframes |
 | `app/` | The prototype (Next.js, React, TypeScript, Tailwind) |
 | `updates.md` | One line per commit |

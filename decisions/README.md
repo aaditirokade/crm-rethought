@@ -18,3 +18,5 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0012 | [Ask, and a Today screen that reacts](0012-ask-and-living-board.md) | 2026-11-06 |
 | 0013 | [Pictures instead of lists on every tab](0013-tab-upgrades.md) | 2026-11-06 |
 | 0014 | [Imports: the AI maps and checks, a person decides](0014-imports.md) | 2026-11-06 |
+| 0015 | [A floating dock instead of a sidebar](0015-floating-dock.md) | 2026-11-06 |
+| 0016 | [A mobile app for the minutes between meetings](0016-mobile-app.md) | 2026-11-06 |

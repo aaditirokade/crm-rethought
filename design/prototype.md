@@ -21,6 +21,8 @@ One scenario, start to finish: Daniel Okoro (account manager, persona 2) on Thur
 
 12. **Pictures on every tab** ([decision 0013](../decisions/0013-tab-upgrades.md)): the portfolio map on Accounts; who talks to whom and the 8 week strip on an account; the pipeline with ghost moves (drag, or use the card menu) on Opportunities; triage mode with keys on Review.
 13. **Imports** (`/prototype/imports`): confirm the AI's column mapping, approve each fix as a rule (dates, a matching company), make the people only calls (a duplicate contact, missing emails), then Import. The notes show up on Fernhill, Kestrel and Harbor Lane ([decision 0014](../decisions/0014-imports.md)).
+14. **The dock** ([decision 0015](../decisions/0015-floating-dock.md)): navigation floats on the left as steps of the day (prep, know, pursue, decide, import) with live counts; it moves to the bottom on phones.
+15. **Mobile app** (`/mobile`, [decision 0016](../decisions/0016-mobile-app.md)): Next up, Approve by swiping, Ask, and Voice note. Approvals carry over to the desktop.
 
 Also: Brightwater's brief flags a possible duplicate contact, and the AI stops there, because merging is people only ([decision 0008](../decisions/0008-ai-drafts-people-decide.md)).
 

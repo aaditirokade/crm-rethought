@@ -22,6 +22,11 @@ export default function Home() {
           </Link>
         </li>
         <li>
+          <Link className="text-action underline underline-offset-4" href="/mobile">
+            Mobile app
+          </Link>
+        </li>
+        <li>
           <Link className="text-action underline underline-offset-4" href="/wireframes">
             Wireframes
           </Link>

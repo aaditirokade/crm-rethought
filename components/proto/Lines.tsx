@@ -21,8 +21,8 @@ export function BriefLine({ sug }: { sug: Suggestion }) {
     );
   }
   return (
-    <li className={`py-4 ${pinned ? "proto-pinned" : ""}`}>
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-start">
+    <li className={`@container py-4 ${pinned ? "proto-pinned" : ""}`}>
+      <div className="flex flex-col gap-3 @lg:flex-row @lg:items-start">
         <div className="min-w-0 flex-1">
           <p>
             {sug.tag ? <span className="proto-tag">{sug.tag}</span> : null}
@@ -115,7 +115,7 @@ export function GateLine({ sug }: { sug: Suggestion }) {
   }
 
   return (
-    <li className={`rounded-[4px] px-3 py-3 ${e.status === "pending" ? "sig-row-draft" : ""}`}>
+    <li className={`@container rounded-[4px] px-3 py-3 ${e.status === "pending" ? "sig-row-draft" : ""}`}>
       {editing ? (
         <form
           onSubmit={(ev) => {
@@ -144,7 +144,7 @@ export function GateLine({ sug }: { sug: Suggestion }) {
           </div>
         </form>
       ) : (
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-start">
+        <div className="flex flex-col gap-3 @lg:flex-row @lg:items-start">
           <div className="min-w-0 flex-1">
             {e.status === "pending" ? (
               <span className="sig-draft-tag">DRAFT</span>
