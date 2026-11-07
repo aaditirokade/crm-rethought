@@ -146,8 +146,17 @@ export default function Home() {
         <header className="grid items-center gap-12 pt-14 lg:grid-cols-12 lg:gap-16 lg:pt-20">
           <div className="lg:col-span-5">
             <p className="font-mono text-meta tracking-wide text-ink-2">CONCEPT CASE STUDY · 2026</p>
-            <h1 className="mt-4 text-h1">Groundwork</h1>
-            <p className="mt-3 text-xl leading-snug sm:text-2xl">CRM, rethought. The AI does the groundwork; your team makes every call.</p>
+            {/* Title and line slide up from behind a clipped edge, as on aaditirokade.com (decision 0041). */}
+            <h1 className="cs-title mt-4">
+              <span className="mask-line">
+                <span style={{ animationDelay: "150ms" }}>Groundwork</span>
+              </span>
+            </h1>
+            <p className="mt-3 text-lg leading-snug text-ink-2 sm:text-xl">
+              <span className="mask-line">
+                <span style={{ animationDelay: "300ms" }}>CRM, rethought. The AI does the groundwork; your team makes every call.</span>
+              </span>
+            </p>
             <p className="mt-5 text-[17px] leading-relaxed text-ink-2">
               A CRM for account teams with AI in every workflow: it preps the meeting, drafts the log, spots the risk and answers
               questions about any account. Every line it writes shows its source, and nothing reaches the record until a person
@@ -299,7 +308,7 @@ export default function Home() {
             visual={
               <ul className="divide-y divide-[var(--rule)] border-y border-[var(--rule)]">
                 {[
-                  ["Decision records", "40 short records, from the clean room rule to a way back that always loads", `${REPO}/tree/main/decisions`],
+                  ["Decision records", "42 short records, from the clean room rule to a title like the site's", `${REPO}/tree/main/decisions`],
                   ["Prompt log", "The prompts behind each step, what came back and what I chose", `${REPO}/tree/main/prompts`],
                   ["Research", "Desk research and the competitive read, every claim linked", `${REPO}/tree/main/research`],
                   ["Wireframes", "The grayscale meeting loop before any color", "/wireframes"],

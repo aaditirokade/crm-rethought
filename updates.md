@@ -57,3 +57,5 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Groundwork moves to aaditirokade.com/groundwork: base path, redirects from the old address (decision 0038)
 - Groundwork shares the portfolio site's theme: dark on the site opens it dark, and a switch here carries back (decision 0039)
 - Links back to the case study load the page, fixing a 404 behind the portfolio's forwarding (decision 0040)
+- Case study home: the title and line styled and revealed like the portfolio site (decision 0041)
+- Case study home: walkthrough text at the top of each row, the phone beside its text (decision 0042)

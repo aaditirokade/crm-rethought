@@ -44,3 +44,5 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0038 | [Served at aaditirokade.com/groundwork](0038-served-at-aaditirokade-com-groundwork.md) | 2026-11-07 |
 | 0039 | [One theme with aaditirokade.com](0039-theme-shared-with-the-site.md) | 2026-11-07 |
 | 0040 | [Links back to the case study load the page](0040-links-home-load-the-page.md) | 2026-11-07 |
+| 0041 | [The title, styled like the portfolio site](0041-title-like-the-site.md) | 2026-11-07 |
+| 0042 | [Walkthrough text at the top of each row](0042-walkthrough-text-at-the-top.md) | 2026-11-07 |
