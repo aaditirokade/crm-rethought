@@ -43,3 +43,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Case study recordings captured again at twice the resolution and served as MP4 video in light and dark, with Pause and a poster for reduced motion; old GIFs removed
 - Case study home: Review, Lists and Mobile become one How it works walkthrough; the stepper on the left follows the scroll and the recording on the right switches with it (decision 0025)
 - Case study home: a chapter timeline on the left that fills in as you scroll; walkthrough stepper with a hairline and small dots, no numbers (decision 0026)
+- Prototype: scrolling past the end of a main tab fills a hairline and opens the next tab; the footer is also a link (decision 0027)

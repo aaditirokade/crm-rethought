@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IconAccounts, IconImport, IconPhone, IconPipeline, IconReset, IconReview, IconToday } from "./Icons";
 import { actions, allSugs, entryOf, me, pending, useProto } from "./store";
+import { ScrollNext } from "./ScrollNext";
 import { ThemeToggle } from "./ThemeToggle";
 
 /**
@@ -45,6 +46,9 @@ export function Shell({ children }: { children: React.ReactNode }) {
     },
     { href: "/prototype/imports", label: "Imports", verb: "IMPORT", status: s.imp.doneAt ? "Expo list imported" : "1 list to import", icon: <IconImport />, current: path.startsWith("/prototype/imports") },
   ];
+  // On a tab's own page (not a brief, log or account inside it), scrolling past the end opens the next tab.
+  const at = steps.findIndex((st) => st.href === path);
+  const next = at >= 0 && at < steps.length - 1 ? { href: steps[at + 1].href, label: steps[at + 1].label } : null;
 
   return (
     <div className="sig min-h-svh">
@@ -112,6 +116,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
 
       <main id="main" tabIndex={-1} className="w-full px-5 md:px-8 lg:pl-32 lg:pr-8 pt-10 pb-32 outline-none lg:pb-12">
         {children}
+        <ScrollNext key={path} next={next} />
       </main>
       {s.message && s.seq ? (
         <div key={s.seq} className="toast" aria-hidden="true">
