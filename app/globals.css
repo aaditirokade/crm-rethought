@@ -1834,3 +1834,39 @@ li.proto-card:focus-within::before,
     animation: none;
   }
 }
+
+/* Review's tile actions: round icon buttons whose label slides out on hover or keyboard focus (decision 0043). */
+.sig-btn.icon-act {
+  min-width: 2.25rem;
+  min-height: 2.25rem;
+  justify-content: center;
+  gap: 0;
+  padding: 0 0.6rem;
+}
+.icon-act-label {
+  max-width: 0;
+  margin-left: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 0;
+  transition: max-width 280ms cubic-bezier(0.2, 0.8, 0.2, 1), margin-left 280ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 200ms ease;
+}
+.icon-act:hover .icon-act-label,
+.icon-act:focus-visible .icon-act-label {
+  max-width: 6rem;
+  margin-left: 0.375rem;
+  opacity: 1;
+}
+/* Nothing hovers on a touch screen, so the labels stay out there. */
+@media (hover: none) {
+  .icon-act-label {
+    max-width: 6rem;
+    margin-left: 0.375rem;
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .icon-act-label {
+    transition: none;
+  }
+}

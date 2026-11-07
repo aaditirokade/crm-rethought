@@ -95,8 +95,35 @@ export function FlagBox() {
   );
 }
 
-/** A gated line: drafted by the AI, waiting for a person. Approve, edit, dismiss; saved together later. */
-export function GateLine({ sug }: { sug: Suggestion }) {
+/** Icons for the compact actions on Review's tiles. */
+const ActIcon = ({ d }: { d: string }) => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d={d} />
+  </svg>
+);
+const CHECK = "M5 12.5l4.5 4.5L19 7.5";
+const PENCIL = "M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16v4zM13.5 6.5l4 4";
+const CROSS = "M6 6l12 12M18 6L6 18";
+
+/**
+ * A round icon button whose label slides out beside the icon on hover or keyboard focus
+ * (decision 0043). The label is always in the button, so it is also the accessible name;
+ * on touch screens, where nothing hovers, it stays out.
+ */
+function IconAction({ label, icon, primary = false, onClick }: { label: string; icon: string; primary?: boolean; onClick: () => void }) {
+  return (
+    <button type="button" className={`sig-btn icon-act ${primary ? "sig-btn-primary" : ""}`} onClick={onClick}>
+      <ActIcon d={icon} />
+      <span className="icon-act-label">{label}</span>
+    </button>
+  );
+}
+
+/**
+ * A gated line: drafted by the AI, waiting for a person. Approve, edit, dismiss; saved together later.
+ * `icons` gives the compact tiles on Review round icon buttons instead of worded ones.
+ */
+export function GateLine({ sug, icons = false }: { sug: Suggestion; icons?: boolean }) {
   const s = useProto();
   const e = entryOf(s, sug.id);
   const text = textOf(s, sug);
@@ -157,7 +184,20 @@ export function GateLine({ sug }: { sug: Suggestion }) {
             <Meta sources={sug.sources} confidence={sug.confidence} />
           </div>
           <div className="flex shrink-0 flex-wrap gap-2">
-            {e.status === "pending" ? (
+            {e.status === "pending" && icons ? (
+              <>
+                <IconAction label="Approve" icon={CHECK} primary onClick={() => actions.approve(sug.id)} />
+                <IconAction
+                  label="Edit"
+                  icon={PENCIL}
+                  onClick={() => {
+                    setDraft(text);
+                    setEditing(true);
+                  }}
+                />
+                <IconAction label="Dismiss" icon={CROSS} onClick={() => actions.dismiss(sug.id)} />
+              </>
+            ) : e.status === "pending" ? (
               <>
                 <button type="button" className="sig-btn sig-btn-primary" onClick={() => actions.approve(sug.id)}>
                   Approve

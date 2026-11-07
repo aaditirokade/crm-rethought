@@ -59,3 +59,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Links back to the case study load the page, fixing a 404 behind the portfolio's forwarding (decision 0040)
 - Case study home: the title and line styled and revealed like the portfolio site (decision 0041)
 - Case study home: walkthrough text at the top of each row, the phone beside its text (decision 0042)
+- Review: tile actions become round icons whose labels slide out on hover or focus (decision 0043)

@@ -46,3 +46,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0040 | [Links back to the case study load the page](0040-links-home-load-the-page.md) | 2026-11-07 |
 | 0041 | [The title, styled like the portfolio site](0041-title-like-the-site.md) | 2026-11-07 |
 | 0042 | [Walkthrough text at the top of each row](0042-walkthrough-text-at-the-top.md) | 2026-11-07 |
+| 0043 | [Icon actions on Review's tiles](0043-review-icon-actions.md) | 2026-11-07 |
