@@ -5,7 +5,7 @@ import { PULSE } from "@/content/ask";
 import type { LiveAccount } from "./store";
 
 const W = 760;
-const H = 420;
+const H = 340;
 const L = 64;
 const R = 24;
 const T = 24;
@@ -45,7 +45,7 @@ export function PortfolioMap({ accounts }: { accounts: LiveAccount[] }) {
         </h2>
         <p className="font-mono text-meta tracking-wide text-ink-2">RENEWAL × 8 WEEK USAGE TREND · SIZE = STORES</p>
       </div>
-      <svg viewBox={`0 0 ${W} ${H}`} className="mt-3 w-full" role="group" aria-label="Portfolio map: days to renewal against usage trend">
+      <svg viewBox={`0 0 ${W} ${H}`} className="mt-3 w-full max-w-[760px]" role="group" aria-label="Portfolio map: days to renewal against usage trend">
         <rect x={L} y={Y(0)} width={X(120) - L} height={Y(-60) - Y(0)} fill="var(--risk)" fillOpacity="0.07" />
         <text x={L + 8} y={Y(0) + 18} fontSize="11.5" fill="var(--risk)" className="font-mono">
           RENEWING SOON AND FALLING

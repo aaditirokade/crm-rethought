@@ -37,3 +37,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Opportunities: outreach list and pipeline side by side from 1280px, pipeline stays in view; jump link on smaller screens
 - Micro interactions, round two: hover washes on tiles and rows, livelier pulse trends, pressing buttons, lifting pipeline cards, springy dock (decision 0024)
 - Review: entries as cards in two or three columns, drafts deepen and lift on hover (decision 0024)
+- Accounts: portfolio map shorter (340 high, never wider than 760) and beside Lists from 1280px, so the table starts above the fold
