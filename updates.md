@@ -55,3 +55,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Case study home: How it works drops its own stepper; the recordings run one after another (decision 0036)
 - Case study home: How it works puts each step's text beside its recording on wide screens (decision 0037)
 - Groundwork moves to aaditirokade.com/groundwork: base path, redirects from the old address (decision 0038)
+- Groundwork shares the portfolio site's theme: dark on the site opens it dark, and a switch here carries back (decision 0039)

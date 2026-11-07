@@ -3,10 +3,12 @@
 import { useSyncExternalStore } from "react";
 
 /**
- * Light or dark, by choice. The system setting is the default; a choice is kept in this browser
- * and set on <html data-theme> before the first paint (see app/layout.tsx).
+ * Light or dark, shared with aaditirokade.com. Groundwork is served on the same domain
+ * (decision 0038), so it reads and writes the portfolio site's own key: dark on the site opens
+ * Groundwork dark, and a switch made here carries back to the site. Like the site, it is light
+ * unless dark was chosen. Set on <html data-theme> before the first paint (see app/layout.tsx).
  */
-const KEY = "crm-rethought-theme";
+const KEY = "theme";
 type Theme = "light" | "dark";
 
 const media = () => window.matchMedia("(prefers-color-scheme: dark)");
@@ -42,7 +44,7 @@ export function setTheme(next: Theme) {
 }
 
 /** Runs before the first paint so a saved choice never flashes the other theme. */
-export const THEME_SCRIPT = `try{var t=localStorage.getItem("${KEY}");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}`;
+export const THEME_SCRIPT = `try{document.documentElement.dataset.theme=localStorage.getItem("${KEY}")==="dark"?"dark":"light"}catch(e){}`;
 
 const Sun = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" aria-hidden="true">
