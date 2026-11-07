@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MobileApp } from "@/components/mobile/MobileApp";
+import { BASE } from "@/lib/base";
 
 export const metadata: Metadata = {
   title: "Mobile app · Groundwork",
@@ -12,9 +13,10 @@ export default function MobilePage() {
     <main className="sig min-h-svh lg:grid lg:place-items-center lg:px-8 lg:py-6">
       <div className="hidden w-full max-w-5xl lg:grid lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-16">
         <div>
-          <Link href="/" className="sig-btn">
+          {/* A full page load: behind the portfolio's forwarding, a client route to the app's root fails (decision 0040). */}
+          <a href={BASE || "/"} className="sig-btn">
             <span aria-hidden="true">←</span> Back to the case study
-          </Link>
+          </a>
           <p className="mt-8 font-mono text-meta tracking-wide text-ink-2">CRM RETHOUGHT · MOBILE · CONCEPT PROTOTYPE · SAMPLE DATA</p>
           <h1 className="mt-2 text-h1 font-semibold">For the minutes between meetings</h1>
           <p className="mt-3 max-w-md text-ink-2">
@@ -50,9 +52,9 @@ export default function MobilePage() {
       {/* On a phone the app fills the screen; a slim bar above it leads back to the case study. */}
       <div className="flex h-svh flex-col lg:hidden">
         <div className="flex items-center justify-between gap-3 px-4 pt-3">
-          <Link href="/" className="sig-btn">
+          <a href={BASE || "/"} className="sig-btn">
             <span aria-hidden="true">←</span> Case study
-          </Link>
+          </a>
           <p className="font-mono text-meta tracking-wide text-ink-2">SAMPLE DATA</p>
         </div>
         <div className="min-h-0 flex-1">

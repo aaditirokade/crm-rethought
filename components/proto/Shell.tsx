@@ -6,6 +6,7 @@ import { IconAccounts, IconImport, IconPhone, IconPipeline, IconReset, IconRevie
 import { actions, allSugs, entryOf, me, pending, useProto } from "./store";
 import { ScrollNext } from "./ScrollNext";
 import { ThemeToggle } from "./ThemeToggle";
+import { BASE } from "@/lib/base";
 
 /**
  * Navigation as a floating dock: the day's work as steps (prep, know, pursue, decide, import).
@@ -71,9 +72,10 @@ export function Shell({ children }: { children: React.ReactNode }) {
             <span className="hidden lg:inline">{me.name.toUpperCase()} · AM · </span>
             <span className="hidden sm:inline">CONCEPT PROTOTYPE · </span>SAMPLE DATA
           </p>
-          <Link href="/" className="sig-btn whitespace-nowrap">
+          {/* A full page load: behind the portfolio's forwarding, a client route to the app's root fails (decision 0040). */}
+          <a href={BASE || "/"} className="sig-btn whitespace-nowrap">
             <span aria-hidden="true">←</span> Case study
-          </Link>
+          </a>
         </div>
       </header>
 

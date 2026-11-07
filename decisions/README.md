@@ -43,3 +43,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0037 | [Walkthrough rows: text beside the recording](0037-walkthrough-rows-text-beside-recording.md) | 2026-11-07 |
 | 0038 | [Served at aaditirokade.com/groundwork](0038-served-at-aaditirokade-com-groundwork.md) | 2026-11-07 |
 | 0039 | [One theme with aaditirokade.com](0039-theme-shared-with-the-site.md) | 2026-11-07 |
+| 0040 | [Links back to the case study load the page](0040-links-home-load-the-page.md) | 2026-11-07 |
