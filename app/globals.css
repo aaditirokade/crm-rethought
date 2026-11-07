@@ -1543,12 +1543,12 @@ li.proto-card:focus-within {
 .cov-bar {
   display: flex;
   gap: 2px;
-  height: 1.75rem;
+  height: 1.375rem;
 }
 .cov-seg {
   display: grid;
   place-items: center;
-  min-width: 1.75rem;
+  min-width: 1.375rem;
   border-radius: 4px;
   font-family: var(--font-ui), ui-sans-serif, system-ui, sans-serif;
   font-size: 0.75rem;

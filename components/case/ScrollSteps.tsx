@@ -118,11 +118,11 @@ export function ScrollSteps({ id, kicker, title, intro, steps }: { id: string; k
               items.current[i] = el;
             }}
             data-i={i}
-            // Text sits at the top of its row, beside the top of its recording. The phone recording is
-            // narrow, so it takes a narrow column and sits right beside its text.
+            // Text sits at the top of its row, beside the top of its recording. The phone row keeps the same
+            // narrow text column as the others, and the phone sits right beside it.
             className={`grid gap-6 lg:grid-cols-12 lg:items-start lg:gap-16 ${s.phone ? "lg:gap-12" : ""}`}
           >
-            <div className={s.phone ? "lg:col-span-7 lg:col-start-1" : "lg:col-span-5"}>
+            <div className="lg:col-span-5">
               {i === 0 ? (
                 <div className="mb-10">
                   <p className="text-[17px] leading-relaxed text-ink-2">{intro}</p>
@@ -135,7 +135,7 @@ export function ScrollSteps({ id, kicker, title, intro, steps }: { id: string; k
               </h3>
               <p className="mt-2 max-w-[62ch] leading-relaxed text-ink-2">{s.body}</p>
             </div>
-            <figure className={`min-w-0 ${s.phone ? "case-step-phone lg:col-span-5" : "lg:col-span-7"}`}>
+            <figure className={`min-w-0 lg:col-span-7 ${s.phone ? "case-step-phone" : ""}`}>
               <figcaption className="sr-only">{s.alt}</figcaption>
               <StepVideo step={s} playing={playing && inView[i]} />
             </figure>

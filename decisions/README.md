@@ -56,3 +56,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0050 | [Color blocking across the app](0050-color-blocking.md) | 2026-11-07 |
 | 0051 | [Ask in the AI's color](0051-ask-in-the-ai-color.md) | 2026-11-07 |
 | 0052 | [The portfolio's nav on the case study](0052-portfolio-nav-on-the-case-study.md) | 2026-11-07 |
+| 0053 | [A tighter case study page](0053-tighter-case-study.md) | 2026-11-07 |

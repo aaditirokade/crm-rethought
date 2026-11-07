@@ -52,16 +52,16 @@ const BEAT_MS = 5600;
 function Week() {
   return (
     <div>
-      <div className="grid grid-cols-10 gap-1.5">
+      <div className="grid max-w-[24rem] grid-cols-10 gap-1">
         {Array.from({ length: 10 }, (_, i) => (
           <span
             key={i}
-            className={`pr-rise h-14 rounded-lg ${i < 4 ? "bg-data" : "border border-[var(--line-strong)] bg-surface-2"}`}
+            className={`pr-rise h-7 rounded-md ${i < 4 ? "bg-data" : "border border-[var(--line-strong)] bg-surface-2"}`}
             style={{ animationDelay: `${i * 90}ms` }}
           />
         ))}
       </div>
-      <div className="mt-2 grid grid-cols-10 gap-1.5 font-mono text-meta text-ink-2">
+      <div className="mt-2 grid max-w-[24rem] grid-cols-10 gap-1 font-mono text-meta text-ink-2">
         <span className="col-span-4 border-t border-ink pt-1.5">SELLING</span>
         <span className="col-span-6 border-t border-[var(--line-strong)] pt-1.5">LOGGING, ADMIN, INTERNAL MEETINGS</span>
       </div>
@@ -102,11 +102,8 @@ function Stale() {
   const rows = [
     ["Fernhill Outfitters", "94 days ago", true],
     ["Brightwater Grocers", "2 days ago", false],
-    ["Larkspur Market", "61 days ago", true],
     ["Harbor Lane Books", "120 days ago", true],
     ["Juniper & Co", "47 days ago", true],
-    ["Oakridge Pantry", "5 days ago", false],
-    ["Northgate Supply", "88 days ago", true],
     ["Cedar Row Hardware", "73 days ago", true],
   ] as const;
   return (
@@ -159,15 +156,15 @@ export function ProblemReel() {
   const n = useCount(b.n, run, still);
 
   return (
-    <figure>
+    <figure className="max-w-[35rem]">
       <figcaption className="sr-only">
         Three findings, shown in turn: 40% of a seller&apos;s time goes to selling; 68% of sellers say note taking and data entry take the most time;
         76% of CRM users say less than half their CRM data is accurate.
       </figcaption>
-      <div className="rounded-[20px] bg-surface-2 p-5 sm:p-7">
-        <div aria-hidden="true" key={run} className="min-h-[23rem] sm:min-h-[21.5rem]">
+      <div className="rounded-[20px] bg-surface-2 p-5 sm:p-6">
+        <div aria-hidden="true" key={run} className="flex min-h-[24.5rem] flex-col justify-center sm:min-h-[19rem]">
           <p className="flex items-baseline gap-3">
-            <span className="text-[3.25rem] font-medium leading-none tracking-tight tabular-nums">{n}%</span>
+            <span className="text-[2.75rem] font-medium leading-none tracking-tight tabular-nums">{n}%</span>
             <span className="max-w-[30ch] leading-snug">{b.text}</span>
           </p>
           <div className="mt-6">{beat === 0 ? <Week /> : beat === 1 ? <Typing run={run} still={still} /> : <Stale />}</div>

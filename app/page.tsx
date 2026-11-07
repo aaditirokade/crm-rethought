@@ -49,6 +49,8 @@ function Chapter({
   children,
   visual,
   flip = false,
+  top = false,
+  narrow = false,
 }: {
   n: string;
   kicker: string;
@@ -56,11 +58,15 @@ function Chapter({
   children: React.ReactNode;
   visual: React.ReactNode;
   flip?: boolean;
+  /** Top align the text and the visual instead of centering them. */
+  top?: boolean;
+  /** A small visual: it takes 5 columns and the text moves up beside it. */
+  narrow?: boolean;
 }) {
   return (
     <section aria-labelledby={`ch-${n}`} className="border-t border-[var(--rule)] py-16 lg:py-24">
-      <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
-        <div className={`lg:col-span-5 ${flip ? "lg:order-2" : ""}`}>
+      <div className={`grid gap-10 lg:grid-cols-12 lg:gap-16 ${top ? "items-start" : "items-center"}`}>
+        <div className={`${narrow ? "lg:col-span-7" : "lg:col-span-5"} ${flip ? "lg:order-2" : ""}`}>
           <p className="font-mono text-meta tracking-wide text-accent">
             {n} · {kicker.toUpperCase()}
           </p>
@@ -69,7 +75,7 @@ function Chapter({
           </h2>
           <div className="mt-5 max-w-[60ch] space-y-4 text-[17px] leading-relaxed text-ink-2">{children}</div>
         </div>
-        <div className={`min-w-0 lg:col-span-7 ${flip ? "lg:order-1" : ""}`}>{visual}</div>
+        <div className={`min-w-0 ${narrow ? "lg:col-span-5" : "lg:col-span-7"} ${flip ? "lg:order-1" : ""}`}>{visual}</div>
       </div>
     </section>
   );
@@ -218,7 +224,12 @@ export default function Home() {
             n="03"
             kicker="Ask"
             title="Ask anything about an account. Every claim brings its source."
-            visual={<AskAnatomy />}
+            top
+            visual={
+              <div className="max-w-[32rem]">
+                <AskAnatomy />
+              </div>
+            }
           >
             <p>
               Ask sits at the top of the day. It shows what it is reading while it works, then answers in plain words with a
@@ -240,23 +251,24 @@ export default function Home() {
             kicker="Design system"
             title="Calm to use all day, violet only where the AI speaks"
             flip
+            narrow
             visual={
-              <div>
-                <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+              <div className="max-w-[26rem]">
+                <ul className="grid grid-cols-2 gap-2 sm:grid-cols-3">
                   {SWATCHES.map((s) => (
-                    <li key={s.name} className="ask-tile flex flex-col rounded-[20px] bg-surface-2 p-4 sm:p-5">
-                      <span className="flex h-9 w-14 overflow-hidden rounded-[10px] border border-[var(--line-strong)]" aria-hidden="true">
+                    <li key={s.name} className="ask-tile flex flex-col rounded-[14px] bg-surface-2 p-3">
+                      <span className="flex h-6 w-10 overflow-hidden rounded-[7px] border border-[var(--line-strong)]" aria-hidden="true">
                         <span className="flex-1" style={{ background: s.light }} />
                         <span className="flex-1" style={{ background: s.dark }} />
                       </span>
-                      <p className="mt-5 font-medium">{s.name}</p>
+                      <p className="mt-3 text-small font-medium">{s.name}</p>
                       <p className="mt-0.5 font-mono text-meta text-ink-2">
                         {s.light} / {s.dark}
                       </p>
                     </li>
                   ))}
                 </ul>
-                <p className="mt-6 text-small text-ink-2">Left half light, right half dark. Every text color passes WCAG AA on every background in both.</p>
+                <p className="mt-4 text-small text-ink-2">Left half light, right half dark. Every text color passes WCAG AA on every background in both.</p>
               </div>
             }
           >
@@ -282,7 +294,7 @@ export default function Home() {
             visual={
               <ul className="divide-y divide-[var(--rule)] border-y border-[var(--rule)]">
                 {[
-                  ["Decision records", "52 short records, from the clean room rule to the portfolio nav on the case study", `${REPO}/tree/main/decisions`],
+                  ["Decision records", "53 short records, from the clean room rule to a tighter case study page", `${REPO}/tree/main/decisions`],
                   ["Prompt log", "The prompts behind each step, what came back and what I chose", `${REPO}/tree/main/prompts`],
                   ["Research", "Desk research and the competitive read, every claim linked", `${REPO}/tree/main/research`],
                   ["Wireframes", "The grayscale meeting loop before any color", "/wireframes"],

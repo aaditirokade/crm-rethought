@@ -15,7 +15,7 @@ const TOTAL = 13;
 
 export function Coverage() {
   return (
-    <figure className="relative">
+    <figure className="relative max-w-[32rem]">
       <div className="flex flex-wrap items-center gap-x-5 gap-y-1 font-mono text-meta tracking-wide text-ink-2" aria-hidden="true">
         <span className="flex items-center gap-1.5">
           <span className="cov-key cov-yes" /> YES
@@ -27,7 +27,7 @@ export function Coverage() {
           <span className="cov-key cov-none" /> NO MENTION FOUND
         </span>
       </div>
-      <ol className="mt-5 space-y-4" aria-hidden="true">
+      <ol className="mt-4 space-y-3" aria-hidden="true">
         {ROWS.map((r) => (
           <li key={r.label}>
             <p className="flex justify-between gap-3 text-small">

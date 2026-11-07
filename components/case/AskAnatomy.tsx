@@ -32,7 +32,7 @@ function Picture({ i }: { i: number }) {
     );
   if (i === 1)
     return (
-      <p className="text-small leading-relaxed">
+      <p className="text-[0.8125rem] leading-[1.6]">
         <span className="aa-claim">Dashboard use fell about 40% after their Oct 20 reorg</span>{" "}
         <span className="sig-source aa-pop">
           <b>Usage</b> Nov 9
@@ -105,13 +105,13 @@ export function AskAnatomy() {
   return (
     <ul ref={ref} className={`aa grid gap-3 sm:grid-cols-2 ${seen ? "is-seen" : ""}`}>
       {PARTS.map((p, i) => (
-        <li key={p.title} className="ask-tile flex flex-col rounded-[20px] bg-surface-2 p-4 sm:p-5">
-          <div aria-hidden="true" className="h-[7.25rem] overflow-hidden rounded-2xl bg-surface p-3.5">
+        <li key={p.title} className="ask-tile flex flex-col rounded-[18px] bg-surface-2 p-3 sm:p-3.5">
+          <div aria-hidden="true" className="h-[8.25rem] overflow-hidden rounded-xl bg-surface p-3">
             <Picture i={i} />
           </div>
-          <span className="mt-4 font-mono text-meta text-ink-2">{String(i + 1).padStart(2, "0")}</span>
-          <span className="mt-1 block text-xl font-medium">{p.title}</span>
-          <span className="mt-1.5 block leading-snug text-ink-2">{p.body}</span>
+          <span className="mt-3 font-mono text-meta text-ink-2">{String(i + 1).padStart(2, "0")}</span>
+          <span className="mt-0.5 block text-lg font-medium">{p.title}</span>
+          <span className="mt-1 block text-small leading-snug text-ink-2">{p.body}</span>
         </li>
       ))}
     </ul>

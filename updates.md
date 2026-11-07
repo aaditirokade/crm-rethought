@@ -70,3 +70,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Prototype: color blocking across every tab (sand panels, a periwinkle Lists, ink save bars) and a softer Ask (decision 0050)
 - Today: Ask becomes the strongest periwinkle block in light mode, deep indigo in dark (decision 0051)
 - Case study home: the aaditirokade.com nav (AR, Gallery, Resume) at the top, as on Firstword (decision 0052)
+- Case study home: smaller problem, research, Ask and swatch visuals, with text closer to each, and the phone beside its text (decision 0053)
