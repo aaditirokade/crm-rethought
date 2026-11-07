@@ -66,3 +66,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Review: each group's cards in one sideways row with arrows, snapping and fading edges (decision 0046)
 - Case study home: the Approve recording shows icon actions, the sideways row and saving, in light and dark (decision 0047)
 - Today: Ask sits on its own deep indigo block in light and dark; items it isn't about go gray instead of fading (decision 0048)
+- Account page: the usage chart switches between 4 weeks, 8 weeks, 6 months and 1 year (decision 0049)

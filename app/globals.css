@@ -2096,3 +2096,37 @@ html:root .ask-wrap .proto-input::placeholder {
 html:root .ask-wrap .sig-btn:not(:disabled):hover {
   box-shadow: 0 4px 12px -6px rgb(0 0 0 / 0.6);
 }
+
+/* A segmented control for picking a time range (decision 0049). */
+.seg {
+  display: inline-flex;
+  gap: 2px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 2px;
+  background: var(--surface);
+}
+.seg-btn {
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  line-height: 1.1rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: background 140ms ease, color 140ms ease;
+}
+.seg-btn:hover {
+  color: var(--ink);
+  background: var(--surface-2);
+}
+.seg-btn[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--bg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .seg-btn {
+    transition: none;
+  }
+}

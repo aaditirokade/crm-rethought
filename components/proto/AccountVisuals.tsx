@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { PULSE } from "@/content/ask";
 import { MOMENTS } from "@/content/more";
 import type { InteractionType } from "@/content/prototype";
+import { PULSE_EARLIER, TOUCHES_EARLIER } from "@/content/usage-history";
 import { SourceChip } from "./Source";
 import type { LiveAccount } from "./store";
 
@@ -121,25 +123,63 @@ const SHAPE: Record<InteractionType, string> = {
   Ticket: "triangle",
 };
 
-/** Eight weeks of usage with every interaction placed on it, and the moments that explain the line. */
+const WEEK = 7 * 864e5;
+const LAST_WEEK = Date.parse("2026-11-09");
+const RANGES = [
+  { weeks: 4, label: "4 weeks", title: "last 4 weeks" },
+  { weeks: 8, label: "8 weeks", title: "last 8 weeks" },
+  { weeks: 26, label: "6 months", title: "last 6 months" },
+  { weeks: 52, label: "1 year", title: "past year" },
+] as const;
+
+/** Usage with every interaction placed on it, and the moments that explain the line, over a range the person picks. */
 export function InteractionStrip({ a }: { a: LiveAccount }) {
+  const [weeksShown, setWeeksShown] = useState<number>(8);
+  const range = RANGES.find((r) => r.weeks === weeksShown) ?? RANGES[1];
   // Drawn at its real size (600 wide): a slim line over a single row of marks.
   const W = 600;
   const H = 150;
   const L = 34;
   const R = 14;
   const ROW = 140;
-  const start = Date.parse("2026-09-21");
+  const start = LAST_WEEK - (range.weeks - 1) * WEEK;
   const end = Date.parse("2026-11-15");
   const x = (t: number) => L + ((t - start) / (end - start)) * (W - L - R);
-  const series = PULSE[a.id] ?? [];
+  const fmt = (t: number) => new Date(t).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
+  const series = [...(PULSE_EARLIER[a.id] ?? []), ...(PULSE[a.id] ?? [])].slice(-range.weeks);
+  const offset = range.weeks - series.length;
   const max = Math.max(...series, 1);
   const y = (v: number) => 96 - (v / max) * 64;
-  const d = series.map((v, i) => `${i ? "L" : "M"}${x(start + i * 7 * 864e5).toFixed(1)} ${y(v).toFixed(1)}`).join("");
-  const touches = a.timeline.filter((t) => dateOf(t.date) >= start);
-  const moments = MOMENTS[a.id] ?? [];
-  const weeks = Array.from({ length: 8 }, (_, i) => start + i * 7 * 864e5);
-  const fmt = (t: number) => new Date(t).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
+  const d = series.map((v, i) => `${i ? "L" : "M"}${x(start + (i + offset) * WEEK).toFixed(1)} ${y(v).toFixed(1)}`).join("");
+  const touches = [
+    ...(TOUCHES_EARLIER[a.id] ?? []).map((t) => ({ key: `earlier-${t.date}`, at: Date.parse(t.date), type: t.type, label: `${fmt(Date.parse(t.date))} · ${t.type} · ${t.title}` })),
+    ...a.timeline.map((t) => ({ key: t.key, at: dateOf(t.date), type: t.type, label: `${t.date} · ${t.type} · ${t.title}` })),
+  ].filter((t) => t.at >= start);
+  const moments = (MOMENTS[a.id] ?? []).filter((m) => Date.parse(m.date) >= start);
+  // Weekly ticks for the short ranges; the first of each month for the long ones, with the year on January.
+  const ticks: { t: number; label: string }[] = [];
+  if (range.weeks <= 8) {
+    for (let i = 0; i < range.weeks; i++) ticks.push({ t: start + i * WEEK, label: fmt(start + i * WEEK).toUpperCase() });
+  } else {
+    const s0 = new Date(start);
+    for (let m = new Date(Date.UTC(s0.getUTCFullYear(), s0.getUTCMonth() + 1, 1)); m.getTime() < end; m = new Date(Date.UTC(m.getUTCFullYear(), m.getUTCMonth() + 1, 1))) {
+      const mon = m.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" }).toUpperCase();
+      ticks.push({ t: m.getTime(), label: m.getUTCMonth() === 0 ? `${mon} ’${String(m.getUTCFullYear()).slice(2)}` : mon });
+    }
+  }
+  const firstWeek = start + offset * WEEK;
+  // Moment labels: flip to the left of their line near the right edge, and drop to a second row when two would touch.
+  const placed: { text: string; x: number; y: number; end: boolean }[] = [];
+  for (const m of [...moments].sort((p, q) => Date.parse(p.date) - Date.parse(q.date))) {
+    const mx = x(Date.parse(m.date));
+    const w = m.text.length * 6.6;
+    const end = mx + 4 + w > W - R;
+    const from = end ? mx - 4 - w : mx + 4;
+    const prev = placed.at(-1);
+    const prevTo = prev ? (prev.end ? prev.x - 4 : prev.x + 4 + prev.text.length * 6.6) : -Infinity;
+    const clash = prev && prev.y === 12 && from < prevTo + 8;
+    placed.push({ text: m.text, x: mx, y: clash ? 24 : 12, end });
+  }
 
   const mark = (type: InteractionType, cx: number, cy: number) => {
     const s = SHAPE[type];
@@ -151,15 +191,24 @@ export function InteractionStrip({ a }: { a: LiveAccount }) {
 
   return (
     <section aria-labelledby="h-strip" className="proto-card p-4 sm:p-5">
-      <h2 id="h-strip" className="text-h3 font-semibold">
-        Usage and every touch, last 8 weeks
-      </h2>
-      <svg viewBox={`0 0 ${W} ${H}`} className="mx-auto mt-4 block w-full max-w-[640px]" role="img" aria-label={`Weekly dashboard views for ${a.name} from Sep 21 to Nov 9, from ${series[0]} to ${series.at(-1)}, with ${touches.length} interactions marked${moments.length ? ` and these moments: ${moments.map((m) => m.text).join(", ")}` : ""}.`}>
-        {weeks.map((t) => (
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+        <h2 id="h-strip" className="text-h3 font-semibold">
+          Usage and every touch, {range.title}
+        </h2>
+        <div role="group" aria-label="Time range" className="seg">
+          {RANGES.map((r) => (
+            <button key={r.weeks} type="button" className="seg-btn" aria-pressed={r.weeks === range.weeks} onClick={() => setWeeksShown(r.weeks)}>
+              {r.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <svg viewBox={`0 0 ${W} ${H}`} className="mx-auto mt-4 block w-full max-w-[640px]" role="img" aria-label={`Weekly dashboard views for ${a.name} from ${fmt(firstWeek)} to Nov 9, from ${series[0]} to ${series.at(-1)}, with ${touches.length} interactions marked${moments.length ? ` and these moments: ${moments.map((m) => m.text).join(", ")}` : ""}.`}>
+        {ticks.map(({ t, label }) => (
           <g key={t}>
             <line x1={x(t)} x2={x(t)} y1={26} y2={104} stroke="var(--line)" strokeOpacity="0.7" />
             <text x={x(t)} y={120} textAnchor="middle" fontSize="10" letterSpacing="0.04em" fill="var(--ink-2)" className="font-mono">
-              {fmt(t).toUpperCase()}
+              {label}
             </text>
           </g>
         ))}
@@ -169,20 +218,20 @@ export function InteractionStrip({ a }: { a: LiveAccount }) {
         <text x={L - 7} y={y(0) + 3.5} textAnchor="end" fontSize="10" fill="var(--ink-2)" className="font-mono">
           0
         </text>
-        {moments.map((m) => (
+        {placed.map((m) => (
           <g key={m.text}>
-            <line x1={x(Date.parse(m.date))} x2={x(Date.parse(m.date))} y1={18} y2={104} stroke="var(--risk)" strokeDasharray="2 3" />
-            <text x={x(Date.parse(m.date)) + 4} y={14} fontSize="10" letterSpacing="0.04em" fill="var(--risk)" className="font-mono">
+            <line x1={m.x} x2={m.x} y1={m.y + 4} y2={104} stroke="var(--risk)" strokeDasharray="2 3" />
+            <text x={m.end ? m.x - 4 : m.x + 4} y={m.y} textAnchor={m.end ? "end" : "start"} fontSize="10" letterSpacing="0.04em" fill="var(--risk)" stroke="var(--surface)" strokeWidth="3" paintOrder="stroke" className="font-mono">
               {m.text.toUpperCase()}
             </text>
           </g>
         ))}
-        <path d={d} pathLength={1} className="spark-draw" fill="none" stroke="var(--accent)" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round" />
+        <path key={range.weeks} d={d} pathLength={1} className="spark-draw" fill="none" stroke="var(--accent)" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round" />
         <line x1={L} x2={W - R} y1={ROW} y2={ROW} stroke="var(--line)" />
         {touches.map((t) => (
           <g key={t.key}>
-            {mark(t.type, x(dateOf(t.date)), ROW)}
-            <title>{`${t.date} · ${t.type} · ${t.title}`}</title>
+            {mark(t.type, x(t.at), ROW)}
+            <title>{t.label}</title>
           </g>
         ))}
       </svg>
