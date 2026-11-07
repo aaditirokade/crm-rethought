@@ -18,7 +18,7 @@ export function SiteNav() {
   }, []);
 
   return (
-    <header className="site-nav fixed inset-x-0 top-0 z-40 px-4">
+    <header className={`site-nav fixed inset-x-0 top-0 z-40 ${scrolled ? "px-4" : "px-0"}`}>
       <nav aria-label="Site" className={`site-nav-bar mx-auto flex items-center justify-between ${scrolled ? "is-pill" : ""}`}>
         <div className="group relative">
           {/* The site's home page lives outside this app's /groundwork base path, so next/link would point back into Groundwork. */}

@@ -134,15 +134,16 @@ export default function Home() {
     <div className="sig case-home min-h-svh">
       {/* The portfolio's own nav, so the way back to aaditirokade.com is always at the top (decision 0052). */}
       <SiteNav />
-      <div aria-hidden="true" className="h-14" />
 
       <ThemeButton />
 
-      <main id="main" className="w-full px-5 pb-20 md:px-8 lg:px-16">
+      {/* Same container, top padding and type as the Firstword case study, so switching between them
+          with the tabs keeps the nav, tabs and title exactly in place (decision 0055). */}
+      <main id="main" className="mx-auto w-full max-w-6xl px-6 pb-20 pt-28 xl:max-w-7xl">
         <CaseStudyTabs current="groundwork" />
-        <header className="grid items-center gap-12 pt-10 lg:grid-cols-12 lg:gap-16 lg:pt-12">
+        <header className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
-            <p className="font-mono text-meta tracking-wide text-ink-2">CONCEPT CASE STUDY · 2026</p>
+            <p className="text-[14px] leading-5 tracking-wide text-ink-2">Concept case study · 2026</p>
             {/* Title and line slide up from behind a clipped edge, as on aaditirokade.com (decision 0041). */}
             <h1 className="cs-title mt-4">
               <span className="mask-line">
@@ -159,7 +160,7 @@ export default function Home() {
               questions about any account. Every line it writes shows its source, and nothing reaches the record until a person
               approves it. I took it from research to a coded prototype.
             </p>
-            <dl className="mt-8 grid grid-cols-3 gap-4 border-t border-[var(--rule)] pt-5 text-small">
+            <dl className="mt-8 grid grid-cols-3 gap-4 border-t border-[var(--rule)] pt-5 text-[14px] leading-5">
               <div>
                 <dt className="text-ink-2">Role</dt>
                 <dd className="mt-1">Research, design, front end</dd>
@@ -178,7 +179,7 @@ export default function Home() {
               <p className="mt-4 text-small text-ink-2">Concept prototype · every company, person and number is made up</p>
             </div>
           </div>
-          <div className="min-w-0 lg:col-span-7">
+          <div className="min-w-0 lg:col-span-7 lg:self-center">
             <Demo
               name="ask"
               width={1520}
@@ -296,7 +297,7 @@ export default function Home() {
             visual={
               <ul className="divide-y divide-[var(--rule)] border-y border-[var(--rule)]">
                 {[
-                  ["Decision records", "54 short records, from the clean room rule to tabs between the case studies", `${REPO}/tree/main/decisions`],
+                  ["Decision records", "55 short records, from the clean room rule to case studies that line up", `${REPO}/tree/main/decisions`],
                   ["Prompt log", "The prompts behind each step, what came back and what I chose", `${REPO}/tree/main/prompts`],
                   ["Research", "Desk research and the competitive read, every claim linked", `${REPO}/tree/main/research`],
                   ["Wireframes", "The grayscale meeting loop before any color", "/wireframes"],

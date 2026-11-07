@@ -1811,6 +1811,7 @@ li.proto-card:focus-within::before,
   font-weight: 400;
   font-size: 1.9rem;
   line-height: 1.25;
+  letter-spacing: normal;
 }
 @media (min-width: 640px) {
   .cs-title {
@@ -2327,23 +2328,19 @@ html:root .ask-wrap:not(.proto-card) {
     opacity: 0;
   }
 }
-/* At rest the bar lines up with the page's own edges (px-5, md:px-8, lg:px-16 on main). */
+/* At rest the bar lines up with the page's container (max-w-6xl, xl:max-w-7xl, px-6), the same as
+   the site's nav on the Firstword case study, so AR stays put when switching between them (decision 0055). */
 .site-nav-bar {
-  max-width: 100%;
+  max-width: 72rem;
   margin-top: 0;
   border: 1px solid transparent;
   border-radius: 0;
-  padding: 1rem 0.25rem;
+  padding: 1rem 1.5rem;
   transition: all 500ms cubic-bezier(0.22, 1, 0.36, 1);
 }
-@media (min-width: 768px) {
+@media (min-width: 1280px) {
   .site-nav-bar {
-    padding-inline: 1rem;
-  }
-}
-@media (min-width: 1024px) {
-  .site-nav-bar {
-    padding-inline: 3rem;
+    max-width: 80rem;
   }
 }
 .site-nav-bar.is-pill {
@@ -2361,6 +2358,7 @@ html:root .ask-wrap:not(.proto-card) {
 .site-nav-home {
   font-family: var(--font-display), Georgia, serif;
   font-size: 1.125rem;
+  line-height: 1.75rem;
   letter-spacing: -0.02em;
   color: var(--ink);
   transition: color 160ms ease;

@@ -58,3 +58,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0052 | [The portfolio's nav on the case study](0052-portfolio-nav-on-the-case-study.md) | 2026-11-07 |
 | 0053 | [A tighter case study page](0053-tighter-case-study.md) | 2026-11-07 |
 | 0054 | [Tabs between the case studies](0054-case-study-tabs.md) | 2026-11-07 |
+| 0055 | [The two case studies line up](0055-case-studies-line-up.md) | 2026-11-07 |

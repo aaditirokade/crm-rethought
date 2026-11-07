@@ -72,3 +72,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Case study home: the aaditirokade.com nav (AR, Gallery, Resume) at the top, as on Firstword (decision 0052)
 - Case study home: smaller problem, research, Ask and swatch visuals, with text closer to each, and the phone beside its text (decision 0053)
 - Case study home: CASE STUDY I | CASE STUDY II tabs above the title, to switch to Firstword (decision 0054)
+- Case study home: the same frame as Firstword, so switching case studies moves nothing at the top (decision 0055)

@@ -10,7 +10,7 @@ const TABS = [
 
 export function CaseStudyTabs({ current }: { current: (typeof TABS)[number]["key"] }) {
   return (
-    <nav aria-label="Case studies" className="pt-8 text-[12px] font-medium uppercase tracking-[0.14em]">
+    <nav aria-label="Case studies" className="mb-10 text-[12px] font-medium uppercase leading-[18px] tracking-[0.14em]">
       <ul className="flex items-center gap-4">
         {TABS.map((t, i) => (
           <li key={t.key} className="flex items-center gap-4">
