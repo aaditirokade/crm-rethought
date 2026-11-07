@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Coverage } from "@/components/case/Coverage";
 import { Demo } from "@/components/case/Demo";
 import { ScrollSteps, type Step } from "@/components/case/ScrollSteps";
+import { ChapterRail, type Chapter as RailChapter } from "@/components/case/ChapterRail";
 import { ThemeButton } from "@/components/case/ThemeButton";
 
 export const metadata: Metadata = {
@@ -83,6 +84,16 @@ const SWATCHES = [
   { name: "AI", light: "#4c50c9", dark: "#aeb6ff" },
   { name: "AI wash", light: "#edf1fc", dark: "#23242e" },
   { name: "Charts", light: "#4f97a8", dark: "#7fc4d4" },
+];
+
+const CHAPTERS: RailChapter[] = [
+  { id: "ch-01", label: "The problem" },
+  { id: "ch-02", label: "Research" },
+  { id: "ch-03", label: "Ask" },
+  { id: "how", label: "How it works" },
+  { id: "ch-04", label: "Design system" },
+  { id: "ch-05", label: "Built in the open" },
+  { id: "try", label: "Try it" },
 ];
 
 const WALKTHROUGH: Step[] = [
@@ -174,7 +185,9 @@ export default function Home() {
           </div>
         </header>
 
-        <div className="mt-20">
+        <div className="mt-20 xl:grid xl:grid-cols-[9.5rem_minmax(0,1fr)] xl:gap-14">
+          <ChapterRail chapters={CHAPTERS} />
+          <div className="min-w-0">
           <Chapter
             n="01"
             kicker="The problem"
@@ -301,7 +314,7 @@ export default function Home() {
             visual={
               <ul className="divide-y divide-[var(--rule)] border-y border-[var(--rule)]">
                 {[
-                  ["Decision records", "25 short records, from the clean room rule to the scroll walkthrough", `${REPO}/tree/main/decisions`],
+                  ["Decision records", "26 short records, from the clean room rule to the chapter timeline", `${REPO}/tree/main/decisions`],
                   ["Prompt log", "The prompts behind each step, what came back and what I chose", `${REPO}/tree/main/prompts`],
                   ["Research", "Desk research and the competitive read, every claim linked", `${REPO}/tree/main/research`],
                   ["Wireframes", "The grayscale meeting loop before any color", "/wireframes"],
@@ -327,8 +340,6 @@ export default function Home() {
             </p>
             <p>It is designed from scratch and uses nothing from any CRM I worked on before.</p>
           </Chapter>
-        </div>
-
         <section aria-labelledby="try" className="border-t border-[var(--rule)] py-20 text-center">
           <h2 id="try" className="text-[1.75rem] font-medium leading-tight tracking-tight sm:text-[2rem]">
             Try it.
@@ -341,6 +352,9 @@ export default function Home() {
             <Links big center />
           </div>
         </section>
+          </div>
+        </div>
+
       </main>
     </div>
   );

@@ -154,21 +154,20 @@ export function ScrollSteps({ id, kicker, title, intro, steps }: { id: string; k
               {steps.map((s, i) => {
                 const on = i === active;
                 return (
-                  <li key={s.title} className="relative pb-5 pl-8 last:pb-0">
+                  <li key={s.title} className="relative pb-5 pl-6 last:pb-0">
                     {i < steps.length - 1 && (
                       <span
                         aria-hidden="true"
-                        className={`absolute bottom-0 left-[5px] top-5 w-px transition-colors duration-500 ${i < active ? "bg-ink" : "bg-[var(--rule)]"}`}
+                        className={`absolute bottom-0 left-[2.75px] top-[22px] w-[0.5px] transition-colors duration-500 ${i < active ? "bg-ink" : "bg-[var(--rule)]"}`}
                       />
                     )}
                     <span
                       aria-hidden="true"
-                      className={`absolute left-0 top-[7px] h-[11px] w-[11px] rounded-full border transition-[background-color,border-color,transform] duration-300 ${
+                      className={`absolute left-0 top-[11px] h-[6px] w-[6px] rounded-full border-[0.5px] transition-[background-color,border-color,transform] duration-300 ${
                         i <= active ? "border-ink bg-ink" : "border-[var(--line-strong)] bg-bg"
-                      } ${on ? "scale-125" : ""}`}
+                      } ${on ? "scale-[1.5]" : ""}`}
                     />
                     <button type="button" onClick={() => go(i)} aria-current={on ? "step" : undefined} className="group block text-left">
-                      <span className="block font-mono text-meta text-ink-2">{String(i + 1).padStart(2, "0")}</span>
                       <span className={`block text-xl font-medium leading-snug transition-colors duration-300 ${on ? "" : "text-ink-2 group-hover:text-ink"}`}>
                         {s.title}
                       </span>
@@ -214,8 +213,10 @@ export function ScrollSteps({ id, kicker, title, intro, steps }: { id: string; k
             }}
             data-i={i}
           >
-            <p className="font-mono text-meta text-ink-2">{String(i + 1).padStart(2, "0")}</p>
-            <h3 className="mt-1 text-xl font-medium leading-snug">{s.title}</h3>
+            <h3 className="flex items-baseline gap-2.5 text-xl font-medium leading-snug">
+              <span aria-hidden="true" className="relative -top-[3px] h-[6px] w-[6px] shrink-0 rounded-full bg-ink" />
+              {s.title}
+            </h3>
             <p className="mt-2 max-w-[60ch] leading-relaxed text-ink-2">{s.body}</p>
             <figure className="mt-5">
               <figcaption className="sr-only">{s.alt}</figcaption>
