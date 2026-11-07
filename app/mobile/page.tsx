@@ -3,8 +3,8 @@ import Link from "next/link";
 import { MobileApp } from "@/components/mobile/MobileApp";
 
 export const metadata: Metadata = {
-  title: "Mobile app · CRM Rethought",
-  description: "CRM Rethought on a phone: next meeting, swipe to approve, Ask, and voice notes. Sample data.",
+  title: "Mobile app · Groundwork",
+  description: "Groundwork on a phone: next meeting, swipe to approve, Ask, and voice notes. Sample data.",
 };
 
 export default function MobilePage() {

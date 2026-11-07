@@ -1,6 +1,6 @@
 # Competitive analysis
 
-**As of:** 2026-11-06 · Thirteen products that already put AI around the meeting, read against the six things CRM Rethought plans to do. Built from each vendor's public pages, plus third-party reviews where the vendor's own page couldn't be read. This is a reading of marketing pages, not hands-on testing, so the products may do more than their pages say.
+**As of:** 2026-11-06 · Thirteen products that already put AI around the meeting, read against the six things Groundwork plans to do. Built from each vendor's public pages, plus third-party reviews where the vendor's own page couldn't be read. This is a reading of marketing pages, not hands-on testing, so the products may do more than their pages say.
 
 ## Capability matrix
 
@@ -19,7 +19,7 @@
 | AskElephant | Partly | Yes (automatic) | Partly | — | Partly (optional) | Partly |
 | Rox | — | Partly | Partly | — | — | — |
 | Momentum | — | Yes | Partly | — | — | — |
-| **CRM Rethought (planned)** | **Yes** | **Yes** | **Yes** | **Yes** | **Yes** | **Yes** |
+| **Groundwork (planned)** | **Yes** | **Yes** | **Yes** | **Yes** | **Yes** | **Yes** |
 
 "—" means we found no mention on the pages we read, not that the feature is absent.
 
@@ -45,7 +45,7 @@
 2. **Approval is rare, and usually a setting.** Salesforce offers both suggestive and fully automatic modes; Lightfield's review queue covers emails; AskElephant's approvals are optional; Sybill and AskElephant sell automatic CRM updates as the point. Nobody we read builds approval into every line where the AI writes.
 3. **Sources are the clearest gap.** None of the thirteen shows a source on every AI line. Sybill, Sentra, Day.ai and Granola cite sources when you ask a question, not on each line of a brief or a log.
 4. **"What changed" exists, in two places.** Sybill and Sentra open their briefs with recent changes. Neither links each change to its source or asks before writing it back, so "what changed" alone is not our difference.
-5. **So CRM Rethought competes on trust, not features:** a source on every line, a person approving in place, and a log that feeds the next brief only once someone has approved it ([decision 0007](../decisions/0007-converge-meeting-loop.md)).
+5. **So Groundwork competes on trust, not features:** a source on every line, a person approving in place, and a log that feeds the next brief only once someone has approved it ([decision 0007](../decisions/0007-converge-meeting-loop.md)).
 
 ## Limits
 

@@ -55,9 +55,9 @@ export function Shell({ children }: { children: React.ReactNode }) {
       <header className="w-full px-5 md:px-8 lg:pl-32 lg:pr-8 flex items-center justify-between gap-3 pt-5">
         <Link href="/prototype" className="flex items-center gap-2 font-semibold">
           <span aria-hidden="true" className="grid h-7 w-7 place-items-center rounded-2xl bg-ink font-mono text-meta text-bg">
-            CR
+            G
           </span>
-          CRM Rethought
+          Groundwork
         </Link>
         <p className="font-mono text-meta tracking-wide text-ink-2">
           <span className="hidden sm:inline">{me.name.toUpperCase()} · AM · </span>CONCEPT PROTOTYPE · SAMPLE DATA

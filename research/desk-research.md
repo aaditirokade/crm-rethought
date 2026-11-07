@@ -25,7 +25,7 @@
 | Attio | Ask Attio (search, update, create with AI), call intelligence that logs calls as you speak, custom agents, an MCP server | Agent access scoped to the user's permissions | [Attio AI](https://attio.com/ai) |
 | Zoho Zia | Predictive scoring, anomaly detection, next best action, email sentiment, Agent Studio | Teams are told to learn when to trust and when to override | [Digital Applied](https://www.digitalapplied.com/blog/crm-ai-agent-salesforce-hubspot-zoho-2026-guide) |
 
-## Gaps CRM Rethought can own (our reading, to test)
+## Gaps Groundwork can own (our reading, to test)
 
 1. **Trust you can see.** Most tools add agents; few show, line by line, which record each AI sentence came from and how sure it is.
 2. **Approve in place.** AI work lands where people already are, with approve, edit and dismiss right there, not in a separate agent console.

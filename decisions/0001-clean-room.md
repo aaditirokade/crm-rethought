@@ -2,7 +2,7 @@
 
 **Date:** 2026-11-05
 
-**Decision:** CRM Rethought is designed from scratch. It uses no screens, data, internal terms, metrics or workflows from any CRM the author worked on at a past employer.
+**Decision:** Groundwork is designed from scratch. It uses no screens, data, internal terms, metrics or workflows from any CRM the author worked on at a past employer.
 
 **Options considered:** duplicate an earlier CRM case study and rework it · start a new project in a clean room.
 

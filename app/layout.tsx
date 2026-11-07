@@ -7,7 +7,7 @@ import { THEME_SCRIPT } from "@/components/proto/ThemeToggle";
 const ui = Geist({ subsets: ["latin"], variable: "--font-ui", display: "swap" });
 
 export const metadata: Metadata = {
-  title: "CRM Rethought",
+  title: "Groundwork · CRM, rethought",
   description:
     "A B2B CRM redesigned with AI inside every workflow, built in the open by Aaditi Rokade. Concept prototype with sample data.",
 };

@@ -1425,3 +1425,118 @@ li.proto-card:focus-within {
     radial-gradient(120% 160% at 0% 0%, color-mix(in srgb, var(--accent) 7%, transparent), transparent 60%),
     var(--surface);
 }
+
+/* Case study home (decision 0023) */
+.only-dark {
+  display: none;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .only-light {
+    display: none;
+  }
+  :root:not([data-theme="light"]) .only-dark {
+    display: block;
+  }
+}
+:root[data-theme="dark"] .only-light {
+  display: none;
+}
+:root[data-theme="dark"] .only-dark {
+  display: block;
+}
+.case-demo-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: var(--shadow-lift);
+}
+.case-demo-frame img {
+  width: 100%;
+  height: auto;
+}
+.case-demo.is-phone .case-demo-frame {
+  max-width: 300px;
+  margin-inline: auto;
+  border-radius: 32px;
+  border: 6px solid #2b2620;
+}
+:root[data-theme="dark"] .case-demo.is-phone .case-demo-frame {
+  border-color: #3a3835;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .case-demo.is-phone .case-demo-frame {
+    border-color: #3a3835;
+  }
+}
+.case-demo-btn {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-height: 2.25rem;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--bg);
+  padding: 0 0.85rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  box-shadow: var(--shadow);
+}
+.case-demo-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.cov-bar {
+  display: flex;
+  gap: 2px;
+  height: 1.75rem;
+}
+.cov-seg {
+  display: grid;
+  place-items: center;
+  min-width: 1.75rem;
+  border-radius: 4px;
+  font-family: var(--font-ui), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.cov-key {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 3px;
+}
+.cov-yes {
+  background: #2f7f90;
+  color: #ffffff;
+}
+.cov-partly {
+  background: #b9dde4;
+  color: #2b2620;
+}
+.cov-none {
+  background: var(--surface-2);
+  color: var(--ink-2);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .cov-yes {
+    background: #8fd0dd;
+    color: #121211;
+  }
+  :root:not([data-theme="light"]) .cov-partly {
+    background: #34606b;
+    color: #f3efe7;
+  }
+}
+:root[data-theme="dark"] .cov-yes {
+  background: #8fd0dd;
+  color: #121211;
+}
+:root[data-theme="dark"] .cov-partly {
+  background: #34606b;
+  color: #f3efe7;
+}

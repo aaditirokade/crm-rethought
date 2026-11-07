@@ -11,8 +11,8 @@ const instSans = Instrument_Sans({ subsets: ["latin"], variable: "--f-inst-sans"
 const instSerif = Instrument_Serif({ subsets: ["latin"], weight: "400", variable: "--f-inst-serif", display: "swap" });
 
 export const metadata: Metadata = {
-  title: "Visual directions · CRM Rethought",
-  description: "Three visual directions for CRM Rethought, each applied to the same piece of a meeting brief.",
+  title: "Visual directions · Groundwork",
+  description: "Three visual directions for Groundwork, each applied to the same piece of a meeting brief.",
 };
 
 /* Every text pair below passes WCAG AA (4.5:1); the page prints the ratios it computes. */

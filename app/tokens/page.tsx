@@ -4,8 +4,8 @@ import { BACKGROUNDS, COLORS, type ColorToken } from "@/content/tokens";
 import { contrast } from "@/lib/contrast";
 
 export const metadata: Metadata = {
-  title: "Design tokens · CRM Rethought",
-  description: "Canvas, the design system for CRM Rethought: color with contrast checks, type, space, shape and the signature components.",
+  title: "Design tokens · Groundwork",
+  description: "Canvas, the design system for Groundwork: color with contrast checks, type, space, shape and the signature components.",
 };
 
 const PRINCIPLES = [
@@ -70,7 +70,7 @@ export default function Tokens() {
       </p>
       <h1 className="mt-2 text-h1 font-semibold">Canvas</h1>
       <p className="mt-2 max-w-2xl text-ink-2">
-        The design system for CRM Rethought (decision 0017), replacing Signal&rsquo;s boxed look. A warm canvas, one
+        The design system for Groundwork (decision 0017), replacing Signal&rsquo;s boxed look. A warm canvas, one
         friendly face (Geist), soft lifted cards only where you act, and a violet material for anything the AI drafted.
         Every ratio on this page is computed from the token values.
       </p>

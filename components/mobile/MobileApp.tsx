@@ -12,7 +12,7 @@ import { actions, allSugs, entryOf, isGated, me, textOf, useProto } from "@/comp
 type Screen = "home" | "brief" | "approve" | "ask" | "note";
 
 /**
- * CRM Rethought on a phone: built for the minutes between meetings.
+ * Groundwork on a phone: built for the minutes between meetings.
  * Same data and the same rules as the desktop prototype: the AI drafts, a person approves.
  */
 export function MobileApp() {

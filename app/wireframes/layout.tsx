@@ -4,7 +4,7 @@ import { WfNav } from "@/components/wf/WfNav";
 import { ME } from "@/content/sample";
 
 export const metadata: Metadata = {
-  title: "Wireframes · CRM Rethought",
+  title: "Wireframes · Groundwork",
   description: "Grayscale wireframes of the meeting loop: Today, Meeting brief and Log a call. Sample data.",
 };
 
@@ -21,7 +21,7 @@ export default function WireframesLayout({ children }: Readonly<{ children: Reac
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-3">
           <div className="flex items-center gap-5 sm:gap-8">
             <Link href="/wireframes" className="whitespace-nowrap font-semibold">
-              CRM Rethought
+              Groundwork
             </Link>
             <WfNav />
           </div>

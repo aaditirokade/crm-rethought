@@ -7,4 +7,4 @@
 | [interview-guide.md](interview-guide.md) | A 30 minute guide with open questions | Real guide, usable for real interviews |
 | [interviews/](interviews/) | One interview per persona, every answer tied to a finding | SIMULATED |
 | [synthesis.md](synthesis.md) | Seven pains counted across the five, jobs to be done, the four flows and how to measure them | Built on real research and SIMULATED interviews |
-| [competitive-analysis.md](competitive-analysis.md) | Seven AI sales products against the six things CRM Rethought plans to do, every cell sourced | Real, AI assisted, from public pages |
+| [competitive-analysis.md](competitive-analysis.md) | Seven AI sales products against the six things Groundwork plans to do, every cell sourced | Real, AI assisted, from public pages |

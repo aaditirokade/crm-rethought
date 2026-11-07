@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Shell } from "@/components/proto/Shell";
 
 export const metadata: Metadata = {
-  title: "Prototype · CRM Rethought",
+  title: "Prototype · Groundwork",
   description: "A working prototype of the meeting loop: brief, call log, approvals and the account record. Sample data.",
 };
 

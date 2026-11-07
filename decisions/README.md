@@ -7,7 +7,7 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0001 | [Clean room: nothing from past employers](0001-clean-room.md) | 2026-11-05 |
 | 0002 | [Industry: B2B SaaS account teams](0002-industry.md) | 2026-11-05 |
 | 0003 | [Research: simulated interviews, labeled](0003-simulated-research.md) | 2026-11-05 |
-| 0004 | [Name: CRM Rethought for now](0004-name.md) | 2026-11-05 |
+| 0004 | [Name: CRM Rethought for now](0004-name.md) (replaced by 0022) | 2026-11-05 |
 | 0005 | [Tooling: VS Code, terminal, free local Coder](0005-tooling.md) | 2026-11-05 |
 | 0006 | [The four flows to build in depth](0006-four-flows.md) | 2026-11-06 |
 | 0007 | [Converge: build the meeting loop first](0007-converge-meeting-loop.md) | 2026-11-06 |
@@ -25,3 +25,5 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0019 | [Open layout: the page is the surface](0019-open-layout.md) | 2026-11-06 |
 | 0020 | [Daylight: a friendlier palette](0020-daylight-palette.md) | 2026-11-06 |
 | 0021 | [A light and dark switch](0021-theme-switch.md) | 2026-11-06 |
+| 0022 | [Name: Groundwork](0022-name-groundwork.md) | 2026-11-06 |
+| 0023 | [The home page is the case study](0023-case-study-home.md) | 2026-11-06 |
