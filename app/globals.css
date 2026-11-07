@@ -1674,3 +1674,29 @@ li.proto-card:focus-within::before,
     transform: none;
   }
 }
+
+/* Draft entries (Review, Log, Brief) answer the pointer too: drafts deepen their violet and lift; decided ones get the wash. */
+.gate-row {
+  transition: background 180ms ease, box-shadow 200ms ease, transform 200ms var(--press);
+}
+.gate-row.sig-row-draft:hover,
+.gate-row.sig-row-draft:focus-within {
+  background: color-mix(in srgb, var(--accent) 10%, var(--draft));
+  box-shadow: inset 3px 0 0 color-mix(in srgb, var(--accent) 70%, transparent), var(--shadow);
+  transform: translateY(-1px);
+}
+.gate-row.is-decided:hover,
+.gate-row.is-decided:focus-within {
+  background: var(--hover-wash);
+}
+@media (prefers-reduced-motion: reduce) {
+  .gate-row.sig-row-draft:hover,
+  .gate-row.sig-row-draft:focus-within {
+    transform: none;
+  }
+}
+/* Draft entries keep their own inner padding inside open lists (the open layout strips it from plain rows). */
+.proto-card > li.gate-row {
+  padding-left: 0.85rem;
+  padding-right: 0.85rem;
+}

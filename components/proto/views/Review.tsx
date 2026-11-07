@@ -46,7 +46,7 @@ export function Review() {
                   Open in context
                 </Link>
               </p>
-              <ul className="proto-card mt-3 space-y-1 p-1.5">
+              <ul className="proto-card mt-3 grid items-start gap-3 pt-3 md:grid-cols-2 xl:grid-cols-3">
                 {items.map((x) => (
                   <GateLine key={x.id} sug={x} />
                 ))}

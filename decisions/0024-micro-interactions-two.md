@@ -16,3 +16,5 @@
 **Rules:** washes are 5% ink in light and 7% in dark, so they never compete with AI drafts (violet) or status pills; everything a person triggers stays under 260ms; under reduced motion the wash still appears but nothing moves or scales.
 
 **Why:** the author found the app static. A wash says "this whole row opens", which matters more now that rows have no boxes.
+
+**Added the same day:** draft entries on Review, Log and Brief deepen their violet and lift a pixel on hover or focus (text still passes AA on the deeper tint), and decided entries get the wash. Review now lays entries out as cards in two columns from 768px and three from 1280px, instead of one line across the whole page, so more of the queue is visible at once and each decision sits next to its text.

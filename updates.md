@@ -36,3 +36,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Groundwork: renamed from CRM Rethought (decision 0022); home page is now a case study with four GIFs in light and dark (decision 0023)
 - Opportunities: outreach list and pipeline side by side from 1280px, pipeline stays in view; jump link on smaller screens
 - Micro interactions, round two: hover washes on tiles and rows, livelier pulse trends, pressing buttons, lifting pipeline cards, springy dock (decision 0024)
+- Review: entries as cards in two or three columns, drafts deepen and lift on hover (decision 0024)
