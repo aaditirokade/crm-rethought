@@ -151,7 +151,7 @@ export function PulseTiles({ s, focus }: { s: State; focus: string[] }) {
           Ranked by who needs you this week
         </Link>
       </div>
-      <ol className="mt-3 grid gap-3 sm:grid-cols-2">
+      <ol className="mt-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
         {ranked.map((r, i) => {
           const a = liveAccount(s, r.account.id) ?? r.account;
           const series = PULSE[a.id] ?? [];

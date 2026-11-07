@@ -74,12 +74,12 @@ export function AccountView({ id }: { id: string }) {
         </p>
       ) : null}
 
-      <div className="mt-6 space-y-6">
+      <div className="mt-6 grid gap-6 2xl:grid-cols-2">
         <RelationshipWeb a={a} />
         <InteractionStrip a={a} />
       </div>
 
-      <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem]">
+      <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem] 2xl:grid-cols-[minmax(0,1fr)_22rem]">
         <section aria-labelledby="h-timeline">
           <h2 id="h-timeline" className="text-h3 font-semibold">
             Interactions

@@ -17,7 +17,7 @@ export function PageHead({ kicker, title, sub }: { kicker?: React.ReactNode; tit
     <div>
       {kicker ? <div className="font-mono text-meta tracking-wide text-ink-2">{kicker}</div> : null}
       <h1 className="mt-1 text-h1 font-semibold">{title}</h1>
-      {sub ? <div className="mt-1 text-ink-2">{sub}</div> : null}
+      {sub ? <div className="mt-1 max-w-3xl text-ink-2">{sub}</div> : null}
     </div>
   );
 }

@@ -13,8 +13,10 @@ export function Accounts() {
   return (
     <div>
       <PageHead title="Accounts" sub={`${ACCOUNTS.length} accounts you own`} />
-      <PortfolioMap accounts={ACCOUNTS.map((a) => liveAccount(s, a.id)).filter(Boolean) as LiveAccount[]} />
-      <Lists />
+      <div className="grid gap-x-6 2xl:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] 2xl:items-start">
+        <PortfolioMap accounts={ACCOUNTS.map((a) => liveAccount(s, a.id)).filter(Boolean) as LiveAccount[]} />
+        <Lists />
+      </div>
       <div className="proto-card relative mt-6 overflow-x-auto" role="region" aria-label="Accounts table" tabIndex={0}>
         <table className="w-full min-w-[46rem] text-left">
           <caption className="sr-only">Accounts with health, renewal, last touch and lines waiting for approval</caption>

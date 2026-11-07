@@ -41,7 +41,7 @@ export function Today() {
         <Ask onFocus={setFocus} />
         <DayStrip s={s} focus={focus} />
 
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_18rem]">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_18rem] 2xl:grid-cols-[minmax(0,1fr)_22rem]">
           <PulseTiles s={s} focus={focus} />
 
           <aside className="space-y-6">

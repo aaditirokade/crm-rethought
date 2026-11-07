@@ -82,7 +82,7 @@ export function Brief({ id }: { id: string }) {
           : `DRAFTED BY AI FROM ${new Set(groups.flatMap((g) => g.items.flatMap((x) => x.sources))).size} SOURCES · A PRIVATE DRAFT, NOTHING HERE SAVES`}
       </p>
 
-      <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem]">
+      <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem] 2xl:grid-cols-[minmax(0,1fr)_22rem]">
         <div className="space-y-8">
           {groups.length === 0 ? (
             <div className="proto-card p-5">

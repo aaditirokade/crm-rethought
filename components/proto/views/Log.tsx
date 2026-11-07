@@ -49,7 +49,7 @@ export function Log({ id }: { id: string }) {
         DRAFTED BY AI FROM THE TRANSCRIPT · NOTHING IS SAVED UNTIL YOU APPROVE AND SAVE
       </p>
 
-      <div className="mt-6 grid gap-8 lg:grid-cols-[17rem_minmax(0,1fr)]">
+      <div className="mt-6 grid gap-8 lg:grid-cols-[17rem_minmax(0,1fr)] 2xl:grid-cols-[22rem_minmax(0,1fr)]">
         <aside aria-labelledby="h-transcript" className="order-2 lg:order-1">
           <div className="proto-card p-4 lg:sticky lg:top-6">
             <h2 id="h-transcript" className="text-h3 font-semibold">

@@ -26,7 +26,7 @@ export function Opportunities() {
         <p className="text-small text-ink-2">
           Ranked by the reasons under each account. Reorder or snooze freely. The AI never contacts a client.
         </p>
-        <ol className="mt-3 space-y-3">
+        <ol className="mt-3 grid gap-3 2xl:grid-cols-2">
           {active.map((r, i) => (
             <li key={r.account.id} className="proto-card p-4">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-start">
