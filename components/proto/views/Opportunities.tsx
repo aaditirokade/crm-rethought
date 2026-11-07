@@ -19,17 +19,25 @@ export function Opportunities() {
     <div>
       <PageHead title="Opportunities" sub="Who to reach out to this week, and why. Then every open opportunity." />
 
-      <section aria-labelledby="h-reach" className="mt-8">
-        <h2 id="h-reach" className="text-h3 font-semibold">
-          Reach out this week
-        </h2>
+      {/* Side by side from 1280px, so the pipeline is never below the fold; it stays in view while the list scrolls. */}
+      <div className="mt-8 grid gap-x-10 gap-y-12 xl:grid-cols-[minmax(22rem,0.8fr)_minmax(0,1.6fr)] xl:items-start">
+      <section aria-labelledby="h-reach" className="min-w-0">
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <h2 id="h-reach" className="text-h3 font-semibold">
+            Reach out this week
+          </h2>
+          {/* Below 1280px the two sections stack, so the pipeline is one tap away. */}
+          <a href="#h-pipe" className="text-small font-medium underline underline-offset-4 xl:hidden">
+            Jump to the pipeline
+          </a>
+        </div>
         <p className="text-small text-ink-2">
           Ranked by the reasons under each account. Reorder or snooze freely. The AI never contacts a client.
         </p>
-        <ol className="mt-3 grid gap-3 2xl:grid-cols-2">
+        <ol className="mt-3 grid gap-3">
           {active.map((r, i) => (
-            <li key={r.account.id} className="proto-card p-4">
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-start">
+            <li key={r.account.id} className="proto-card @container p-4">
+              <div className="flex flex-col gap-3 @lg:flex-row @lg:items-start">
                 <p className="font-mono text-h3 font-medium text-ink-2" aria-hidden="true">
                   {String(i + 1).padStart(2, "0")}
                 </p>
@@ -62,7 +70,7 @@ export function Opportunities() {
                     {NEXT_MOVE[r.account.id]}
                   </p>
                 </div>
-                <div className="flex shrink-0 flex-wrap gap-2 sm:flex-col">
+                <div className="flex shrink-0 flex-wrap gap-2 @lg:flex-col">
                   <button type="button" className="sig-btn" disabled={i === 0} onClick={() => actions.move(r.account.id, -1)}>
                     Move up<span className="sr-only">: {r.account.name}</span>
                   </button>
@@ -90,6 +98,7 @@ export function Opportunities() {
       </section>
 
       <Pipeline />
+      </div>
     </div>
   );
 }

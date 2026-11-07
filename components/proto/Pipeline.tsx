@@ -30,7 +30,7 @@ export function Pipeline() {
   const pendingFor = (oppId: string) => ghosts.find((g) => g.effect?.type === "stage" && g.effect.opp === oppId);
 
   return (
-    <section aria-labelledby="h-pipe" className="mt-10">
+    <section aria-labelledby="h-pipe" className="min-w-0 xl:sticky xl:top-6">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h2 id="h-pipe" className="text-h3 font-semibold">
           Pipeline
@@ -38,7 +38,7 @@ export function Pipeline() {
         <p className="font-mono text-meta tracking-wide text-ink-2">DRAG A CARD OR USE ITS MENU · DASHED CARDS ARE AI SUGGESTIONS</p>
       </div>
       <div className="relative mt-3 overflow-x-auto pb-2" role="region" aria-label="Pipeline columns" tabIndex={0}>
-        <ol className="grid min-w-[52rem] grid-cols-4 gap-3">
+        <ol className="grid min-w-[44rem] grid-cols-4 gap-3">
           {STAGES.map((stage) => {
             const cards = opps.filter((o) => o.stage === stage);
             const gs = ghosts.filter((g) => ghostStage(g) === stage);

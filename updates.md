@@ -34,3 +34,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Darker night mode: deep warm charcoal instead of indigo, teal charts so only AI material is violet (decision 0020)
 - Light and dark switch in the dock: system default, remembered choice, no flash on load (decision 0021)
 - Groundwork: renamed from CRM Rethought (decision 0022); home page is now a case study with four GIFs in light and dark (decision 0023)
+- Opportunities: outreach list and pipeline side by side from 1280px, pipeline stays in view; jump link on smaller screens
