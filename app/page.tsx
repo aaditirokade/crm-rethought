@@ -257,15 +257,15 @@ export default function Home() {
             flip
             visual={
               <div>
-                <ul className="grid grid-cols-3 gap-3 sm:grid-cols-6">
+                <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                   {SWATCHES.map((s) => (
-                    <li key={s.name}>
-                      <span className="flex h-16 overflow-hidden rounded-2xl shadow-[var(--shadow)]" aria-hidden="true">
+                    <li key={s.name} className="ask-tile flex flex-col rounded-[20px] bg-surface-2 p-4 sm:p-5">
+                      <span className="flex h-9 w-14 overflow-hidden rounded-[10px] border border-[var(--line-strong)]" aria-hidden="true">
                         <span className="flex-1" style={{ background: s.light }} />
                         <span className="flex-1" style={{ background: s.dark }} />
                       </span>
-                      <p className="mt-2 text-small font-medium">{s.name}</p>
-                      <p className="font-mono text-meta text-ink-2">
+                      <p className="mt-5 font-medium">{s.name}</p>
+                      <p className="mt-0.5 font-mono text-meta text-ink-2">
                         {s.light} / {s.dark}
                       </p>
                     </li>
@@ -297,7 +297,7 @@ export default function Home() {
             visual={
               <ul className="divide-y divide-[var(--rule)] border-y border-[var(--rule)]">
                 {[
-                  ["Decision records", "28 short records, from the clean room rule to the problem told as a loop", `${REPO}/tree/main/decisions`],
+                  ["Decision records", "29 short records, from the clean room rule to the colors as tiles", `${REPO}/tree/main/decisions`],
                   ["Prompt log", "The prompts behind each step, what came back and what I chose", `${REPO}/tree/main/prompts`],
                   ["Research", "Desk research and the competitive read, every claim linked", `${REPO}/tree/main/research`],
                   ["Wireframes", "The grayscale meeting loop before any color", "/wireframes"],
