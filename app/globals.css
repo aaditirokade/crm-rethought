@@ -1339,3 +1339,33 @@ li.proto-card:focus-within {
 .board-block.is-hit {
   background: var(--accent);
 }
+
+/* Health reads as a soft pastel pill, like the status colors in the reference (decision 0020). Text on each wash passes AA. */
+:root {
+  --good-wash: #e4f2e8;
+  --warn-wash: #fbeed2;
+  --risk-wash: #fbe4df;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --good-wash: #25393a;
+    --warn-wash: #3d3527;
+    --risk-wash: #41293a;
+  }
+}
+.health-pill {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 0 0.5rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.health-pill.is-good {
+  background: var(--good-wash);
+}
+.health-pill.is-warn {
+  background: var(--warn-wash);
+}
+.health-pill.is-risk {
+  background: var(--risk-wash);
+}

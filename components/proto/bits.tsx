@@ -3,10 +3,13 @@ import type { Account } from "@/content/prototype";
 export function Health({ a }: { a: Pick<Account, "health" | "healthWhy"> }) {
   const tone = a.health === "Healthy" ? "text-good" : a.health === "At risk" ? "text-risk" : "text-warn";
   const icon = a.health === "Healthy" ? "●" : a.health === "At risk" ? "■" : "▲";
+  const wash = a.health === "Healthy" ? "is-good" : a.health === "At risk" ? "is-risk" : "is-warn";
   return (
-    <span className={tone}>
-      <span aria-hidden="true">{icon} </span>
-      {a.health}
+    <span>
+      <span className={`health-pill ${wash} ${tone}`}>
+        <span aria-hidden="true">{icon} </span>
+        {a.health}
+      </span>
       <span className="text-ink-2"> · {a.healthWhy}</span>
     </span>
   );

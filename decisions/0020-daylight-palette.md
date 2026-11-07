@@ -13,7 +13,7 @@
 | draft | #f3f0ff / #221f33 | periwinkle wash #edf1fc / #2b2f4f |
 | data (new) | charts used ink-2 | #7d8be0 / #97a3f2 for sparklines, bars and the day strip |
 
-The page also gets two soft glows at the top (periwinkle on the left, a little peach on the right), Ask sits on a periwinkle wash, and shadows are tinted warm brown instead of black.
+Account health reads as a soft pastel pill (mint for healthy, butter for needs a look, blush for at risk), with the icon and words kept so color is never the only cue. The page also gets two soft glows at the top (periwinkle on the left, a little peach on the right), Ask sits on a periwinkle wash, and shadows are tinted warm brown instead of black.
 
 **Why:** pure black text and a near black night mode made the tool feel harsh. Cream, cocoa and periwinkle read as calm and friendly while keeping the AI's color distinct from everything else.
 
