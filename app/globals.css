@@ -2056,9 +2056,77 @@ li.proto-card:focus-within::before,
   }
 }
 
-/* Ask is the heart of the app, so it sits on its own deep indigo block in both themes (decision 0048).
+/* Ask is the heart of the app, so it gets the strongest block of the AI's color (decisions 0048, 0051).
+   Light: a periwinkle block one step deeper than Lists and the drafts, so it leads without a dark slab on a cream page.
+   Dark: a deep indigo block that stands apart from the charcoal.
    The block redefines the color tokens, so every button, input, chip and number inside it follows. */
 .ask-wrap {
+  --surface: #ffffff;
+  --surface-2: #f3f4fe;
+  --ink-2: #5a5048; /* 6.3:1 on the block */
+  --line: #c9cdf3;
+  --line-strong: #6e71b8; /* 3.6:1, control borders */
+  --accent: #3d41b3; /* 6.5:1 */
+  --accent-hover: #2f3399;
+  --draft: #eef0fd;
+  --good: #23663f;
+  --warn: #7a4f00;
+  --risk: #9e3a31;
+  color: var(--ink);
+}
+html:root .ask-wrap.ask-wrap.proto-card {
+  border: 1px solid #ccd0f4;
+  background:
+    radial-gradient(120% 150% at 0% 0%, rgb(255 255 255 / 0.55), transparent 55%),
+    #e2e5fb;
+  box-shadow: 0 1px 2px rgb(61 65 179 / 0.06), 0 12px 28px -16px rgb(61 65 179 / 0.28);
+}
+html:root .ask-wrap:not(.proto-card) {
+  background: #e2e5fb;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .ask-wrap {
+    --bg: #25274f;
+    --surface: #2e3060;
+    --surface-2: #33356a;
+    --ink: #f6f2ea; /* 12.7:1 on the block */
+    --ink-2: #c4c3df; /* 8.3:1 */
+    --line: #3e4078;
+    --line-strong: #8d90c6; /* 4.7:1, control borders */
+    --accent: #bcc2ff; /* 8.3:1 */
+    --accent-hover: #d3d7ff;
+    --accent-ink: #25274f;
+    --draft: #33356a;
+    --good: #8ad9ae;
+    --warn: #f2c879;
+    --risk: #ff9e92;
+    --good-wash: #1e3a33;
+    --warn-wash: #3d3426;
+    --risk-wash: #432a33;
+    color-scheme: dark;
+    color: var(--ink);
+  }
+  :root:not([data-theme="light"]) .ask-wrap.ask-wrap.proto-card {
+    border: 1px solid #33356a;
+    background:
+      radial-gradient(120% 150% at 0% 0%, rgb(140 148 255 / 0.16), transparent 58%),
+      #25274f;
+    box-shadow: 0 1px 2px rgb(20 18 50 / 0.12), 0 14px 32px -18px rgb(20 18 50 / 0.4);
+  }
+  :root:not([data-theme="light"]) .ask-wrap .proto-input {
+    background: rgb(255 255 255 / 0.06);
+  }
+  :root:not([data-theme="light"]) .ask-wrap .proto-input::placeholder {
+    color: #a9a8cc; /* 6.6:1 */
+  }
+  :root:not([data-theme="light"]) .ask-wrap .sig-btn:not(:disabled):hover {
+    box-shadow: 0 4px 12px -6px rgb(0 0 0 / 0.6);
+  }
+  :root:not([data-theme="light"]) .ask-wrap:not(.proto-card) {
+    background: var(--surface);
+  }
+}
+:root[data-theme="dark"] .ask-wrap {
   --bg: #25274f;
   --surface: #2e3060;
   --surface-2: #33356a;
@@ -2079,21 +2147,24 @@ li.proto-card:focus-within::before,
   color-scheme: dark;
   color: var(--ink);
 }
-html:root .ask-wrap.ask-wrap.proto-card {
+:root[data-theme="dark"] .ask-wrap.ask-wrap.proto-card {
   border: 1px solid #33356a;
   background:
     radial-gradient(120% 150% at 0% 0%, rgb(140 148 255 / 0.16), transparent 58%),
     #25274f;
   box-shadow: 0 1px 2px rgb(20 18 50 / 0.12), 0 14px 32px -18px rgb(20 18 50 / 0.4);
 }
-html:root .ask-wrap .proto-input {
+:root[data-theme="dark"] .ask-wrap .proto-input {
   background: rgb(255 255 255 / 0.06);
 }
-html:root .ask-wrap .proto-input::placeholder {
+:root[data-theme="dark"] .ask-wrap .proto-input::placeholder {
   color: #a9a8cc; /* 6.6:1 */
 }
-html:root .ask-wrap .sig-btn:not(:disabled):hover {
+:root[data-theme="dark"] .ask-wrap .sig-btn:not(:disabled):hover {
   box-shadow: 0 4px 12px -6px rgb(0 0 0 / 0.6);
+}
+:root[data-theme="dark"] .ask-wrap:not(.proto-card) {
+  background: var(--surface);
 }
 
 /* A segmented control for picking a time range (decision 0049). */
