@@ -47,3 +47,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0041 | [The title, styled like the portfolio site](0041-title-like-the-site.md) | 2026-11-07 |
 | 0042 | [Walkthrough text at the top of each row](0042-walkthrough-text-at-the-top.md) | 2026-11-07 |
 | 0043 | [Icon actions on Review's tiles](0043-review-icon-actions.md) | 2026-11-07 |
+| 0044 | [The dock as circles](0044-dock-as-circles.md) | 2026-11-07 |

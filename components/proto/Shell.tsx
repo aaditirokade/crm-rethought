@@ -93,9 +93,6 @@ export function Shell({ children }: { children: React.ReactNode }) {
                     </span>
                   ) : null}
                 </span>
-                <span className="dock-verb" aria-hidden="true">
-                  {st.verb}
-                </span>
                 <span className="sr-only">
                   {st.label}, {st.status}
                 </span>

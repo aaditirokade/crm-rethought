@@ -60,3 +60,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Case study home: the title and line styled and revealed like the portfolio site (decision 0041)
 - Case study home: walkthrough text at the top of each row, the phone beside its text (decision 0042)
 - Review: tile actions become round icons whose labels slide out on hover or focus (decision 0043)
+- Prototype: the dock's tabs become circles, filled when current, joined by a dotted line (decision 0044)
