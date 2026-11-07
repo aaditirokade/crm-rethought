@@ -247,7 +247,7 @@ export default function Home() {
             id="how"
             kicker="How it works"
             title="Approve, ask for a list, and keep going on the phone"
-            intro="Recorded from the working prototype. Scroll to move through the steps, or pick one."
+            intro="Recorded from the working prototype, in three steps."
             steps={WALKTHROUGH}
           />
 
@@ -298,7 +298,7 @@ export default function Home() {
             visual={
               <ul className="divide-y divide-[var(--rule)] border-y border-[var(--rule)]">
                 {[
-                  ["Decision records", "35 short records, from the clean room rule to one theme switch", `${REPO}/tree/main/decisions`],
+                  ["Decision records", "36 short records, from the clean room rule to a single stepper", `${REPO}/tree/main/decisions`],
                   ["Prompt log", "The prompts behind each step, what came back and what I chose", `${REPO}/tree/main/prompts`],
                   ["Research", "Desk research and the competitive read, every claim linked", `${REPO}/tree/main/research`],
                   ["Wireframes", "The grayscale meeting loop before any color", "/wireframes"],
