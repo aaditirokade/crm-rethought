@@ -103,7 +103,7 @@ export function QuickLog({ id }: { id: string }) {
               <GateLine key={x.id} sug={x} />
             ))}
           </ul>
-          <div className="sticky bottom-0 mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-line bg-bg py-4">
+          <div className="action-bar sticky bottom-0 mt-6 flex flex-wrap items-center justify-between gap-3">
             <p className="font-mono text-meta tracking-wide">
               <span className="font-medium">{approved} APPROVED</span>
               {savedN ? <span className="text-good"> · {savedN} SAVED</span> : null}

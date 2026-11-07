@@ -233,7 +233,7 @@ export function Imports() {
         </ul>
       </section>
 
-      <section aria-labelledby="h-run" className="sticky bottom-0 mt-6 border-t border-line bg-bg py-4">
+      <section aria-labelledby="h-run" className="action-bar sticky bottom-0 mt-6">
         <h2 id="h-run" className="sr-only">
           4 · Import
         </h2>

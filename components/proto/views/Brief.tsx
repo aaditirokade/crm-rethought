@@ -136,7 +136,7 @@ export function Brief({ id }: { id: string }) {
           ) : null}
         </div>
 
-        <aside className="space-y-6">
+        <aside className="tone-block space-y-6 lg:self-start">
           <section aria-labelledby="h-people" className="proto-card p-4">
             <h2 id="h-people" className="text-h3 font-semibold">
               In this meeting

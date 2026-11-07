@@ -2059,17 +2059,17 @@ li.proto-card:focus-within::before,
 /* Ask is the heart of the app, so it sits on its own deep indigo block in both themes (decision 0048).
    The block redefines the color tokens, so every button, input, chip and number inside it follows. */
 .ask-wrap {
-  --bg: #1b1c3c;
-  --surface: #262851;
-  --surface-2: #2c2e5c;
-  --ink: #f6f2ea; /* 14.6:1 on the block */
-  --ink-2: #c4c3df; /* 9.4:1 */
-  --line: #3a3c70;
-  --line-strong: #8d90c6; /* 5.0:1, control borders */
-  --accent: #bcc2ff; /* 9.7:1 */
+  --bg: #25274f;
+  --surface: #2e3060;
+  --surface-2: #33356a;
+  --ink: #f6f2ea; /* 12.7:1 on the block */
+  --ink-2: #c4c3df; /* 8.3:1 */
+  --line: #3e4078;
+  --line-strong: #8d90c6; /* 4.7:1, control borders */
+  --accent: #bcc2ff; /* 8.3:1 */
   --accent-hover: #d3d7ff;
-  --accent-ink: #1b1c3c;
-  --draft: #2c2e5c;
+  --accent-ink: #25274f;
+  --draft: #33356a;
   --good: #8ad9ae;
   --warn: #f2c879;
   --risk: #ff9e92;
@@ -2080,12 +2080,11 @@ li.proto-card:focus-within::before,
   color: var(--ink);
 }
 html:root .ask-wrap.ask-wrap.proto-card {
-  border: 1px solid #2c2e5c;
+  border: 1px solid #33356a;
   background:
-    radial-gradient(120% 150% at 0% 0%, rgb(140 148 255 / 0.28), transparent 58%),
-    radial-gradient(80% 120% at 100% 100%, rgb(242 184 128 / 0.1), transparent 60%),
-    #1b1c3c;
-  box-shadow: 0 2px 4px rgb(20 18 50 / 0.18), 0 22px 44px -18px rgb(20 18 50 / 0.55);
+    radial-gradient(120% 150% at 0% 0%, rgb(140 148 255 / 0.16), transparent 58%),
+    #25274f;
+  box-shadow: 0 1px 2px rgb(20 18 50 / 0.12), 0 14px 32px -18px rgb(20 18 50 / 0.4);
 }
 html:root .ask-wrap .proto-input {
   background: rgb(255 255 255 / 0.06);
@@ -2128,5 +2127,109 @@ html:root .ask-wrap .sig-btn:not(:disabled):hover {
 @media (prefers-reduced-motion: reduce) {
   .seg-btn {
     transition: none;
+  }
+}
+
+/* Color blocking (decision 0050). Three steps, so nothing sits alone:
+   .tone-block sand: supporting panels (side rails, the day, the account's facts, the portfolio map).
+   .tone-ai    periwinkle wash: places the AI works for you, other than Ask (Lists).
+   .action-bar ink: the bar where you commit (save, import). Ask keeps its own indigo.
+   Each block redefines the tokens inside it, so nested tracks, chips and buttons stay visible. */
+:root {
+  --block: #f3ecdf; /* ink-2 5.6:1, warn 5.0:1, good and risk 4.7:1 */
+  --on-block: #fffbf4;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --block: #1f1e1c; /* ink-2 7.5:1 */
+    --on-block: #2a2927;
+  }
+}
+:root[data-theme="dark"] {
+  --block: #1f1e1c;
+  --on-block: #2a2927;
+}
+.tone-block,
+.proto-card.tone-block,
+.tone-ai,
+.proto-card.tone-ai {
+  --surface-2: var(--on-block);
+  border: 0;
+  border-radius: 20px;
+  background: var(--block);
+  box-shadow: none;
+  padding: 1.25rem;
+}
+.tone-ai,
+.proto-card.tone-ai {
+  --on-block: var(--surface);
+  background: var(--draft);
+}
+@media (min-width: 640px) {
+  .tone-block,
+  .proto-card.tone-block,
+  .tone-ai,
+  .proto-card.tone-ai {
+    padding: 1.5rem;
+  }
+}
+.tone-block > .proto-card:first-child,
+.tone-ai > .proto-card:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.action-bar {
+  --bg: #2b2620;
+  --surface: #38322b;
+  --surface-2: #433c33;
+  --ink: #fbf6ec; /* 13.9:1 */
+  --ink-2: #cfc6b8; /* 8.9:1 */
+  --line: #4a4238;
+  --line-strong: #9a8f80; /* 4.7:1 */
+  --accent: #bcc2ff;
+  --good: #8ad9ae;
+  --warn: #f2c879;
+  --risk: #ff9e92;
+  color-scheme: dark;
+  color: var(--ink);
+  border: 0;
+  border-radius: 20px;
+  background: var(--bg);
+  padding: 0.875rem 0.875rem 0.875rem 1.25rem;
+  box-shadow: 0 1px 2px rgb(43 38 32 / 0.12), 0 14px 30px -14px rgb(43 38 32 / 0.45);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .action-bar {
+    --bg: #2c2b28;
+    --surface: #36342f;
+    --surface-2: #3d3b36;
+    --ink: #f3efe7; /* 12.4:1 */
+    --ink-2: #c4bdb2; /* 7.6:1 */
+    --line: #45423c;
+    --line-strong: #8a8478; /* 3.8:1 */
+    border: 1px solid #3a3833;
+    box-shadow: 0 14px 30px -14px rgb(0 0 0 / 0.7);
+  }
+}
+:root[data-theme="dark"] .action-bar {
+  --bg: #2c2b28;
+  --surface: #36342f;
+  --surface-2: #3d3b36;
+  --ink: #f3efe7;
+  --ink-2: #c4bdb2;
+  --line: #45423c;
+  --line-strong: #8a8478;
+  border: 1px solid #3a3833;
+  box-shadow: 0 14px 30px -14px rgb(0 0 0 / 0.7);
+}
+/* The bar floats just above the dock on phones and tablets, and a little off the bottom edge on desktop. */
+.action-bar.sticky {
+  bottom: 4.5rem;
+  z-index: 30;
+}
+@media (min-width: 1024px) {
+  .action-bar.sticky {
+    bottom: 1rem;
   }
 }

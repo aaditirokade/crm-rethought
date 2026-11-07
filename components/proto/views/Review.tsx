@@ -107,7 +107,7 @@ export function Review() {
           ))}
         </div>
       )}
-      <div className="sticky bottom-0 mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-line bg-bg py-4">
+      <div className="action-bar sticky bottom-0 mt-8 flex flex-wrap items-center justify-between gap-3">
         <p className="font-mono text-meta tracking-wide">
           <span className="font-medium">{approved} APPROVED</span>
           <span className="text-ink-2"> · RECORD FIXES AND OPPORTUNITY CHANGES SAVE AS SOON AS YOU APPROVE THEM</span>

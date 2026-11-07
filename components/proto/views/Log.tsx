@@ -51,7 +51,7 @@ export function Log({ id }: { id: string }) {
 
       <div className="mt-6 grid gap-8 lg:grid-cols-[17rem_minmax(0,1fr)] 2xl:grid-cols-[22rem_minmax(0,1fr)]">
         <aside aria-labelledby="h-transcript" className="order-2 lg:order-1">
-          <div className="proto-card p-4 lg:sticky lg:top-6">
+          <div className="tone-block lg:sticky lg:top-6">
             <h2 id="h-transcript" className="text-h3 font-semibold">
               Transcript moments
             </h2>
@@ -88,7 +88,7 @@ export function Log({ id }: { id: string }) {
             })}
           </div>
 
-          <div className="sticky bottom-0 mt-8 border-t border-line bg-bg py-4">
+          <div className="action-bar sticky bottom-0 mt-8">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <p className="font-mono text-meta tracking-wide">
                 <span className="font-medium">{approved} APPROVED</span>

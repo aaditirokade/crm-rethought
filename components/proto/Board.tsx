@@ -70,7 +70,7 @@ export function DayStrip({ s, focus }: { s: State; focus: string[] }) {
   };
 
   return (
-    <section aria-labelledby="h-day" className="proto-card p-4 sm:p-5">
+    <section aria-labelledby="h-day" className="tone-block">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h2 id="h-day" className="text-h3 font-semibold">
           Your day

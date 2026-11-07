@@ -44,7 +44,7 @@ export function Today() {
         <div className="grid gap-x-12 gap-y-14 lg:grid-cols-[minmax(0,1fr)_18rem] 2xl:grid-cols-[minmax(0,1fr)_24rem]">
           <PulseTiles s={s} focus={focus} />
 
-          <aside className="space-y-10">
+          <aside className="tone-block space-y-10 lg:self-start">
             <section aria-labelledby="h-waiting">
               <h2 id="h-waiting" className="text-h3 font-semibold">
                 Waiting for you

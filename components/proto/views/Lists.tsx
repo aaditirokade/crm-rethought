@@ -30,7 +30,7 @@ export function Lists() {
   };
 
   return (
-    <section aria-labelledby="h-lists" className="proto-card mt-6 p-4">
+    <section aria-labelledby="h-lists" className="tone-ai mt-6">
       <h2 id="h-lists" className="text-h3 font-semibold">
         Lists
       </h2>

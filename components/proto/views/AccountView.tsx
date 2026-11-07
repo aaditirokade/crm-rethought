@@ -49,14 +49,14 @@ export function AccountView({ id }: { id: string }) {
         }
       />
 
-      <dl className="mt-6 grid gap-3 sm:grid-cols-4">
+      <dl className="tone-block mt-6 grid gap-x-6 gap-y-4 sm:grid-cols-4">
         {[
           ["HEALTH", <Health key="h" a={a} />],
           ["RENEWAL", a.renewal],
           ["LAST TOUCH", a.lastTouch],
           ["NEXT STEP", a.nextStep],
         ].map(([k, v]) => (
-          <div key={k as string} className="proto-card p-3">
+          <div key={k as string} className="min-w-0">
             <dt className="font-mono text-meta tracking-wide text-ink-2">{k}</dt>
             <dd className="mt-1 text-small">{v}</dd>
           </div>
@@ -129,7 +129,7 @@ export function AccountView({ id }: { id: string }) {
           </ol>
         </section>
 
-        <aside className="space-y-6">
+        <aside className="tone-block space-y-6 lg:self-start">
           <section aria-labelledby="h-people" className="proto-card p-4">
             <h2 id="h-people" className="text-h3 font-semibold">
               People and coverage

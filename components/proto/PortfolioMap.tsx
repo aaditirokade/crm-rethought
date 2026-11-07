@@ -38,7 +38,7 @@ export function PortfolioMap({ accounts }: { accounts: LiveAccount[] }) {
   const watch = pts.filter((p) => p.days <= 120 && !p.t.isNew && p.t.pct < 0);
 
   return (
-    <section aria-labelledby="h-map" className="proto-card mt-6 p-4 sm:p-5">
+    <section aria-labelledby="h-map" className="tone-block mt-6">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h2 id="h-map" className="text-h3 font-semibold">
           {watch.length} {watch.length === 1 ? "account renews" : "accounts renew"} soon while usage falls

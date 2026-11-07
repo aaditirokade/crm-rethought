@@ -53,3 +53,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0047 | [The Review recording, redone](0047-review-recording-redone.md) | 2026-11-07 |
 | 0048 | [Ask on its own dark block](0048-ask-on-a-dark-block.md) | 2026-11-07 |
 | 0049 | [Time ranges on the usage chart](0049-usage-time-ranges.md) | 2026-11-07 |
+| 0050 | [Color blocking across the app](0050-color-blocking.md) | 2026-11-07 |
