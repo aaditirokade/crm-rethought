@@ -12,7 +12,10 @@ export default function MobilePage() {
     <main className="sig min-h-svh lg:grid lg:place-items-center lg:px-8 lg:py-6">
       <div className="hidden w-full max-w-5xl lg:grid lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-16">
         <div>
-          <p className="font-mono text-meta tracking-wide text-ink-2">CRM RETHOUGHT · MOBILE · CONCEPT PROTOTYPE · SAMPLE DATA</p>
+          <Link href="/" className="sig-btn">
+            <span aria-hidden="true">←</span> Back to the case study
+          </Link>
+          <p className="mt-8 font-mono text-meta tracking-wide text-ink-2">CRM RETHOUGHT · MOBILE · CONCEPT PROTOTYPE · SAMPLE DATA</p>
           <h1 className="mt-2 text-h1 font-semibold">For the minutes between meetings</h1>
           <p className="mt-3 max-w-md text-ink-2">
             On the way to a meeting, an account manager needs three things to know, not a dashboard. After it, they need to log
@@ -44,8 +47,17 @@ export default function MobilePage() {
           <MobileApp />
         </div>
       </div>
-      <div className="h-svh lg:hidden">
-        <MobileApp />
+      {/* On a phone the app fills the screen; a slim bar above it leads back to the case study. */}
+      <div className="flex h-svh flex-col lg:hidden">
+        <div className="flex items-center justify-between gap-3 px-4 pt-3">
+          <Link href="/" className="sig-btn">
+            <span aria-hidden="true">←</span> Case study
+          </Link>
+          <p className="font-mono text-meta tracking-wide text-ink-2">SAMPLE DATA</p>
+        </div>
+        <div className="min-h-0 flex-1">
+          <MobileApp />
+        </div>
       </div>
     </main>
   );

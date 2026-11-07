@@ -37,3 +37,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0031 | [The tabs flow like one page](0031-tabs-flow-like-one-page.md) | 2026-11-07 |
 | 0032 | [The phone recording without a device edge](0032-bare-phone-recording.md) | 2026-11-07 |
 | 0033 | [Slender account charts](0033-slender-account-charts.md) | 2026-11-07 |
+| 0034 | [A clear way back to the case study](0034-way-back-to-the-case-study.md) | 2026-11-07 |

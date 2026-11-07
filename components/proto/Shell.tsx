@@ -63,11 +63,18 @@ export function Shell({ children }: { children: React.ReactNode }) {
           <span aria-hidden="true" className="grid h-7 w-7 place-items-center rounded-2xl bg-ink font-mono text-meta text-bg">
             G
           </span>
-          Groundwork
+          {/* The wordmark gives way on narrow phones so the way back to the case study fits on one line. */}
+          <span className="sr-only sm:not-sr-only">Groundwork</span>
         </Link>
-        <p className="font-mono text-meta tracking-wide text-ink-2">
-          <span className="hidden sm:inline">{me.name.toUpperCase()} · AM · </span>CONCEPT PROTOTYPE · SAMPLE DATA
-        </p>
+        <div className="flex items-center gap-3 sm:gap-4">
+          <p className="whitespace-nowrap font-mono text-meta tracking-wide text-ink-2">
+            <span className="hidden lg:inline">{me.name.toUpperCase()} · AM · </span>
+            <span className="hidden sm:inline">CONCEPT PROTOTYPE · </span>SAMPLE DATA
+          </p>
+          <Link href="/" className="sig-btn whitespace-nowrap">
+            <span aria-hidden="true">←</span> Case study
+          </Link>
+        </div>
       </header>
 
       <nav aria-label="Main" className="dock">
