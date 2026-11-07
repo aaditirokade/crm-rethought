@@ -2434,3 +2434,11 @@ html:root .ask-wrap:not(.proto-card) {
 .case-home [id] {
   scroll-margin-top: 5rem;
 }
+/* Case study tabs (decision 0054): the current one in ink with the site's solid pink rule, the other quieter. */
+.case-tab[aria-current="page"] {
+  color: var(--ink);
+}
+.case-tab[aria-current="page"]::after {
+  height: 1.5px;
+  background: var(--site-pink);
+}

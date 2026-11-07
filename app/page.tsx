@@ -9,6 +9,7 @@ import { ThemeButton } from "@/components/case/ThemeButton";
 import { BASE } from "@/lib/base";
 import { AskAnatomy } from "@/components/case/AskAnatomy";
 import { SiteNav } from "@/components/case/SiteNav";
+import { CaseStudyTabs } from "@/components/case/CaseStudyTabs";
 
 export const metadata: Metadata = {
   title: "Groundwork · CRM, rethought",
@@ -138,7 +139,8 @@ export default function Home() {
       <ThemeButton />
 
       <main id="main" className="w-full px-5 pb-20 md:px-8 lg:px-16">
-        <header className="grid items-center gap-12 pt-14 lg:grid-cols-12 lg:gap-16 lg:pt-20">
+        <CaseStudyTabs current="groundwork" />
+        <header className="grid items-center gap-12 pt-10 lg:grid-cols-12 lg:gap-16 lg:pt-12">
           <div className="lg:col-span-5">
             <p className="font-mono text-meta tracking-wide text-ink-2">CONCEPT CASE STUDY · 2026</p>
             {/* Title and line slide up from behind a clipped edge, as on aaditirokade.com (decision 0041). */}
@@ -294,7 +296,7 @@ export default function Home() {
             visual={
               <ul className="divide-y divide-[var(--rule)] border-y border-[var(--rule)]">
                 {[
-                  ["Decision records", "53 short records, from the clean room rule to a tighter case study page", `${REPO}/tree/main/decisions`],
+                  ["Decision records", "54 short records, from the clean room rule to tabs between the case studies", `${REPO}/tree/main/decisions`],
                   ["Prompt log", "The prompts behind each step, what came back and what I chose", `${REPO}/tree/main/prompts`],
                   ["Research", "Desk research and the competitive read, every claim linked", `${REPO}/tree/main/research`],
                   ["Wireframes", "The grayscale meeting loop before any color", "/wireframes"],
