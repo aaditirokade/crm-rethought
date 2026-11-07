@@ -13,7 +13,7 @@ export function Accounts() {
   return (
     <div>
       <PageHead title="Accounts" sub={`${ACCOUNTS.length} accounts you own`} />
-      <div className="grid gap-x-10 xl:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] xl:items-start">
+      <div className="grid gap-x-10 xl:grid-cols-[minmax(0,1.75fr)_minmax(0,1fr)] xl:items-start">
         <PortfolioMap accounts={ACCOUNTS.map((a) => liveAccount(s, a.id)).filter(Boolean) as LiveAccount[]} />
         <Lists />
       </div>
