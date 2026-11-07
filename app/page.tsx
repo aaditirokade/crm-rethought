@@ -297,7 +297,7 @@ export default function Home() {
             visual={
               <ul className="divide-y divide-[var(--rule)] border-y border-[var(--rule)]">
                 {[
-                  ["Decision records", "29 short records, from the clean room rule to the colors as tiles", `${REPO}/tree/main/decisions`],
+                  ["Decision records", "30 short records, from the clean room rule to lining up Try it", `${REPO}/tree/main/decisions`],
                   ["Prompt log", "The prompts behind each step, what came back and what I chose", `${REPO}/tree/main/prompts`],
                   ["Research", "Desk research and the competitive read, every claim linked", `${REPO}/tree/main/research`],
                   ["Wireframes", "The grayscale meeting loop before any color", "/wireframes"],
@@ -324,15 +324,18 @@ export default function Home() {
             <p>It is designed from scratch and uses nothing from any CRM I worked on before.</p>
           </Chapter>
         <section aria-labelledby="try" className="border-t border-[var(--rule)] py-20 text-center">
-          <h2 id="try" className="text-[1.75rem] font-medium leading-tight tracking-tight sm:text-[2rem]">
-            Try it.
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-[17px] leading-relaxed text-ink-2">
-            Ask about an account, approve a draft, make a list. The demo resets from the dock whenever you like. Next: real
-            interviews and usability tests.
-          </p>
-          <div className="mt-8">
-            <Links big center />
+          {/* On wide screens, center on the gap between the chapters' 5 and 7 column split: (100% + gap) / 6 off the right. */}
+          <div className="lg:mr-[calc((100%_+_4rem)/6)]">
+            <h2 id="try" className="text-[1.75rem] font-medium leading-tight tracking-tight sm:text-[2rem]">
+              Try it.
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-[17px] leading-relaxed text-ink-2">
+              Ask about an account, approve a draft, make a list. The demo resets from the dock whenever you like. Next: real
+              interviews and usability tests.
+            </p>
+            <div className="mt-8">
+              <Links big center />
+            </div>
           </div>
         </section>
           </div>

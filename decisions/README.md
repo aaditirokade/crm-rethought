@@ -33,3 +33,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0027 | [Scroll past the end to open the next tab](0027-scroll-to-next-tab.md) | 2026-11-06 |
 | 0028 | [The problem as a loop, Ask as tiles](0028-problem-loop-ask-tiles.md) | 2026-11-06 |
 | 0029 | [The colors as tiles](0029-color-tiles.md) | 2026-11-07 |
+| 0030 | [Try it lines up with the chapter split](0030-try-it-on-the-gap.md) | 2026-11-07 |
