@@ -23,3 +23,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0017 | [Canvas: space instead of boxes](0017-canvas.md) | 2026-11-06 |
 | 0018 | [Motion that explains](0018-motion.md) | 2026-11-06 |
 | 0019 | [Open layout: the page is the surface](0019-open-layout.md) | 2026-11-06 |
+| 0020 | [Daylight: a friendlier palette](0020-daylight-palette.md) | 2026-11-06 |

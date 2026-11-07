@@ -132,7 +132,7 @@ function Spark({ values, label }: { values: number[]; label: string }) {
   const d = values.map((v, i) => `${i ? "L" : "M"}${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join("");
   return (
     <svg viewBox={`0 0 ${w} ${h}`} className="h-9 w-full" role="img" aria-label={label} preserveAspectRatio="none">
-      <path d={d} pathLength={1} className="spark-draw" fill="none" stroke="var(--ink-2)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+      <path d={d} pathLength={1} className="spark-draw" fill="none" stroke="var(--data)" strokeWidth="1.75" vectorEffect="non-scaling-stroke" />
       <circle className="spark-dot" cx={x(values.length - 1)} cy={y(values.at(-1) ?? 0)} r="2.5" fill="var(--ink)" />
     </svg>
   );
@@ -203,7 +203,7 @@ export function PulseTiles({ s, focus }: { s: State; focus: string[] }) {
                   <span className={days <= 90 ? "text-ink" : ""}><Num value={days} /> DAYS</span>
                 </p>
                 <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-surface-2" aria-hidden="true">
-                  <div className="bar-grow h-full rounded-full bg-ink-2" style={{ width: `${Math.max(4, 100 - (days / 365) * 100)}%` }} />
+                  <div className="bar-grow h-full rounded-full bg-data" style={{ width: `${Math.max(4, 100 - (days / 365) * 100)}%` }} />
                 </div>
               </div>
 

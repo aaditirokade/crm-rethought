@@ -7,22 +7,23 @@
  * Control borders (line-strong) pass 3:1. Full table at /tokens.
  */
 :root {
-  --bg: #f6f4f0;
+  --bg: #fffbf4; /* cream */
   --surface: #ffffff;
-  --surface-2: #efece6;
-  --ink: #1d1b18; /* 14.6:1 or more */
-  --ink-2: #5c5850; /* 6.0:1 or more */
-  --line: #e9e5de; /* hairlines, decorative only */
-  --line-strong: #8c867c; /* control borders, 3.1:1 or more */
-  --accent: #5b3fd9; /* the AI's color: drafts, Ask, waiting counts; 5.6:1 or more */
-  --accent-hover: #4a2fc4;
-  --accent-ink: #ffffff; /* 6.6:1 on accent */
-  --draft: #f3f0ff; /* behind lines the AI drafted */
-  --good: #1d7348; /* 4.9:1 or more */
-  --warn: #8a5a00; /* 5.0:1 or more */
-  --risk: #b8352b; /* 5.0:1 or more */
-  --shadow: 0 1px 2px rgb(29 27 24 / 0.04), 0 10px 30px -12px rgb(29 27 24 / 0.12);
-  --shadow-lift: 0 2px 4px rgb(29 27 24 / 0.05), 0 18px 40px -16px rgb(29 27 24 / 0.22);
+  --surface-2: #f4efe4; /* sand */
+  --ink: #2b2620; /* warm cocoa, never pure black; 13.0:1 or more */
+  --ink-2: #665b4f; /* 5.7:1 or more */
+  --line: #efe7d8; /* hairlines, decorative only */
+  --line-strong: #8f8373; /* control borders, 3.2:1 or more */
+  --accent: #4c50c9; /* the AI's color, periwinkle indigo: drafts, Ask, waiting counts; 5.5:1 or more */
+  --accent-hover: #3d41b3;
+  --accent-ink: #ffffff; /* 6.4:1 on accent */
+  --draft: #edf1fc; /* periwinkle wash behind lines the AI drafted */
+  --data: #7d8be0; /* charts: sparklines, bars, the day strip; 3:1 on the page */
+  --good: #2b7550; /* 4.9:1 or more */
+  --warn: #8a5a00; /* 5.1:1 or more */
+  --risk: #b2443a; /* 4.8:1 or more */
+  --shadow: 0 1px 2px rgb(91 76 58 / 0.05), 0 10px 30px -12px rgb(91 76 58 / 0.16);
+  --shadow-lift: 0 2px 4px rgb(91 76 58 / 0.06), 0 18px 40px -16px rgb(91 76 58 / 0.26);
 
   /* Older names, kept so earlier screens keep working */
   --paper: var(--bg);
@@ -32,22 +33,23 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #141312;
-    --surface: #1d1c1a;
-    --surface-2: #262421;
-    --ink: #efece6; /* 13.1:1 or more */
-    --ink-2: #aca69b; /* 6.4:1 or more */
-    --line: #2b2926;
-    --line-strong: #7a7469; /* 3.3:1 or more */
-    --accent: #b3a1ff; /* 7.0:1 or more */
-    --accent-hover: #c9bcff;
-    --accent-ink: #16132b; /* 8.1:1 on accent */
-    --draft: #221f33;
-    --good: #6fd3a0;
-    --warn: #f0c062;
-    --risk: #ff8d82;
-    --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 10px 30px -12px rgb(0 0 0 / 0.6);
-    --shadow-lift: 0 2px 4px rgb(0 0 0 / 0.35), 0 18px 40px -16px rgb(0 0 0 / 0.7);
+    --bg: #1f1e2c; /* dusk: deep indigo instead of black */
+    --surface: #282738;
+    --surface-2: #302f43;
+    --ink: #f6f1e7; /* cream; 11.5:1 or more */
+    --ink-2: #bcb5c6; /* 6.5:1 or more */
+    --line: #353449;
+    --line-strong: #807b96; /* 3.2:1 or more */
+    --accent: #aeb6ff; /* 6.7:1 or more */
+    --accent-hover: #c6ccff;
+    --accent-ink: #1a1c3a; /* 8.6:1 on accent */
+    --draft: #2b2f4f;
+    --data: #97a3f2;
+    --good: #8ad9ae;
+    --warn: #f2c879;
+    --risk: #ff9e92;
+    --shadow: 0 1px 2px rgb(10 9 25 / 0.3), 0 10px 30px -12px rgb(10 9 25 / 0.55);
+    --shadow-lift: 0 2px 4px rgb(10 9 25 / 0.35), 0 18px 40px -16px rgb(10 9 25 / 0.65);
   }
 }
 
@@ -63,6 +65,7 @@
   --color-accent-hover: var(--accent-hover);
   --color-accent-ink: var(--accent-ink);
   --color-draft: var(--draft);
+  --color-data: var(--data);
   --color-good: var(--good);
   --color-warn: var(--warn);
   --color-risk: var(--risk);
@@ -945,7 +948,7 @@ button.sig-source:hover b {
   box-shadow: var(--shadow-lift);
 }
 .mob-frame {
-  border-color: #1d1b18;
+  border-color: #2b2620;
   box-shadow: var(--shadow-lift);
 }
 .mob-tabs {
@@ -1315,4 +1318,24 @@ li.proto-card:focus-within {
   box-shadow: none;
   animation: none;
   border-left: 2px solid var(--accent);
+}
+
+/* Daylight (decision 0020): a friendlier palette. Cream and sand instead of grey, warm cocoa ink instead of black,
+   periwinkle for the AI and for charts, a dusk indigo instead of black at night. Every text color still passes AA. */
+.sig {
+  background:
+    radial-gradient(90rem 34rem at 12% -12%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 70%),
+    radial-gradient(60rem 30rem at 100% 0%, color-mix(in srgb, #f2b880 10%, transparent), transparent 70%),
+    var(--bg);
+}
+.ask-wrap.proto-card {
+  background:
+    radial-gradient(120% 160% at 0% 0%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 60%),
+    linear-gradient(160deg, var(--draft), var(--surface) 75%);
+}
+.board-block {
+  background: var(--data);
+}
+.board-block.is-hit {
+  background: var(--accent);
 }
