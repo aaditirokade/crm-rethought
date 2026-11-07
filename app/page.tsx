@@ -7,6 +7,7 @@ import { ChapterRail, type Chapter as RailChapter } from "@/components/case/Chap
 import { ProblemReel } from "@/components/case/ProblemReel";
 import { ThemeButton } from "@/components/case/ThemeButton";
 import { BASE } from "@/lib/base";
+import { AskAnatomy } from "@/components/case/AskAnatomy";
 
 export const metadata: Metadata = {
   title: "Groundwork · CRM, rethought",
@@ -229,22 +230,7 @@ export default function Home() {
             n="03"
             kicker="Ask"
             title="Ask anything about an account. Every claim brings its source."
-            visual={
-              <ul className="grid gap-3 sm:grid-cols-2">
-                {[
-                  ["Reads", "3 emails, 2 tickets, the Oct 14 call, weekly usage and the record, and shows each step as it goes"],
-                  ["Answers", "In plain words, with a source chip after every claim, so any sentence can be checked in one click"],
-                  ["Sums up", "Three numbers that matter for this question, and one suggested next move"],
-                  ["Changes nothing", "Read only, and it says so: “drafted from 6 sources, nothing in the record changed”"],
-                ].map(([t, d], i) => (
-                  <li key={t} className="ask-tile flex flex-col rounded-[20px] bg-surface-2 p-5 sm:p-6">
-                    <span className="font-mono text-meta text-ink-2">{String(i + 1).padStart(2, "0")}</span>
-                    <span className="mt-6 block text-xl font-medium">{t}</span>
-                    <span className="mt-1.5 block leading-snug text-ink-2">{d}</span>
-                  </li>
-                ))}
-              </ul>
-            }
+            visual={<AskAnatomy />}
           >
             <p>
               Ask sits at the top of the day. It shows what it is reading while it works, then answers in plain words with a
@@ -308,7 +294,7 @@ export default function Home() {
             visual={
               <ul className="divide-y divide-[var(--rule)] border-y border-[var(--rule)]">
                 {[
-                  ["Decision records", "44 short records, from the clean room rule to the dock as circles", `${REPO}/tree/main/decisions`],
+                  ["Decision records", "45 short records, from the clean room rule to Ask, pictured", `${REPO}/tree/main/decisions`],
                   ["Prompt log", "The prompts behind each step, what came back and what I chose", `${REPO}/tree/main/prompts`],
                   ["Research", "Desk research and the competitive read, every claim linked", `${REPO}/tree/main/research`],
                   ["Wireframes", "The grayscale meeting loop before any color", "/wireframes"],

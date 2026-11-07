@@ -62,3 +62,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Review: tile actions become round icons whose labels slide out on hover or focus (decision 0043)
 - Prototype: the dock's tabs become circles, filled when current, joined by a dotted line (decision 0044)
 - Case study home: the title a touch bolder and bigger, matching Firstword (update to decision 0041)
+- Case study home: Ask's four tiles each open with a picture of that part; no lone last words (decision 0045)
