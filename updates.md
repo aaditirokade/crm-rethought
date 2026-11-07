@@ -65,3 +65,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Case study home: Ask's four tiles each open with a picture of that part; no lone last words (decision 0045)
 - Review: each group's cards in one sideways row with arrows, snapping and fading edges (decision 0046)
 - Case study home: the Approve recording shows icon actions, the sideways row and saving, in light and dark (decision 0047)
+- Today: Ask sits on its own deep indigo block in light and dark; items it isn't about go gray instead of fading (decision 0048)

@@ -51,3 +51,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0045 | [Ask's four parts, pictured](0045-ask-pictured.md) | 2026-11-07 |
 | 0046 | [Review's cards in a row that scrolls sideways](0046-review-cards-in-a-row.md) | 2026-11-07 |
 | 0047 | [The Review recording, redone](0047-review-recording-redone.md) | 2026-11-07 |
+| 0048 | [Ask on its own dark block](0048-ask-on-a-dark-block.md) | 2026-11-07 |

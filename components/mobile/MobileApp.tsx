@@ -104,7 +104,7 @@ function Home({ go, waiting }: { go: (s: Screen) => void; waiting: number }) {
         </span>
       </button>
 
-      <button type="button" className="mt-3 w-full rounded-2xl border border-line-strong bg-surface px-4 py-3 text-left text-ink-2" onClick={() => go("ask")}>
+      <button type="button" className="ask-wrap mt-3 w-full rounded-2xl border border-line-strong bg-surface px-4 py-3 text-left text-ink-2" onClick={() => go("ask")}>
         Ask about any account{"…"}
       </button>
 

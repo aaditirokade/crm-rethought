@@ -522,8 +522,9 @@ button.sig-source:hover b {
   transition: opacity 300ms ease, box-shadow 300ms ease, transform 300ms ease;
   border-radius: 6px;
 }
+/* Items Ask isn't talking about go gray instead of fading, so their text keeps AA contrast (decision 0048). */
 .board-item.is-dim {
-  opacity: 0.45;
+  filter: grayscale(1);
 }
 .board-item.is-hit {
   box-shadow: 0 0 0 2px var(--accent);
@@ -2053,4 +2054,45 @@ li.proto-card:focus-within::before,
   .card-rail {
     scroll-behavior: auto;
   }
+}
+
+/* Ask is the heart of the app, so it sits on its own deep indigo block in both themes (decision 0048).
+   The block redefines the color tokens, so every button, input, chip and number inside it follows. */
+.ask-wrap {
+  --bg: #1b1c3c;
+  --surface: #262851;
+  --surface-2: #2c2e5c;
+  --ink: #f6f2ea; /* 14.6:1 on the block */
+  --ink-2: #c4c3df; /* 9.4:1 */
+  --line: #3a3c70;
+  --line-strong: #8d90c6; /* 5.0:1, control borders */
+  --accent: #bcc2ff; /* 9.7:1 */
+  --accent-hover: #d3d7ff;
+  --accent-ink: #1b1c3c;
+  --draft: #2c2e5c;
+  --good: #8ad9ae;
+  --warn: #f2c879;
+  --risk: #ff9e92;
+  --good-wash: #1e3a33;
+  --warn-wash: #3d3426;
+  --risk-wash: #432a33;
+  color-scheme: dark;
+  color: var(--ink);
+}
+html:root .ask-wrap.ask-wrap.proto-card {
+  border: 1px solid #2c2e5c;
+  background:
+    radial-gradient(120% 150% at 0% 0%, rgb(140 148 255 / 0.28), transparent 58%),
+    radial-gradient(80% 120% at 100% 100%, rgb(242 184 128 / 0.1), transparent 60%),
+    #1b1c3c;
+  box-shadow: 0 2px 4px rgb(20 18 50 / 0.18), 0 22px 44px -18px rgb(20 18 50 / 0.55);
+}
+html:root .ask-wrap .proto-input {
+  background: rgb(255 255 255 / 0.06);
+}
+html:root .ask-wrap .proto-input::placeholder {
+  color: #a9a8cc; /* 6.6:1 */
+}
+html:root .ask-wrap .sig-btn:not(:disabled):hover {
+  box-shadow: 0 4px 12px -6px rgb(0 0 0 / 0.6);
 }
