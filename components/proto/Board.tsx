@@ -40,7 +40,7 @@ export function DayStrip({ s, focus }: { s: State; focus: string[] }) {
     const dim = focus.length > 0 && !focus.includes(m.account);
     const hit = focus.includes(m.account);
     return (
-      <div className={`board-item rounded-2xl bg-surface-2 p-3 ${dim ? "is-dim" : ""} ${hit ? "is-hit" : ""}`}>
+      <div className={`board-item day-item ${dim ? "is-dim" : ""} ${hit ? "is-hit" : ""}`}>
         <p className="font-mono text-meta tracking-wide text-ink-2">
           {m.time} · {m.length.toUpperCase()}
         </p>
@@ -151,7 +151,7 @@ export function PulseTiles({ s, focus }: { s: State; focus: string[] }) {
           Ranked by who needs you this week
         </Link>
       </div>
-      <ol className="mt-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+      <ol className="mt-4 grid gap-x-10 gap-y-8 sm:grid-cols-2 xl:grid-cols-3">
         {ranked.map((r, i) => {
           const a = liveAccount(s, r.account.id) ?? r.account;
           const series = PULSE[a.id] ?? [];

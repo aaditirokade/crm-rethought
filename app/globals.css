@@ -85,8 +85,8 @@
   --text-h3--line-height: 1.5rem;
   --text-h2: 1.375rem;
   --text-h2--line-height: 1.85rem;
-  --text-h1: 2.125rem;
-  --text-h1--line-height: 2.5rem;
+  --text-h1: clamp(2.125rem, 1.25rem + 2.6vw, 4rem);
+  --text-h1--line-height: 1.05;
 }
 
 html {
@@ -1224,4 +1224,95 @@ button.sig-source:hover {
   button.sig-source:hover {
     transform: none;
   }
+}
+
+/* Open layout (decision 0019). Sections sit on the page itself, divided by full rules, the way an
+   editorial page is set. The only surfaces left are where the AI speaks (Ask) and where you decide (triage).
+   These rules sit outside any cascade layer, so they win over the padding utilities on .proto-card. */
+:root {
+  --rule: color-mix(in srgb, var(--ink) 16%, transparent);
+}
+.proto-card {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+.proto-card > li {
+  padding-left: 0;
+  padding-right: 0;
+}
+.proto-card > li + li {
+  border-color: var(--rule);
+}
+.ask-wrap.proto-card,
+.proto-card.is-surface {
+  border-top: 0;
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding-left: revert-layer;
+  padding-right: revert-layer;
+}
+.ask-wrap.proto-card {
+  background:
+    radial-gradient(120% 140% at 0% 0%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 55%),
+    var(--surface);
+}
+.proto-card.is-surface {
+  background: var(--surface);
+}
+.text-h1 {
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+
+/* Rows you can open: on hover or focus a darker rule draws across the top, left to right. */
+.board-item.proto-card,
+li.proto-card {
+  background: linear-gradient(var(--ink), var(--ink)) 0 -1px / 0% 1px no-repeat;
+  transition: background-size 420ms cubic-bezier(0.3, 0.6, 0.2, 1), opacity 300ms ease;
+}
+.board-item.proto-card:hover,
+.board-item.proto-card:focus-within,
+li.proto-card:hover,
+li.proto-card:focus-within {
+  transform: none;
+  box-shadow: none;
+  background-size: 100% 1px;
+}
+/* An account Ask is talking about: a violet rule draws across it. */
+.board-item.proto-card.is-hit {
+  box-shadow: none;
+  border-top-color: transparent;
+  background: linear-gradient(var(--accent), var(--accent)) 0 0 / 100% 2px no-repeat;
+  animation: rule-draw 600ms cubic-bezier(0.3, 0.6, 0.2, 1) both;
+}
+@keyframes rule-draw {
+  from {
+    background-size: 0% 2px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .board-item.proto-card,
+  li.proto-card {
+    transition: none;
+  }
+  .board-item.proto-card.is-hit {
+    animation: none;
+  }
+}
+
+/* Meetings on the day strip hang from the timeline on a rule, not in a box. */
+.day-item {
+  border-left: 1px solid var(--rule);
+  padding: 0.25rem 0 0.25rem 0.85rem;
+  border-radius: 0;
+}
+.board-item.day-item.is-hit {
+  box-shadow: none;
+  animation: none;
+  border-left: 2px solid var(--accent);
 }

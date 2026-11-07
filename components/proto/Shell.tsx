@@ -51,7 +51,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
         Skip to content
       </a>
 
-      <header className="mx-auto w-full max-w-[1760px] px-4 sm:px-6 lg:pl-32 lg:pr-10 2xl:pr-14 flex items-center justify-between gap-3 pt-4">
+      <header className="w-full px-5 md:px-8 lg:pl-32 lg:pr-8 flex items-center justify-between gap-3 pt-5">
         <Link href="/prototype" className="flex items-center gap-2 font-semibold">
           <span aria-hidden="true" className="grid h-7 w-7 place-items-center rounded-2xl bg-ink font-mono text-meta text-bg">
             CR
@@ -108,7 +108,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
         </div>
       </nav>
 
-      <main id="main" tabIndex={-1} className="mx-auto w-full max-w-[1760px] px-4 sm:px-6 lg:pl-32 lg:pr-10 2xl:pr-14 pt-6 pb-32 outline-none lg:pb-12">
+      <main id="main" tabIndex={-1} className="w-full px-5 md:px-8 lg:pl-32 lg:pr-8 pt-10 pb-32 outline-none lg:pb-12">
         {children}
       </main>
       {s.message && s.seq ? (

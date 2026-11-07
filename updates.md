@@ -28,3 +28,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Canvas design system replaces Signal: space instead of boxes, Geist, soft lifted cards, a violet material for AI drafts (decision 0017)
 - Motion that explains: page entrances, toasts, draft to approved transition, rolling numbers, drawing charts, inbox zero burst (decision 0018)
 - Fluid desktop layout: full width up to 1760px, extra columns on wide screens, readable text widths
+- Open layout: no width cap, sections under full rules instead of cards, drawing rule on hover and Ask focus, larger page titles (decision 0019)

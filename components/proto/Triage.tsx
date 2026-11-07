@@ -43,7 +43,7 @@ export function Triage() {
           el.focus({ preventScroll: true });
         }
       }}
-      className="proto-card mt-6 p-5 outline-none focus-visible:ring-2 focus-visible:ring-accent sm:p-6"
+      className="proto-card is-surface mt-6 p-5 outline-none focus-visible:ring-2 focus-visible:ring-accent sm:p-6"
       onKeyDown={(e) => {
         if ((e.target as HTMLElement).closest("textarea, input, select")) return;
         const k = e.key.toLowerCase();

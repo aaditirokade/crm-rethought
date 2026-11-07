@@ -16,7 +16,7 @@ const PRINCIPLES = [
 ];
 
 const TYPE = [
-  { name: "h1", spec: "34 / 40 · Geist 600", cls: "text-h1 font-semibold", sample: "Fernhill Outfitters" },
+  { name: "h1", spec: "34 to 64 / 1.05 · Geist 500, grows with the screen", cls: "text-h1 font-semibold", sample: "Fernhill Outfitters" },
   { name: "h2", spec: "22 / 30 · Geist 600", cls: "text-h2 font-semibold", sample: "What changed since Oct 14" },
   { name: "h3", spec: "17 / 24 · Geist 600", cls: "text-h3 font-semibold", sample: "Promises still open" },
   { name: "body", spec: "15 / 24 · Geist 400", cls: "text-body", sample: "Sam Reyes asked for pricing on 12 new stores opening in the spring." },

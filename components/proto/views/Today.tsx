@@ -37,14 +37,14 @@ export function Today() {
         Fernhill needs you most this week.
       </p>
 
-      <div className="mt-6 space-y-6">
+      <div className="mt-10 space-y-14">
         <Ask onFocus={setFocus} />
         <DayStrip s={s} focus={focus} />
 
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_18rem] 2xl:grid-cols-[minmax(0,1fr)_22rem]">
+        <div className="grid gap-x-12 gap-y-14 lg:grid-cols-[minmax(0,1fr)_18rem] 2xl:grid-cols-[minmax(0,1fr)_24rem]">
           <PulseTiles s={s} focus={focus} />
 
-          <aside className="space-y-6">
+          <aside className="space-y-10">
             <section aria-labelledby="h-waiting">
               <h2 id="h-waiting" className="text-h3 font-semibold">
                 Waiting for you
