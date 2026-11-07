@@ -49,6 +49,8 @@ export function Shell({ children }: { children: React.ReactNode }) {
   // On a tab's own page (not a brief, log or account inside it), scrolling past the end opens the next tab.
   const at = steps.findIndex((st) => st.href === path);
   const next = at >= 0 && at < steps.length - 1 ? { href: steps[at + 1].href, label: steps[at + 1].label } : null;
+  // ...and scrolling up past the top opens the previous one, at its end.
+  const prev = at > 0 ? { href: steps[at - 1].href, label: steps[at - 1].label } : null;
 
   return (
     <div className="sig min-h-svh">
@@ -116,7 +118,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
 
       <main id="main" tabIndex={-1} className="w-full px-5 md:px-8 lg:pl-32 lg:pr-8 pt-10 pb-32 outline-none lg:pb-12">
         {children}
-        <ScrollNext key={path} next={next} />
+        <ScrollNext key={path} next={next} prev={prev} />
       </main>
       {s.message && s.seq ? (
         <div key={s.seq} className="toast" aria-hidden="true">

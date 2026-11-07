@@ -1002,6 +1002,11 @@ button.sig-source:hover b {
 .page-in > * > *:nth-child(n + 6) {
   animation-delay: 250ms;
 }
+/* A scroll driven tab switch moves the whole page; the usual staggered rise would fight it. */
+main[data-flow] .page-in > * > *,
+.page-in[data-still] > * > * {
+  animation: none;
+}
 @keyframes rise {
   from {
     opacity: 0;

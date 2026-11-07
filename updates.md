@@ -47,3 +47,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Case study home: the problem told as a three beat loop instead of big percentages; Ask's four parts as tiles (decision 0028)
 - Case study home: the design system colors as smaller chips in tiles (decision 0029)
 - Case study home: Try it centers on the gap between the chapter columns on wide screens (decision 0030)
+- Prototype: scrolling past either end of a main tab glides to the next or previous tab, like one page (decision 0031)

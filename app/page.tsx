@@ -297,7 +297,7 @@ export default function Home() {
             visual={
               <ul className="divide-y divide-[var(--rule)] border-y border-[var(--rule)]">
                 {[
-                  ["Decision records", "30 short records, from the clean room rule to lining up Try it", `${REPO}/tree/main/decisions`],
+                  ["Decision records", "31 short records, from the clean room rule to tabs that scroll like one page", `${REPO}/tree/main/decisions`],
                   ["Prompt log", "The prompts behind each step, what came back and what I chose", `${REPO}/tree/main/prompts`],
                   ["Research", "Desk research and the competitive read, every claim linked", `${REPO}/tree/main/research`],
                   ["Wireframes", "The grayscale meeting loop before any color", "/wireframes"],
