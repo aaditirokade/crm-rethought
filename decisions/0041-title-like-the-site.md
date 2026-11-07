@@ -14,3 +14,5 @@ Fraunces is loaded only for this title; the rest of Groundwork stays in Geist ([
 **Why:** Groundwork now sits under aaditirokade.com; its opening should read as one of the site's case studies.
 
 **Checks:** axe clean in light and dark at 375px and 1440px.
+
+**Update (same day):** at her request, both case study titles (this one and Firstword's on the site) are a touch bolder and bigger: Fraunces regular (400) at 1.9rem, or 2.25rem from 640px.
