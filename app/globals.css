@@ -2304,3 +2304,133 @@ html:root .ask-wrap:not(.proto-card) {
     bottom: 1rem;
   }
 }
+
+/* The aaditirokade.com nav at the top of the case study (decision 0052), matched to the site:
+   a plain bar at rest that lifts into a floating pill once the page scrolls, with the site's dotted pink underline on hover. */
+:root {
+  --site-pink: #be3b7e; /* 5.0:1 on the cream page */
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --site-pink: #8f97de;
+  }
+}
+:root[data-theme="dark"] {
+  --site-pink: #8f97de;
+}
+.site-nav {
+  animation: site-nav-in 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes site-nav-in {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+/* At rest the bar lines up with the page's own edges (px-5, md:px-8, lg:px-16 on main). */
+.site-nav-bar {
+  max-width: 100%;
+  margin-top: 0;
+  border: 1px solid transparent;
+  border-radius: 0;
+  padding: 1rem 0.25rem;
+  transition: all 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (min-width: 768px) {
+  .site-nav-bar {
+    padding-inline: 1rem;
+  }
+}
+@media (min-width: 1024px) {
+  .site-nav-bar {
+    padding-inline: 3rem;
+  }
+}
+.site-nav-bar.is-pill {
+  max-width: 42rem;
+  padding-inline: 1.25rem;
+  margin-top: 0.75rem;
+  border-color: var(--line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  padding: 0.625rem 1.25rem;
+  box-shadow: 0 8px 30px rgb(22 24 29 / 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.site-nav-home {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 1.125rem;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  transition: color 160ms ease;
+}
+.site-nav-home:hover {
+  color: var(--site-pink);
+}
+.site-nav-moons {
+  pointer-events: none;
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  height: 1.5rem;
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  filter: grayscale(1);
+  font-size: 1.25rem;
+  line-height: 1;
+  transform: translateY(-50%);
+  transition: max-width 2200ms cubic-bezier(0.22, 1, 0.36, 1), opacity 2200ms cubic-bezier(0.22, 1, 0.36, 1), padding-left 2200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.group:hover > .site-nav-moons {
+  max-width: 28rem;
+  padding-left: 0.75rem;
+  opacity: 0.27;
+}
+.site-nav-link {
+  position: relative;
+  color: var(--ink-2);
+  transition: color 160ms ease;
+}
+.site-nav-link:hover {
+  color: var(--ink);
+}
+.site-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 1px;
+  background: transparent;
+}
+.site-nav-link:hover::after,
+.site-nav-link:focus-visible::after {
+  background: repeating-linear-gradient(to right, var(--site-pink) 0, var(--site-pink) 2px, transparent 2px, transparent 5px);
+  background-size: 5px 1px;
+  animation: site-ants 0.6s linear infinite;
+}
+@keyframes site-ants {
+  to {
+    background-position-x: 5px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-nav,
+  .site-nav-link:hover::after,
+  .site-nav-link:focus-visible::after {
+    animation: none;
+  }
+  .site-nav-bar,
+  .site-nav-moons {
+    transition: none;
+  }
+}
+/* Chapter links land below the floating nav instead of under it. */
+.case-home [id] {
+  scroll-margin-top: 5rem;
+}

@@ -8,6 +8,7 @@ import { ProblemReel } from "@/components/case/ProblemReel";
 import { ThemeButton } from "@/components/case/ThemeButton";
 import { BASE } from "@/lib/base";
 import { AskAnatomy } from "@/components/case/AskAnatomy";
+import { SiteNav } from "@/components/case/SiteNav";
 
 export const metadata: Metadata = {
   title: "Groundwork · CRM, rethought",
@@ -123,23 +124,10 @@ const WALKTHROUGH: Step[] = [
 
 export default function Home() {
   return (
-    <div className="sig min-h-svh">
-      <header className="flex w-full items-center justify-between gap-3 px-5 pt-5 md:px-8">
-        <a href={BASE || "/"} className="flex items-center gap-2 font-semibold">
-          <span aria-hidden="true" className="grid h-7 w-7 place-items-center rounded-2xl bg-ink font-mono text-meta text-bg">
-            G
-          </span>
-          Groundwork
-        </a>
-        <nav aria-label="Case study" className="flex items-center gap-4 text-small sm:gap-6">
-          <Link href="/prototype" className="hidden font-medium underline-offset-4 hover:underline sm:inline">
-            Prototype
-          </Link>
-          <a href={REPO} className="hidden font-medium underline-offset-4 hover:underline sm:inline">
-            GitHub
-          </a>
-        </nav>
-      </header>
+    <div className="sig case-home min-h-svh">
+      {/* The portfolio's own nav, so the way back to aaditirokade.com is always at the top (decision 0052). */}
+      <SiteNav />
+      <div aria-hidden="true" className="h-14" />
 
       <ThemeButton />
 
@@ -294,7 +282,7 @@ export default function Home() {
             visual={
               <ul className="divide-y divide-[var(--rule)] border-y border-[var(--rule)]">
                 {[
-                  ["Decision records", "51 short records, from the clean room rule to Ask in the AI's color", `${REPO}/tree/main/decisions`],
+                  ["Decision records", "52 short records, from the clean room rule to the portfolio nav on the case study", `${REPO}/tree/main/decisions`],
                   ["Prompt log", "The prompts behind each step, what came back and what I chose", `${REPO}/tree/main/prompts`],
                   ["Research", "Desk research and the competitive read, every claim linked", `${REPO}/tree/main/research`],
                   ["Wireframes", "The grayscale meeting loop before any color", "/wireframes"],
