@@ -4,6 +4,7 @@ import { Coverage } from "@/components/case/Coverage";
 import { Demo } from "@/components/case/Demo";
 import { ScrollSteps, type Step } from "@/components/case/ScrollSteps";
 import { ChapterRail, type Chapter as RailChapter } from "@/components/case/ChapterRail";
+import { ProblemReel } from "@/components/case/ProblemReel";
 import { ThemeButton } from "@/components/case/ThemeButton";
 
 export const metadata: Metadata = {
@@ -70,12 +71,6 @@ function Chapter({
     </section>
   );
 }
-
-const STATS = [
-  { n: "40%", text: "of a seller's time goes to selling.", src: "Salesforce State of Sales 2026, survey of 4,050 sales pros" },
-  { n: "76%", text: "of CRM users say less than half their CRM data is accurate.", src: "Validity 2025 survey, via Cirrus Insight (secondary)" },
-  { n: "68%", text: "of sellers say note taking and data entry take the most time.", src: "Salesforce State of Sales, via Attention (secondary)" },
-];
 
 const SWATCHES = [
   { name: "Page", light: "#fffbf4", dark: "#121211" },
@@ -192,17 +187,7 @@ export default function Home() {
             n="01"
             kicker="The problem"
             title="CRMs are built for reporting, not for the people who fill them in"
-            visual={
-              <ul className="grid gap-8 sm:grid-cols-3">
-                {STATS.map((s) => (
-                  <li key={s.n} className="border-t border-[var(--rule)] pt-5">
-                    <p className="text-[3rem] font-medium leading-none tracking-tight">{s.n}</p>
-                    <p className="mt-3 leading-snug">{s.text}</p>
-                    <p className="mt-3 text-meta text-ink-2">{s.src}</p>
-                  </li>
-                ))}
-              </ul>
-            }
+            visual={<ProblemReel />}
           >
             <p>
               Account managers spend their week typing calls into a system that mostly serves the dashboard above them. The data
@@ -234,22 +219,20 @@ export default function Home() {
             kicker="Ask"
             title="Ask anything about an account. Every claim brings its source."
             visual={
-              <ol className="divide-y divide-[var(--rule)] border-y border-[var(--rule)]">
+              <ul className="grid gap-3 sm:grid-cols-2">
                 {[
                   ["Reads", "3 emails, 2 tickets, the Oct 14 call, weekly usage and the record, and shows each step as it goes"],
                   ["Answers", "In plain words, with a source chip after every claim, so any sentence can be checked in one click"],
                   ["Sums up", "Three numbers that matter for this question, and one suggested next move"],
                   ["Changes nothing", "Read only, and it says so: “drafted from 6 sources, nothing in the record changed”"],
                 ].map(([t, d], i) => (
-                  <li key={t} className="grid grid-cols-[auto_1fr] gap-5 py-5">
-                    <span className="font-mono text-meta text-accent">{String(i + 1).padStart(2, "0")}</span>
-                    <span>
-                      <span className="block text-xl font-medium">{t}</span>
-                      <span className="mt-1 block text-ink-2">{d}</span>
-                    </span>
+                  <li key={t} className="ask-tile flex flex-col rounded-[20px] bg-surface-2 p-5 sm:p-6">
+                    <span className="font-mono text-meta text-ink-2">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="mt-6 block text-xl font-medium">{t}</span>
+                    <span className="mt-1.5 block leading-snug text-ink-2">{d}</span>
                   </li>
                 ))}
-              </ol>
+              </ul>
             }
           >
             <p>
@@ -314,7 +297,7 @@ export default function Home() {
             visual={
               <ul className="divide-y divide-[var(--rule)] border-y border-[var(--rule)]">
                 {[
-                  ["Decision records", "27 short records, from the clean room rule to scrolling into the next tab", `${REPO}/tree/main/decisions`],
+                  ["Decision records", "28 short records, from the clean room rule to the problem told as a loop", `${REPO}/tree/main/decisions`],
                   ["Prompt log", "The prompts behind each step, what came back and what I chose", `${REPO}/tree/main/prompts`],
                   ["Research", "Desk research and the competitive read, every claim linked", `${REPO}/tree/main/research`],
                   ["Wireframes", "The grayscale meeting loop before any color", "/wireframes"],

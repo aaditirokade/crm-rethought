@@ -31,3 +31,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0025 | [A walkthrough that follows the scroll](0025-scroll-walkthrough.md) | 2026-11-06 |
 | 0026 | [A chapter timeline beside the case study](0026-chapter-timeline.md) | 2026-11-06 |
 | 0027 | [Scroll past the end to open the next tab](0027-scroll-to-next-tab.md) | 2026-11-06 |
+| 0028 | [The problem as a loop, Ask as tiles](0028-problem-loop-ask-tiles.md) | 2026-11-06 |

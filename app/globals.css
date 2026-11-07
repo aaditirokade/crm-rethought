@@ -1704,3 +1704,55 @@ li.proto-card:focus-within::before,
   padding-left: 0.85rem;
   padding-right: 0.85rem;
 }
+
+/* The problem, as a loop (ProblemReel): blocks rise, fields type in, accounts get flagged. */
+@keyframes pr-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scaleY(0.4);
+  }
+}
+@keyframes pr-type {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+@keyframes pr-flag {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+}
+.pr-rise {
+  transform-origin: bottom;
+  animation: pr-rise 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.pr-type {
+  animation: pr-type 1.2s steps(30) both;
+}
+.pr-flag {
+  animation: pr-flag 320ms ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pr-rise,
+  .pr-type,
+  .pr-flag {
+    animation: none;
+  }
+}
+
+/* Ask, as tiles: each part of an answer on its own sand card. */
+.ask-tile {
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 220ms ease;
+}
+.ask-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ask-tile,
+  .ask-tile:hover {
+    transition: none;
+    transform: none;
+  }
+}
