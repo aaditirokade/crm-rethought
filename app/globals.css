@@ -1464,19 +1464,11 @@ li.proto-card:focus-within {
 .case-demo-frame {
   max-width: 760px;
 }
+/* The phone recording sits as a bare screen: rounded corners and the soft shadow, no device edge. */
 .case-demo.is-phone .case-demo-frame {
   max-width: 300px;
   margin-inline: auto;
-  border-radius: 32px;
-  border: 6px solid #2b2620;
-}
-:root[data-theme="dark"] .case-demo.is-phone .case-demo-frame {
-  border-color: #3a3835;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .case-demo.is-phone .case-demo-frame {
-    border-color: #3a3835;
-  }
+  border-radius: 28px;
 }
 .case-demo-btn {
   position: absolute;
