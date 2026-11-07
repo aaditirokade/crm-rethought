@@ -61,8 +61,10 @@ function StepVideo({ step, playing, rewindOn }: { step: Step; playing: boolean; 
 }
 
 /**
- * The walkthrough as one step after another: a title and a line of text above
- * each recording, on every screen size. The chapter timeline beside the case
+ * The walkthrough as one step after another. On wide screens each step is a
+ * row like the chapters around it: its title and text on the left (the first
+ * also carries the introduction and the Pause button), its recording on the
+ * right. Below 1024px the text sits above each recording. The chapter timeline beside the case
  * study already shows where you are, so this section has no stepper of its
  * own. Each recording plays while it is on screen; recordings start paused for
  * anyone who asks for reduced motion, and a Pause button stops them for
@@ -73,7 +75,7 @@ export function ScrollSteps({ id, kicker, title, intro, steps }: { id: string; k
   const [choice, setChoice] = useState<boolean | null>(null);
   const playing = choice ?? !reduce;
   const [inView, setInView] = useState<boolean[]>(() => steps.map(() => false));
-  const items = useRef<(HTMLLIElement | null)[]>([]);
+  const items = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const io = new IntersectionObserver(
@@ -89,6 +91,15 @@ export function ScrollSteps({ id, kicker, title, intro, steps }: { id: string; k
     return () => io.disconnect();
   }, []);
 
+  const pause = (
+    <button type="button" onClick={() => setChoice(!playing)} className="sig-btn inline-flex min-h-11 items-center gap-2 text-small font-medium">
+      <span aria-hidden="true" className="grid h-6 w-6 place-items-center rounded-full border border-[var(--rule)] text-[10px]">
+        {playing ? "❚❚" : "▶"}
+      </span>
+      {playing ? "Pause the recordings" : "Play the recordings"}
+    </button>
+  );
+
   return (
     <section aria-labelledby={id} className="border-t border-[var(--rule)] py-16 lg:py-24">
       <div className="max-w-2xl">
@@ -96,39 +107,38 @@ export function ScrollSteps({ id, kicker, title, intro, steps }: { id: string; k
         <h2 id={id} className="mt-3 text-[1.75rem] font-medium leading-tight tracking-tight sm:text-[2rem]">
           {title}
         </h2>
-        <p className="mt-5 text-[17px] leading-relaxed text-ink-2">{intro}</p>
-        <div className="mt-6">
-          <button type="button" onClick={() => setChoice(!playing)} className="sig-btn inline-flex min-h-11 items-center gap-2 text-small font-medium">
-            <span aria-hidden="true" className="grid h-6 w-6 place-items-center rounded-full border border-[var(--rule)] text-[10px]">
-              {playing ? "❚❚" : "▶"}
-            </span>
-            {playing ? "Pause the recordings" : "Play the recordings"}
-          </button>
-        </div>
       </div>
 
-      <ol className="mt-12 space-y-16 lg:space-y-24">
+      <div className="mt-10 space-y-16 lg:mt-12 lg:space-y-24">
         {steps.map((s, i) => (
-          <li
+          <div
             key={s.title}
             ref={(el) => {
               items.current[i] = el;
             }}
             data-i={i}
-            className="max-w-[760px]"
+            className="grid gap-6 lg:grid-cols-12 lg:items-center lg:gap-16"
           >
-            <h3 className="flex items-baseline gap-2.5 text-xl font-medium leading-snug">
-              <span aria-hidden="true" className="relative -top-[3px] h-[6px] w-[6px] shrink-0 rounded-full bg-ink" />
-              {s.title}
-            </h3>
-            <p className="mt-2 max-w-[62ch] leading-relaxed text-ink-2">{s.body}</p>
-            <figure className="mt-6">
+            <div className="lg:col-span-5">
+              {i === 0 ? (
+                <div className="mb-10">
+                  <p className="text-[17px] leading-relaxed text-ink-2">{intro}</p>
+                  <div className="mt-6">{pause}</div>
+                </div>
+              ) : null}
+              <h3 className="flex items-baseline gap-2.5 text-xl font-medium leading-snug">
+                <span aria-hidden="true" className="relative -top-[3px] h-[6px] w-[6px] shrink-0 rounded-full bg-ink" />
+                {s.title}
+              </h3>
+              <p className="mt-2 max-w-[62ch] leading-relaxed text-ink-2">{s.body}</p>
+            </div>
+            <figure className="min-w-0 lg:col-span-7">
               <figcaption className="sr-only">{s.alt}</figcaption>
               <StepVideo step={s} playing={playing && inView[i]} />
             </figure>
-          </li>
+          </div>
         ))}
-      </ol>
+      </div>
     </section>
   );
 }
