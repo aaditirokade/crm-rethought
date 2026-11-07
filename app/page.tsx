@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Coverage } from "@/components/case/Coverage";
 import { Demo } from "@/components/case/Demo";
+import { ScrollSteps, type Step } from "@/components/case/ScrollSteps";
 import { ThemeButton } from "@/components/case/ThemeButton";
 
 export const metadata: Metadata = {
@@ -82,6 +83,34 @@ const SWATCHES = [
   { name: "AI", light: "#4c50c9", dark: "#aeb6ff" },
   { name: "AI wash", light: "#edf1fc", dark: "#23242e" },
   { name: "Charts", light: "#4f97a8", dark: "#7fc4d4" },
+];
+
+const WALKTHROUGH: Step[] = [
+  {
+    title: "Approve drafts where they sit",
+    body: "Anything the AI writes arrives as a draft with its source and confidence. Open the source, then approve, edit or dismiss in place. Record fixes save at once; log lines wait to be saved together, so a meeting reaches the record as one decision.",
+    video: "review",
+    width: 1520,
+    height: 960,
+    alt: "Review: a person opens the source of a draft line, sees the email it came from, closes it, approves a record fix that saves right away, approves a log line, then saves it to the record.",
+  },
+  {
+    title: "Say the list you want",
+    body: "Instead of a filter builder, type what you want. Groundwork shows how it understood you as chips, and every account says why it is on the list. If it misread you, remove the wrong chip.",
+    video: "lists",
+    width: 1520,
+    height: 960,
+    alt: "Lists: a person types “quiet for 2 weeks with more than 10 stores”, the AI shows how it understood it as two filter chips with a reason beside each account, and removing one chip widens the list.",
+  },
+  {
+    title: "Keep going between meetings",
+    body: "The phone app is the three things people do on the way to and from a meeting: read what to know, approve drafts one card at a time, and turn a voice note into lines to approve. Nothing saves without you.",
+    video: "mobile",
+    width: 750,
+    height: 1624,
+    phone: true,
+    alt: "Mobile app: from the next meeting, a person opens the drafts waiting for them, approves a record fix and a log line one card at a time, then saves the approved line.",
+  },
 ];
 
 export default function Home() {
@@ -217,76 +246,19 @@ export default function Home() {
             <p>The animation at the top of this page is the real prototype answering “Why is Fernhill slipping?”.</p>
           </Chapter>
 
+          <ScrollSteps
+            id="how"
+            kicker="How it works"
+            title="Approve, ask for a list, and keep going on the phone"
+            intro="Recorded from the working prototype. Scroll to move through the steps, or pick one."
+            steps={WALKTHROUGH}
+          />
+
           <Chapter
             n="04"
-            kicker="Approve in place"
-            title="The AI drafts. A person approves, line by line."
-            flip
-            visual={
-              <Demo
-                name="review"
-                width={1520}
-                height={960}
-                alt="Review: a person opens the source of a draft line, sees the email it came from, closes it, approves a record fix that saves right away, approves a log line, then saves it to the record."
-              />
-            }
-          >
-            <p>
-              Anything the AI writes arrives as a draft, in its own violet material, with its source and its confidence. Open the
-              source, then approve, edit or dismiss right where the line sits.
-            </p>
-            <p>
-              Record fixes save the moment you approve them. Log lines wait until you save them together, so a meeting&rsquo;s log
-              reaches the record as one decision.
-            </p>
-          </Chapter>
-
-          <Chapter
-            n="05"
-            kicker="Lists in plain words"
-            title="Say the list you want. Remove what it got wrong."
-            visual={
-              <Demo
-                name="lists"
-                width={1520}
-                height={960}
-                alt="Lists: a person types “quiet for 2 weeks with more than 10 stores”, the AI shows how it understood it as two filter chips with a reason beside each account, and removing one chip widens the list."
-              />
-            }
-          >
-            <p>
-              Instead of a filter builder, type what you want. Groundwork shows how it understood you as chips, and every account
-              in the list says why it is there.
-            </p>
-            <p>If it misread you, remove the chip that is wrong. The list updates, and nothing is hidden behind a score.</p>
-          </Chapter>
-
-          <Chapter
-            n="06"
-            kicker="Mobile"
-            title="For the minutes between meetings"
-            flip
-            visual={
-              <Demo
-                name="mobile"
-                width={750}
-                height={1624}
-                phone
-                alt="Mobile app: from the next meeting, a person opens the drafts waiting for them, approves a record fix and a log line one card at a time, then saves the approved line."
-              />
-            }
-          >
-            <p>
-              The phone app is not the whole CRM. It is the three things people do on the way to and from a meeting: read what to
-              know, approve drafts one card at a time, and turn a voice note into lines to approve.
-            </p>
-            <p>Same rule as the desktop: nothing saves without you.</p>
-          </Chapter>
-
-          <Chapter
-            n="07"
             kicker="Design system"
             title="Calm to use all day, violet only where the AI speaks"
+            flip
             visual={
               <div>
                 <ul className="grid grid-cols-3 gap-3 sm:grid-cols-6">
@@ -323,14 +295,13 @@ export default function Home() {
           </Chapter>
 
           <Chapter
-            n="08"
+            n="05"
             kicker="Built in the open"
             title="Every prompt, decision and commit is public"
-            flip
             visual={
               <ul className="divide-y divide-[var(--rule)] border-y border-[var(--rule)]">
                 {[
-                  ["Decision records", "22 short records, from the clean room rule to the name", `${REPO}/tree/main/decisions`],
+                  ["Decision records", "25 short records, from the clean room rule to the scroll walkthrough", `${REPO}/tree/main/decisions`],
                   ["Prompt log", "The prompts behind each step, what came back and what I chose", `${REPO}/tree/main/prompts`],
                   ["Research", "Desk research and the competitive read, every claim linked", `${REPO}/tree/main/research`],
                   ["Wireframes", "The grayscale meeting loop before any color", "/wireframes"],

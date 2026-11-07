@@ -28,3 +28,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0022 | [Name: Groundwork](0022-name-groundwork.md) | 2026-11-06 |
 | 0023 | [The home page is the case study](0023-case-study-home.md) | 2026-11-06 |
 | 0024 | [Micro interactions, round two](0024-micro-interactions-two.md) | 2026-11-06 |
+| 0025 | [A walkthrough that follows the scroll](0025-scroll-walkthrough.md) | 2026-11-06 |

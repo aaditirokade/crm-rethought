@@ -41,3 +41,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Accounts: portfolio map back up to a middle size (380 high, up to 920 wide, 1.75 to 1 beside Lists); table still starts above the fold at 1440x900
 - Persona renamed: Daniel Okoro is now Daniel Orro across the app, content and research
 - Case study recordings captured again at twice the resolution and served as MP4 video in light and dark, with Pause and a poster for reduced motion; old GIFs removed
+- Case study home: Review, Lists and Mobile become one How it works walkthrough; the stepper on the left follows the scroll and the recording on the right switches with it (decision 0025)
