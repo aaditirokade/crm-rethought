@@ -1,6 +1,6 @@
 # Tokens · Canvas
 
-**As of:** 2026-11-06 · [Decision 0017](../decisions/0017-canvas.md) (replaces Signal, [decision 0010](../decisions/0010-visual-direction-signal.md)) · Live with computed contrast at [/tokens](https://crm-rethought.vercel.app/tokens) · Source: [app/globals.css](../app/globals.css), [content/tokens.ts](../content/tokens.ts)
+**As of:** 2026-11-06 · [Decision 0017](../decisions/0017-canvas.md) (replaces Signal, [decision 0010](../decisions/0010-visual-direction-signal.md)) · Live with computed contrast at [/tokens](https://aaditirokade.com/groundwork/tokens) · Source: [app/globals.css](../app/globals.css), [content/tokens.ts](../content/tokens.ts)
 
 ## Principles
 

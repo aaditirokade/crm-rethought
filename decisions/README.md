@@ -41,3 +41,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0035 | [The theme switch matches the portfolio site](0035-theme-switch-like-the-site.md) | 2026-11-07 |
 | 0036 | [The walkthrough without its own stepper](0036-walkthrough-without-its-own-stepper.md) | 2026-11-07 |
 | 0037 | [Walkthrough rows: text beside the recording](0037-walkthrough-rows-text-beside-recording.md) | 2026-11-07 |
+| 0038 | [Served at aaditirokade.com/groundwork](0038-served-at-aaditirokade-com-groundwork.md) | 2026-11-07 |

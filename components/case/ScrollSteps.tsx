@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { useTheme } from "../proto/ThemeToggle";
+import { BASE } from "@/lib/base";
 
 export type Step = {
   title: string;
@@ -44,8 +45,8 @@ function StepVideo({ step, playing, rewindOn }: { step: Step; playing: boolean; 
           <video
             key={theme}
             ref={ref}
-            src={`/case/${step.video}-${theme}.mp4`}
-            poster={`/case/${step.video}-${theme}.jpg`}
+            src={`${BASE}/case/${step.video}-${theme}.mp4`}
+            poster={`${BASE}/case/${step.video}-${theme}.jpg`}
             width={step.width}
             height={step.height}
             muted

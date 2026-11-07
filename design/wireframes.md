@@ -1,6 +1,6 @@
 # Wireframes
 
-**As of:** 2026-11-06 · Phase 3 · Live at [/wireframes](https://crm-rethought.vercel.app/wireframes) · [Decision 0009](../decisions/0009-wireframes-in-code.md)
+**As of:** 2026-11-06 · Phase 3 · Live at [/wireframes](https://aaditirokade.com/groundwork/wireframes) · [Decision 0009](../decisions/0009-wireframes-in-code.md)
 
 Grayscale on purpose: this round tests structure and the approve in place pattern. One scenario runs through all three screens: Daniel Orro (account manager, persona 2) prepares for and logs a quarterly review with Fernhill Outfitters. All sample data is made up ([content/sample.ts](../content/sample.ts)).
 

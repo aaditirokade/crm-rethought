@@ -1,6 +1,6 @@
 # Working prototype
 
-**As of:** 2026-11-06 · Phase 4 · Live at [/prototype](https://crm-rethought.vercel.app/prototype) · Built in [Signal](tokens.md) · Scope: the full meeting loop ([decision 0007](../decisions/0007-converge-meeting-loop.md))
+**As of:** 2026-11-06 · Phase 4 · Live at [/prototype](https://aaditirokade.com/groundwork/prototype) · Built in [Signal](tokens.md) · Scope: the full meeting loop ([decision 0007](../decisions/0007-converge-meeting-loop.md))
 
 One scenario, start to finish: Daniel Orro (account manager, persona 2) on Thursday, Nov 12. All data is made up ([content/prototype.ts](../content/prototype.ts)).
 

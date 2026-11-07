@@ -6,6 +6,7 @@ import { ScrollSteps, type Step } from "@/components/case/ScrollSteps";
 import { ChapterRail, type Chapter as RailChapter } from "@/components/case/ChapterRail";
 import { ProblemReel } from "@/components/case/ProblemReel";
 import { ThemeButton } from "@/components/case/ThemeButton";
+import { BASE } from "@/lib/base";
 
 export const metadata: Metadata = {
   title: "Groundwork · CRM, rethought",
@@ -298,13 +299,13 @@ export default function Home() {
             visual={
               <ul className="divide-y divide-[var(--rule)] border-y border-[var(--rule)]">
                 {[
-                  ["Decision records", "37 short records, from the clean room rule to text beside each recording", `${REPO}/tree/main/decisions`],
+                  ["Decision records", "38 short records, from the clean room rule to a home on aaditirokade.com", `${REPO}/tree/main/decisions`],
                   ["Prompt log", "The prompts behind each step, what came back and what I chose", `${REPO}/tree/main/prompts`],
                   ["Research", "Desk research and the competitive read, every claim linked", `${REPO}/tree/main/research`],
                   ["Wireframes", "The grayscale meeting loop before any color", "/wireframes"],
                 ].map(([t, d, href]) => (
                   <li key={t}>
-                    <a href={href} className="group flex items-center justify-between gap-4 py-4">
+                    <a href={href.startsWith("/") ? BASE + href : href} className="group flex items-center justify-between gap-4 py-4">
                       <span>
                         <span className="block font-medium">{t}</span>
                         <span className="block text-small text-ink-2">{d}</span>

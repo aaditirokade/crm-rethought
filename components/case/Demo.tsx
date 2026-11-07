@@ -2,6 +2,7 @@
 
 import { useRef, useState, useSyncExternalStore } from "react";
 import { useTheme } from "../proto/ThemeToggle";
+import { BASE } from "@/lib/base";
 
 /**
  * A short, looping recording of the prototype at 2x, in the theme the page is showing.
@@ -54,8 +55,8 @@ export function Demo({
           <video
             key={theme}
             ref={video}
-            src={`/case/${name}-${theme}.mp4`}
-            poster={`/case/${name}-${theme}.jpg`}
+            src={`${BASE}/case/${name}-${theme}.mp4`}
+            poster={`${BASE}/case/${name}-${theme}.jpg`}
             width={width}
             height={height}
             muted
