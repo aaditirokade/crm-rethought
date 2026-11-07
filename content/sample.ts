@@ -1,6 +1,6 @@
 /**
  * Sample data for the wireframes. Every company, person and number here is made up.
- * The user is Daniel Okoro, an account manager at Larkspur (a made up retail analytics company).
+ * The user is Daniel Orro, an account manager at Larkspur (a made up retail analytics company).
  */
 
 export type Confidence = "High" | "Medium";
@@ -26,7 +26,7 @@ export type Suggestion = {
 
 export type Section = { id: string; title: string; hint?: string; items: Suggestion[] };
 
-export const ME = { name: "Daniel Okoro", role: "Account Manager", company: "Larkspur" };
+export const ME = { name: "Daniel Orro", role: "Account Manager", company: "Larkspur" };
 export const NOW = "Thu, Nov 12 · 9:05 AM";
 
 export const SOURCES: Record<string, Source> = {
@@ -77,7 +77,7 @@ export const SOURCES: Record<string, Source> = {
     kind: "Record",
     label: "Renewal date in the record",
     date: "Jan 25",
-    excerpt: "Renewal on Jan 25, 2027 · 40 stores · owner Daniel Okoro.",
+    excerpt: "Renewal on Jan 25, 2027 · 40 stores · owner Daniel Orro.",
   },
   c0410: {
     id: "c0410",

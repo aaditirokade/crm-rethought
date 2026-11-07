@@ -1,6 +1,6 @@
 /**
  * Sample data for the working prototype. Every company, person and number here is made up.
- * The user is Daniel Okoro, an account manager at Larkspur (a made up retail analytics company).
+ * The user is Daniel Orro, an account manager at Larkspur (a made up retail analytics company).
  */
 
 export type Confidence = "High" | "Medium";
@@ -46,7 +46,7 @@ export type Stage = "Idea" | "Qualified" | "Proposal" | "Committed";
 export type Opp = { id: string; account: string; name: string; stage: Stage; close: string };
 export type InteractionType = "Video" | "Call" | "In person" | "Event" | "Email" | "Ticket";
 
-export const ME = { name: "Daniel Okoro", short: "Daniel", role: "Account Manager", company: "Larkspur" };
+export const ME = { name: "Daniel Orro", short: "Daniel", role: "Account Manager", company: "Larkspur" };
 export const NOW = { day: "Thu, Nov 12", time: "9:05 AM", stamp: "NOV 12" };
 
 export const SOURCES: Record<string, Source> = {
@@ -56,7 +56,7 @@ export const SOURCES: Record<string, Source> = {
   bounce: { id: "bounce", kind: "EMAIL", when: "Nov 3", title: "Auto reply from Lena Ortiz", excerpt: "“I’ve left Fernhill. For anything about Larkspur, please contact Priya Nair.”" },
   sam: { id: "sam", kind: "EMAIL", when: "Nov 6", title: "Sam Reyes to Daniel", excerpt: "“Before Thursday, can you send rough pricing for adding our 12 new stores in the spring?”" },
   promise: { id: "promise", kind: "CALL", when: "Oct 14 18:42", title: "Call with Fernhill, Oct 14 · 18:42", excerpt: "Daniel: “We’ll have the custom markdown report to you by November 1.”" },
-  renewal: { id: "renewal", kind: "RECORD", when: "Renewal", title: "Fernhill record · renewal", excerpt: "Renewal on Jan 25, 2027 · 40 stores · owner Daniel Okoro." },
+  renewal: { id: "renewal", kind: "RECORD", when: "Renewal", title: "Fernhill record · renewal", excerpt: "Renewal on Jan 25, 2027 · 40 stores · owner Daniel Orro." },
   c0410: { id: "c0410", kind: "CALL", when: "04:10", title: "Today’s call · 04:10", excerpt: "Sam: “Priya Nair runs retail ops now. She’ll be your day to day contact.”" },
   c1205: { id: "c1205", kind: "CALL", when: "12:05", title: "Today’s call · 12:05", excerpt: "Sam: “We’re renewing all 40. The 12 new stores, price that separately.”" },
   c1240: { id: "c1240", kind: "CALL", when: "12:40", title: "Today’s call · 12:40", excerpt: "Daniel: “I’ll send pricing for the 12 stores by Monday.”" },
@@ -74,7 +74,7 @@ export const SOURCES: Record<string, Source> = {
   aRecord: { id: "aRecord", kind: "CALENDAR", when: "Dec 1", title: "Calendar · Alder & Finch renewal kickoff", excerpt: "Renewal kickoff with Ruth Calloway, Dec 1, 2:00." },
   aTicket: { id: "aTicket", kind: "TICKET", when: "4877", title: "Ticket 4877 · open since Nov 10", excerpt: "\u201cHoliday markdown alerts fire twice for some stores.\u201d" },
   expo: { id: "expo", kind: "CALENDAR", when: "Nov 10", title: "Calendar · RetailTech Expo, booth duty", excerpt: "Booth 214, 10:00 to 4:00. No recording." },
-  importFile: { id: "importFile", kind: "FILE", when: "214 rows", title: "retailtech-expo-leads.csv", excerpt: "Imported by Daniel Okoro after approving the column mapping and each fix. Booth notes are kept as notes, not facts." },
+  importFile: { id: "importFile", kind: "FILE", when: "214 rows", title: "retailtech-expo-leads.csv", excerpt: "Imported by Daniel Orro after approving the column mapping and each fix. Booth notes are kept as notes, not facts." },
   kUsage: { id: "kUsage", kind: "USAGE", when: "Nov 9", title: "Quarterly usage, Kestrel", excerpt: "Dashboard views up 18% on last quarter; 9 of 11 regional managers active weekly." },
 };
 
@@ -122,13 +122,13 @@ export const ACCOUNTS: Account[] = [
         date: "Oct 14",
         title: "Quarterly call · approved by Daniel",
         type: "Video",
-        ours: "Daniel Okoro",
+        ours: "Daniel Orro",
         with: "Sam Reyes",
         lines: ["Promised a custom markdown report by Nov 1.", "Sam wants store traffic views by region."],
         source: "promise",
       },
-      { date: "Sep 30", title: "Email to Lena Ortiz", type: "Email", ours: "Daniel Okoro", with: "Lena Ortiz", lines: ["Shared the Q4 rollout plan for store dashboards."] },
-      { date: "Sep 24", title: "Weekly check in", type: "Call", ours: "Daniel Okoro", with: "Lena Ortiz", lines: ["Lena asked for a regional view; agreed to scope it."] },
+      { date: "Sep 30", title: "Email to Lena Ortiz", type: "Email", ours: "Daniel Orro", with: "Lena Ortiz", lines: ["Shared the Q4 rollout plan for store dashboards."] },
+      { date: "Sep 24", title: "Weekly check in", type: "Call", ours: "Daniel Orro", with: "Lena Ortiz", lines: ["Lena asked for a regional view; agreed to scope it."] },
       { date: "Oct 7", title: "Training session", type: "Video", ours: "Ana Ruiz (Solutions)", with: "Lena Ortiz", lines: ["Trained 12 store leads on the traffic dashboard."] },
     ],
   },
@@ -149,7 +149,7 @@ export const ACCOUNTS: Account[] = [
       { name: "Omar Haddad", role: "Store Operations" },
       { name: "Omar Haddad", role: "Store Operations (second record)" },
     ],
-    history: [{ date: "Oct 29", title: "Kickoff call · approved by Daniel", type: "Video", ours: "Daniel Okoro", with: "Dana Whitfield", lines: ["SSO needed before full rollout.", "Training for store managers promised by Nov 15."], source: "bwKickoff" }],
+    history: [{ date: "Oct 29", title: "Kickoff call · approved by Daniel", type: "Video", ours: "Daniel Orro", with: "Dana Whitfield", lines: ["SSO needed before full rollout.", "Training for store managers promised by Nov 15."], source: "bwKickoff" }],
   },
   {
     id: "kestrel",
@@ -164,7 +164,7 @@ export const ACCOUNTS: Account[] = [
     lastTouch: "Nov 9",
     nextStep: "Expansion call, Nov 12",
     people: [{ name: "Mei Tanaka", role: "Director of Regional Ops" }],
-    history: [{ date: "Nov 9", title: "Email from Mei Tanaka", type: "Email", ours: "Daniel Okoro", with: "Mei Tanaka", lines: ["Asked about adding Pacific and Mountain regions."], source: "kEmail" }],
+    history: [{ date: "Nov 9", title: "Email from Mei Tanaka", type: "Email", ours: "Daniel Orro", with: "Mei Tanaka", lines: ["Asked about adding Pacific and Mountain regions."], source: "kEmail" }],
   },
   {
     id: "alder",
@@ -180,7 +180,7 @@ export const ACCOUNTS: Account[] = [
     lastTouch: "Nov 4",
     nextStep: "Renewal kickoff, Dec 1",
     people: [{ name: "Ruth Calloway", role: "Head of Planning" }],
-    history: [{ date: "Oct 30", title: "Store visit, Portland flagship", type: "In person", ours: "Ana Ruiz (Solutions)", with: "Ruth Calloway", lines: ["Walked the holiday floor plan; wants markdown alerts by store."] }, { date: "Nov 4", title: "Planning call · approved by Daniel", type: "Call", ours: "Daniel Okoro", with: "Ruth Calloway", lines: ["Happy with weekly reports; wants a holiday view."] }],
+    history: [{ date: "Oct 30", title: "Store visit, Portland flagship", type: "In person", ours: "Ana Ruiz (Solutions)", with: "Ruth Calloway", lines: ["Walked the holiday floor plan; wants markdown alerts by store."] }, { date: "Nov 4", title: "Planning call · approved by Daniel", type: "Call", ours: "Daniel Orro", with: "Ruth Calloway", lines: ["Happy with weekly reports; wants a holiday view."] }],
   },
   {
     id: "harbor",
@@ -195,7 +195,7 @@ export const ACCOUNTS: Account[] = [
     lastTouch: "Oct 22",
     nextStep: "None set",
     people: [{ name: "Theo Marsh", role: "Owner" }],
-    history: [{ date: "Oct 22", title: "Email to Theo Marsh", type: "Email", ours: "Daniel Okoro", with: "Theo Marsh", lines: ["Sent the Q3 summary and renewal proposal; no reply yet."], source: "hEmail" }],
+    history: [{ date: "Oct 22", title: "Email to Theo Marsh", type: "Email", ours: "Daniel Orro", with: "Theo Marsh", lines: ["Sent the Q3 summary and renewal proposal; no reply yet."], source: "hEmail" }],
   },
 ];
 

@@ -15,7 +15,7 @@ export const COLUMNS: { col: string; field: Field; confidence: "High" | "Medium"
   { col: "E-mail", field: "Email", confidence: "High", why: "205 valid addresses, 9 blank." },
   { col: "Date Met", field: "Interaction date", confidence: "Medium", why: "Two date formats in one column; see the fixes below." },
   { col: "Booth Notes", field: "Interaction note", confidence: "Medium", why: "Free text. Kept as a note, never written as a fact on the record." },
-  { col: "Rep", field: "Owner", confidence: "High", why: "Every row says “Daniel O.”, matched to Daniel Okoro." },
+  { col: "Rep", field: "Owner", confidence: "High", why: "Every row says “Daniel O.”, matched to Daniel Orro." },
 ];
 
 export type Row = { name: string; company: string; title: string; email: string; date: string; note: string; rep: string; account?: string };

@@ -44,7 +44,7 @@ export function AccountView({ id }: { id: string }) {
         title={a.name}
         sub={
           <>
-            {a.segment} · {a.stores} stores · owner Daniel Okoro
+            {a.segment} · {a.stores} stores · owner Daniel Orro
           </>
         }
       />

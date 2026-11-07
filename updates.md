@@ -39,3 +39,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Review: entries as cards in two or three columns, drafts deepen and lift on hover (decision 0024)
 - Accounts: portfolio map shorter (340 high, never wider than 760) and beside Lists from 1280px, so the table starts above the fold
 - Accounts: portfolio map back up to a middle size (380 high, up to 920 wide, 1.75 to 1 beside Lists); table still starts above the fold at 1440x900
+- Persona renamed: Daniel Okoro is now Daniel Orro across the app, content and research

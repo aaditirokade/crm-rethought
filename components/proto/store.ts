@@ -337,7 +337,7 @@ export function liveAccount(s: State, id: string): LiveAccount | undefined {
         date: m ? "Nov 12" : (ev?.day.replace(/^\w+, /, "") ?? "Nov 12"),
         title: m ? `${m.title} · approved by Daniel` : `${ev?.title ?? "Note"} · logged from your notes`,
         type: m?.type ?? ev?.type ?? "Call",
-        ours: "Daniel Okoro",
+        ours: "Daniel Orro",
         with: m ? m.attendees.join(", ") : ev?.with,
         highStakes: ev ? s.notes[ev.id]?.highStakes : m?.highStakes,
         lines: [],
@@ -358,7 +358,7 @@ export function liveAccount(s: State, id: string): LiveAccount | undefined {
         date: "Nov 10",
         title: "RetailTech Expo leads · imported by Daniel",
         type: "Event",
-        ours: "Daniel Okoro",
+        ours: "Daniel Orro",
         with: [...new Set(rows.map((r) => r.name))].join(", "),
         lines: rows.filter((r) => r.note).map((r) => ({ text: `Note from ${r.name}: \u201c${r.note}\u201d`, at: s.imp.doneAt, sources: ["importFile"] })),
       });

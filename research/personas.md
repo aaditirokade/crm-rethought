@@ -15,7 +15,7 @@ All five work at **Larkspur**, a made up B2B SaaS company (about 600 people) tha
 - **Would not trust AI to:** change a deal stage or a close date without asking.
 - **Quote (SIMULATED):** "I sell all day and do data entry all night."
 
-## 2. Daniel Okoro · Account Manager, renewals and expansion
+## 2. Daniel Orro · Account Manager, renewals and expansion
 
 - **His week:** 40 existing accounts, quarterly business reviews, renewal calls 90 days out.
 - **Goal:** no surprise churn; spot expansion early.

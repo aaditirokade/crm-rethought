@@ -1,8 +1,8 @@
-# Interview 02 · Daniel Okoro, Account Manager · SIMULATED
+# Interview 02 · Daniel Orro, Account Manager · SIMULATED
 
 > **SIMULATED.** Daniel is not a real person and this interview did not happen. His answers are written from the public evidence in [desk-research.md](../desk-research.md); each answer names the finding it rests on.
 
-**Persona:** [personas.md](../personas.md#2-daniel-okoro--account-manager-renewals-and-expansion) · **Company:** Larkspur (made up) · **Guide:** [interview-guide.md](../interview-guide.md)
+**Persona:** [personas.md](../personas.md#2-daniel-orro--account-manager-renewals-and-expansion) · **Company:** Larkspur (made up) · **Guide:** [interview-guide.md](../interview-guide.md)
 
 **2. Yesterday.** "Two renewal calls and a quarterly review. Most of the morning was building the review deck from five places: the CRM, support tickets, usage data, my email, a spreadsheet." (F4)
 
