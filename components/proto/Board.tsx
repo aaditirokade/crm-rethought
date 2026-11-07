@@ -5,6 +5,7 @@ import { PULSE } from "@/content/ask";
 import { SIGNALS } from "@/content/more";
 import { account, forMeeting, MEETINGS } from "@/content/prototype";
 import { Health } from "./bits";
+import { Num } from "./Num";
 import { SourceChip } from "./Source";
 import { entryOf, liveAccount, outreach, pending, type State } from "./store";
 
@@ -131,8 +132,8 @@ function Spark({ values, label }: { values: number[]; label: string }) {
   const d = values.map((v, i) => `${i ? "L" : "M"}${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join("");
   return (
     <svg viewBox={`0 0 ${w} ${h}`} className="h-9 w-full" role="img" aria-label={label} preserveAspectRatio="none">
-      <path d={d} fill="none" stroke="var(--ink-2)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
-      <circle cx={x(values.length - 1)} cy={y(values.at(-1) ?? 0)} r="2.5" fill="var(--ink)" />
+      <path d={d} pathLength={1} className="spark-draw" fill="none" stroke="var(--ink-2)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+      <circle className="spark-dot" cx={x(values.length - 1)} cy={y(values.at(-1) ?? 0)} r="2.5" fill="var(--ink)" />
     </svg>
   );
 }
@@ -190,7 +191,7 @@ export function PulseTiles({ s, focus }: { s: State; focus: string[] }) {
                 <p className="flex justify-between font-mono text-meta tracking-wide text-ink-2">
                   <span>WEEKLY DASHBOARD VIEWS</span>
                   <span className={isNew ? "text-ink-2" : change <= -20 ? "text-risk" : change >= 10 ? "text-good" : "text-ink-2"}>
-                    {isNew ? "NEW" : `${change >= 0 ? "▲" : "▼"} ${Math.abs(change)}%`}
+                    {isNew ? "NEW" : <>{change >= 0 ? "▲" : "▼"} <Num value={Math.abs(change)} suffix="%" /></>}
                   </span>
                 </p>
                 <Spark values={series} label={`Weekly dashboard views, 8 weeks: ${trend}. Latest week ${last}.`} />
@@ -199,10 +200,10 @@ export function PulseTiles({ s, focus }: { s: State; focus: string[] }) {
               <div className="mt-2">
                 <p className="flex justify-between font-mono text-meta tracking-wide text-ink-2">
                   <span>RENEWS {a.renewal.toUpperCase()}</span>
-                  <span className={days <= 90 ? "text-ink" : ""}>{days} DAYS</span>
+                  <span className={days <= 90 ? "text-ink" : ""}><Num value={days} /> DAYS</span>
                 </p>
                 <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-surface-2" aria-hidden="true">
-                  <div className="h-full rounded-full bg-ink-2" style={{ width: `${Math.max(4, 100 - (days / 365) * 100)}%` }} />
+                  <div className="bar-grow h-full rounded-full bg-ink-2" style={{ width: `${Math.max(4, 100 - (days / 365) * 100)}%` }} />
                 </div>
               </div>
 

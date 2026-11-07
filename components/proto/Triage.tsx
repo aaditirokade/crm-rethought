@@ -154,7 +154,10 @@ export function Triage() {
         </div>
       ) : (
         <div className="triage-card mt-5 rounded-2xl border border-line p-6 text-center">
-          <p className="text-h2 font-semibold">Inbox zero</p>
+          <p className="relative text-h2 font-semibold">
+            <span className="burst" aria-hidden="true">{Array.from({ length: 12 }, (_, i) => <span key={i} style={{ "--i": i } as React.CSSProperties} />)}</span>
+            Inbox zero
+          </p>
           <p className="mt-1 text-ink-2">
             You decided {done} {done === 1 ? "line" : "lines"}. Approved log lines still need Save below; record fixes and
             opportunity changes are already saved.

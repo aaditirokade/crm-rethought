@@ -21,3 +21,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0015 | [A floating dock instead of a sidebar](0015-floating-dock.md) | 2026-11-06 |
 | 0016 | [A mobile app for the minutes between meetings](0016-mobile-app.md) | 2026-11-06 |
 | 0017 | [Canvas: space instead of boxes](0017-canvas.md) | 2026-11-06 |
+| 0018 | [Motion that explains](0018-motion.md) | 2026-11-06 |

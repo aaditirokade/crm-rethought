@@ -72,7 +72,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
                 <span className="dock-icon">
                   {st.icon}
                   {st.count ? (
-                    <span className="dock-badge" aria-hidden="true">
+                    <span key={st.count} className="dock-badge" aria-hidden="true">
                       {st.count}
                     </span>
                   ) : null}
@@ -111,6 +111,12 @@ export function Shell({ children }: { children: React.ReactNode }) {
       <main id="main" tabIndex={-1} className="mx-auto max-w-6xl px-4 pt-6 pb-32 outline-none lg:pb-12 lg:pl-32 lg:pr-8">
         {children}
       </main>
+      {s.message && s.seq ? (
+        <div key={s.seq} className="toast" aria-hidden="true">
+          <span className="toast-dot" />
+          {s.message}
+        </div>
+      ) : null}
       <p className="sr-only" aria-live="polite">
         {s.message}
       </p>

@@ -960,3 +960,268 @@ button.sig-source:hover b {
   background: var(--line) !important;
 }
 
+
+/* Micro interactions (decision 0018). All of it switches off under reduced motion. */
+@property --n {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+.num-roll {
+  --n: var(--to);
+  counter-reset: n var(--n);
+  animation: num-roll 900ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  font-variant-numeric: tabular-nums;
+}
+.num-roll::after {
+  content: counter(n);
+}
+@keyframes num-roll {
+  from {
+    --n: 0;
+  }
+}
+.page-in > * > * {
+  animation: rise 420ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.page-in > * > *:nth-child(2) {
+  animation-delay: 50ms;
+}
+.page-in > * > *:nth-child(3) {
+  animation-delay: 100ms;
+}
+.page-in > * > *:nth-child(4) {
+  animation-delay: 150ms;
+}
+.page-in > * > *:nth-child(5) {
+  animation-delay: 200ms;
+}
+.page-in > * > *:nth-child(n + 6) {
+  animation-delay: 250ms;
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+.screen-in {
+  animation: rise 300ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.toast {
+  position: fixed;
+  z-index: 60;
+  left: 50%;
+  bottom: 5.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: calc(100vw - 2rem);
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--bg);
+  padding: 0.55rem 1rem;
+  font-size: 0.84375rem;
+  font-weight: 500;
+  box-shadow: var(--shadow-lift);
+  pointer-events: none;
+  animation: toast 2600ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.toast-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  flex: none;
+  border-radius: 999px;
+  background: var(--accent);
+}
+@media (min-width: 1024px) {
+  .toast {
+    bottom: 1.5rem;
+  }
+}
+@keyframes toast {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 12px) scale(0.96);
+  }
+  10%,
+  80% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 6px);
+  }
+}
+.gate-row {
+  transition: background 420ms ease, box-shadow 420ms ease;
+}
+.gate-row.is-decided .sig-approved-tag {
+  animation: stamp 420ms cubic-bezier(0.3, 1.4, 0.5, 1) both;
+}
+@keyframes stamp {
+  from {
+    opacity: 0;
+    transform: scale(0.6) rotate(-6deg);
+  }
+}
+.row-out {
+  animation: row-out 320ms ease both;
+}
+@keyframes row-out {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+}
+.dock-badge {
+  animation: badge-pop 360ms cubic-bezier(0.3, 1.6, 0.5, 1) both;
+}
+@keyframes badge-pop {
+  from {
+    transform: scale(0.4);
+  }
+}
+.dock-btn[aria-current="page"] .dock-icon {
+  animation: dock-pick 320ms cubic-bezier(0.3, 1.5, 0.5, 1);
+}
+@keyframes dock-pick {
+  from {
+    transform: scale(0.85);
+  }
+}
+.board-item.proto-card {
+  transition: opacity 300ms ease, box-shadow 220ms ease, transform 220ms ease;
+}
+.board-item.proto-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+}
+button.sig-source:hover {
+  transform: translateY(-1px);
+}
+.spark-draw {
+  stroke-dasharray: 1;
+  animation: draw 1100ms cubic-bezier(0.3, 0.6, 0.2, 1) both;
+}
+.spark-dot {
+  animation: fade-in 300ms ease 900ms both;
+}
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+.bar-grow {
+  transform-origin: left;
+  animation: bar-grow 800ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes bar-grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+.bubble-in {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: bubble-in 600ms cubic-bezier(0.3, 1.4, 0.5, 1) both;
+}
+@keyframes bubble-in {
+  from {
+    transform: scale(0);
+  }
+}
+.proto-drawer[open] {
+  animation: drawer-in 280ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.proto-drawer[open]::backdrop {
+  animation: fade-in 280ms ease;
+}
+@keyframes drawer-in {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+}
+.burst {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  pointer-events: none;
+}
+.burst > span {
+  --a: calc(var(--i) * 30deg);
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--accent);
+  animation: burst 900ms cubic-bezier(0.1, 0.8, 0.3, 1) both;
+}
+.burst > span:nth-child(3n) {
+  background: var(--good);
+}
+.burst > span:nth-child(4n) {
+  background: var(--warn);
+}
+@keyframes burst {
+  from {
+    transform: rotate(var(--a)) translateX(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: rotate(var(--a)) translateX(90px) scale(0.3);
+    opacity: 0;
+  }
+}
+@keyframes toast-still {
+  0%,
+  85% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .num-roll,
+  .page-in > * > *,
+  .screen-in,
+  .gate-row.is-decided .sig-approved-tag,
+  .row-out,
+  .dock-badge,
+  .dock-btn[aria-current="page"] .dock-icon,
+  .spark-draw,
+  .spark-dot,
+  .bar-grow,
+  .bubble-in,
+  .proto-drawer[open],
+  .proto-drawer[open]::backdrop,
+  .burst > span {
+    animation: none;
+  }
+  .toast {
+    animation: toast-still 2600ms linear both;
+  }
+  .gate-row,
+  .board-item.proto-card,
+  .sig-btn,
+  button.sig-source {
+    transition: none;
+  }
+  .board-item.proto-card:hover,
+  button.sig-source:hover {
+    transform: none;
+  }
+}

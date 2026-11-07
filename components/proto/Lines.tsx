@@ -12,7 +12,7 @@ export function BriefLine({ sug }: { sug: Suggestion }) {
   const pinned = s.pinned.includes(sug.id);
   if (e.status === "dismissed") {
     return (
-      <li className="flex items-center justify-between gap-4 py-3 text-small text-ink-2">
+      <li className="row-out flex items-center justify-between gap-4 py-3 text-small text-ink-2">
         <span>Dismissed: {sug.text}</span>
         <button type="button" className="sig-btn shrink-0" onClick={() => actions.undo(sug.id)}>
           Undo
@@ -105,7 +105,7 @@ export function GateLine({ sug }: { sug: Suggestion }) {
 
   if (e.status === "dismissed") {
     return (
-      <li className="flex items-center justify-between gap-4 px-3 py-3 text-small text-ink-2">
+      <li className="row-out flex items-center justify-between gap-4 px-3 py-3 text-small text-ink-2">
         <span>Dismissed: {text}</span>
         <button type="button" className="sig-btn shrink-0" onClick={() => actions.undo(sug.id)}>
           Undo
@@ -115,7 +115,7 @@ export function GateLine({ sug }: { sug: Suggestion }) {
   }
 
   return (
-    <li className={`@container rounded-xl px-3 py-3 ${e.status === "pending" ? "sig-row-draft" : ""}`}>
+    <li className={`gate-row @container rounded-xl px-3 py-3 ${e.status === "pending" ? "sig-row-draft" : "is-decided"}`}>
       {editing ? (
         <form
           onSubmit={(ev) => {

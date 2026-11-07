@@ -74,7 +74,7 @@ export function PortfolioMap({ accounts }: { accounts: LiveAccount[] }) {
           const label = `${p.a.name}: ${p.a.health}, renews in ${p.days} days, usage ${p.t.isNew ? "new and ramping" : `${p.t.pct >= 0 ? "up" : "down"} ${Math.abs(p.t.pct)}%`}, ${p.a.stores} stores`;
           return (
             <Link key={p.a.id} href={`/prototype/accounts/${p.a.id}`} aria-label={label} className="map-dot">
-              <circle cx={p.x} cy={p.y} r={p.r} fill={tone(p.a.health)} fillOpacity="0.18" stroke={tone(p.a.health)} strokeWidth="1.5" />
+              <circle className="bubble-in" style={{ animationDelay: `${pts.indexOf(p) * 90}ms` }} cx={p.x} cy={p.y} r={p.r} fill={tone(p.a.health)} fillOpacity="0.18" stroke={tone(p.a.health)} strokeWidth="1.5" />
               <text x={right ? p.x + p.r + 6 : p.x - p.r - 6} y={p.y - 2} textAnchor={right ? "start" : "end"} fontSize="12.5" fontWeight="600" fill="var(--ink)">
                 {p.a.name}
               </text>

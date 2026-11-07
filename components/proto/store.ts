@@ -32,6 +32,8 @@ export type State = {
   pinned: string[];
   clock: number;
   message: string;
+  /** Bumps with every message, so the visible toast replays even when the words repeat. */
+  seq: number;
   custom: Suggestion[];
   notes: Record<string, { text: string; highStakes: boolean }>;
   order: string[];
@@ -44,7 +46,7 @@ export type State = {
 };
 
 const KEY = "crm-rethought-prototype-v2";
-const INITIAL: State = { entries: {}, pinned: [], clock: 0, message: "", custom: [], notes: {}, order: [], snoozed: [], lists: [], moves: {}, imp: { mapping: {}, mappingOk: false, rules: {} } };
+const INITIAL: State = { entries: {}, pinned: [], clock: 0, message: "", seq: 0, custom: [], notes: {}, order: [], snoozed: [], lists: [], moves: {}, imp: { mapping: {}, mappingOk: false, rules: {} } };
 
 let state: State = INITIAL;
 let loaded = false;
@@ -62,9 +64,9 @@ function load() {
 }
 
 function commit(next: State) {
-  state = next;
+  state = next.message ? { ...next, seq: (state.seq ?? 0) + 1 } : next;
   try {
-    window.localStorage.setItem(KEY, JSON.stringify({ ...next, message: "" }));
+    window.localStorage.setItem(KEY, JSON.stringify({ ...state, message: "" }));
   } catch {
     /* ignore */
   }

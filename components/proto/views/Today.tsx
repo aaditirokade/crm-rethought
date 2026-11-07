@@ -7,6 +7,7 @@ import { account, MEETINGS, NOW } from "@/content/prototype";
 import { Ask } from "../Ask";
 import { DayStrip, PulseTiles } from "../Board";
 import { groupByOrigin } from "../groups";
+import { Num } from "../Num";
 import { SourceChip } from "../Source";
 import { allSugs, entryOf, me, pending, saved, tasks, useProto } from "../store";
 
@@ -26,7 +27,13 @@ export function Today() {
       </p>
       <h1 className="mt-1 text-h1 font-semibold">Good morning, {me.short}</h1>
       <p className="mt-1 text-ink-2">
-        {waiting.length ? `${waiting.length} lines are waiting for your approval. ` : "Nothing is waiting for your approval. "}
+        {waiting.length ? (
+          <>
+            <Num value={waiting.length} /> lines are waiting for your approval.{" "}
+          </>
+        ) : (
+          "Nothing is waiting for your approval. "
+        )}
         Fernhill needs you most this week.
       </p>
 

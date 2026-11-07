@@ -172,7 +172,7 @@ export function InteractionStrip({ a }: { a: LiveAccount }) {
             </text>
           </g>
         ))}
-        <path d={d} fill="none" stroke="var(--accent)" strokeWidth="2" />
+        <path d={d} pathLength={1} className="spark-draw" fill="none" stroke="var(--accent)" strokeWidth="2" />
         <line x1={L} x2={W - R} y1={190} y2={190} stroke="var(--line)" />
         {touches.map((t) => (
           <g key={t.key}>

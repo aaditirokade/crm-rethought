@@ -29,17 +29,19 @@ export function MobileApp() {
   return (
     <div className="sig mob relative flex h-full flex-col bg-bg text-ink">
       <div className="mob-scroll flex-1 overflow-y-auto px-4 pb-28 pt-4">
+        <div key={screen} className="screen-in">
         {screen === "home" ? <Home go={setScreen} waiting={queue.length} /> : null}
         {screen === "brief" ? <Brief back={() => setScreen("home")} /> : null}
         {screen === "approve" ? <Approve /> : null}
         {screen === "ask" ? <AskScreen /> : null}
         {screen === "note" ? <VoiceNote /> : null}
+        </div>
       </div>
       <nav aria-label="App" className="mob-tabs">
         {tabs.map((t) => (
           <button key={t.id} type="button" aria-current={screen === t.id || (t.id === "home" && screen === "brief") ? "page" : undefined} onClick={() => setScreen(t.id)}>
             <span className="mob-tab-dot" aria-hidden="true">
-              {t.count ? <span className="dock-badge">{t.count}</span> : null}
+              {t.count ? <span key={t.count} className="dock-badge">{t.count}</span> : null}
             </span>
             {t.label}
             {t.count ? <span className="sr-only">, {t.count} waiting</span> : null}
@@ -251,7 +253,10 @@ function Approve() {
         </>
       ) : (
         <div className="mt-6 rounded-3xl border border-line p-6 text-center">
-          <p className="text-h2 font-semibold">All clear</p>
+          <p className="relative text-h2 font-semibold">
+            <span className="burst" aria-hidden="true">{Array.from({ length: 12 }, (_, i) => <span key={i} style={{ "--i": i } as React.CSSProperties} />)}</span>
+            All clear
+          </p>
           <p className="mt-1 text-ink-2">Every draft has been approved or dismissed.</p>
         </div>
       )}
