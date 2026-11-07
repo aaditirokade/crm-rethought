@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
+import { THEME_SCRIPT } from "@/components/proto/ThemeToggle";
 
 /* Canvas type: Geist, one friendly face for everything (decision 0017). */
 const ui = Geist({ subsets: ["latin"], variable: "--font-ui", display: "swap" });
@@ -13,7 +14,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={ui.variable}>
+    <html lang="en" className={ui.variable} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+      </head>
       <body className="min-h-svh antialiased">{children}</body>
     </html>
   );

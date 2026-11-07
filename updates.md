@@ -32,3 +32,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Daylight palette: cream and sand, cocoa ink, periwinkle for the AI and charts, dusk indigo dark mode (decision 0020)
 - Health as soft pastel pills: mint, butter and blush washes with AA text in both modes (decision 0020)
 - Darker night mode: deep warm charcoal instead of indigo, teal charts so only AI material is violet (decision 0020)
+- Light and dark switch in the dock: system default, remembered choice, no flash on load (decision 0021)

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IconAccounts, IconImport, IconPhone, IconPipeline, IconReset, IconReview, IconToday } from "./Icons";
 import { actions, allSugs, entryOf, me, pending, useProto } from "./store";
+import { ThemeToggle } from "./ThemeToggle";
 
 /**
  * Navigation as a floating dock: the day's work as steps (prep, know, pursue, decide, import).
@@ -92,6 +93,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
           ))}
         </ol>
         <div className="dock-tools">
+          <ThemeToggle />
           <Link href="/mobile" className="dock-tool group" aria-label="Open the mobile app">
             <IconPhone />
             <span className="dock-tip" aria-hidden="true">

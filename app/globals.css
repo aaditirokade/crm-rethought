@@ -32,7 +32,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #121211; /* deep warm charcoal */
     --surface: #1b1b1a;
     --surface-2: #242422;
@@ -1347,7 +1347,7 @@ li.proto-card:focus-within {
   --risk-wash: #fbe4df;
 }
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --good-wash: #1e3127;
     --warn-wash: #352d1d;
     --risk-wash: #3a2422;
@@ -1372,14 +1372,56 @@ li.proto-card:focus-within {
 
 /* Night: no violet glow, just a faint warm light at the top, and a quieter tint on Ask. */
 @media (prefers-color-scheme: dark) {
-  .sig {
+  :root:not([data-theme="light"]) .sig {
     background:
       radial-gradient(70rem 30rem at 85% -10%, color-mix(in srgb, #f2b880 6%, transparent), transparent 70%),
       var(--bg);
   }
-  .ask-wrap.proto-card {
+  :root:not([data-theme="light"]) .ask-wrap.proto-card {
     background:
       radial-gradient(120% 160% at 0% 0%, color-mix(in srgb, var(--accent) 7%, transparent), transparent 60%),
       var(--surface);
   }
+}
+
+/* The theme switch in the dock: a chosen theme wins over the system setting. */
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+:root[data-theme="dark"] {
+  --bg: #121211; /* deep warm charcoal */
+  --surface: #1b1b1a;
+  --surface-2: #242422;
+  --ink: #f3efe7; /* cream, softer than white; 13.4:1 or more */
+  --ink-2: #b4ada2; /* 6.9:1 or more */
+  --line: #2c2b29;
+  --line-strong: #7d776d; /* 3.4:1 or more */
+  --accent: #aeb6ff; /* 6.7:1 or more */
+  --accent-hover: #c6ccff;
+  --accent-ink: #1a1c3a; /* 8.6:1 on accent */
+  --draft: #23242e;
+  --data: #7fc4d4; /* soft teal, so charts don't read as the AI */
+  --good: #8ad9ae;
+  --warn: #f2c879;
+  --risk: #ff9e92;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.35), 0 10px 30px -12px rgb(0 0 0 / 0.6);
+  --shadow-lift: 0 2px 4px rgb(0 0 0 / 0.4), 0 18px 40px -16px rgb(0 0 0 / 0.7);
+}
+:root[data-theme="dark"] {
+  --good-wash: #1e3127;
+  --warn-wash: #352d1d;
+  --risk-wash: #3a2422;
+}
+:root[data-theme="dark"] .sig {
+  background:
+    radial-gradient(70rem 30rem at 85% -10%, color-mix(in srgb, #f2b880 6%, transparent), transparent 70%),
+    var(--bg);
+}
+:root[data-theme="dark"] .ask-wrap.proto-card {
+  background:
+    radial-gradient(120% 160% at 0% 0%, color-mix(in srgb, var(--accent) 7%, transparent), transparent 60%),
+    var(--surface);
 }
