@@ -1,12 +1,64 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Triage } from "../Triage";
 import { PageHead } from "../bits";
 import { groupByOrigin } from "../groups";
 import { GateLine } from "../Lines";
 import { actions, allSugs, entryOf, isGated, useProto } from "../store";
+
+/**
+ * One group's cards as a row that scrolls sideways (decision 0046): cards snap into place,
+ * the arrows page by a screenful, and an edge fades out while more cards wait past it.
+ * Trackpads, touch and Shift with the wheel scroll it too; Tab moves through each card's buttons.
+ */
+function CardRail({ label, count, children }: { label: string; count: number; children: React.ReactNode }) {
+  const rail = useRef<HTMLUListElement>(null);
+  const [edge, setEdge] = useState({ start: true, end: true });
+  useEffect(() => {
+    const el = rail.current;
+    if (!el) return;
+    const update = () => setEdge({ start: el.scrollLeft <= 4, end: el.scrollLeft + el.clientWidth >= el.scrollWidth - 4 });
+    update();
+    el.addEventListener("scroll", update, { passive: true });
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => {
+      el.removeEventListener("scroll", update);
+      ro.disconnect();
+    };
+  }, [count]);
+  const page = (dir: 1 | -1) => {
+    const el = rail.current;
+    if (!el) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollBy({ left: dir * el.clientWidth * 0.9, behavior: reduce ? "auto" : "smooth" });
+  };
+  const scrolls = !(edge.start && edge.end);
+  return (
+    <div className="proto-card mt-3 p-3">
+      <div className="flex min-h-9 items-center justify-between gap-3 px-1">
+        <p className="font-mono text-meta tracking-wide text-ink-2">
+          {count} {count === 1 ? "CARD" : "CARDS"}
+        </p>
+        {scrolls ? (
+          <div className="flex gap-1.5">
+            <button type="button" className="sig-btn icon-act" aria-label={`Earlier cards, ${label}`} disabled={edge.start} onClick={() => page(-1)}>
+              <span aria-hidden="true">{"←"}</span>
+            </button>
+            <button type="button" className="sig-btn icon-act" aria-label={`More cards, ${label}`} disabled={edge.end} onClick={() => page(1)}>
+              <span aria-hidden="true">{"→"}</span>
+            </button>
+          </div>
+        ) : null}
+      </div>
+      <ul ref={rail} className={`card-rail mt-2 ${edge.start ? "" : "fade-start"} ${edge.end ? "" : "fade-end"}`}>
+        {children}
+      </ul>
+    </div>
+  );
+}
 
 export function Review() {
   const s = useProto();
@@ -46,11 +98,11 @@ export function Review() {
                   Open in context
                 </Link>
               </p>
-              <ul className="proto-card mt-3 grid items-start gap-3 pt-3 md:grid-cols-2 xl:grid-cols-3">
+              <CardRail label={origin.label} count={items.length}>
                 {items.map((x) => (
                   <GateLine key={x.id} sug={x} icons />
                 ))}
-              </ul>
+              </CardRail>
             </section>
           ))}
         </div>

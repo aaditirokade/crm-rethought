@@ -49,3 +49,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0043 | [Icon actions on Review's tiles](0043-review-icon-actions.md) | 2026-11-07 |
 | 0044 | [The dock as circles](0044-dock-as-circles.md) | 2026-11-07 |
 | 0045 | [Ask's four parts, pictured](0045-ask-pictured.md) | 2026-11-07 |
+| 0046 | [Review's cards in a row that scrolls sideways](0046-review-cards-in-a-row.md) | 2026-11-07 |
