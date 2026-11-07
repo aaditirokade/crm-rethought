@@ -100,7 +100,7 @@ const WALKTHROUGH: Step[] = [
     video: "review",
     width: 1520,
     height: 960,
-    alt: "Review: a person opens the source of a draft line, sees the email it came from, closes it, approves a record fix that saves right away, approves a log line, then saves it to the record.",
+    alt: "Review: a person points at the check icon and its Approve label slides out, approves a record fix that saves right away, approves a log line, moves the row of cards along with the arrow, then saves the approved line to the record.",
   },
   {
     title: "Say the list you want",
@@ -294,7 +294,7 @@ export default function Home() {
             visual={
               <ul className="divide-y divide-[var(--rule)] border-y border-[var(--rule)]">
                 {[
-                  ["Decision records", "46 short records, from the clean room rule to Review's cards in a row", `${REPO}/tree/main/decisions`],
+                  ["Decision records", "47 short records, from the clean room rule to the new Review recording", `${REPO}/tree/main/decisions`],
                   ["Prompt log", "The prompts behind each step, what came back and what I chose", `${REPO}/tree/main/prompts`],
                   ["Research", "Desk research and the competitive read, every claim linked", `${REPO}/tree/main/research`],
                   ["Wireframes", "The grayscale meeting loop before any color", "/wireframes"],
