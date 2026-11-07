@@ -35,3 +35,5 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0029 | [The colors as tiles](0029-color-tiles.md) | 2026-11-07 |
 | 0030 | [Try it lines up with the chapter split](0030-try-it-on-the-gap.md) | 2026-11-07 |
 | 0031 | [The tabs flow like one page](0031-tabs-flow-like-one-page.md) | 2026-11-07 |
+| 0032 | [The phone recording without a device edge](0032-bare-phone-recording.md) | 2026-11-07 |
+| 0033 | [Slender account charts](0033-slender-account-charts.md) | 2026-11-07 |

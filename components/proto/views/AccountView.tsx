@@ -74,7 +74,7 @@ export function AccountView({ id }: { id: string }) {
         </p>
       ) : null}
 
-      <div className="mt-6 grid gap-6 2xl:grid-cols-2">
+      <div className="mt-6 grid gap-6 xl:grid-cols-2">
         <RelationshipWeb a={a} />
         <InteractionStrip a={a} />
       </div>
