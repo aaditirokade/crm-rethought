@@ -18,7 +18,7 @@
   --accent-hover: #3d41b3;
   --accent-ink: #ffffff; /* 6.4:1 on accent */
   --draft: #edf1fc; /* periwinkle wash behind lines the AI drafted */
-  --data: #7d8be0; /* charts: sparklines, bars, the day strip; 3:1 on the page */
+  --data: #4f97a8; /* charts: sparklines, bars, the day strip, in soft teal so they don't read as the AI; 3.2:1 on the page */
   --good: #2b7550; /* 4.9:1 or more */
   --warn: #8a5a00; /* 5.1:1 or more */
   --risk: #b2443a; /* 4.8:1 or more */
@@ -33,23 +33,23 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #1f1e2c; /* dusk: deep indigo instead of black */
-    --surface: #282738;
-    --surface-2: #302f43;
-    --ink: #f6f1e7; /* cream; 11.5:1 or more */
-    --ink-2: #bcb5c6; /* 6.5:1 or more */
-    --line: #353449;
-    --line-strong: #807b96; /* 3.2:1 or more */
+    --bg: #121211; /* deep warm charcoal */
+    --surface: #1b1b1a;
+    --surface-2: #242422;
+    --ink: #f3efe7; /* cream, softer than white; 13.4:1 or more */
+    --ink-2: #b4ada2; /* 6.9:1 or more */
+    --line: #2c2b29;
+    --line-strong: #7d776d; /* 3.4:1 or more */
     --accent: #aeb6ff; /* 6.7:1 or more */
     --accent-hover: #c6ccff;
     --accent-ink: #1a1c3a; /* 8.6:1 on accent */
-    --draft: #2b2f4f;
-    --data: #97a3f2;
+    --draft: #23242e;
+    --data: #7fc4d4; /* soft teal, so charts don't read as the AI */
     --good: #8ad9ae;
     --warn: #f2c879;
     --risk: #ff9e92;
-    --shadow: 0 1px 2px rgb(10 9 25 / 0.3), 0 10px 30px -12px rgb(10 9 25 / 0.55);
-    --shadow-lift: 0 2px 4px rgb(10 9 25 / 0.35), 0 18px 40px -16px rgb(10 9 25 / 0.65);
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.35), 0 10px 30px -12px rgb(0 0 0 / 0.6);
+    --shadow-lift: 0 2px 4px rgb(0 0 0 / 0.4), 0 18px 40px -16px rgb(0 0 0 / 0.7);
   }
 }
 
@@ -1348,9 +1348,9 @@ li.proto-card:focus-within {
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --good-wash: #25393a;
-    --warn-wash: #3d3527;
-    --risk-wash: #41293a;
+    --good-wash: #1e3127;
+    --warn-wash: #352d1d;
+    --risk-wash: #3a2422;
   }
 }
 .health-pill {
@@ -1368,4 +1368,18 @@ li.proto-card:focus-within {
 }
 .health-pill.is-risk {
   background: var(--risk-wash);
+}
+
+/* Night: no violet glow, just a faint warm light at the top, and a quieter tint on Ask. */
+@media (prefers-color-scheme: dark) {
+  .sig {
+    background:
+      radial-gradient(70rem 30rem at 85% -10%, color-mix(in srgb, #f2b880 6%, transparent), transparent 70%),
+      var(--bg);
+  }
+  .ask-wrap.proto-card {
+    background:
+      radial-gradient(120% 160% at 0% 0%, color-mix(in srgb, var(--accent) 7%, transparent), transparent 60%),
+      var(--surface);
+  }
 }

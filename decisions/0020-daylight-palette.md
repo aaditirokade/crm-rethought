@@ -18,3 +18,5 @@ Account health reads as a soft pastel pill (mint for healthy, butter for needs a
 **Why:** pure black text and a near black night mode made the tool feel harsh. Cream, cocoa and periwinkle read as calm and friendly while keeping the AI's color distinct from everything else.
 
 **Checks:** every text color passes AA on bg, surface, surface-2 and draft in both modes (table at /tokens); axe clean on all prototype pages, /mobile and /tokens in light and dark.
+
+**Revised the same day:** at night the indigo background and periwinkle charts made everything read violet. Dark mode is now a deep warm charcoal (#121211) with cream text, charts use a soft teal in both modes (#4f97a8 / #7fc4d4) so only AI material is violet, and the night page drops the violet glow. Checks repeated: AA on every background, axe clean in both modes.
