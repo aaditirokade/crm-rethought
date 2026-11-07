@@ -138,8 +138,8 @@ export default function Home() {
           <div className="min-w-0 lg:col-span-7">
             <Demo
               name="ask"
-              width={768}
-              height={500}
+              width={1520}
+              height={960}
               alt="Ask about any account: a person picks “Why is Fernhill slipping?”, the AI reads emails, tickets, the last call and usage, then answers with a source on every claim, three numbers and a suggested next move."
             />
           </div>
@@ -225,8 +225,8 @@ export default function Home() {
             visual={
               <Demo
                 name="review"
-                width={768}
-                height={500}
+                width={1520}
+                height={960}
                 alt="Review: a person opens the source of a draft line, sees the email it came from, closes it, approves a record fix that saves right away, approves a log line, then saves it to the record."
               />
             }
@@ -248,8 +248,8 @@ export default function Home() {
             visual={
               <Demo
                 name="lists"
-                width={768}
-                height={500}
+                width={1520}
+                height={960}
                 alt="Lists: a person types “quiet for 2 weeks with more than 10 stores”, the AI shows how it understood it as two filter chips with a reason beside each account, and removing one chip widens the list."
               />
             }
@@ -269,8 +269,8 @@ export default function Home() {
             visual={
               <Demo
                 name="mobile"
-                width={375}
-                height={812}
+                width={750}
+                height={1624}
                 phone
                 alt="Mobile app: from the next meeting, a person opens the drafts waiting for them, approves a record fix and a log line one card at a time, then saves the approved line."
               />

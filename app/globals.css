@@ -1451,9 +1451,13 @@ li.proto-card:focus-within {
   background: var(--surface);
   box-shadow: var(--shadow-lift);
 }
-.case-demo-frame img {
+.case-demo-frame video {
+  display: block;
   width: 100%;
   height: auto;
+}
+.case-demo-frame {
+  max-width: 760px;
 }
 .case-demo.is-phone .case-demo-frame {
   max-width: 300px;

@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, useSyncExternalStore } from "react";
+import { useRef, useState, useSyncExternalStore } from "react";
+import { useTheme } from "../proto/ThemeToggle";
 
 /**
- * A looping GIF of the prototype, in the theme the page is showing. A pause button swaps it for a still frame,
- * and anyone who asks the system for reduced motion gets the still frame first.
+ * A short, looping recording of the prototype at 2x, in the theme the page is showing.
+ * Videos stay sharp where GIFs blur, and weigh a fraction as much. A Pause button stops it on a still frame,
+ * and anyone who asks the system for reduced motion gets the still frame until they press Play.
  */
 const reduceQuery = "(prefers-reduced-motion: reduce)";
 function subscribe(cb: () => void) {
@@ -26,21 +28,45 @@ export function Demo({
   height: number;
   phone?: boolean;
 }) {
-  const reduce = useSyncExternalStore(subscribe, () => window.matchMedia(reduceQuery).matches, () => false);
+  const theme = useTheme();
+  const reduce = useSyncExternalStore(subscribe, () => window.matchMedia(reduceQuery).matches, () => true);
   const [choice, setChoice] = useState<boolean | null>(null);
   const playing = choice ?? !reduce;
-  const ext = playing ? "gif" : "png";
+  const video = useRef<HTMLVideoElement>(null);
+  const id = `demo-${name}`;
+
+  const toggle = () => {
+    const v = video.current;
+    if (v) {
+      if (playing) v.pause();
+      else void v.play();
+    }
+    setChoice(!playing);
+  };
 
   return (
-    <figure className={`case-demo ${phone ? "is-phone" : ""}`}>
-      <div className="case-demo-frame">
-        {/* Only the image for the theme on screen is shown, and lazy images that aren't shown aren't fetched. */}
-        {/* Plain img on purpose: next/image would serve these GIFs unoptimized anyway, and must not swap the animation for a still. */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="only-light" src={`/case/${name}-light.${ext}`} alt={alt} width={width} height={height} loading="lazy" decoding="async" />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="only-dark" src={`/case/${name}-dark.${ext}`} alt={alt} width={width} height={height} loading="lazy" decoding="async" />
-        <button type="button" className="case-demo-btn" aria-pressed={!playing} onClick={() => setChoice(!playing)}>
+    <figure className={`case-demo ${phone ? "is-phone" : ""}`} aria-labelledby={id}>
+      <figcaption id={id} className="sr-only">
+        {alt}
+      </figcaption>
+      <div className="case-demo-frame" style={{ aspectRatio: `${width} / ${height}` }}>
+        {theme ? (
+          <video
+            key={theme}
+            ref={video}
+            src={`/case/${name}-${theme}.mp4`}
+            poster={`/case/${name}-${theme}.jpg`}
+            width={width}
+            height={height}
+            muted
+            loop
+            playsInline
+            autoPlay={playing}
+            preload={playing ? "auto" : "none"}
+            aria-hidden="true"
+          />
+        ) : null}
+        <button type="button" className="case-demo-btn" aria-pressed={!playing} aria-label={`${playing ? "Pause" : "Play"} the recording`} onClick={toggle}>
           {playing ? (
             <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
               <rect x="2" y="1.5" width="3.5" height="11" rx="1" fill="currentColor" />
@@ -51,7 +77,7 @@ export function Demo({
               <path d="M3 1.8v10.4a.6.6 0 0 0 .9.5l8.4-5.2a.6.6 0 0 0 0-1L3.9 1.3a.6.6 0 0 0-.9.5z" fill="currentColor" />
             </svg>
           )}
-          <span>{playing ? "Pause" : "Play"}</span>
+          <span aria-hidden="true">{playing ? "Pause" : "Play"}</span>
         </button>
       </div>
     </figure>
