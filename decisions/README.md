@@ -38,3 +38,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0032 | [The phone recording without a device edge](0032-bare-phone-recording.md) | 2026-11-07 |
 | 0033 | [Slender account charts](0033-slender-account-charts.md) | 2026-11-07 |
 | 0034 | [A clear way back to the case study](0034-way-back-to-the-case-study.md) | 2026-11-07 |
+| 0035 | [The theme switch matches the portfolio site](0035-theme-switch-like-the-site.md) | 2026-11-07 |

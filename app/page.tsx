@@ -136,9 +136,10 @@ export default function Home() {
           <a href={REPO} className="hidden font-medium underline-offset-4 hover:underline sm:inline">
             GitHub
           </a>
-          <ThemeButton />
         </nav>
       </header>
+
+      <ThemeButton />
 
       <main id="main" className="w-full px-5 pb-20 md:px-8 lg:px-16">
         <header className="grid items-center gap-12 pt-14 lg:grid-cols-12 lg:gap-16 lg:pt-20">
@@ -297,7 +298,7 @@ export default function Home() {
             visual={
               <ul className="divide-y divide-[var(--rule)] border-y border-[var(--rule)]">
                 {[
-                  ["Decision records", "34 short records, from the clean room rule to a clear way back", `${REPO}/tree/main/decisions`],
+                  ["Decision records", "35 short records, from the clean room rule to one theme switch", `${REPO}/tree/main/decisions`],
                   ["Prompt log", "The prompts behind each step, what came back and what I chose", `${REPO}/tree/main/prompts`],
                   ["Research", "Desk research and the competitive read, every claim linked", `${REPO}/tree/main/research`],
                   ["Wireframes", "The grayscale meeting loop before any color", "/wireframes"],

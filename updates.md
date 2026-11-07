@@ -51,3 +51,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Case study home: the phone recording drops its dark device edge (decision 0032)
 - Prototype: slender account charts, drawn at size and side by side on wide screens (decision 0033)
 - Prototypes: a clear way back to the case study, on desktop and on the phone (decision 0034)
+- Case study home: the light and dark switch matches the portfolio site, a round moon or sun pinned bottom right (decision 0035)
