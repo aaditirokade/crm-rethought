@@ -48,7 +48,7 @@ export function FixBox({ sug }: { sug: Suggestion }) {
   const s = useProto();
   const e = entryOf(s, sug.id);
   return (
-    <div className={`mt-3 rounded-xl border p-3 ${e.status === "pending" ? "sig-row-draft border-transparent" : "border-line"}`}>
+    <div className={`mt-3 ${e.status === "pending" ? "sig-row-draft rounded-xl p-3" : "border-l-2 border-line py-1 pl-3"}`}>
       {e.status === "pending" ? (
         <>
           <span className="sig-draft-tag">DRAFT · RECORD FIX</span>
@@ -85,7 +85,7 @@ export function FixBox({ sug }: { sug: Suggestion }) {
 /** Something only a person may act on. The AI names it and stops. */
 export function FlagBox() {
   return (
-    <div className="mt-3 rounded-xl border border-line-strong p-3">
+    <div className="mt-3 border-l-2 border-warn py-1 pl-3">
       <span className="font-mono text-meta tracking-wide text-warn">{"▲"} PEOPLE ONLY</span>
       <p className="mt-1.5 text-small">
         Merging records stays with people. Check both contacts on the account page and merge them yourself if they are
@@ -259,7 +259,7 @@ export function EmailDraft({ sug, body }: { sug: Suggestion; body: string }) {
         ) : null}
       </div>
       {open ? (
-        <div id={panel} className="mt-3 rounded-xl border border-line bg-surface-2 p-3">
+        <div id={panel} className="mt-3 border-l-2 border-line-strong py-1 pl-3">
           <p className="whitespace-pre-line text-small leading-relaxed">{body}</p>
           <p className="mt-3 font-mono text-meta text-ink-2">THE AI NEVER SENDS EMAIL TO A CUSTOMER.</p>
         </div>

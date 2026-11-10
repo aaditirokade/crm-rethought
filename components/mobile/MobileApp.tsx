@@ -68,7 +68,7 @@ function Home({ go, waiting }: { go: (s: Screen) => void; waiting: number }) {
       </p>
       <h1 className="text-h2 font-semibold">Hi {me.short}</h1>
 
-      <section aria-labelledby="m-next" className="mt-4 rounded-2xl border border-line bg-surface p-4">
+      <section aria-labelledby="m-next" className="mt-5">
         <p className="font-mono text-meta tracking-wide text-ink-2">NEXT UP · IN 55 MIN</p>
         <h2 id="m-next" className="mt-1 text-h3 font-semibold">
           {next.time} · {a?.name}
@@ -112,9 +112,9 @@ function Home({ go, waiting }: { go: (s: Screen) => void; waiting: number }) {
         <h2 id="m-later" className="font-mono text-meta tracking-wide text-ink-2">
           LATER TODAY
         </h2>
-        <ul className="mt-2 divide-y divide-line rounded-2xl border border-line bg-surface">
+        <ul className="mt-1 divide-y divide-line">
           {later.map((m) => (
-            <li key={m.id} className="flex items-baseline gap-3 px-4 py-3">
+            <li key={m.id} className="flex items-baseline gap-3 py-3">
               <span className="font-mono text-small">{m.time}</span>
               <span className="min-w-0">
                 <span className="block font-medium">{account(m.account)?.name}</span>
@@ -154,7 +154,7 @@ function Brief({ back }: { back: () => void }) {
                     <FixBox sug={x} />
                   </li>
                 ) : (
-                  <li key={x.id} className="rounded-2xl border border-line bg-surface p-3">
+                  <li key={x.id} className="border-t border-line pt-3">
                     <p>
                       {x.tag ? <span className="proto-tag">{x.tag}</span> : null}
                       {textOf(s, x)}
@@ -262,7 +262,7 @@ function Approve() {
       )}
 
       {approved ? (
-        <div className="mt-6 rounded-2xl border border-line bg-surface p-3">
+        <div className="mt-6 border-t border-line pt-4">
           <p className="text-small">
             <span className="font-semibold">{approved} approved</span> and waiting to be saved to the record.
           </p>
@@ -309,7 +309,7 @@ function AskScreen() {
         ))}
       </div>
       {answer ? (
-        <section key={answer.question} aria-label="Answer" className="mt-4 rounded-2xl border border-line bg-surface p-4">
+        <section key={answer.question} aria-label="Answer" className="mt-5 border-t border-line pt-4">
           <p className="font-mono text-meta tracking-wide text-ink-2">{new Set(answer.segments.flatMap((x) => x.cite ?? [])).size} SOURCES · READ ONLY</p>
           <p className="mt-2 leading-relaxed">
             {answer.segments.map((seg, i) => (
@@ -327,7 +327,7 @@ function AskScreen() {
           {answer.stats.length ? (
             <dl className="mt-3 grid grid-cols-3 gap-2">
               {answer.stats.map((st) => (
-                <div key={st.label} className="rounded-2xl bg-surface-2 p-2">
+                <div key={st.label} className="border-l border-line pl-2">
                   <dt className="font-mono text-[0.625rem] leading-tight tracking-wide text-ink-2">{st.label.toUpperCase()}</dt>
                   <dd className="text-h3 font-semibold">
                     {st.value < 0 ? `−${Math.abs(st.value)}` : st.value}
@@ -414,7 +414,7 @@ function VoiceNote() {
 
       {lines.length ? (
         <>
-          <ul className="mt-4 space-y-1 rounded-2xl border border-line bg-surface p-1.5">
+          <ul className="mt-4 space-y-1">
             {lines.map((x) => (
               <GateLine key={x.id} sug={x} />
             ))}

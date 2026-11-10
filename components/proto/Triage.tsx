@@ -153,7 +153,7 @@ export function Triage() {
           ) : null}
         </div>
       ) : (
-        <div className="triage-card mt-5 rounded-2xl border border-line p-6 text-center">
+        <div className="triage-card mt-5 py-6 text-center">
           <p className="relative text-h2 font-semibold">
             <span className="burst" aria-hidden="true">{Array.from({ length: 12 }, (_, i) => <span key={i} style={{ "--i": i } as React.CSSProperties} />)}</span>
             Inbox zero

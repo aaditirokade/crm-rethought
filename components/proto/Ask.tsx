@@ -253,7 +253,7 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
               {answer.stats.length && elapsed >= tl.writeEnd ? (
                 <dl className="ask-stats mt-4 grid grid-cols-3 gap-2">
                   {answer.stats.map((st) => (
-                    <div key={st.label} className="rounded-xl bg-surface-2 p-3">
+                    <div key={st.label} className="border-l border-line pl-3">
                       <dt className="font-mono text-meta tracking-wide text-ink-2">{st.label.toUpperCase()}</dt>
                       <dd className="mt-1 text-h2 font-semibold tabular-nums">
                         <Count stat={st} progress={statProgress} />
@@ -264,7 +264,7 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
               ) : null}
 
               {answer.next && done ? (
-                <p className="ask-next mt-3 rounded-xl border border-line px-3 py-2 text-small">
+                <p className="ask-next mt-4 border-l-2 border-accent pl-3 text-small">
                   <span className="font-mono text-meta tracking-wide text-ink-2">SUGGESTED NEXT MOVE · </span>
                   {answer.next}
                 </p>

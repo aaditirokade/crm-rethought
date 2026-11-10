@@ -2440,3 +2440,58 @@ html:root .ask-wrap:not(.proto-card) {
   height: 1.5px;
   background: var(--site-pink);
 }
+
+/* Fewer boxes (decision 0060). The sand and periwinkle blocks, the pipeline's trays and the boxes inside boxes go.
+   Sections sit on the page, divided by space and a rule; a side rail is set off by one vertical rule, and the places
+   the AI works for you by one violet rule. Ask stays the one block, with nothing boxed inside it, and drafts keep
+   their violet tint, because the tint means "not on the record yet". These rules come last, so they win. */
+.tone-block,
+.proto-card.tone-block,
+.tone-ai,
+.proto-card.tone-ai {
+  --surface-2: inherit;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+.tone-ai,
+.proto-card.tone-ai {
+  border-left: 3px solid color-mix(in srgb, var(--accent) 70%, transparent);
+  padding-left: 1.25rem;
+}
+@media (min-width: 1024px) {
+  aside.tone-block {
+    border-left: 1px solid var(--rule);
+    padding-left: 2.5rem;
+  }
+}
+dl.tone-block {
+  border-block: 1px solid var(--rule);
+  padding-block: 1.25rem;
+}
+.proto-card.is-surface {
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+.pipe-col {
+  border: 0 !important;
+  border-top: 2px solid var(--rule) !important;
+  border-radius: 0;
+  background: transparent;
+  padding: 0.75rem 0 0;
+}
+.pipe-col.bg-draft {
+  border-top-color: var(--accent) !important;
+  border-radius: 0 0 16px 16px;
+  background: var(--draft);
+  padding: 0.75rem 0.5rem 0.5rem;
+}
+.pipe-card {
+  border-color: transparent;
+  box-shadow: var(--shadow);
+}
