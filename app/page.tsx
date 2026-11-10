@@ -9,7 +9,6 @@ import { ThemeButton } from "@/components/case/ThemeButton";
 import { BASE } from "@/lib/base";
 import { AskAnatomy } from "@/components/case/AskAnatomy";
 import { SiteNav } from "@/components/case/SiteNav";
-import { CaseStudyTabs } from "@/components/case/CaseStudyTabs";
 
 export const metadata: Metadata = {
   title: "Groundwork · CRM, rethought",
@@ -137,10 +136,9 @@ export default function Home() {
 
       <ThemeButton />
 
-      {/* Same container, top padding and type as the Firstword case study, so switching between them
-          with the tabs keeps the nav, tabs and title exactly in place (decision 0055). */}
+      {/* Same container, top padding and type as the Firstword case study, so the nav and title sit
+          exactly in place on both (decision 0055). The tabs above the title were removed (decision 0056). */}
       <main id="main" className="mx-auto w-full max-w-6xl px-6 pb-20 pt-28 xl:max-w-7xl">
-        <CaseStudyTabs current="groundwork" />
         <header className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
             <p className="text-[14px] leading-5 tracking-wide text-ink-2">Concept case study · 2026</p>
