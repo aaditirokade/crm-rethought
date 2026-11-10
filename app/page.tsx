@@ -82,12 +82,12 @@ function Chapter({
 }
 
 const SWATCHES = [
-  { name: "Page", light: "#fffbf4", dark: "#121211" },
-  { name: "Sand", light: "#f4efe4", dark: "#242422" },
-  { name: "Ink", light: "#2b2620", dark: "#f3efe7" },
-  { name: "AI", light: "#4c50c9", dark: "#aeb6ff" },
+  { name: "Page", light: "#f7f8fc", dark: "#10111a" },
+  { name: "Sand", light: "#e5e8f3", dark: "#212433" },
+  { name: "Ink", light: "#20222b", dark: "#e8eaf2" },
+  { name: "AI", light: "#3b3be6", dark: "#aeb6ff" },
   { name: "AI wash", light: "#edf1fc", dark: "#23242e" },
-  { name: "Charts", light: "#4f97a8", dark: "#7fc4d4" },
+  { name: "Charts", light: "#d23f78", dark: "#ff8ab8" },
 ];
 
 const CHAPTERS: RailChapter[] = [

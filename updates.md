@@ -77,3 +77,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 ## 2026-11-10
 
 - Case study home: the CASE STUDY I | CASE STUDY II tabs removed, here and on Firstword (decision 0056)
+- Colors that pop: cool white and navy ink instead of cream and cocoa, a brighter ultramarine for the AI, hot pink charts, orange warnings, no yellow washes (decision 0057)

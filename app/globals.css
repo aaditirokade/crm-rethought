@@ -7,23 +7,23 @@
  * Control borders (line-strong) pass 3:1. Full table at /tokens.
  */
 :root {
-  --bg: #fffbf4; /* cream */
+  --bg: #f7f8fc; /* cool white (Nov 2026: no warm washes) */
   --surface: #ffffff;
-  --surface-2: #f4efe4; /* sand */
-  --ink: #2b2620; /* warm cocoa, never pure black; 13.0:1 or more */
-  --ink-2: #665b4f; /* 5.7:1 or more */
-  --line: #efe7d8; /* hairlines, decorative only */
-  --line-strong: #8f8373; /* control borders, 3.2:1 or more */
-  --accent: #4c50c9; /* the AI's color, periwinkle indigo: drafts, Ask, waiting counts; 5.5:1 or more */
-  --accent-hover: #3d41b3;
+  --surface-2: #e5e8f3; /* cool mist */
+  --ink: #20222b; /* deep ink, never pure black; 13.0:1 or more */
+  --ink-2: #4f5466; /* 5.7:1 or more */
+  --line: #dadeed; /* hairlines, decorative only */
+  --line-strong: #73798f; /* control borders, 3.2:1 or more */
+  --accent: #3b3be6; /* the AI’s color, ultramarine: drafts, Ask, waiting counts; 5.5:1 or more */
+  --accent-hover: #2c2cc9;
   --accent-ink: #ffffff; /* 6.4:1 on accent */
   --draft: #edf1fc; /* periwinkle wash behind lines the AI drafted */
-  --data: #4f97a8; /* charts: sparklines, bars, the day strip, in soft teal so they don't read as the AI; 3.2:1 on the page */
+  --data: #d23f78; /* charts: sparklines, bars, the day strip, in hot pink so they don’t read as the AI; 4.1:1 on the page */
   --good: #2b7550; /* 4.9:1 or more */
-  --warn: #8a5a00; /* 5.1:1 or more */
+  --warn: #b54708; /* 5.1:1 or more */
   --risk: #b2443a; /* 4.8:1 or more */
-  --shadow: 0 1px 2px rgb(91 76 58 / 0.05), 0 10px 30px -12px rgb(91 76 58 / 0.16);
-  --shadow-lift: 0 2px 4px rgb(91 76 58 / 0.06), 0 18px 40px -16px rgb(91 76 58 / 0.26);
+  --shadow: 0 1px 2px rgb(40 48 90 / 0.05), 0 10px 30px -12px rgb(40 48 90 / 0.16);
+  --shadow-lift: 0 2px 4px rgb(40 48 90 / 0.06), 0 18px 40px -16px rgb(40 48 90 / 0.26);
 
   /* Older names, kept so earlier screens keep working */
   --paper: var(--bg);
@@ -33,20 +33,20 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #121211; /* deep warm charcoal */
-    --surface: #1b1b1a;
-    --surface-2: #242422;
-    --ink: #f3efe7; /* cream, softer than white; 13.4:1 or more */
-    --ink-2: #b4ada2; /* 6.9:1 or more */
-    --line: #2c2b29;
-    --line-strong: #7d776d; /* 3.4:1 or more */
+    --bg: #10111a; /* deep navy charcoal */
+    --surface: #181a25;
+    --surface-2: #212433;
+    --ink: #e8eaf2; /* cool white, softer than white; 13.4:1 or more */
+    --ink-2: #a2a6b4; /* 6.9:1 or more */
+    --line: #292a2c;
+    --line-strong: #6d707d; /* 3.4:1 or more */
     --accent: #aeb6ff; /* 6.7:1 or more */
     --accent-hover: #c6ccff;
     --accent-ink: #1a1c3a; /* 8.6:1 on accent */
     --draft: #23242e;
-    --data: #7fc4d4; /* soft teal, so charts don't read as the AI */
+    --data: #ff8ab8; /* hot pink, so charts don't read as the AI */
     --good: #8ad9ae;
-    --warn: #f2c879;
+    --warn: #ffab70;
     --risk: #ff9e92;
     --shadow: 0 1px 2px rgb(0 0 0 / 0.35), 0 10px 30px -12px rgb(0 0 0 / 0.6);
     --shadow-lift: 0 2px 4px rgb(0 0 0 / 0.4), 0 18px 40px -16px rgb(0 0 0 / 0.7);
@@ -200,7 +200,7 @@ button.sig-source:hover b {
   border-radius: 999px;
   background: var(--surface);
   color: var(--ink-2);
-  box-shadow: 0 6px 16px rgb(91 76 58 / 0.22);
+  box-shadow: 0 6px 16px rgb(40 48 90 / 0.22);
   cursor: pointer;
   transition: color 300ms ease, transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -992,7 +992,7 @@ button.sig-source:hover b {
   box-shadow: var(--shadow-lift);
 }
 .mob-frame {
-  border-color: #2b2620;
+  border-color: #20222b;
   box-shadow: var(--shadow-lift);
 }
 .mob-tabs {
@@ -1369,12 +1369,12 @@ li.proto-card:focus-within {
   border-left: 2px solid var(--accent);
 }
 
-/* Daylight (decision 0020): a friendlier palette. Cream and sand instead of grey, warm cocoa ink instead of black,
+/* Daylight (decision 0020, recolored in 0057): a friendlier palette. Cool white and mist instead of grey, deep ink instead of black,
    periwinkle for the AI and for charts, a dusk indigo instead of black at night. Every text color still passes AA. */
 .sig {
   background:
     radial-gradient(90rem 34rem at 12% -12%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 70%),
-    radial-gradient(60rem 30rem at 100% 0%, color-mix(in srgb, #f2b880 10%, transparent), transparent 70%),
+    radial-gradient(60rem 30rem at 100% 0%, color-mix(in srgb, #ff6fae 10%, transparent), transparent 70%),
     var(--bg);
 }
 .ask-wrap.proto-card {
@@ -1392,13 +1392,13 @@ li.proto-card:focus-within {
 /* Health reads as a soft pastel pill, like the status colors in the reference (decision 0020). Text on each wash passes AA. */
 :root {
   --good-wash: #e4f2e8;
-  --warn-wash: #fbeed2;
+  --warn-wash: #ffe9dd;
   --risk-wash: #fbe4df;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --good-wash: #1e3127;
-    --warn-wash: #352d1d;
+    --warn-wash: #3a2418;
     --risk-wash: #3a2422;
   }
 }
@@ -1423,7 +1423,7 @@ li.proto-card:focus-within {
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .sig {
     background:
-      radial-gradient(70rem 30rem at 85% -10%, color-mix(in srgb, #f2b880 6%, transparent), transparent 70%),
+      radial-gradient(70rem 30rem at 85% -10%, color-mix(in srgb, #ff6fae 6%, transparent), transparent 70%),
       var(--bg);
   }
   :root:not([data-theme="light"]) .ask-wrap.proto-card {
@@ -1441,32 +1441,32 @@ li.proto-card:focus-within {
   color-scheme: dark;
 }
 :root[data-theme="dark"] {
-  --bg: #121211; /* deep warm charcoal */
-  --surface: #1b1b1a;
-  --surface-2: #242422;
-  --ink: #f3efe7; /* cream, softer than white; 13.4:1 or more */
-  --ink-2: #b4ada2; /* 6.9:1 or more */
-  --line: #2c2b29;
-  --line-strong: #7d776d; /* 3.4:1 or more */
+  --bg: #10111a; /* deep navy charcoal */
+  --surface: #181a25;
+  --surface-2: #212433;
+  --ink: #e8eaf2; /* cool white, softer than white; 13.4:1 or more */
+  --ink-2: #a2a6b4; /* 6.9:1 or more */
+  --line: #292a2c;
+  --line-strong: #6d707d; /* 3.4:1 or more */
   --accent: #aeb6ff; /* 6.7:1 or more */
   --accent-hover: #c6ccff;
   --accent-ink: #1a1c3a; /* 8.6:1 on accent */
   --draft: #23242e;
-  --data: #7fc4d4; /* soft teal, so charts don't read as the AI */
+  --data: #ff8ab8; /* hot pink, so charts don't read as the AI */
   --good: #8ad9ae;
-  --warn: #f2c879;
+  --warn: #ffab70;
   --risk: #ff9e92;
   --shadow: 0 1px 2px rgb(0 0 0 / 0.35), 0 10px 30px -12px rgb(0 0 0 / 0.6);
   --shadow-lift: 0 2px 4px rgb(0 0 0 / 0.4), 0 18px 40px -16px rgb(0 0 0 / 0.7);
 }
 :root[data-theme="dark"] {
   --good-wash: #1e3127;
-  --warn-wash: #352d1d;
+  --warn-wash: #3a2418;
   --risk-wash: #3a2422;
 }
 :root[data-theme="dark"] .sig {
   background:
-    radial-gradient(70rem 30rem at 85% -10%, color-mix(in srgb, #f2b880 6%, transparent), transparent 70%),
+    radial-gradient(70rem 30rem at 85% -10%, color-mix(in srgb, #ff6fae 6%, transparent), transparent 70%),
     var(--bg);
 }
 :root[data-theme="dark"] .ask-wrap.proto-card {
@@ -1567,7 +1567,7 @@ li.proto-card:focus-within {
 }
 .cov-partly {
   background: #b9dde4;
-  color: #2b2620;
+  color: #20222b;
 }
 .cov-none {
   background: var(--surface-2);
@@ -1576,20 +1576,20 @@ li.proto-card:focus-within {
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .cov-yes {
     background: #8fd0dd;
-    color: #121211;
+    color: #10111a;
   }
   :root:not([data-theme="light"]) .cov-partly {
     background: #34606b;
-    color: #f3efe7;
+    color: #e8eaf2;
   }
 }
 :root[data-theme="dark"] .cov-yes {
   background: #8fd0dd;
-  color: #121211;
+  color: #10111a;
 }
 :root[data-theme="dark"] .cov-partly {
   background: #34606b;
-  color: #f3efe7;
+  color: #e8eaf2;
 }
 
 /* Micro interactions, round two (decision 0024): every row, card and button answers the pointer. */
@@ -1662,7 +1662,7 @@ li.proto-card:focus-within::before,
 .sig-btn:not(:disabled):hover {
   border-color: var(--ink);
   transform: translateY(-1px);
-  box-shadow: 0 4px 10px -6px rgb(43 38 32 / 0.35);
+  box-shadow: 0 4px 10px -6px rgb(32 34 43 / 0.35);
 }
 .sig-btn:not(:disabled):active {
   transform: translateY(0) scale(0.96);
@@ -2064,14 +2064,14 @@ li.proto-card:focus-within::before,
 .ask-wrap {
   --surface: #ffffff;
   --surface-2: #f3f4fe;
-  --ink-2: #5a5048; /* 6.3:1 on the block */
+  --ink-2: #484c5a; /* 6.3:1 on the block */
   --line: #c9cdf3;
   --line-strong: #6e71b8; /* 3.6:1, control borders */
-  --accent: #3d41b3; /* 6.5:1 */
+  --accent: #2c2cc9; /* 6.5:1 */
   --accent-hover: #2f3399;
   --draft: #eef0fd;
   --good: #23663f;
-  --warn: #7a4f00;
+  --warn: #9c3c06;
   --risk: #9e3a31;
   color: var(--ink);
 }
@@ -2080,7 +2080,7 @@ html:root .ask-wrap.ask-wrap.proto-card {
   background:
     radial-gradient(120% 150% at 0% 0%, rgb(255 255 255 / 0.55), transparent 55%),
     #e2e5fb;
-  box-shadow: 0 1px 2px rgb(61 65 179 / 0.06), 0 12px 28px -16px rgb(61 65 179 / 0.28);
+  box-shadow: 0 1px 2px rgb(44 44 201 / 0.06), 0 12px 28px -16px rgb(44 44 201 / 0.28);
 }
 html:root .ask-wrap:not(.proto-card) {
   background: #e2e5fb;
@@ -2090,7 +2090,7 @@ html:root .ask-wrap:not(.proto-card) {
     --bg: #25274f;
     --surface: #2e3060;
     --surface-2: #33356a;
-    --ink: #f6f2ea; /* 12.7:1 on the block */
+    --ink: #ebedf5; /* 12.7:1 on the block */
     --ink-2: #c4c3df; /* 8.3:1 */
     --line: #3e4078;
     --line-strong: #8d90c6; /* 4.7:1, control borders */
@@ -2099,10 +2099,10 @@ html:root .ask-wrap:not(.proto-card) {
     --accent-ink: #25274f;
     --draft: #33356a;
     --good: #8ad9ae;
-    --warn: #f2c879;
+    --warn: #ffab70;
     --risk: #ff9e92;
     --good-wash: #1e3a33;
-    --warn-wash: #3d3426;
+    --warn-wash: #262b3d;
     --risk-wash: #432a33;
     color-scheme: dark;
     color: var(--ink);
@@ -2131,7 +2131,7 @@ html:root .ask-wrap:not(.proto-card) {
   --bg: #25274f;
   --surface: #2e3060;
   --surface-2: #33356a;
-  --ink: #f6f2ea; /* 12.7:1 on the block */
+  --ink: #ebedf5; /* 12.7:1 on the block */
   --ink-2: #c4c3df; /* 8.3:1 */
   --line: #3e4078;
   --line-strong: #8d90c6; /* 4.7:1, control borders */
@@ -2140,10 +2140,10 @@ html:root .ask-wrap:not(.proto-card) {
   --accent-ink: #25274f;
   --draft: #33356a;
   --good: #8ad9ae;
-  --warn: #f2c879;
+  --warn: #ffab70;
   --risk: #ff9e92;
   --good-wash: #1e3a33;
-  --warn-wash: #3d3426;
+  --warn-wash: #262b3d;
   --risk-wash: #432a33;
   color-scheme: dark;
   color: var(--ink);
@@ -2208,18 +2208,18 @@ html:root .ask-wrap:not(.proto-card) {
    .action-bar ink: the bar where you commit (save, import). Ask keeps its own indigo.
    Each block redefines the tokens inside it, so nested tracks, chips and buttons stay visible. */
 :root {
-  --block: #f3ecdf; /* ink-2 5.6:1, warn 5.0:1, good and risk 4.7:1 */
-  --on-block: #fffbf4;
+  --block: #e0e4f2; /* ink-2 5.6:1, warn 5.0:1, good and risk 4.7:1 */
+  --on-block: #f7f8fc;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --block: #1f1e1c; /* ink-2 7.5:1 */
-    --on-block: #2a2927;
+    --block: #1c1d1f; /* ink-2 7.5:1 */
+    --on-block: #27282a;
   }
 }
 :root[data-theme="dark"] {
-  --block: #1f1e1c;
-  --on-block: #2a2927;
+  --block: #1c1d1f;
+  --on-block: #27282a;
 }
 .tone-block,
 .proto-card.tone-block,
@@ -2252,16 +2252,16 @@ html:root .ask-wrap:not(.proto-card) {
 }
 
 .action-bar {
-  --bg: #2b2620;
-  --surface: #38322b;
-  --surface-2: #433c33;
-  --ink: #fbf6ec; /* 13.9:1 */
-  --ink-2: #cfc6b8; /* 8.9:1 */
-  --line: #4a4238;
-  --line-strong: #9a8f80; /* 4.7:1 */
+  --bg: #20222b;
+  --surface: #2b2e38;
+  --surface-2: #333643;
+  --ink: #eff1f8; /* 13.9:1 */
+  --ink-2: #b8bdcf; /* 8.9:1 */
+  --line: #383c4a;
+  --line-strong: #80859a; /* 4.7:1 */
   --accent: #bcc2ff;
   --good: #8ad9ae;
-  --warn: #f2c879;
+  --warn: #ffab70;
   --risk: #ff9e92;
   color-scheme: dark;
   color: var(--ink);
@@ -2269,30 +2269,30 @@ html:root .ask-wrap:not(.proto-card) {
   border-radius: 20px;
   background: var(--bg);
   padding: 0.875rem 0.875rem 0.875rem 1.25rem;
-  box-shadow: 0 1px 2px rgb(43 38 32 / 0.12), 0 14px 30px -14px rgb(43 38 32 / 0.45);
+  box-shadow: 0 1px 2px rgb(32 34 43 / 0.12), 0 14px 30px -14px rgb(32 34 43 / 0.45);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .action-bar {
-    --bg: #2c2b28;
-    --surface: #36342f;
-    --surface-2: #3d3b36;
-    --ink: #f3efe7; /* 12.4:1 */
-    --ink-2: #c4bdb2; /* 7.6:1 */
-    --line: #45423c;
-    --line-strong: #8a8478; /* 3.8:1 */
-    border: 1px solid #3a3833;
+    --bg: #28292c;
+    --surface: #2f3036;
+    --surface-2: #36373d;
+    --ink: #e8eaf2; /* 12.4:1 */
+    --ink-2: #b2b6c4; /* 7.6:1 */
+    --line: #3c3e45;
+    --line-strong: #787c8a; /* 3.8:1 */
+    border: 1px solid #33343a;
     box-shadow: 0 14px 30px -14px rgb(0 0 0 / 0.7);
   }
 }
 :root[data-theme="dark"] .action-bar {
-  --bg: #2c2b28;
-  --surface: #36342f;
-  --surface-2: #3d3b36;
-  --ink: #f3efe7;
-  --ink-2: #c4bdb2;
-  --line: #45423c;
-  --line-strong: #8a8478;
-  border: 1px solid #3a3833;
+  --bg: #28292c;
+  --surface: #2f3036;
+  --surface-2: #36373d;
+  --ink: #e8eaf2;
+  --ink-2: #b2b6c4;
+  --line: #3c3e45;
+  --line-strong: #787c8a;
+  border: 1px solid #33343a;
   box-shadow: 0 14px 30px -14px rgb(0 0 0 / 0.7);
 }
 /* The bar floats just above the dock on phones and tablets, and a little off the bottom edge on desktop. */
