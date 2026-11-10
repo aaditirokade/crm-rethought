@@ -97,6 +97,7 @@ const CHAPTERS: RailChapter[] = [
   { id: "how", label: "How it works" },
   { id: "ch-04", label: "Design system" },
   { id: "ch-05", label: "Built in the open" },
+  { id: "ch-06", label: "Next" },
   { id: "try", label: "Try it" },
 ];
 
@@ -295,7 +296,7 @@ export default function Home() {
             visual={
               <ul className="divide-y divide-[var(--rule)] border-y border-[var(--rule)]">
                 {[
-                  ["Decision records", "55 short records, from the clean room rule to case studies that line up", `${REPO}/tree/main/decisions`],
+                  ["Decision records", "Short records of every call, from the clean room rule to the colors", `${REPO}/tree/main/decisions`],
                   ["Prompt log", "The prompts behind each step, what came back and what I chose", `${REPO}/tree/main/prompts`],
                   ["Research", "Desk research and the competitive read, every claim linked", `${REPO}/tree/main/research`],
                   ["Wireframes", "The grayscale meeting loop before any color", "/wireframes"],
@@ -320,6 +321,28 @@ export default function Home() {
               each step has its prompt, and each commit adds a line to the updates log.
             </p>
             <p>It is designed from scratch and uses nothing from any CRM I worked on before.</p>
+          </Chapter>
+
+          <Chapter
+            n="06"
+            kicker="Next"
+            title="What I’d test first, and how I’d measure it"
+            visual={
+              <ul className="divide-y divide-[var(--rule)] border-y border-[var(--rule)]">
+                {[
+                  ["Do people approve drafts as they are?", "Drafts approved without edits, and the edits people make when they don’t."],
+                  ["Is the record more complete?", "Meetings with a logged note within a day, against the CRM people use today."],
+                  ["Do people trust Ask?", "Answers opened to their source, and questions asked again in other words."],
+                ].map(([t, d]) => (
+                  <li key={t} className="py-4">
+                    <span className="block font-medium">{t}</span>
+                    <span className="block text-small text-ink-2">{d}</span>
+                  </li>
+                ))}
+              </ul>
+            }
+          >
+            <p>Groundwork is a concept, so there are no outcomes to claim yet. These are the three things I’d test first with account teams, and the numbers I’d watch after launch.</p>
           </Chapter>
         <section aria-labelledby="try" className="border-t border-[var(--rule)] py-20 text-center">
           {/* On wide screens, center on the gap between the chapters' 5 and 7 column split: (100% + gap) / 6 off the right. */}
