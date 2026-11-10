@@ -14,11 +14,11 @@
   --ink-2: #4f5466; /* 5.7:1 or more */
   --line: #dadeed; /* hairlines, decorative only */
   --line-strong: #73798f; /* control borders, 3.2:1 or more */
-  --accent: #3b3be6; /* the AI’s color, ultramarine: drafts, Ask, waiting counts; 5.5:1 or more */
-  --accent-hover: #2c2cc9;
-  --accent-ink: #ffffff; /* 6.4:1 on accent */
+  --accent: #554bf5; /* the AI’s color, Henu’s Electric Pulse violet (deepened a step for text): drafts, Ask, waiting counts; 5.0:1 or more */
+  --accent-hover: #4338e0;
+  --accent-ink: #ffffff; /* 5.7:1 on accent */
   --draft: #edf1fc; /* periwinkle wash behind lines the AI drafted */
-  --data: #d23f78; /* charts: sparklines, bars, the day strip, in hot pink so they don’t read as the AI; 4.1:1 on the page */
+  --data: #009aa3; /* charts: sparklines, bars, the day strip, in Electric Pulse aqua (deepened to 3.2:1 on the page) so they don’t read as the AI */
   --good: #2b7550; /* 4.9:1 or more */
   --warn: #b54708; /* 5.1:1 or more */
   --risk: #b2443a; /* 4.8:1 or more */
@@ -40,11 +40,11 @@
     --ink-2: #a2a6b4; /* 6.9:1 or more */
     --line: #292a2c;
     --line-strong: #6d707d; /* 3.4:1 or more */
-    --accent: #aeb6ff; /* 6.7:1 or more */
+    --accent: #9a95ff; /* 6.7:1 or more */
     --accent-hover: #c6ccff;
     --accent-ink: #1a1c3a; /* 8.6:1 on accent */
     --draft: #23242e;
-    --data: #ff8ab8; /* hot pink, so charts don't read as the AI */
+    --data: #00E5E5; /* electric aqua, so charts don't read as the AI */
     --good: #8ad9ae;
     --warn: #ffab70;
     --risk: #ff9e92;
@@ -1374,7 +1374,7 @@ li.proto-card:focus-within {
 .sig {
   background:
     radial-gradient(90rem 34rem at 12% -12%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 70%),
-    radial-gradient(60rem 30rem at 100% 0%, color-mix(in srgb, #ff6fae 10%, transparent), transparent 70%),
+    radial-gradient(60rem 30rem at 100% 0%, color-mix(in srgb, #00E5E5 10%, transparent), transparent 70%),
     var(--bg);
 }
 .ask-wrap.proto-card {
@@ -1423,7 +1423,7 @@ li.proto-card:focus-within {
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .sig {
     background:
-      radial-gradient(70rem 30rem at 85% -10%, color-mix(in srgb, #ff6fae 6%, transparent), transparent 70%),
+      radial-gradient(70rem 30rem at 85% -10%, color-mix(in srgb, #00E5E5 6%, transparent), transparent 70%),
       var(--bg);
   }
   :root:not([data-theme="light"]) .ask-wrap.proto-card {
@@ -1448,11 +1448,11 @@ li.proto-card:focus-within {
   --ink-2: #a2a6b4; /* 6.9:1 or more */
   --line: #292a2c;
   --line-strong: #6d707d; /* 3.4:1 or more */
-  --accent: #aeb6ff; /* 6.7:1 or more */
+  --accent: #9a95ff; /* 6.7:1 or more */
   --accent-hover: #c6ccff;
   --accent-ink: #1a1c3a; /* 8.6:1 on accent */
   --draft: #23242e;
-  --data: #ff8ab8; /* hot pink, so charts don't read as the AI */
+  --data: #00E5E5; /* electric aqua, so charts don't read as the AI */
   --good: #8ad9ae;
   --warn: #ffab70;
   --risk: #ff9e92;
@@ -1466,7 +1466,7 @@ li.proto-card:focus-within {
 }
 :root[data-theme="dark"] .sig {
   background:
-    radial-gradient(70rem 30rem at 85% -10%, color-mix(in srgb, #ff6fae 6%, transparent), transparent 70%),
+    radial-gradient(70rem 30rem at 85% -10%, color-mix(in srgb, #00E5E5 6%, transparent), transparent 70%),
     var(--bg);
 }
 :root[data-theme="dark"] .ask-wrap.proto-card {
@@ -2080,7 +2080,7 @@ html:root .ask-wrap.ask-wrap.proto-card {
   background:
     radial-gradient(120% 150% at 0% 0%, rgb(255 255 255 / 0.55), transparent 55%),
     #e2e5fb;
-  box-shadow: 0 1px 2px rgb(44 44 201 / 0.06), 0 12px 28px -16px rgb(44 44 201 / 0.28);
+  box-shadow: 0 1px 2px rgb(85 75 245 / 0.06), 0 12px 28px -16px rgb(85 75 245 / 0.28);
 }
 html:root .ask-wrap:not(.proto-card) {
   background: #e2e5fb;

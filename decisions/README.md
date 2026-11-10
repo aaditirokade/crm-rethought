@@ -62,3 +62,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0056 | [No tabs between the case studies](0056-no-case-study-tabs.md) | 2026-11-10 |
 | 0057 | [Colors that pop](0057-colors-that-pop.md) | 2026-11-10 |
 | 0058 | [What I'd test, and how I'd measure it](0058-what-id-test.md) | 2026-11-10 |
+| 0059 | [Electric Pulse](0059-electric-pulse.md) | 2026-11-10 |

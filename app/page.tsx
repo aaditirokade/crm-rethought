@@ -85,9 +85,9 @@ const SWATCHES = [
   { name: "Page", light: "#f7f8fc", dark: "#10111a" },
   { name: "Sand", light: "#e5e8f3", dark: "#212433" },
   { name: "Ink", light: "#20222b", dark: "#e8eaf2" },
-  { name: "AI", light: "#3b3be6", dark: "#aeb6ff" },
+  { name: "AI", light: "#554bf5", dark: "#9a95ff" },
   { name: "AI wash", light: "#edf1fc", dark: "#23242e" },
-  { name: "Charts", light: "#d23f78", dark: "#ff8ab8" },
+  { name: "Charts", light: "#009aa3", dark: "#00E5E5" },
 ];
 
 const CHAPTERS: RailChapter[] = [

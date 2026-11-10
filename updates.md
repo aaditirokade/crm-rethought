@@ -79,3 +79,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Case study home: the CASE STUDY I | CASE STUDY II tabs removed, here and on Firstword (decision 0056)
 - Colors that pop: cool white and navy ink instead of cream and cocoa, a brighter ultramarine for the AI, hot pink charts, orange warnings, no yellow washes (decision 0057)
 - Case study ends with what I'd test first and how I'd measure it (decision 0058)
+- Electric Pulse: violet for the AI and aqua for the data, from Henu's 2026 palettes (decision 0059)
