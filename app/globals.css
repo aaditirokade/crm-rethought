@@ -2815,3 +2815,48 @@ html:root .ask-wrap .ask-input {
     transition: none;
   }
 }
+
+/* Ask pops (decision 0066). The whole Ask box is a vivid indigo gradient that stays inside its own rounded edge,
+   and the query field is the one light thing in it. The box's tokens flip to light on dark; every pair passes AA on
+   the lighter end, #4642b8: white 7.7:1, secondary text 5.9:1, violet 5.2:1, status 4.9:1 or more, rules 3.1:1.
+   On the light field the text is 14.9:1 and the placeholder 6.3:1. Same in light and dark. */
+:root {
+  --ask-pop: linear-gradient(135deg, #4642b8 0%, #2e2c8a 100%);
+}
+html:root .ask-wrap.ask-wrap.ask-wrap.proto-card,
+html:root .aa-pic {
+  --bg: #2e2c8a;
+  --surface: #3a37a0;
+  --surface-2: #3f3ca8;
+  --ink: #ffffff;
+  --ink-2: #e0dff5;
+  --line: #5a5ccc;
+  --line-strong: #9da0d6;
+  --rule: rgb(255 255 255 / 0.22);
+  --accent: #cdd2ff;
+  --accent-hover: #ffffff;
+  --accent-ink: #2e2c8a;
+  --draft: #3a37a0;
+  --good: #a3ecc4;
+  --warn: #ffc499;
+  --risk: #ffbfb6;
+  color-scheme: dark;
+  color: var(--ink);
+}
+html:root .ask-wrap.ask-wrap.ask-wrap.proto-card {
+  border: 1px solid #2e2c8a;
+  background: var(--ask-pop);
+  box-shadow: 0 1px 2px rgb(46 44 138 / 0.15), 0 18px 36px -18px rgb(46 44 138 / 0.55);
+}
+html:root .ask-wrap .ask-input {
+  border: 0;
+  background: #f7f7ff !important;
+  color: #20222b;
+  caret-color: #2c2cc9;
+}
+html:root .ask-wrap .ask-input::placeholder {
+  color: #565b6e !important;
+}
+html:root .aa-pic {
+  background: var(--ask-pop);
+}

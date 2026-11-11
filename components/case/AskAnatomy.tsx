@@ -106,7 +106,7 @@ export function AskAnatomy() {
     <ul ref={ref} className={`aa grid gap-3 sm:grid-cols-2 ${seen ? "is-seen" : ""}`}>
       {PARTS.map((p, i) => (
         <li key={p.title} className="ask-tile flex flex-col">
-          <div aria-hidden="true" className="h-[8.25rem] overflow-hidden bg-[var(--ask-band)] p-3">
+          <div aria-hidden="true" className="aa-pic h-[8.25rem] overflow-hidden p-3">
             <Picture i={i} />
           </div>
           <span className="mt-3 font-mono text-meta text-ink-2">{String(i + 1).padStart(2, "0")}</span>
