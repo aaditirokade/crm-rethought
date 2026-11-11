@@ -77,3 +77,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0071 | [The highlight matches Ask's box](0071-highlight-matches-ask.md) | 2026-11-11 |
 | 0072 | [Fields are a line, not a box](0072-fields-are-lines.md) | 2026-11-11 |
 | 0073 | [A visible gradient on the indigo](0073-indigo-glow.md) | 2026-11-11 |
+| 0074 | [Ask's field is a line, and Ask is a real button](0074-ask-line-and-button.md) | 2026-11-11 |

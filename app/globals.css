@@ -2843,3 +2843,66 @@ html:root .proto-input:not(.ask-input):focus-visible {
 html:root select.proto-input {
   padding-right: 1.25rem;
 }
+
+/* Ask's field is a line too, and Ask is a real button (decision 0074). The query field loses its light fill: white
+   text on the indigo over a bottom line that turns white with focus (rules 3.1:1, text and placeholder 5.7:1 or
+   more on the glow). The Ask button is the primary action: a white pill with indigo text (11.4:1). On the phone, the
+   Ask entry on Next up is a line as well. */
+html:root .ask-wrap .ask-input {
+  border: 0;
+  border-bottom: 2px solid var(--line-strong);
+  border-radius: 0;
+  background: transparent !important;
+  padding-left: 0;
+  padding-right: 0;
+  color: var(--ink);
+  caret-color: #ffffff;
+}
+html:root .ask-wrap .ask-input::placeholder {
+  color: var(--ink-2) !important;
+}
+html:root .ask-wrap .ask-input:hover,
+html:root .ask-wrap .ask-input:focus {
+  border-bottom-color: #ffffff;
+}
+html:root .ask-wrap .ask-input:focus-visible {
+  outline: none;
+}
+html:root .ask-wrap .sig-btn.sig-btn-primary {
+  min-height: 2.75rem;
+  border: 0;
+  border-radius: 999px;
+  background: #ffffff;
+  padding: 0 1.35rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2e2c8a;
+  text-decoration: none;
+  box-shadow: 0 6px 16px -8px rgb(10 8 60 / 0.6);
+}
+html:root .ask-wrap .sig-btn.sig-btn-primary::after {
+  margin-left: 0.4rem;
+}
+html:root .ask-wrap .sig-btn.sig-btn-primary:not(:disabled):hover {
+  background: #ebeafb;
+  color: #2e2c8a;
+  box-shadow: 0 8px 20px -8px rgb(10 8 60 / 0.7);
+  transform: translateY(-1px);
+}
+html:root .ask-wrap .sig-btn.sig-btn-primary:disabled {
+  background: rgb(255 255 255 / 0.55);
+  color: #2e2c8a;
+  box-shadow: none;
+}
+html:root .ask-wrap .sig-btn.sig-btn-primary:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+html:root .ask-wrap.ask-wrap:not(.proto-card) {
+  border: 0;
+  border-bottom: 1.5px solid var(--line-strong);
+  border-radius: 0;
+  background: transparent !important;
+  padding-left: 0;
+  padding-right: 0;
+}
