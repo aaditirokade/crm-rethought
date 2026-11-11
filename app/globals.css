@@ -2709,7 +2709,7 @@ input.proto-input:focus {
    are Ask's, light on dark, in both themes; every pair passes AA on the lighter end, #4642b8: white 7.7:1, ink-2
    5.9:1, violet 5.2:1, status 4.9:1 or more, rules 3.1:1. */
 :root {
-  --ai-grad: linear-gradient(135deg, #4642b8 0%, #2e2c8a 100%); /* Ask's own box color (decision 0071) */
+  --ai-grad: var(--ask-pop); /* Ask's own box color (decisions 0071, 0073) */
 }
 .ai-wash,
 .tone-ai,
@@ -2721,17 +2721,17 @@ input.proto-input:focus {
   --surface: #3a37a0;
   --surface-2: #3f3ca8;
   --ink: #ffffff;
-  --ink-2: #e0dff5;
+  --ink-2: #ebeafb;
   --line: #5a5ccc;
-  --line-strong: #9da0d6;
+  --line-strong: #a9acdf;
   --rule: rgb(255 255 255 / 0.22);
-  --accent: #cdd2ff;
+  --accent: #dde0ff;
   --accent-hover: #ffffff;
   --accent-ink: #2e2c8a;
   --draft: #3a37a0;
-  --good: #a3ecc4;
-  --warn: #ffc499;
-  --risk: #ffbfb6;
+  --good: #b0f0cc;
+  --warn: #ffd3b3;
+  --risk: #ffcfc8;
   color-scheme: dark;
   color: var(--ink);
 }
@@ -2772,7 +2772,8 @@ html:root .ask-wrap .ask-input {
    the lighter end, #4642b8: white 7.7:1, secondary text 5.9:1, violet 5.2:1, status 4.9:1 or more, rules 3.1:1.
    On the light field the text is 14.9:1 and the placeholder 6.3:1. Same in light and dark. */
 :root {
-  --ask-pop: linear-gradient(135deg, #4642b8 0%, #2e2c8a 100%);
+  /* A soft glow in the top left corner over a deeper diagonal (decision 0073). */
+  --ask-pop: radial-gradient(120% 140% at 0% 0%, #5049c6 0%, transparent 60%), linear-gradient(135deg, #3f3bb0 0%, #221f63 100%);
 }
 html:root .ask-wrap.ask-wrap.ask-wrap.proto-card,
 html:root .aa-pic {
@@ -2780,17 +2781,17 @@ html:root .aa-pic {
   --surface: #3a37a0;
   --surface-2: #3f3ca8;
   --ink: #ffffff;
-  --ink-2: #e0dff5;
+  --ink-2: #ebeafb;
   --line: #5a5ccc;
-  --line-strong: #9da0d6;
+  --line-strong: #a9acdf;
   --rule: rgb(255 255 255 / 0.22);
-  --accent: #cdd2ff;
+  --accent: #dde0ff;
   --accent-hover: #ffffff;
   --accent-ink: #2e2c8a;
   --draft: #3a37a0;
-  --good: #a3ecc4;
-  --warn: #ffc499;
-  --risk: #ffbfb6;
+  --good: #b0f0cc;
+  --warn: #ffd3b3;
+  --risk: #ffcfc8;
   color-scheme: dark;
   color: var(--ink);
 }
