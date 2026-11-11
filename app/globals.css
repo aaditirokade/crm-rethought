@@ -2496,13 +2496,14 @@ dl.tone-block {
   box-shadow: var(--shadow);
 }
 
-/* Free flowing (decision 0061). Ask gets the emphasis: a square band of the AI's color that runs off both edges of
-   the window, a bigger question, and a field that is a line to write on instead of a box. Elsewhere the outlines go:
+/* Free flowing (decision 0061). Ask gets the emphasis: a bigger question and a field that is a line to write on
+   instead of a box. (Its square band that ran off both edges of the window was taken back in decision 0064; Ask is
+   0051's block again.) Elsewhere the outlines go:
    buttons other than the main action read as underlined words, and sources and health read as text with a mark, so
    the page is type, rules and the one band. Round icon buttons and the main action keep their shape. The Ask rules
    are marked important because earlier Ask blocks (0048, 0051) use doubled selectors; these come last and win. */
 :root {
-  --ask-band: #dcdffa; /* one step deeper than 0051's block: ink 12.1:1, ink-2 6.5:1, accent 6.9:1, rules 3.4:1 */
+  --ask-band: #e2e5fb; /* 0051's block color, used by the case study's Ask tiles (decision 0064) */
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -2511,14 +2512,6 @@ dl.tone-block {
 }
 :root[data-theme="dark"] {
   --ask-band: #25274f;
-}
-html:root .ask-wrap.proto-card {
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: var(--ask-band) !important;
-  box-shadow: 0 0 0 100vmax var(--ask-band) !important;
-  clip-path: inset(0 -100vmax);
-  padding: 2.5rem 0 2.75rem !important;
 }
 html:root .ask-wrap #ask-h {
   font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.25rem);
@@ -2708,67 +2701,4 @@ input.proto-input:focus {
   box-shadow: none;
 }
 
-/* Darker color blocks (decision 0063). Two places carry a dark block so the screens have somewhere for the eye to
-   land: Ask, where the AI speaks, in deep indigo, and Waiting for you, where a person decides, in ink. Each runs off
-   the edge of the window on its open side. Inside, the tokens flip to light on dark; every pair passes AA. */
-:root {
-  --ask-band: #2b2b74; /* ink 11.1:1, ink-2 7.2:1, violet 7.2:1, rules 4.1:1 */
-  --block-ink: #20222b; /* ink 14.2:1, ink-2 9.3:1, violet 9.3:1, rules 5.2:1 */
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --ask-band: #2b2b74;
-    --block-ink: #2a2e42;
-  }
-}
-:root[data-theme="dark"] {
-  --ask-band: #2b2b74;
-  --block-ink: #2a2e42;
-}
-html:root .ask-wrap,
-html:root .block-ink,
-html:root .aa-pic {
-  --bg: #25274f;
-  --surface: #2e3060;
-  --surface-2: #33356a;
-  --ink: #f1f2f8;
-  --ink-2: #c4c3df;
-  --line: #3e4078;
-  --line-strong: #8d90c6;
-  --rule: rgb(255 255 255 / 0.18);
-  --accent: #bcc2ff;
-  --accent-hover: #d3d7ff;
-  --accent-ink: #25274f;
-  --draft: #33356a;
-  --good: #8ad9ae;
-  --warn: #ffab70;
-  --risk: #ff9e92;
-  color-scheme: dark;
-  color: var(--ink);
-}
-html:root .block-ink {
-  --ink-2: #c3c6d4;
-  --line: rgb(255 255 255 / 0.16);
-  --line-strong: #8e93a8;
-  background: var(--block-ink);
-  box-shadow: 0 0 0 100vmax var(--block-ink);
-  clip-path: inset(-1.75rem -100vmax -1.75rem -1.5rem);
-  padding: 0.25rem 0 0.25rem;
-}
-html:root .block-ink .proto-card {
-  border-top-color: var(--rule);
-}
-@media (max-width: 1023px) {
-  html:root .block-ink {
-    clip-path: inset(-1.75rem -100vmax);
-  }
-}
-/* On an account, the lines waiting for its owner run as an ink band across the window. */
-html:root .block-ink.is-band {
-  clip-path: inset(0 -100vmax);
-  padding: 0.85rem 0;
-}
-/* The phone's Ask field sits on the same indigo. */
-html:root .ask-wrap:not(.proto-card) {
-  background: var(--ask-band);
-}
+/* Decision 0064: the darker blocks of 0063 and Ask's band that ran into the margins (0061) are taken back. */

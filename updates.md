@@ -84,3 +84,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Free flowing: Ask is a square band of violet that runs off both edges of the window, with a bigger question and a field that is a line; buttons other than the main action are underlined words, and sources, health and draft counts lose their pills (decision 0061)
 - Case study visuals match the prototype: the four recordings made again from the current prototype in light and dark, square on a hairline, and the problem reel and Ask tiles without their sand cards (decision 0062)
 - Darker color blocks: Ask in deep indigo, Waiting for you and an account's waiting lines in ink, each running off the edge of the window (decision 0063)
+- Took back the dark blocks and Ask's bleed into the margins: Ask is the contained block again; Ask and phone recordings made again (decision 0064)
