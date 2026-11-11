@@ -108,7 +108,7 @@ const WALKTHROUGH: Step[] = [
     video: "review",
     width: 1520,
     height: 960,
-    alt: "Review: a person approves a log line where it sits, sees it marked approved and not saved yet, then saves the approved line to the record from the bar at the bottom.",
+    alt: "Review: a person approves a record fix, which saves at once, and the next card turns indigo under the pointer; then they approve an opportunity Spotted by AI, whose cards always sit on the indigo.",
   },
   {
     title: "Say the list you want",
@@ -120,12 +120,12 @@ const WALKTHROUGH: Step[] = [
   },
   {
     title: "Keep going between meetings",
-    body: "The phone app is the three things people do on the way to and from a meeting: read what to know, approve drafts one card at a time, and turn a voice note into lines to approve. Nothing saves without you.",
+    body: "The phone app is what people do on the way to and from a meeting: read what to know, approve drafts one card at a time, ask about any account, and turn a voice note into lines to approve. Nothing saves without you.",
     video: "mobile",
     width: 750,
     height: 1484,
     phone: true,
-    alt: "Mobile app: from the next meeting, a person opens the drafts waiting for them, approves the drafts one card at a time, then saves the approved line.",
+    alt: "Mobile app: from Next up, a person opens the drafts waiting for them and approves one card, then opens Ask, picks “Why is Fernhill slipping?” and reads the answer with its sources, three numbers and suggested actions.",
   },
 ];
 
@@ -183,7 +183,7 @@ export default function Home() {
               name="ask"
               width={1520}
               height={960}
-              alt="Ask about any account: a person picks “Why is Fernhill slipping?”, the AI reads emails, tickets, the last call and usage, then answers with a source on every claim, three numbers and a suggested next move. Opening one source shows the usage it rests on."
+              alt="Ask about any account: a person picks “Why is Fernhill slipping?”, the AI reads emails, tickets, the last call and usage, then answers with a source on every claim, three numbers, a suggested next move and suggested actions. Choosing “Draft it” drafts a note that waits in Review."
             />
           </div>
         </header>
