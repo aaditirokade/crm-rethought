@@ -3001,3 +3001,62 @@ html:root .ask-wrap a.sig-btn {
     animation: none;
   }
 }
+
+/* Suggested actions, refined (decision 0079). A row darkens a step under the pointer or with focus inside it, which
+   keeps every text pair above AA (the overlay only adds contrast). The action buttons are secondary: an outline pill
+   in white on the indigo, all the same width. Clear is a plain underlined link with a trailing cancel mark. */
+html:root .ask-wrap .ask-action {
+  margin-inline: -0.75rem;
+  padding-inline: 0.75rem;
+  border-radius: 12px;
+  transition: background 160ms ease;
+}
+html:root .ask-wrap .ask-action:hover,
+html:root .ask-wrap .ask-action:focus-within {
+  background: rgb(15 13 70 / 0.28);
+}
+html:root .ask-wrap .ask-actions > ul > li + li {
+  border-top-color: var(--rule);
+}
+html:root .ask-wrap .ask-action .sig-btn {
+  width: 8.5rem;
+  min-height: 2.25rem;
+  justify-content: center;
+  border: 1.5px solid #ffffff;
+  background: transparent;
+  color: #ffffff;
+  box-shadow: none;
+}
+html:root .ask-wrap .ask-action .sig-btn:not(:disabled):hover {
+  background: rgb(255 255 255 / 0.12);
+  color: #ffffff;
+  box-shadow: none !important;
+  transform: none;
+}
+html:root .ask-wrap .ask-clear {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 2.25rem;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: underline 1px var(--line-strong);
+  text-underline-offset: 5px;
+  cursor: pointer;
+}
+html:root .ask-wrap .ask-clear:hover {
+  text-decoration-color: var(--ink);
+}
+html:root .ask-wrap .ask-clear:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  html:root .ask-wrap .ask-action {
+    transition: none;
+  }
+}

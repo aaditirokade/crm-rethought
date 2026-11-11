@@ -337,7 +337,7 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
                   </p>
                   <button
                     type="button"
-                    className="sig-btn"
+                    className="ask-clear"
                     onClick={() => {
                       stopAll();
                       setPlaying(false);
@@ -347,6 +347,9 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
                     }}
                   >
                     Clear
+                    <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+                      <path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+                    </svg>
                   </button>
                 </div>
               ) : null}

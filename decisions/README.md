@@ -82,3 +82,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0076 | [Ask lightens gradually, with no jump](0076-gradual-lightening.md) | 2026-11-11 |
 | 0077 | [Ask's suggestions are pills again, and Ask is a circle](0077-ask-pills-and-circle.md) | 2026-11-11 |
 | 0078 | [Ask suggests actions from its answer](0078-suggested-actions.md) | 2026-11-11 |
+| 0079 | [Suggested actions, refined](0079-actions-refined.md) | 2026-11-11 |
