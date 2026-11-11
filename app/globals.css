@@ -2703,40 +2703,32 @@ input.proto-input:focus {
 
 /* Decision 0064: the darker blocks of 0063 and Ask's band that ran into the margins (0061) are taken back. */
 
-/* AI washes (decision 0065, made a purple black on Nov 11, decision 0068). A gradient of purple mixed with black
+/* AI washes (decision 0065; purple black in 0068, Ask's indigo since 0071). The same indigo gradient as Ask's box
    marks the places the AI works for you and the lines that wait for a person: the Lists section, the pipeline's Idea
    cards, every card Spotted by AI, a group of Review cards under the pointer, and Waiting for you. Inside, the tokens
-   are light on dark; every pair passes AA on the lighter end of the gradient: light #3b2150, ink 12.4:1, ink-2 9.1:1,
-   lilac 8.9:1, status 8.8:1 or more, rules 4.7:1; dark #46285e, ink 10.9:1, ink-2 8.0:1, lilac 7.8:1, status
-   7.8:1 or more, rules 4.1:1. */
+   are Ask's, light on dark, in both themes; every pair passes AA on the lighter end, #4642b8: white 7.7:1, ink-2
+   5.9:1, violet 5.2:1, status 4.9:1 or more, rules 3.1:1. */
 :root {
-  --ai-grad: linear-gradient(135deg, #3b2150 0%, #1d1228 100%);
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --ai-grad: linear-gradient(135deg, #46285e 0%, #2c1a3d 100%);
-  }
-}
-:root[data-theme="dark"] {
-  --ai-grad: linear-gradient(135deg, #46285e 0%, #2c1a3d 100%);
+  --ai-grad: linear-gradient(135deg, #4642b8 0%, #2e2c8a 100%); /* Ask's own box color (decision 0071) */
 }
 .ai-wash,
 .tone-ai,
 .pipe-col[data-stage="Idea"] :is(.pipe-card, .pipe-ghost),
 .rail-box.is-ai .card-rail > li,
-.rail-box:hover {
-  --bg: #1d1228;
-  --surface: #4a2d63;
-  --surface-2: #52336d;
-  --ink: #f6f1fa;
-  --ink-2: #dacde6;
-  --line: #5c4277;
-  --line-strong: #a68cbd;
-  --rule: rgb(255 255 255 / 0.18);
-  --accent: #e0c4ff;
+.rail-box .card-rail > li:hover,
+.rail-box .card-rail > li:focus-within {
+  --bg: #2e2c8a;
+  --surface: #3a37a0;
+  --surface-2: #3f3ca8;
+  --ink: #ffffff;
+  --ink-2: #e0dff5;
+  --line: #5a5ccc;
+  --line-strong: #9da0d6;
+  --rule: rgb(255 255 255 / 0.22);
+  --accent: #cdd2ff;
   --accent-hover: #ffffff;
-  --accent-ink: #1d1228;
-  --draft: #4a2d63;
+  --accent-ink: #2e2c8a;
+  --draft: #3a37a0;
   --good: #a3ecc4;
   --warn: #ffc499;
   --risk: #ffbfb6;
@@ -2767,32 +2759,12 @@ html:root .ask-wrap .ask-input {
   background: var(--ai-grad);
 }
 
-/* Review: a group of cards lights up with the wash under the pointer, and the cards Spotted by AI always sit on it. */
-.proto-card.rail-box {
-  position: relative;
-  isolation: isolate;
-  padding: 0.75rem;
-}
-.rail-box::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: var(--ai-grad);
-  opacity: 0;
-  transition: opacity 220ms ease;
-  pointer-events: none;
-}
-.rail-box:hover::before {
-  opacity: 1;
-}
+/* Review: each card lights up with the wash under the pointer (decision 0070; it was the whole group), and the
+   cards Spotted by AI always sit on it. */
+.rail-box .card-rail > li:hover,
+.rail-box .card-rail > li:focus-within,
 .rail-box.is-ai .card-rail > li {
   background: var(--ai-grad);
-}
-@media (prefers-reduced-motion: reduce) {
-  .rail-box::before {
-    transition: none;
-  }
 }
 
 /* Ask pops (decision 0066). The whole Ask box is a vivid indigo gradient that stays inside its own rounded edge,

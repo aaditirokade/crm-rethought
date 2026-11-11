@@ -73,3 +73,5 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0067 | [Waiting for you gets the highlight](0067-waiting-highlight.md) | 2026-11-11 |
 | 0068 | [The highlight turns purple black](0068-purple-black.md) | 2026-11-11 |
 | 0069 | [A smaller Ask title](0069-smaller-ask-title.md) | 2026-11-11 |
+| 0070 | [Review highlights the card, not the group](0070-card-hover.md) | 2026-11-11 |
+| 0071 | [The highlight matches Ask's box](0071-highlight-matches-ask.md) | 2026-11-11 |
