@@ -99,3 +99,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Ask's suggestions are light pills again, and the Ask button is a white circle without the arrow (decision 0077)
 - Ask suggests two or three actions under each answer (draft, task, invite or open); nothing happens until the person chooses one (decision 0078)
 - Suggested actions refined: rows darken on hover, the buttons are equal width outline pills, and Clear is an underlined link with a cancel mark (decision 0079)
+- Ask without a box: the indigo is a color block that fades into the page at its edges; action rows lighten on hover; shorter suggestion pills (decision 0080)

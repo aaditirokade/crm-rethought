@@ -83,3 +83,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0077 | [Ask's suggestions are pills again, and Ask is a circle](0077-ask-pills-and-circle.md) | 2026-11-11 |
 | 0078 | [Ask suggests actions from its answer](0078-suggested-actions.md) | 2026-11-11 |
 | 0079 | [Suggested actions, refined](0079-actions-refined.md) | 2026-11-11 |
+| 0080 | [Ask without a box](0080-ask-without-a-box.md) | 2026-11-11 |
