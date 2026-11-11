@@ -2703,66 +2703,45 @@ input.proto-input:focus {
 
 /* Decision 0064: the darker blocks of 0063 and Ask's band that ran into the margins (0061) are taken back. */
 
-/* AI washes (decision 0065). A slightly darker gradient of the AI's color marks the places the AI works for you:
-   Ask's query field, the Lists section, the Idea cards in the pipeline, every card Spotted by AI, and a group of
-   cards in Review under the pointer. Inside a wash the tokens are Ask's own (rules and status a step deeper in
-   light), so every text pair passes AA on the end of the gradient nearest the text color: light ink 10.4:1, ink-2
-   5.6:1, violet 6.0:1, status 5.0:1 or more, rules 3.6:1 on #cbcff9; dark ink 8.6:1, ink-2 5.9:1, violet 5.9:1,
-   status 5.1:1 or more, rules 3.3:1 on #383a80. A step darker since first shipped (Nov 11). */
+/* AI washes (decision 0065, made a purple black on Nov 11, decision 0068). A gradient of purple mixed with black
+   marks the places the AI works for you and the lines that wait for a person: the Lists section, the pipeline's Idea
+   cards, every card Spotted by AI, a group of Review cards under the pointer, and Waiting for you. Inside, the tokens
+   are light on dark; every pair passes AA on the lighter end of the gradient: light #3b2150, ink 12.4:1, ink-2 9.1:1,
+   lilac 8.9:1, status 8.8:1 or more, rules 4.7:1; dark #46285e, ink 10.9:1, ink-2 8.0:1, lilac 7.8:1, status
+   7.8:1 or more, rules 4.1:1. */
 :root {
-  --ai-grad: linear-gradient(135deg, #dcdbff 0%, #cbcff9 100%);
+  --ai-grad: linear-gradient(135deg, #3b2150 0%, #1d1228 100%);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --ai-grad: linear-gradient(135deg, #383a80 0%, #2d2f68 100%);
+    --ai-grad: linear-gradient(135deg, #46285e 0%, #2c1a3d 100%);
   }
 }
 :root[data-theme="dark"] {
-  --ai-grad: linear-gradient(135deg, #383a80 0%, #2d2f68 100%);
+  --ai-grad: linear-gradient(135deg, #46285e 0%, #2c1a3d 100%);
 }
 .ai-wash,
 .tone-ai,
 .pipe-col[data-stage="Idea"] :is(.pipe-card, .pipe-ghost),
 .rail-box.is-ai .card-rail > li,
 .rail-box:hover {
-  --surface: #ffffff;
-  --surface-2: #f3f4fe;
-  --ink-2: #484c5a;
-  --line: #c9cdf3;
-  --line-strong: #5f62a8;
-  --accent: #2c2cc9;
-  --accent-hover: #2f3399;
-  --good: #1f5c39;
-  --warn: #8f3705;
-  --risk: #913329;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) :is(.ai-wash, .tone-ai, .pipe-col[data-stage="Idea"] .pipe-card, .pipe-col[data-stage="Idea"] .pipe-ghost, .rail-box.is-ai .card-rail > li, .rail-box:hover) {
-    --surface: #2e3060;
-    --surface-2: #33356a;
-    --ink: #ebedf5;
-    --ink-2: #c4c3df;
-    --line: #3e4078;
-    --line-strong: #8d90c6;
-    --accent: #bcc2ff;
-    --accent-hover: #d3d7ff;
-    --good: #8ad9ae;
-    --warn: #ffab70;
-    --risk: #ff9e92;
-  }
-}
-:root[data-theme="dark"] :is(.ai-wash, .tone-ai, .pipe-col[data-stage="Idea"] .pipe-card, .pipe-col[data-stage="Idea"] .pipe-ghost, .rail-box.is-ai .card-rail > li, .rail-box:hover) {
-  --surface: #2e3060;
-  --surface-2: #33356a;
-  --ink: #ebedf5;
-  --ink-2: #c4c3df;
-  --line: #3e4078;
-  --line-strong: #8d90c6;
-  --accent: #bcc2ff;
-  --accent-hover: #d3d7ff;
-  --good: #8ad9ae;
-  --warn: #ffab70;
-  --risk: #ff9e92;
+  --bg: #1d1228;
+  --surface: #4a2d63;
+  --surface-2: #52336d;
+  --ink: #f6f1fa;
+  --ink-2: #dacde6;
+  --line: #5c4277;
+  --line-strong: #a68cbd;
+  --rule: rgb(255 255 255 / 0.18);
+  --accent: #e0c4ff;
+  --accent-hover: #ffffff;
+  --accent-ink: #1d1228;
+  --draft: #4a2d63;
+  --good: #a3ecc4;
+  --warn: #ffc499;
+  --risk: #ffbfb6;
+  color-scheme: dark;
+  color: var(--ink);
 }
 
 /* Ask: the query field is the wash, a step darker than the block around it. */
@@ -2859,4 +2838,11 @@ html:root .ask-wrap .ask-input::placeholder {
 }
 html:root .aa-pic {
   background: var(--ask-pop);
+}
+
+/* Waiting for you gets the wash too (decision 0067): the lines a person still has to approve sit on the same
+   gradient as Lists and the Idea cards, a square block inside the side rail. The tokens inside are the wash's. */
+.ai-wash {
+  background: var(--ai-grad);
+  padding: 1.25rem;
 }

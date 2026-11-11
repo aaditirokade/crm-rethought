@@ -45,7 +45,7 @@ export function Today() {
           <PulseTiles s={s} focus={focus} />
 
           <aside className="tone-block space-y-10 lg:self-start">
-            <section aria-labelledby="h-waiting">
+            <section aria-labelledby="h-waiting" className="ai-wash">
               <h2 id="h-waiting" className="text-h3 font-semibold">
                 Waiting for you
               </h2>

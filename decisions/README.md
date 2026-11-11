@@ -70,3 +70,5 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0064 | [Take back the dark blocks and the bleed](0064-take-back-dark-blocks.md) | 2026-11-11 |
 | 0065 | [AI washes](0065-ai-washes.md) | 2026-11-11 |
 | 0066 | [Ask pops](0066-ask-pops.md) | 2026-11-11 |
+| 0067 | [Waiting for you gets the highlight](0067-waiting-highlight.md) | 2026-11-11 |
+| 0068 | [The highlight turns purple black](0068-purple-black.md) | 2026-11-11 |

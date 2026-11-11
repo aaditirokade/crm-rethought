@@ -88,3 +88,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - AI washes: a slightly darker gradient of the AI's color on Ask's query field, the Lists section, the pipeline's Idea cards, every card Spotted by AI, and a Review group under the pointer (decision 0065)
 - AI washes a step darker, with rules and status colors deepened inside so text still passes AA (decision 0065, updated)
 - Ask pops: the whole Ask box is a vivid indigo gradient and the query field stays light (decision 0066)
+- Waiting for you gets the highlight, and the highlight turns purple black, with light on dark tokens (decisions 0067, 0068)
