@@ -10,7 +10,9 @@
 - **Every card Spotted by AI** in Review.
 - **A group of cards in Review under the pointer,** such as the 9 cards from Fernhill's quarterly review, which lights up with the wash as a hover highlight.
 
-The wash runs from #e7e6ff to #d5d8fb in light and from #2e2f63 to #23254e in dark. Inside it the tokens are Ask's own, so every text pair passes AA on the darker end: in light ink 11.4:1, secondary ink 6.1:1, violet 6.5:1, control rules 3.2:1 and the status colors 4.8:1 or more; in dark ink 10.5:1, secondary ink 7.2:1, violet 7.2:1 and control rules 4.1:1.
+The wash runs from #dcdbff to #cbcff9 in light and from #383a80 to #2d2f68 in dark. Inside it the tokens are Ask's own, with control rules and the status colors a step deeper in light, so every text pair passes AA on the end of the gradient nearest the text color: in light ink 10.4:1, secondary ink 5.6:1, violet 6.0:1, the status colors 5.0:1 or more and control rules 3.6:1; in dark ink 8.6:1, secondary ink 5.9:1, violet 5.9:1, the status colors 5.1:1 or more and control rules 3.3:1.
+
+**Update, same day:** made a step darker at the author's request. It first ran from #e7e6ff to #d5d8fb in light and from #2e2f63 to #23254e in dark.
 
 The Ask, Lists and Review recordings on the case study and the home card were made again to match.
 

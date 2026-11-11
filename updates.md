@@ -86,3 +86,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Darker color blocks: Ask in deep indigo, Waiting for you and an account's waiting lines in ink, each running off the edge of the window (decision 0063)
 - Took back the dark blocks and Ask's bleed into the margins: Ask is the contained block again; Ask and phone recordings made again (decision 0064)
 - AI washes: a slightly darker gradient of the AI's color on Ask's query field, the Lists section, the pipeline's Idea cards, every card Spotted by AI, and a Review group under the pointer (decision 0065)
+- AI washes a step darker, with rules and status colors deepened inside so text still passes AA (decision 0065, updated)

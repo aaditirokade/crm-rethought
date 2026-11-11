@@ -2705,19 +2705,20 @@ input.proto-input:focus {
 
 /* AI washes (decision 0065). A slightly darker gradient of the AI's color marks the places the AI works for you:
    Ask's query field, the Lists section, the Idea cards in the pipeline, every card Spotted by AI, and a group of
-   cards in Review under the pointer. Inside a wash the tokens are Ask's own, so every text pair passes AA on the
-   darker end of the gradient: light ink 11.4:1, ink-2 6.1:1, violet 6.5:1, rules 3.2:1 on #d5d8fb; dark ink
-   10.6:1, ink-2 7.2:1, violet 7.2:1, rules 4.1:1 on #2e2f63. */
+   cards in Review under the pointer. Inside a wash the tokens are Ask's own (rules and status a step deeper in
+   light), so every text pair passes AA on the end of the gradient nearest the text color: light ink 10.4:1, ink-2
+   5.6:1, violet 6.0:1, status 5.0:1 or more, rules 3.6:1 on #cbcff9; dark ink 8.6:1, ink-2 5.9:1, violet 5.9:1,
+   status 5.1:1 or more, rules 3.3:1 on #383a80. A step darker since first shipped (Nov 11). */
 :root {
-  --ai-grad: linear-gradient(135deg, #e7e6ff 0%, #d5d8fb 100%);
+  --ai-grad: linear-gradient(135deg, #dcdbff 0%, #cbcff9 100%);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --ai-grad: linear-gradient(135deg, #2e2f63 0%, #23254e 100%);
+    --ai-grad: linear-gradient(135deg, #383a80 0%, #2d2f68 100%);
   }
 }
 :root[data-theme="dark"] {
-  --ai-grad: linear-gradient(135deg, #2e2f63 0%, #23254e 100%);
+  --ai-grad: linear-gradient(135deg, #383a80 0%, #2d2f68 100%);
 }
 .ai-wash,
 .tone-ai,
@@ -2728,12 +2729,12 @@ input.proto-input:focus {
   --surface-2: #f3f4fe;
   --ink-2: #484c5a;
   --line: #c9cdf3;
-  --line-strong: #6e71b8;
+  --line-strong: #5f62a8;
   --accent: #2c2cc9;
   --accent-hover: #2f3399;
-  --good: #23663f;
-  --warn: #9c3c06;
-  --risk: #9e3a31;
+  --good: #1f5c39;
+  --warn: #8f3705;
+  --risk: #913329;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) :is(.ai-wash, .tone-ai, .pipe-col[data-stage="Idea"] .pipe-card, .pipe-col[data-stage="Idea"] .pipe-ghost, .rail-box.is-ai .card-rail > li, .rail-box:hover) {
