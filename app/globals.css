@@ -2941,3 +2941,45 @@ html:root .ask-wrap .ask-stats dd {
   letter-spacing: -0.03em;
   line-height: 1;
 }
+
+/* Ask's suggestions are light pills again, and the Ask button is a circle with no arrow (decision 0077). The pills
+   are near white with indigo text (10.1:1; 11.4:1 on hover, white) and sit on the indigo, so they read as things to
+   tap. The Ask button is a 3rem white circle with indigo text (11.4:1). */
+html:root .ask-wrap .sig-btn:not(.sig-btn-primary) {
+  min-height: 2.25rem;
+  margin-right: 0;
+  border: 0;
+  border-radius: 999px;
+  background: #f1f0fd;
+  padding: 0 0.95rem;
+  font-size: 0.875rem;
+  color: #2e2c8a;
+  text-decoration: none;
+}
+html:root .ask-wrap .sig-btn:not(.sig-btn-primary):not(:disabled):hover {
+  background: #ffffff;
+  color: #2e2c8a;
+  box-shadow: 0 6px 14px -8px rgb(10 8 60 / 0.6) !important;
+  transform: translateY(-1px);
+}
+html:root .ask-wrap .sig-btn:not(.sig-btn-primary)[aria-pressed="true"] {
+  background: #ffffff;
+  color: #2e2c8a;
+  text-decoration: underline 2px #2e2c8a;
+  text-underline-offset: 4px;
+}
+html:root .ask-wrap .sig-btn:not(.sig-btn-primary):focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+html:root .ask-wrap .sig-btn.sig-btn-primary {
+  width: 3rem;
+  height: 3rem;
+  min-height: 3rem;
+  justify-content: center;
+  padding: 0;
+  font-size: 0.9375rem;
+}
+html:root .ask-wrap .sig-btn.sig-btn-primary::after {
+  content: none;
+}

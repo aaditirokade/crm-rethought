@@ -80,3 +80,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0074 | [Ask's field is a line, and Ask is a real button](0074-ask-line-and-button.md) | 2026-11-11 |
 | 0075 | [Ask's answer lightens as it extends, and its figures get weight](0075-answer-lightens.md) | 2026-11-11 |
 | 0076 | [Ask lightens gradually, with no jump](0076-gradual-lightening.md) | 2026-11-11 |
+| 0077 | [Ask's suggestions are pills again, and Ask is a circle](0077-ask-pills-and-circle.md) | 2026-11-11 |
