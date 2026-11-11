@@ -97,3 +97,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Ask's answer fades from the indigo to near white as it extends, and its three figures are larger under violet rules (decision 0075)
 - Ask lightens gradually: one vertical gradient from deep to lighter indigo over the whole box as the answer extends, with no jump (decision 0076)
 - Ask's suggestions are light pills again, and the Ask button is a white circle without the arrow (decision 0077)
+- Ask suggests two or three actions under each answer (draft, task, invite or open); nothing happens until the person chooses one (decision 0078)

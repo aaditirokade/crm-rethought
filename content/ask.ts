@@ -9,6 +9,11 @@ import { ACCOUNTS } from "./prototype";
 
 export type Segment = { text: string; cite?: string[] };
 export type Stat = { label: string; value: number; prefix?: string; suffix?: string };
+/**
+ * An action the AI suggests from its answer. Nothing happens until the person chooses it: a draft or a task waits in
+ * Review like any other line, and "open" only takes them to the place to do it.
+ */
+export type SuggestedAction = { id: string; kind: "email" | "task" | "meeting" | "open"; title: string; detail: string; href?: string };
 export type Answer = {
   id: string;
   question: string;
@@ -17,6 +22,7 @@ export type Answer = {
   stats: Stat[];
   accounts: string[];
   next?: string;
+  actions?: SuggestedAction[];
 };
 
 export const SUGGESTED = [
@@ -51,6 +57,11 @@ const WRITTEN: (Answer & { match: (q: string) => boolean })[] = [
     ],
     accounts: ["fernhill"],
     next: "Bring a fix date for the refreshes and a new date for the report to today’s 10:00.",
+    actions: [
+      { id: "fh-priya", kind: "email", title: "Draft a note to Priya Nair", detail: "Introduce yourself as her contact, own the missed markdown report and give a new date." },
+      { id: "fh-ticket", kind: "task", title: "Ask support for a fix date on ticket 4821", detail: "Due before today’s 10:00, so you can bring it to the quarterly review." },
+      { id: "fh-qbr", kind: "open", title: "Open the 10:00 quarterly review", detail: "Drafted lines from the call are waiting there.", href: "/prototype/log/fernhill-qbr" },
+    ],
   },
   {
     id: "renewals",
@@ -74,6 +85,11 @@ const WRITTEN: (Answer & { match: (q: string) => boolean })[] = [
     ],
     accounts: ["harbor", "fernhill", "alder"],
     next: NEXT_MOVE.harbor,
+    actions: [
+      { id: "hl-owner", kind: "email", title: "Draft a follow up to Harbor Lane’s owner", detail: "21 days without a reply: offer two times this week to walk through the proposal." },
+      { id: "hl-alder", kind: "task", title: "Chase ticket 4877 for Alder & Finch", detail: "Close it before the Dec 1 kickoff." },
+      { id: "hl-brief", kind: "open", title: "Open the brief for the Nov 18 owner visit", detail: "Booked as high stakes; the brief is ready.", href: "/prototype/brief/harbor-owner" },
+    ],
   },
   {
     id: "brightwater-promises",
@@ -96,6 +112,11 @@ const WRITTEN: (Answer & { match: (q: string) => boolean })[] = [
     ],
     accounts: ["brightwater"],
     next: NEXT_MOVE.brightwater,
+    actions: [
+      { id: "bw-training", kind: "meeting", title: "Send the store manager training invite", detail: "Due tomorrow: propose Thursday or Friday for all five managers." },
+      { id: "bw-sso", kind: "email", title: "Draft a note on single sign on", detail: "Ask their IT lead for a date, so the rollout to all 18 stores can be planned." },
+      { id: "bw-open", kind: "open", title: "Open Brightwater Grocers", detail: "See who has logged in since setup.", href: "/prototype/accounts/brightwater" },
+    ],
   },
 ];
 
@@ -135,6 +156,10 @@ export function answerFor(question: string): Answer {
       ],
       accounts: [a.id],
       next: NEXT_MOVE[a.id],
+      actions: [
+        { id: `${a.id}-checkin`, kind: "email", title: `Draft a check in to ${a.name}`, detail: `Built from the last touch (${a.lastTouch}) and what stands out above.` },
+        { id: `${a.id}-open`, kind: "open", title: `Open ${a.name}`, detail: "Every interaction, the people and the opportunities.", href: `/prototype/accounts/${a.id}` },
+      ],
     };
   }
 

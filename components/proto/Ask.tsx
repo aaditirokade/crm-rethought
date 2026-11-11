@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { answerFor, SUGGESTED, type Answer, type Stat } from "@/content/ask";
+import { answerFor, SUGGESTED, type Answer, type Stat, type SuggestedAction } from "@/content/ask";
 import { SourceChip } from "./Source";
+import { actions as store } from "./store";
 
 const STEP_MS = 420;
 const WORD_MS = 32;
@@ -25,6 +27,62 @@ function timeline(a: Answer) {
   const writeEnd = writeStart + t.filter((x) => x.text.trim()).length * WORD_MS;
   const statsEnd = writeEnd + 900;
   return { t, writeStart, writeEnd, statsEnd, total: statsEnd + 200 };
+}
+
+const KIND: Record<SuggestedAction["kind"], { tag: string; verb: string; done: string }> = {
+  email: { tag: "EMAIL", verb: "Draft it", done: "Drafted · waiting in Review" },
+  task: { tag: "TASK", verb: "Add task", done: "Added to your tasks" },
+  meeting: { tag: "INVITE", verb: "Draft invite", done: "Invite drafted · waiting in Review" },
+  open: { tag: "OPEN", verb: "Open", done: "" },
+};
+
+/**
+ * Actions the AI suggests from its answer (Nov 2026). Each says what it would do; nothing happens until the person
+ * chooses it, a draft waits in Review like any other line, and Undo takes it back.
+ */
+function AskActions({ items }: { items: SuggestedAction[] }) {
+  const [taken, setTaken] = useState<Record<string, boolean>>({});
+  const take = (a: SuggestedAction, on: boolean) => {
+    setTaken((t) => ({ ...t, [a.id]: on }));
+    store.announce(on ? `${KIND[a.kind].done}: ${a.title}` : `Undone: ${a.title}`);
+  };
+  return (
+    <section className="ask-actions mt-5" aria-label="Suggested actions">
+      <p className="font-mono text-meta tracking-wide text-ink-2">SUGGESTED ACTIONS · NOTHING HAPPENS UNTIL YOU CHOOSE ONE</p>
+      <ul className="mt-2">
+        {items.map((a, i) => {
+          const k = KIND[a.kind];
+          const done = taken[a.id];
+          return (
+            <li key={a.id} className="ask-action flex flex-wrap items-center justify-between gap-x-4 gap-y-2 py-3" style={{ animationDelay: `${i * 90}ms` }}>
+              <div className="min-w-0 flex-1">
+                <p className="font-mono text-meta tracking-wide text-ink-2">{k.tag}</p>
+                <p className="font-medium">{a.title}</p>
+                <p className="text-small text-ink-2">{a.detail}</p>
+              </div>
+              {a.kind === "open" && a.href ? (
+                <Link href={a.href} className="sig-btn shrink-0">
+                  {k.verb}
+                </Link>
+              ) : done ? (
+                <span className="flex shrink-0 items-center gap-2">
+                  <span className="font-mono text-meta tracking-wide text-good">✓ {k.done.toUpperCase()}</span>
+                  <button type="button" className="sig-btn" onClick={() => take(a, false)}>
+                    Undo<span className="sr-only"> {a.title}</span>
+                  </button>
+                </span>
+              ) : (
+                <button type="button" className="sig-btn shrink-0" onClick={() => take(a, true)}>
+                  {k.verb}
+                  <span className="sr-only">: {a.title}</span>
+                </button>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  );
 }
 
 function Count({ stat, progress }: { stat: Stat; progress: number }) {
@@ -270,6 +328,8 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
                 </p>
               ) : null}
 
+              {answer.actions?.length && done ? <AskActions key={answer.id} items={answer.actions} /> : null}
+
               {done ? (
                 <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
                   <p className="font-mono text-meta tracking-wide text-ink-2">
@@ -295,7 +355,9 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
         </div>
       </div>
       <p className="sr-only" aria-live="polite">
-        {done && answer ? `Answer: ${answer.segments.map((s) => s.text).join("")} ${answer.next ? `Suggested next move: ${answer.next}` : ""}` : ""}
+        {done && answer
+          ? `Answer: ${answer.segments.map((s) => s.text).join("")} ${answer.next ? `Suggested next move: ${answer.next}` : ""} ${answer.actions?.length ? `${answer.actions.length} suggested actions follow.` : ""}`
+          : ""}
       </p>
     </section>
   );

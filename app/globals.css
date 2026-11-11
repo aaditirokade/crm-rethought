@@ -2983,3 +2983,21 @@ html:root .ask-wrap .sig-btn.sig-btn-primary {
 html:root .ask-wrap .sig-btn.sig-btn-primary::after {
   content: none;
 }
+
+/* Suggested actions under an answer (decision 0078): rows on the box's rules, each with its kind, what the AI would
+   do, and one light pill to choose it. They arrive one after another, like the figures. */
+.ask-actions > ul > li + li {
+  border-top: 1px solid var(--rule);
+}
+.ask-action {
+  animation: ask-pop 320ms ease both;
+}
+html:root .ask-wrap a.sig-btn {
+  display: inline-flex;
+  align-items: center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ask-action {
+    animation: none;
+  }
+}
