@@ -3081,3 +3081,17 @@ html:root .ask-wrap .sig-btn:not(.sig-btn-primary):not(.ask-action .sig-btn) {
   padding: 0 0.7rem;
   font-size: 0.8125rem;
 }
+
+/* Every indigo block is rounded like Ask's box (decision 0082): Waiting for you and Lists at 20px, the cards (Review's
+   cards on the indigo, the pipeline's Idea cards) at 14px. Lists drops its violet rule down the left, which a rounded
+   corner would bend. */
+html:root .ai-wash,
+html:root .tone-ai,
+html:root .proto-card.tone-ai {
+  border-radius: 20px;
+  border-left: 0;
+}
+html:root .rail-box .card-rail > li,
+html:root .pipe-col[data-stage="Idea"] :is(.pipe-card, .pipe-ghost) {
+  border-radius: 14px;
+}

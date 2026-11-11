@@ -85,3 +85,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0079 | [Suggested actions, refined](0079-actions-refined.md) | 2026-11-11 |
 | 0080 | [Ask without a box](0080-ask-without-a-box.md) | 2026-11-11 |
 | 0081 | [Ask's rounded box is back](0081-ask-box-back.md) | 2026-11-11 |
+| 0082 | [Every indigo block is rounded](0082-rounded-indigo.md) | 2026-11-11 |
