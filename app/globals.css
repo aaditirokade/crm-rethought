@@ -2818,3 +2818,27 @@ html:root .aa-pic {
   background: var(--ai-grad);
   padding: 1.25rem;
 }
+
+/* Fields are a line, not a box (decision 0072). Every input, select and text area loses its outline and fill and
+   keeps one bottom line in the control color (3:1 or more on every background it sits on). Under the pointer or with
+   focus the line turns violet and thickens to 2px, which is also the focus indicator. Ask's query field keeps its
+   light fill on the indigo box (decision 0066). */
+html:root .proto-input:not(.ask-input) {
+  border: 0;
+  border-bottom: 1.5px solid var(--line-strong);
+  border-radius: 0;
+  background: transparent !important;
+  padding-left: 0;
+  padding-right: 0;
+  box-shadow: none;
+}
+html:root .proto-input:not(.ask-input):hover {
+  border-bottom-color: var(--accent);
+}
+html:root .proto-input:not(.ask-input):focus-visible {
+  outline: none;
+  border-bottom: 2px solid var(--accent);
+}
+html:root select.proto-input {
+  padding-right: 1.25rem;
+}

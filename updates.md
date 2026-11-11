@@ -91,3 +91,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Waiting for you gets the highlight, and the highlight turns purple black, with light on dark tokens (decisions 0067, 0068)
 - A smaller Ask title: 1.25 to 1.6rem (decision 0069)
 - Review highlights the card under the pointer, not the group, and every highlight uses Ask's indigo (decisions 0070, 0071)
+- Fields are a line, not a box: every input, menu and text area keeps only a bottom line (decision 0072)
