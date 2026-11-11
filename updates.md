@@ -102,3 +102,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Ask without a box: the indigo is a color block that fades into the page at its edges; action rows lighten on hover; shorter suggestion pills (decision 0080)
 - Ask's rounded box is back; the fading edges are taken back (decision 0081)
 - Every indigo block is rounded: Waiting for you and Lists at 20px, the indigo cards at 14px (decision 0082)
+- Lists on the light wash, like the cards in Review (decision 0083)
