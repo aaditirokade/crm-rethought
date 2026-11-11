@@ -3061,39 +3061,11 @@ html:root .ask-wrap .ask-clear:focus-visible {
   }
 }
 
-/* Ask without a box (decision 0080). The box loses its edge, rounded corners and shadow; the indigo becomes a color
-   block that sits on a layer behind the content, bleeding 2rem past the content on every side and fading into the
-   page over that bleed, so it has no edge to read as a box. All text sits inside the fully colored area, so the
-   contrast pairs of decisions 0076 and 0077 hold. Suggested action rows now lighten under the pointer (white 8%
+/* Lighter hover and shorter pills (decision 0080; its fading edges were taken back in 0081, so Ask keeps its rounded
+   box). Suggested action rows now lighten under the pointer (white 8%
    over the indigo) instead of darkening, with tokens a step lighter in the hovered row so it still passes AA on the
    lightest point: secondary text 4.9:1, violet 4.6:1, status 4.6:1 or more, rules 3.7:1. The suggestion pills are
    shorter. */
-html:root .ask-wrap.ask-wrap.ask-wrap.proto-card,
-html:root .ask-wrap.ask-wrap.ask-wrap.proto-card:has(.ask-panel.is-open) {
-  position: relative;
-  isolation: isolate;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-html:root .ask-wrap.ask-wrap.ask-wrap.proto-card::before {
-  content: "";
-  position: absolute;
-  inset: -2rem;
-  z-index: -1;
-  background: var(--ask-pop);
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 2rem, #000 calc(100% - 2rem), transparent), linear-gradient(to bottom, transparent, #000 2rem, #000 calc(100% - 2rem), transparent);
-  -webkit-mask-composite: source-in;
-  mask-image: linear-gradient(to right, transparent, #000 2rem, #000 calc(100% - 2rem), transparent), linear-gradient(to bottom, transparent, #000 2rem, #000 calc(100% - 2rem), transparent);
-  mask-composite: intersect;
-  pointer-events: none;
-}
-html:root .ask-wrap.ask-wrap.ask-wrap.proto-card:has(.ask-panel.is-open)::before {
-  background:
-    radial-gradient(90% 260px at 0% 0%, rgb(80 73 198 / 0.55), transparent 70%),
-    linear-gradient(180deg, #2a2878 0%, #34319a 40%, #5550c8 100%);
-}
 html:root .ask-wrap .ask-action:hover,
 html:root .ask-wrap .ask-action:focus-within {
   background: rgb(255 255 255 / 0.08);
