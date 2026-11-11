@@ -46,6 +46,7 @@ export function Pipeline() {
               <li
                 key={stage}
                 aria-labelledby={`col-${stage}`}
+                data-stage={stage}
                 className={`pipe-col rounded-2xl border p-2 ${over === stage ? "border-accent bg-draft" : "border-line bg-surface-2"}`}
                 onDragOver={(e) => {
                   e.preventDefault();

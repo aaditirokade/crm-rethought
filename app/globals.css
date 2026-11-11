@@ -2702,3 +2702,115 @@ input.proto-input:focus {
 }
 
 /* Decision 0064: the darker blocks of 0063 and Ask's band that ran into the margins (0061) are taken back. */
+
+/* AI washes (decision 0065). A slightly darker gradient of the AI's color marks the places the AI works for you:
+   Ask's query field, the Lists section, the Idea cards in the pipeline, every card Spotted by AI, and a group of
+   cards in Review under the pointer. Inside a wash the tokens are Ask's own, so every text pair passes AA on the
+   darker end of the gradient: light ink 11.4:1, ink-2 6.1:1, violet 6.5:1, rules 3.2:1 on #d5d8fb; dark ink
+   10.6:1, ink-2 7.2:1, violet 7.2:1, rules 4.1:1 on #2e2f63. */
+:root {
+  --ai-grad: linear-gradient(135deg, #e7e6ff 0%, #d5d8fb 100%);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ai-grad: linear-gradient(135deg, #2e2f63 0%, #23254e 100%);
+  }
+}
+:root[data-theme="dark"] {
+  --ai-grad: linear-gradient(135deg, #2e2f63 0%, #23254e 100%);
+}
+.ai-wash,
+.tone-ai,
+.pipe-col[data-stage="Idea"] :is(.pipe-card, .pipe-ghost),
+.rail-box.is-ai .card-rail > li,
+.rail-box:hover {
+  --surface: #ffffff;
+  --surface-2: #f3f4fe;
+  --ink-2: #484c5a;
+  --line: #c9cdf3;
+  --line-strong: #6e71b8;
+  --accent: #2c2cc9;
+  --accent-hover: #2f3399;
+  --good: #23663f;
+  --warn: #9c3c06;
+  --risk: #9e3a31;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) :is(.ai-wash, .tone-ai, .pipe-col[data-stage="Idea"] .pipe-card, .pipe-col[data-stage="Idea"] .pipe-ghost, .rail-box.is-ai .card-rail > li, .rail-box:hover) {
+    --surface: #2e3060;
+    --surface-2: #33356a;
+    --ink: #ebedf5;
+    --ink-2: #c4c3df;
+    --line: #3e4078;
+    --line-strong: #8d90c6;
+    --accent: #bcc2ff;
+    --accent-hover: #d3d7ff;
+    --good: #8ad9ae;
+    --warn: #ffab70;
+    --risk: #ff9e92;
+  }
+}
+:root[data-theme="dark"] :is(.ai-wash, .tone-ai, .pipe-col[data-stage="Idea"] .pipe-card, .pipe-col[data-stage="Idea"] .pipe-ghost, .rail-box.is-ai .card-rail > li, .rail-box:hover) {
+  --surface: #2e3060;
+  --surface-2: #33356a;
+  --ink: #ebedf5;
+  --ink-2: #c4c3df;
+  --line: #3e4078;
+  --line-strong: #8d90c6;
+  --accent: #bcc2ff;
+  --accent-hover: #d3d7ff;
+  --good: #8ad9ae;
+  --warn: #ffab70;
+  --risk: #ff9e92;
+}
+
+/* Ask: the query field is the wash, a step darker than the block around it. */
+html:root .ask-wrap .ask-input {
+  border-radius: 10px;
+  background: var(--ai-grad) !important;
+  padding: 0.6rem 0.9rem;
+}
+
+/* Lists: the whole section sits on the wash, its violet rule still down the left. */
+.tone-ai,
+.proto-card.tone-ai {
+  background: var(--ai-grad);
+  padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+}
+
+/* The pipeline's Idea cards, and the idea the AI suggests there, on the wash. The suggestion keeps its dashed edge. */
+.pipe-col[data-stage="Idea"] .pipe-card {
+  border-color: transparent;
+  background: var(--ai-grad);
+}
+.pipe-col[data-stage="Idea"] .pipe-ghost {
+  background: var(--ai-grad);
+}
+
+/* Review: a group of cards lights up with the wash under the pointer, and the cards Spotted by AI always sit on it. */
+.proto-card.rail-box {
+  position: relative;
+  isolation: isolate;
+  padding: 0.75rem;
+}
+.rail-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--ai-grad);
+  opacity: 0;
+  transition: opacity 220ms ease;
+  pointer-events: none;
+}
+.rail-box:hover::before {
+  opacity: 1;
+}
+.rail-box.is-ai .card-rail > li {
+  background: var(--ai-grad);
+}
+@media (prefers-reduced-motion: reduce) {
+  .rail-box::before {
+    transition: none;
+  }
+}

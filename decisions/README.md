@@ -68,3 +68,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0062 | [Case study visuals match the prototype](0062-case-visuals-match.md) | 2026-11-11 |
 | 0063 | [Darker color blocks](0063-darker-blocks.md) | 2026-11-11 |
 | 0064 | [Take back the dark blocks and the bleed](0064-take-back-dark-blocks.md) | 2026-11-11 |
+| 0065 | [AI washes](0065-ai-washes.md) | 2026-11-11 |

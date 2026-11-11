@@ -13,7 +13,7 @@ import { actions, allSugs, entryOf, isGated, useProto } from "../store";
  * the arrows page by a screenful, and an edge fades out while more cards wait past it.
  * Trackpads, touch and Shift with the wheel scroll it too; Tab moves through each card's buttons.
  */
-function CardRail({ label, count, children }: { label: string; count: number; children: React.ReactNode }) {
+function CardRail({ label, count, ai = false, children }: { label: string; count: number; ai?: boolean; children: React.ReactNode }) {
   const rail = useRef<HTMLUListElement>(null);
   const [edge, setEdge] = useState({ start: true, end: true });
   useEffect(() => {
@@ -37,7 +37,7 @@ function CardRail({ label, count, children }: { label: string; count: number; ch
   };
   const scrolls = !(edge.start && edge.end);
   return (
-    <div className="proto-card mt-3 p-3">
+    <div className={`proto-card rail-box mt-3 p-3 ${ai ? "is-ai" : ""}`}>
       <div className="flex min-h-9 items-center justify-between gap-3 px-1">
         <p className="font-mono text-meta tracking-wide text-ink-2">
           {count} {count === 1 ? "CARD" : "CARDS"}
@@ -98,7 +98,7 @@ export function Review() {
                   Open in context
                 </Link>
               </p>
-              <CardRail label={origin.label} count={items.length}>
+              <CardRail label={origin.label} count={items.length} ai={origin.key === "opps"}>
                 {items.map((x) => (
                   <GateLine key={x.id} sug={x} icons />
                 ))}

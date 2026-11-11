@@ -85,3 +85,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Case study visuals match the prototype: the four recordings made again from the current prototype in light and dark, square on a hairline, and the problem reel and Ask tiles without their sand cards (decision 0062)
 - Darker color blocks: Ask in deep indigo, Waiting for you and an account's waiting lines in ink, each running off the edge of the window (decision 0063)
 - Took back the dark blocks and Ask's bleed into the margins: Ask is the contained block again; Ask and phone recordings made again (decision 0064)
+- AI washes: a slightly darker gradient of the AI's color on Ask's query field, the Lists section, the pipeline's Idea cards, every card Spotted by AI, and a Review group under the pointer (decision 0065)
