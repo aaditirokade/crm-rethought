@@ -108,7 +108,7 @@ const WALKTHROUGH: Step[] = [
     video: "review",
     width: 1520,
     height: 960,
-    alt: "Review: a person points at the check icon and its Approve label slides out, approves a record fix that saves right away, approves a log line, moves the row of cards along with the arrow, then saves the approved line to the record.",
+    alt: "Review: a person approves a log line where it sits, sees it marked approved and not saved yet, then saves the approved line to the record from the bar at the bottom.",
   },
   {
     title: "Say the list you want",
@@ -116,16 +116,16 @@ const WALKTHROUGH: Step[] = [
     video: "lists",
     width: 1520,
     height: 960,
-    alt: "Lists: a person types “quiet for 2 weeks with more than 10 stores”, the AI shows how it understood it as two filter chips with a reason beside each account, and removing one chip widens the list.",
+    alt: "Lists: a person picks “quiet for 2 weeks with more than 10 stores”, the AI shows how it understood it as two filter chips with a reason beside each account, and removing one chip widens the list.",
   },
   {
     title: "Keep going between meetings",
     body: "The phone app is the three things people do on the way to and from a meeting: read what to know, approve drafts one card at a time, and turn a voice note into lines to approve. Nothing saves without you.",
     video: "mobile",
     width: 750,
-    height: 1624,
+    height: 1484,
     phone: true,
-    alt: "Mobile app: from the next meeting, a person opens the drafts waiting for them, approves a record fix and a log line one card at a time, then saves the approved line.",
+    alt: "Mobile app: from the next meeting, a person opens the drafts waiting for them, approves the drafts one card at a time, then saves the approved line.",
   },
 ];
 
@@ -183,7 +183,7 @@ export default function Home() {
               name="ask"
               width={1520}
               height={960}
-              alt="Ask about any account: a person picks “Why is Fernhill slipping?”, the AI reads emails, tickets, the last call and usage, then answers with a source on every claim, three numbers and a suggested next move."
+              alt="Ask about any account: a person picks “Why is Fernhill slipping?”, the AI reads emails, tickets, the last call and usage, then answers with a source on every claim, three numbers and a suggested next move. Opening one source shows the usage it rests on."
             />
           </div>
         </header>

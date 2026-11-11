@@ -2689,3 +2689,86 @@ input.proto-input:focus {
   text-decoration: underline 2px var(--accent);
   text-underline-offset: 6px;
 }
+
+/* Case study visuals match the prototype (decision 0062). The recordings sit square on a hairline, the way the
+   prototype's sections sit on the page; the phone keeps its rounded screen. The Ask tiles lose their sand card and
+   lift, and each picture sits on Ask's band. */
+.case-demo-frame {
+  border-radius: 0;
+  box-shadow: none;
+  outline: 1px solid var(--rule);
+}
+.case-demo.is-phone .case-demo-frame {
+  border-radius: 28px;
+  outline: 0;
+  box-shadow: var(--shadow-lift);
+}
+.ask-tile:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Darker color blocks (decision 0063). Two places carry a dark block so the screens have somewhere for the eye to
+   land: Ask, where the AI speaks, in deep indigo, and Waiting for you, where a person decides, in ink. Each runs off
+   the edge of the window on its open side. Inside, the tokens flip to light on dark; every pair passes AA. */
+:root {
+  --ask-band: #2b2b74; /* ink 11.1:1, ink-2 7.2:1, violet 7.2:1, rules 4.1:1 */
+  --block-ink: #20222b; /* ink 14.2:1, ink-2 9.3:1, violet 9.3:1, rules 5.2:1 */
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ask-band: #2b2b74;
+    --block-ink: #2a2e42;
+  }
+}
+:root[data-theme="dark"] {
+  --ask-band: #2b2b74;
+  --block-ink: #2a2e42;
+}
+html:root .ask-wrap,
+html:root .block-ink,
+html:root .aa-pic {
+  --bg: #25274f;
+  --surface: #2e3060;
+  --surface-2: #33356a;
+  --ink: #f1f2f8;
+  --ink-2: #c4c3df;
+  --line: #3e4078;
+  --line-strong: #8d90c6;
+  --rule: rgb(255 255 255 / 0.18);
+  --accent: #bcc2ff;
+  --accent-hover: #d3d7ff;
+  --accent-ink: #25274f;
+  --draft: #33356a;
+  --good: #8ad9ae;
+  --warn: #ffab70;
+  --risk: #ff9e92;
+  color-scheme: dark;
+  color: var(--ink);
+}
+html:root .block-ink {
+  --ink-2: #c3c6d4;
+  --line: rgb(255 255 255 / 0.16);
+  --line-strong: #8e93a8;
+  background: var(--block-ink);
+  box-shadow: 0 0 0 100vmax var(--block-ink);
+  clip-path: inset(-1.75rem -100vmax -1.75rem -1.5rem);
+  padding: 0.25rem 0 0.25rem;
+}
+html:root .block-ink .proto-card {
+  border-top-color: var(--rule);
+}
+@media (max-width: 1023px) {
+  html:root .block-ink {
+    clip-path: inset(-1.75rem -100vmax);
+  }
+}
+/* On an account, the lines waiting for its owner run as an ink band across the window. */
+html:root .block-ink.is-band {
+  clip-path: inset(0 -100vmax);
+  padding: 0.85rem 0;
+}
+/* The phone's Ask field sits on the same indigo. */
+html:root .ask-wrap:not(.proto-card) {
+  background: var(--ask-band);
+}

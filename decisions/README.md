@@ -65,3 +65,5 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0059 | [Electric Pulse](0059-electric-pulse.md) | 2026-11-10 |
 | 0060 | [Fewer boxes](0060-fewer-boxes.md) | 2026-11-10 |
 | 0061 | [Free flowing, with Ask as the one band](0061-free-flowing.md) | 2026-11-11 |
+| 0062 | [Case study visuals match the prototype](0062-case-visuals-match.md) | 2026-11-11 |
+| 0063 | [Darker color blocks](0063-darker-blocks.md) | 2026-11-11 |

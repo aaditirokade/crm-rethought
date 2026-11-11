@@ -82,3 +82,5 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Electric Pulse: violet for the AI and aqua for the data, from Henu's 2026 palettes (decision 0059)
 - Fewer boxes: the color blocks, the pipeline's trays and the boxes inside boxes go; sections sit on the page, divided by space and rules, and Ask stays the one block (decision 0060)
 - Free flowing: Ask is a square band of violet that runs off both edges of the window, with a bigger question and a field that is a line; buttons other than the main action are underlined words, and sources, health and draft counts lose their pills (decision 0061)
+- Case study visuals match the prototype: the four recordings made again from the current prototype in light and dark, square on a hairline, and the problem reel and Ask tiles without their sand cards (decision 0062)
+- Darker color blocks: Ask in deep indigo, Waiting for you and an account's waiting lines in ink, each running off the edge of the window (decision 0063)

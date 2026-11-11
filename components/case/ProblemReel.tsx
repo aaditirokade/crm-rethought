@@ -77,7 +77,7 @@ function Typing({ run, still }: { run: number; still: boolean }) {
     ["Stage", "Renewal · at risk"],
   ];
   return (
-    <div className="rounded-xl border border-[var(--line-strong)] bg-surface p-4">
+    <div className="border-t border-[var(--rule)] pt-3">
       <div className="flex items-center justify-between font-mono text-meta text-ink-2">
         <span>LOG A CALL · FERNHILL OUTFITTERS</span>
         <span className="tabular-nums text-ink">{min} MIN</span>
@@ -107,14 +107,14 @@ function Stale() {
     ["Cedar Row Hardware", "73 days ago", true],
   ] as const;
   return (
-    <ul className="divide-y divide-[var(--line)] rounded-xl border border-[var(--line-strong)] bg-surface text-small">
+    <ul className="divide-y divide-[var(--rule)] border-y border-[var(--rule)] text-small">
       {rows.map(([name, when, stale], i) => (
-        <li key={name} className="flex items-center justify-between gap-3 px-4 py-1">
+        <li key={name} className="flex items-center justify-between gap-3 py-1">
           <span>{name}</span>
           <span className="flex items-center gap-2 font-mono text-meta">
             <span className="text-ink-2">UPDATED {when.toUpperCase()}</span>
             {stale ? (
-              <span className="pr-flag rounded-full bg-[var(--warn-wash)] px-2 py-0.5 text-warn" style={{ animationDelay: `${400 + i * 260}ms` }}>
+              <span className="pr-flag font-semibold text-warn" style={{ animationDelay: `${400 + i * 260}ms` }}>
                 STALE
               </span>
             ) : null}
@@ -161,7 +161,7 @@ export function ProblemReel() {
         Three findings, shown in turn: 40% of a seller&apos;s time goes to selling; 68% of sellers say note taking and data entry take the most time;
         76% of CRM users say less than half their CRM data is accurate.
       </figcaption>
-      <div className="rounded-[20px] bg-surface-2 p-5 sm:p-6">
+      <div className="border-t border-[var(--rule)] pt-5 sm:pt-6">
         <div aria-hidden="true" key={run} className="flex min-h-[24.5rem] flex-col justify-center sm:min-h-[19rem]">
           <p className="flex items-baseline gap-3">
             <span className="text-[2.75rem] font-medium leading-none tracking-tight tabular-nums">{n}%</span>
