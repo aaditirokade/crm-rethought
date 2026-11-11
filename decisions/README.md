@@ -72,3 +72,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0066 | [Ask pops](0066-ask-pops.md) | 2026-11-11 |
 | 0067 | [Waiting for you gets the highlight](0067-waiting-highlight.md) | 2026-11-11 |
 | 0068 | [The highlight turns purple black](0068-purple-black.md) | 2026-11-11 |
+| 0069 | [A smaller Ask title](0069-smaller-ask-title.md) | 2026-11-11 |

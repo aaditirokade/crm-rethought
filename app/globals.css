@@ -2514,7 +2514,7 @@ dl.tone-block {
   --ask-band: #25274f;
 }
 html:root .ask-wrap #ask-h {
-  font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.25rem);
+  font-size: clamp(1.25rem, 1.05rem + 0.6vw, 1.6rem); /* smaller since decision 0069 */
   font-weight: 600;
   letter-spacing: -0.03em;
   line-height: 1.1;
