@@ -95,3 +95,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - A visible gradient on the indigo: a soft glow in the top left over a deeper diagonal, on Ask and every highlight (decision 0073)
 - Ask's field is a line on the indigo and Ask is a white pill button; the phone's Ask entry is a line (decision 0074)
 - Ask's answer fades from the indigo to near white as it extends, and its three figures are larger under violet rules (decision 0075)
+- Ask lightens gradually: one vertical gradient from deep to lighter indigo over the whole box as the answer extends, with no jump (decision 0076)
