@@ -2742,11 +2742,12 @@ html:root .ask-wrap .ask-input {
   padding: 0.6rem 0.9rem;
 }
 
-/* Lists: the whole section sits on the light draft wash, the same as the cards in Review (decision 0083), with the
-   page's own tokens. */
+/* Lists: the whole section sits on the light draft wash, the same as the cards in Review, with the page's own tokens
+   and the cards' violet edge down the left, drawn inside so it follows the rounded corners (decision 0083). */
 .tone-ai,
 .proto-card.tone-ai {
   background: var(--draft);
+  box-shadow: inset 3px 0 0 color-mix(in srgb, var(--accent) 70%, transparent);
   padding: 1.25rem 1.25rem 1.25rem 1.5rem;
 }
 
