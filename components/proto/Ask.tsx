@@ -40,7 +40,7 @@ const KIND: Record<SuggestedAction["kind"], { tag: string; verb: string; done: s
  * Actions the AI suggests from its answer (Nov 2026). Each says what it would do; nothing happens until the person
  * chooses it, a draft waits in Review like any other line, and Undo takes it back.
  */
-function AskActions({ items }: { items: SuggestedAction[] }) {
+export function AskActions({ items }: { items: SuggestedAction[] }) {
   const [taken, setTaken] = useState<Record<string, boolean>>({});
   const take = (a: SuggestedAction, on: boolean) => {
     setTaken((t) => ({ ...t, [a.id]: on }));

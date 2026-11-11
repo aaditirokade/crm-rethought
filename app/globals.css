@@ -3097,3 +3097,90 @@ html:root .rail-box .card-rail > li,
 html:root .pipe-col[data-stage="Idea"] :is(.pipe-card, .pipe-ghost) {
   border-radius: 14px;
 }
+
+/* The phone app follows the desktop (decision 0085). Ask on the phone is the same indigo box as on the desktop: on
+   Next up its entry is a small indigo block with a line to write on and a white Ask circle, and the Ask screen is
+   the whole box, with the line field, the round Ask button, light suggestion pills, the larger figures, suggested
+   actions and Clear as an underlined link. The lines waiting for you sit on the light draft wash with the violet
+   edge, like Waiting for you; the card to approve does too, and a card Spotted by AI is on the indigo, as in
+   Review. Token pairs are the desktop's, so every pair passes AA as noted in decisions 0066, 0076 and 0084. */
+.mob-wash {
+  border-radius: 20px;
+  background: var(--draft);
+  box-shadow: inset 3px 0 0 color-mix(in srgb, var(--accent) 70%, transparent), var(--shadow);
+}
+.mob-ai {
+  --bg: #2e2c8a;
+  --surface: #3a37a0;
+  --surface-2: #3f3ca8;
+  --ink: #ffffff;
+  --ink-2: #ebeafb;
+  --line: #5a5ccc;
+  --line-strong: #a9acdf;
+  --rule: rgb(255 255 255 / 0.22);
+  --accent: #dde0ff;
+  --accent-hover: #ffffff;
+  --accent-ink: #2e2c8a;
+  --draft: #3a37a0;
+  --good: #b0f0cc;
+  --warn: #ffd3b3;
+  --risk: #ffcfc8;
+  color-scheme: dark;
+  border-radius: 20px;
+  background: var(--ask-pop);
+  box-shadow: 0 18px 36px -18px rgb(46 44 138 / 0.55);
+  color: var(--ink);
+}
+html:root .mob .mob-ask-entry {
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+html:root .mob .mob-ask-entry:hover {
+  transform: translateY(-1px);
+}
+html:root .mob .mob-ask-entry:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.mob-ask-line {
+  border-bottom: 2px solid var(--line-strong);
+  padding: 0.4rem 0;
+}
+.mob-ask-go {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  background: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #2e2c8a;
+  box-shadow: 0 6px 16px -8px rgb(10 8 60 / 0.6);
+}
+html:root .mob .ask-wrap .sig-btn:not(.sig-btn-primary):not(.ask-action .sig-btn) {
+  min-height: 2rem;
+  height: auto;
+  border-radius: 14px;
+  padding: 0.35rem 0.75rem;
+  line-height: 1.3;
+  text-align: left;
+}
+html:root .mob .ask-wrap .ask-stats {
+  column-gap: 0.75rem;
+}
+html:root .mob .ask-wrap .ask-stats dd {
+  font-size: 1.6rem;
+}
+/* On the phone each suggested action's button sits under its text, so the text keeps the full width. */
+html:root .mob .ask-wrap .ask-action > div {
+  flex-basis: 100%;
+}
+html:root .mob .ask-wrap .ask-action .sig-btn {
+  width: 7.5rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  html:root .mob .mob-ask-entry {
+    transition: none;
+  }
+}

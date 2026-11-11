@@ -88,3 +88,5 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0082 | [Every indigo block is rounded](0082-rounded-indigo.md) | 2026-11-11 |
 | 0083 | [Lists on the light wash](0083-lists-light.md) | 2026-11-11 |
 | 0084 | [Waiting for you on the light wash](0084-waiting-light.md) | 2026-11-11 |
+| 0085 | [The phone app follows the desktop](0085-phone-follows-desktop.md) | 2026-11-11 |
+| 0086 | [Case study recordings match the indigo prototype](0086-visuals-rerecorded.md) | 2026-11-11 |

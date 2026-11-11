@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { answerFor, SUGGESTED, type Answer } from "@/content/ask";
 import { EVENTS } from "@/content/more";
 import { account, forMeeting, MEETINGS, NOW } from "@/content/prototype";
+import { AskActions } from "@/components/proto/Ask";
 import { originOf } from "@/components/proto/groups";
 import { FixBox, GateLine } from "@/components/proto/Lines";
 import { Meta, SourceChip } from "@/components/proto/Source";
@@ -93,7 +94,7 @@ function Home({ go, waiting }: { go: (s: Screen) => void; waiting: number }) {
         </button>
       </section>
 
-      <button type="button" className="mt-3 flex w-full items-center justify-between rounded-2xl bg-draft p-4 text-left" onClick={() => go("approve")}>
+      <button type="button" className="ai-wash mt-3 flex w-full items-center justify-between text-left" onClick={() => go("approve")}>
         <span>
           <span className="sig-draft-tag">DRAFT</span>
           <span className="mt-1 block font-semibold">{waiting ? `${waiting} lines wait for you` : "Nothing waiting"}</span>
@@ -104,8 +105,14 @@ function Home({ go, waiting }: { go: (s: Screen) => void; waiting: number }) {
         </span>
       </button>
 
-      <button type="button" className="ask-wrap mt-3 w-full rounded-2xl border border-line-strong bg-surface px-4 py-3 text-left text-ink-2" onClick={() => go("ask")}>
-        Ask about any account{"…"}
+      <button type="button" className="ask-wrap proto-card mob-ask-entry mt-3 block w-full p-4 text-left" onClick={() => go("ask")}>
+        <span className="block text-h3 font-semibold">Ask about any account</span>
+        <span className="mt-3 flex items-center justify-between gap-3">
+          <span className="mob-ask-line min-w-0 flex-1 text-ink-2">Why is Fernhill slipping?</span>
+          <span aria-hidden="true" className="mob-ask-go">
+            Ask
+          </span>
+        </span>
       </button>
 
       <section aria-labelledby="m-later" className="mt-5">
@@ -203,11 +210,11 @@ function Approve() {
             {queue.length} LEFT · {originOf(cur).label.toUpperCase()}
           </p>
           <div className="relative mt-2">
-            {queue[1] ? <div aria-hidden="true" className="absolute inset-x-3 -bottom-2 h-full rounded-3xl border border-line bg-surface" /> : null}
+            {queue[1] ? <div aria-hidden="true" className="absolute inset-x-3 -bottom-2 h-full rounded-[20px] border border-line bg-surface" /> : null}
             <article
               aria-roledescription="card"
               aria-label="Line to approve"
-              className="mob-card relative rounded-3xl border border-line-strong bg-draft p-4"
+              className={`mob-card relative p-4 ${originOf(cur).key === "opps" ? "mob-ai" : "mob-wash"}`}
               style={{
                 transform: `translateX(${leaving ? leaving * 420 : dx}px) rotate(${(leaving ? leaving * 420 : dx) / 30}deg)`,
                 transition: dragging ? "none" : "transform 220ms ease",
@@ -282,12 +289,15 @@ function AskScreen() {
     setQ(text);
     setAnswer(answerFor(text));
   };
+  const sources = answer ? new Set(answer.segments.flatMap((x) => x.cite ?? [])).size : 0;
   return (
-    <div>
-      <h1 className="text-h2 font-semibold">Ask</h1>
+    <section aria-labelledby="m-ask-h" className="ask-wrap proto-card p-4">
+      <h1 id="m-ask-h" className="text-h2 font-semibold">
+        Ask
+      </h1>
       <p className="text-small text-ink-2">Read only. Every claim has a source.</p>
       <form
-        className="mt-3 flex gap-2"
+        className="mt-3 flex items-end gap-3"
         onSubmit={(e) => {
           e.preventDefault();
           if (q.trim()) ask(q.trim());
@@ -296,51 +306,80 @@ function AskScreen() {
         <label htmlFor="m-ask" className="sr-only">
           Your question
         </label>
-        <input id="m-ask" className="proto-input" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Why is Fernhill slipping?" />
-        <button type="submit" className="sig-btn sig-btn-primary" disabled={!q.trim()}>
+        <input id="m-ask" className="proto-input ask-input min-w-0 flex-1" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Why is Fernhill slipping?" autoComplete="off" />
+        <button type="submit" className="sig-btn sig-btn-primary shrink-0" disabled={!q.trim()}>
           Ask
         </button>
       </form>
-      <div className="mt-2 flex flex-col gap-2">
+      <div className="mt-3 flex flex-wrap gap-2">
         {SUGGESTED.map((x) => (
-          <button key={x} type="button" className="sig-btn justify-start text-left" onClick={() => ask(x)}>
+          <button key={x} type="button" className="sig-btn text-left" onClick={() => ask(x)}>
             {x}
           </button>
         ))}
       </div>
-      {answer ? (
-        <section key={answer.question} aria-label="Answer" className="mt-5 border-t border-line pt-4">
-          <p className="font-mono text-meta tracking-wide text-ink-2">{new Set(answer.segments.flatMap((x) => x.cite ?? [])).size} SOURCES · READ ONLY</p>
-          <p className="mt-2 leading-relaxed">
-            {answer.segments.map((seg, i) => (
-              <span key={i} className="mob-seg" style={{ animationDelay: `${i * 90}ms` }}>
-                {seg.text}
-                {seg.cite?.map((c) => (
-                  <span key={c}>
-                    {" "}
-                    <SourceChip id={c} />
+      <div className={`ask-panel ${answer ? "is-open" : ""}`}>
+        <div className="min-h-0">
+          {answer ? (
+            <div key={answer.question} aria-label="Answer" role="region" className="mt-4 border-t border-line pt-4">
+              <p className="font-mono text-meta tracking-wide text-ink-2">YOU ASKED</p>
+              <p className="font-medium">{answer.question}</p>
+              <p className="mt-3 leading-relaxed">
+                {answer.segments.map((seg, i) => (
+                  <span key={i} className="mob-seg" style={{ animationDelay: `${i * 90}ms` }}>
+                    {seg.text}
+                    {seg.cite?.map((c) => (
+                      <span key={c}>
+                        {" "}
+                        <SourceChip id={c} />
+                      </span>
+                    ))}
                   </span>
                 ))}
-              </span>
-            ))}
-          </p>
-          {answer.stats.length ? (
-            <dl className="mt-3 grid grid-cols-3 gap-2">
-              {answer.stats.map((st) => (
-                <div key={st.label} className="border-l border-line pl-2">
-                  <dt className="font-mono text-[0.625rem] leading-tight tracking-wide text-ink-2">{st.label.toUpperCase()}</dt>
-                  <dd className="text-h3 font-semibold">
-                    {st.value < 0 ? `−${Math.abs(st.value)}` : st.value}
-                    {st.suffix}
-                  </dd>
-                </div>
-              ))}
-            </dl>
+              </p>
+              {answer.stats.length ? (
+                <dl className="ask-stats mt-4 grid grid-cols-3 gap-2">
+                  {answer.stats.map((st) => (
+                    <div key={st.label}>
+                      <dt className="font-mono text-[0.625rem] leading-tight tracking-wide text-ink-2">{st.label.toUpperCase()}</dt>
+                      <dd className="tabular-nums">
+                        {st.value < 0 ? `−${Math.abs(st.value)}` : st.value}
+                        {st.suffix}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              ) : null}
+              {answer.next ? (
+                <p className="ask-next mt-4 border-l-2 border-accent pl-3 text-small">
+                  <span className="font-mono text-meta tracking-wide text-ink-2">SUGGESTED NEXT MOVE · </span>
+                  {answer.next}
+                </p>
+              ) : null}
+              {answer.actions?.length ? <AskActions key={answer.id} items={answer.actions} /> : null}
+              <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+                <p className="font-mono text-meta tracking-wide text-ink-2">
+                  {sources ? `${sources} SOURCES · ` : ""}NOTHING IN THE RECORD CHANGED
+                </p>
+                <button
+                  type="button"
+                  className="ask-clear"
+                  onClick={() => {
+                    setAnswer(null);
+                    setQ("");
+                  }}
+                >
+                  Clear
+                  <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+                    <path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+                  </svg>
+                </button>
+              </div>
+            </div>
           ) : null}
-          {answer.next ? <p className="mt-3 text-small"><span className="font-mono text-meta text-ink-2">NEXT MOVE · </span>{answer.next}</p> : null}
-        </section>
-      ) : null}
-    </div>
+        </div>
+      </div>
+    </section>
   );
 }
 

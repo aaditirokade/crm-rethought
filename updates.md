@@ -105,3 +105,5 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Lists on the light wash, like the cards in Review (decision 0083)
 - Lists gets the cards' violet edge down the left (decision 0083)
 - Waiting for you on the light wash with the violet edge, like Lists (decision 0084)
+- The phone app follows the desktop: light wash with the violet edge, and Ask in the indigo box with suggested actions (decision 0085)
+- Case study recordings made again from the indigo prototype (decision 0086)
