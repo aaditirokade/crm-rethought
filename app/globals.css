@@ -2906,3 +2906,96 @@ html:root .ask-wrap.ask-wrap:not(.proto-card) {
   padding-left: 0;
   padding-right: 0;
 }
+
+/* Ask's answer lightens as it extends, and its figures get more weight (decision 0075). When an answer opens, the
+   lower part of the box runs from the indigo into a light lavender that fades to near white at the bottom, edge to
+   edge inside the box's rounded corners. The answer's tokens flip back to dark on light, and every pair passes AA on
+   the darkest point under text, #dcdafb: ink 11.7:1, ink-2 6.3:1, violet 6.7:1, status 5.0:1 or more, rules 4.1:1.
+   In dark the answer lightens from deep to bright indigo instead, keeping the light on dark tokens (all 4.2:1 or more
+   on #3d3a99). The three figures are larger, each under a short violet rule. */
+html:root .ask-wrap .ask-panel.is-open {
+  margin: 0 -1rem -1rem;
+  border-radius: 0 0 23px 23px;
+  background: linear-gradient(180deg, transparent 0, #dcdafb 1.1rem, #ecebfe 55%, #f8f7ff 100%);
+  --ink: #20222b;
+  --ink-2: #484c5a;
+  --line: #c9cdf3;
+  --line-strong: #5f62a8;
+  --rule: rgb(32 34 43 / 0.16);
+  --accent: #2c2cc9;
+  --accent-hover: #1f1f99;
+  --surface: #ffffff;
+  --surface-2: #eef0fd;
+  --draft: #e6e6fb;
+  --good: #23663f;
+  --warn: #9c3c06;
+  --risk: #9e3a31;
+  color-scheme: light;
+  color: var(--ink);
+}
+@media (min-width: 640px) {
+  html:root .ask-wrap .ask-panel.is-open {
+    margin: 0 -1.25rem -1.25rem;
+  }
+}
+html:root .ask-wrap .ask-panel.is-open > div > div {
+  margin-top: 0;
+  border-top: 0;
+  padding: 1.6rem 1rem 1rem;
+}
+@media (min-width: 640px) {
+  html:root .ask-wrap .ask-panel.is-open > div > div {
+    padding: 1.75rem 1.25rem 1.25rem;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .ask-wrap .ask-panel.is-open {
+    background: linear-gradient(180deg, transparent 0, #2b2970 1.1rem, #34318a 55%, #3d3a99 100%);
+    --ink: #ffffff;
+    --ink-2: #ebeafb;
+    --line: #5a5ccc;
+    --line-strong: #a9acdf;
+    --rule: rgb(255 255 255 / 0.22);
+    --accent: #dde0ff;
+    --accent-hover: #ffffff;
+    --surface: #3a37a0;
+    --surface-2: #3f3ca8;
+    --draft: #3a37a0;
+    --good: #b0f0cc;
+    --warn: #ffd3b3;
+    --risk: #ffcfc8;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] .ask-wrap .ask-panel.is-open {
+  background: linear-gradient(180deg, transparent 0, #2b2970 1.1rem, #34318a 55%, #3d3a99 100%);
+  --ink: #ffffff;
+  --ink-2: #ebeafb;
+  --line: #5a5ccc;
+  --line-strong: #a9acdf;
+  --rule: rgb(255 255 255 / 0.22);
+  --accent: #dde0ff;
+  --accent-hover: #ffffff;
+  --surface: #3a37a0;
+  --surface-2: #3f3ca8;
+  --draft: #3a37a0;
+  --good: #b0f0cc;
+  --warn: #ffd3b3;
+  --risk: #ffcfc8;
+  color-scheme: dark;
+}
+html:root .ask-wrap .ask-stats {
+  column-gap: 1.25rem;
+}
+html:root .ask-wrap .ask-stats > div {
+  border-left: 0;
+  border-top: 3px solid var(--accent);
+  padding: 0.7rem 0 0;
+}
+html:root .ask-wrap .ask-stats dd {
+  margin-top: 0.4rem;
+  font-size: clamp(1.9rem, 1.35rem + 1.3vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
