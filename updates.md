@@ -104,3 +104,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Every indigo block is rounded: Waiting for you and Lists at 20px, the indigo cards at 14px (decision 0082)
 - Lists on the light wash, like the cards in Review (decision 0083)
 - Lists gets the cards' violet edge down the left (decision 0083)
+- Waiting for you on the light wash with the violet edge, like Lists (decision 0084)

@@ -2711,7 +2711,6 @@ input.proto-input:focus {
 :root {
   --ai-grad: var(--ask-pop); /* Ask's own box color (decisions 0071, 0073) */
 }
-.ai-wash,
 .pipe-col[data-stage="Idea"] :is(.pipe-card, .pipe-ghost),
 .rail-box.is-ai .card-rail > li,
 .rail-box .card-rail > li:hover,
@@ -2817,9 +2816,11 @@ html:root .aa-pic {
 /* Waiting for you gets the wash too (decision 0067): the lines a person still has to approve sit on the same
    gradient as Lists and the Idea cards, a square block inside the side rail. The tokens inside are the wash's. */
 .ai-wash {
-  background: var(--ai-grad);
-  padding: 1.25rem;
+  background: var(--draft);
+  box-shadow: inset 3px 0 0 color-mix(in srgb, var(--accent) 70%, transparent);
+  padding: 1.25rem 1.25rem 1.25rem 1.5rem;
 }
+/* Since decision 0084, Waiting for you is on the light draft wash with the cards' violet edge, like Lists. */
 
 /* Fields are a line, not a box (decision 0072). Every input, select and text area loses its outline and fill and
    keeps one bottom line in the control color (3:1 or more on every background it sits on). Under the pointer or with

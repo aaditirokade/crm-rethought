@@ -87,3 +87,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0081 | [Ask's rounded box is back](0081-ask-box-back.md) | 2026-11-11 |
 | 0082 | [Every indigo block is rounded](0082-rounded-indigo.md) | 2026-11-11 |
 | 0083 | [Lists on the light wash](0083-lists-light.md) | 2026-11-11 |
+| 0084 | [Waiting for you on the light wash](0084-waiting-light.md) | 2026-11-11 |
