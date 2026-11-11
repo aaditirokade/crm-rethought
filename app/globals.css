@@ -2775,8 +2775,7 @@ html:root .ask-wrap .ask-input {
   /* A soft glow in the top left corner over a deeper diagonal (decision 0073). */
   --ask-pop: radial-gradient(120% 140% at 0% 0%, #5049c6 0%, transparent 60%), linear-gradient(135deg, #3f3bb0 0%, #221f63 100%);
 }
-html:root .ask-wrap.ask-wrap.ask-wrap.proto-card,
-html:root .aa-pic {
+html:root .ask-wrap.ask-wrap.ask-wrap.proto-card {
   --bg: #2e2c8a;
   --surface: #3a37a0;
   --surface-2: #3f3ca8;
@@ -2809,8 +2808,13 @@ html:root .ask-wrap .ask-input {
 html:root .ask-wrap .ask-input::placeholder {
   color: #565b6e !important;
 }
+/* Since decision 0087 the case study's Ask pictures are on the light draft wash with the violet edge, like Waiting
+   for you, with the page's own tokens. */
 html:root .aa-pic {
-  background: var(--ask-pop);
+  border-radius: 20px;
+  background: var(--draft);
+  box-shadow: inset 3px 0 0 color-mix(in srgb, var(--accent) 70%, transparent);
+  padding-left: 1.125rem;
 }
 
 /* Waiting for you gets the wash too (decision 0067): the lines a person still has to approve sit on the same
