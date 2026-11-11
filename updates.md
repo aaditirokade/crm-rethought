@@ -81,3 +81,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Case study ends with what I'd test first and how I'd measure it (decision 0058)
 - Electric Pulse: violet for the AI and aqua for the data, from Henu's 2026 palettes (decision 0059)
 - Fewer boxes: the color blocks, the pipeline's trays and the boxes inside boxes go; sections sit on the page, divided by space and rules, and Ask stays the one block (decision 0060)
+- Free flowing: Ask is a square band of violet that runs off both edges of the window, with a bigger question and a field that is a line; buttons other than the main action are underlined words, and sources, health and draft counts lose their pills (decision 0061)

@@ -86,7 +86,7 @@ export function DayStrip({ s, focus }: { s: State; focus: string[] }) {
               {label(h)}
             </span>
           ))}
-          <div className="absolute inset-x-0 top-7 h-6 rounded-xl bg-surface-2" />
+          <div className="day-track absolute inset-x-0 top-7 h-6" />
           {today.map((m) => {
             const st = toHours(m.time);
             const hit = focus.includes(m.account);

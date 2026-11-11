@@ -64,3 +64,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0058 | [What I'd test, and how I'd measure it](0058-what-id-test.md) | 2026-11-10 |
 | 0059 | [Electric Pulse](0059-electric-pulse.md) | 2026-11-10 |
 | 0060 | [Fewer boxes](0060-fewer-boxes.md) | 2026-11-10 |
+| 0061 | [Free flowing, with Ask as the one band](0061-free-flowing.md) | 2026-11-11 |

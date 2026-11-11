@@ -2495,3 +2495,197 @@ dl.tone-block {
   border-color: transparent;
   box-shadow: var(--shadow);
 }
+
+/* Free flowing (decision 0061). Ask gets the emphasis: a square band of the AI's color that runs off both edges of
+   the window, a bigger question, and a field that is a line to write on instead of a box. Elsewhere the outlines go:
+   buttons other than the main action read as underlined words, and sources and health read as text with a mark, so
+   the page is type, rules and the one band. Round icon buttons and the main action keep their shape. The Ask rules
+   are marked important because earlier Ask blocks (0048, 0051) use doubled selectors; these come last and win. */
+:root {
+  --ask-band: #dcdffa; /* one step deeper than 0051's block: ink 12.1:1, ink-2 6.5:1, accent 6.9:1, rules 3.4:1 */
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ask-band: #25274f;
+  }
+}
+:root[data-theme="dark"] {
+  --ask-band: #25274f;
+}
+html:root .ask-wrap.proto-card {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: var(--ask-band) !important;
+  box-shadow: 0 0 0 100vmax var(--ask-band) !important;
+  clip-path: inset(0 -100vmax);
+  padding: 2.5rem 0 2.75rem !important;
+}
+html:root .ask-wrap #ask-h {
+  font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.25rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+html:root .ask-wrap .ask-input {
+  border: 0;
+  border-bottom: 2px solid var(--ink);
+  border-radius: 0;
+  background: transparent !important;
+  padding: 0.5rem 0;
+  font-size: clamp(1.2rem, 1rem + 0.7vw, 1.6rem);
+}
+html:root .ask-wrap .ask-input::placeholder {
+  color: var(--ink-2) !important;
+  opacity: 1;
+}
+html:root .ask-wrap .ask-input:hover,
+html:root .ask-wrap .ask-input:focus {
+  border-bottom-color: var(--accent);
+}
+html:root .ask-wrap .sig-btn {
+  min-height: 2.25rem;
+  margin-right: 1.5rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+  font-size: 0.9375rem;
+  color: var(--ink);
+  text-decoration: underline 1px var(--line-strong);
+  text-underline-offset: 6px;
+}
+html:root .ask-wrap .sig-btn:not(:disabled):hover,
+html:root .ask-wrap .sig-btn[aria-pressed="true"] {
+  background: transparent;
+  box-shadow: none !important;
+  transform: none;
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+html:root .ask-wrap .sig-btn.sig-btn-primary {
+  margin-right: 0;
+  padding: 0 0.25rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+html:root .ask-wrap .sig-btn-primary::after {
+  content: "→";
+  transition: transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+html:root .ask-wrap .sig-btn-primary:not(:disabled):hover::after {
+  transform: translateX(3px);
+}
+html:root .ask-wrap .sig-btn-primary:disabled {
+  opacity: 1;
+  color: var(--ink-2);
+}
+
+/* Buttons other than the main action: underlined words, no outline. The pressed one is underlined in the AI's color. */
+.sig-btn:not(.sig-btn-primary):not(.icon-act) {
+  border-color: transparent;
+  background: transparent;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  text-decoration: underline 1px var(--line-strong);
+  text-underline-offset: 5px;
+}
+.sig-btn:not(.sig-btn-primary):not(.icon-act):not(:disabled):hover {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+  text-decoration-color: var(--ink);
+}
+.sig-btn:not(.sig-btn-primary):not(.icon-act)[aria-pressed="true"] {
+  border-color: transparent;
+  background: transparent;
+  color: var(--ink);
+  text-decoration: underline 2px var(--accent);
+}
+
+/* Sources: the kind and the time as text with a dotted underline, not a pill. */
+.sig-source {
+  border-radius: 0;
+  background: transparent;
+  padding: 0 0.15rem;
+  text-decoration: underline dotted 1px var(--line-strong);
+  text-underline-offset: 4px;
+}
+button.sig-source:hover {
+  background: transparent;
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+button.sig-source:hover b {
+  color: var(--accent);
+}
+
+/* Health: the colored word and its dot, without the pastel pill. */
+.health-pill.is-good,
+.health-pill.is-warn,
+.health-pill.is-risk {
+  background: transparent;
+  padding: 0;
+}
+
+/* The count of drafts on an account: the dot and the words in the AI's color, no tag behind them. */
+.sig-draft-tag {
+  background: transparent !important;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Rows and tiles you can open keep the rule that draws across their top on hover; the rounded wash behind them goes. */
+.board-item.proto-card::before,
+li.proto-card::before,
+.proto-card > li:not(.gate-row)::before {
+  display: none;
+}
+
+/* The day: a hairline for the hours instead of a gray track, with the meetings sitting on it. */
+.day-track {
+  background: linear-gradient(var(--rule), var(--rule)) 0 50% / 100% 1px no-repeat;
+}
+
+/* One line inputs are a line to write on, like Ask's. */
+input.proto-input {
+  border: 0;
+  border-bottom: 1.5px solid var(--line-strong);
+  border-radius: 0;
+  background: transparent;
+  padding-left: 0;
+  padding-right: 0;
+}
+input.proto-input:hover,
+input.proto-input:focus {
+  border-bottom-color: var(--accent);
+}
+
+/* Drafts keep their violet tint and edge, which mean "not on the record yet", with square corners. */
+.sig-row-draft {
+  border-radius: 0;
+}
+
+/* The time range: words in a row, the chosen one underlined, like the filters under Interactions. */
+.seg {
+  gap: 0.75rem;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+}
+.seg-btn {
+  border-radius: 0;
+  padding: 0.35rem 0;
+}
+.seg-btn:hover {
+  background: transparent;
+}
+.seg-btn[aria-pressed="true"] {
+  background: transparent;
+  color: var(--ink);
+  text-decoration: underline 2px var(--accent);
+  text-underline-offset: 6px;
+}
