@@ -3382,8 +3382,25 @@ html:not([data-theme="dark"]) .ask-wrap .sig-btn:not(.sig-btn-primary):not(.ask-
   box-shadow: 0 6px 14px -8px rgb(46 44 138 / 0.45) !important;
 }
 
-/* The suggested actions panel on the dark indigo, in both themes. */
-html:root .ask-wrap .ask-actions,
+/* The suggested actions (decision 0098, updating 0097): no panel. The heading sits on the Ask box with its tokens,
+   and each suggestion is its own rounded row on the dark indigo with a light edge down the left, the reverse of the
+   light highlights with a violet edge elsewhere. Light on dark tokens inside, which pass AA on the row's lightest
+   point: white 6.8:1, secondary text 6.0:1, violet 5.6:1, status 5.2:1 or more, rules 4.0:1. A row lightens a
+   step under the pointer or with focus inside it. */
+html:root .ask-wrap .ask-actions {
+  --ink: inherit;
+  --ink-2: inherit;
+  --accent: inherit;
+  --line-strong: inherit;
+  --rule: inherit;
+  --good: inherit;
+  color-scheme: inherit;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+}
+html:root .ask-wrap .ask-actions .ask-action,
 html:root .ask-wrap .ask-actions .ask-action:hover,
 html:root .ask-wrap .ask-actions .ask-action:focus-within {
   --ink: #ffffff;
@@ -3395,21 +3412,23 @@ html:root .ask-wrap .ask-actions .ask-action:focus-within {
   --warn: #ffe0cc;
   --risk: #ffdcd6;
   color-scheme: dark;
-}
-html:root .ask-wrap .ask-actions {
+  margin-inline: 0;
+  border-radius: 14px;
   background: var(--ask-pop);
-  box-shadow: inset 4px 0 0 #7d74ff, 0 10px 24px -14px rgb(10 8 60 / 0.6);
+  box-shadow: inset 4px 0 0 #c9c6ff, 0 8px 20px -14px rgb(10 8 60 / 0.6);
+  padding: 0.85rem 1.1rem 0.85rem 1.35rem;
   color: var(--ink);
+}
+html:root .ask-wrap .ask-actions > ul > li + li {
+  margin-top: 0.6rem;
+  border-top: 0;
 }
 html:root .ask-wrap .ask-actions .ask-action:hover,
 html:root .ask-wrap .ask-actions .ask-action:focus-within {
   --ink-2: #f7f6ff;
   --accent: #eef0ff;
-  --line-strong: #d6d8f4;
   --good: #d8fae8;
-  --warn: #fff2e8;
-  --risk: #ffeeea;
-  background: rgb(255 255 255 / 0.08);
+  background: linear-gradient(rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.08)), var(--ask-pop);
 }
 html:root .ask-wrap .ask-actions .ask-action .sig-btn {
   border: 1.5px solid #ffffff;
