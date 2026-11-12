@@ -55,7 +55,7 @@ export function RelationshipWeb({ a }: { a: LiveAccount }) {
         {strongest && (strongestLeft || leftByRecord) ? `${strongest.theirs} has left, so that relationship needs rebuilding. ` : ""}
         {untouched.length ? `Nobody on our side has spoken with ${untouched.join(" or ")} yet.` : ""}
       </p>
-      <svg viewBox={`0 0 600 ${H}`} className="mx-auto mt-4 block w-full max-w-[640px]" role="img" aria-label={`Relationship web for ${a.name}. ${list.map((e) => `${e.ours} to ${e.theirs}: ${e.count} touches`).join("; ")}.`}>
+      <div className="mt-4 overflow-x-auto"><svg viewBox={`0 0 600 ${H}`} className="mx-auto block w-full min-w-[460px] max-w-[640px]" role="img" aria-label={`Relationship web for ${a.name}. ${list.map((e) => `${e.ours} to ${e.theirs}: ${e.count} touches`).join("; ")}.`}>
         <text x={LX + 3} y={10} textAnchor="end" fontSize="10" letterSpacing="0.06em" fill="var(--ink-2)" className="font-mono">
           LARKSPUR
         </text>
@@ -108,7 +108,7 @@ export function RelationshipWeb({ a }: { a: LiveAccount }) {
             </g>
           );
         })}
-      </svg>
+      </svg></div>
       <p className="mt-3 font-mono text-meta tracking-wide text-ink-2">THICKER = MORE TOUCHES · DASHED = QUIET 3+ WEEKS OR LEFT</p>
     </section>
   );
@@ -203,7 +203,7 @@ export function InteractionStrip({ a }: { a: LiveAccount }) {
           ))}
         </div>
       </div>
-      <svg viewBox={`0 0 ${W} ${H}`} className="mx-auto mt-4 block w-full max-w-[640px]" role="img" aria-label={`Weekly dashboard views for ${a.name} from ${fmt(firstWeek)} to Nov 9, from ${series[0]} to ${series.at(-1)}, with ${touches.length} interactions marked${moments.length ? ` and these moments: ${moments.map((m) => m.text).join(", ")}` : ""}.`}>
+      <div className="mt-4 overflow-x-auto"><svg viewBox={`0 0 ${W} ${H}`} className="mx-auto block w-full min-w-[460px] max-w-[640px]" role="img" aria-label={`Weekly dashboard views for ${a.name} from ${fmt(firstWeek)} to Nov 9, from ${series[0]} to ${series.at(-1)}, with ${touches.length} interactions marked${moments.length ? ` and these moments: ${moments.map((m) => m.text).join(", ")}` : ""}.`}>
         {ticks.map(({ t, label }) => (
           <g key={t}>
             <line x1={x(t)} x2={x(t)} y1={26} y2={104} stroke="var(--line)" strokeOpacity="0.7" />
@@ -234,7 +234,7 @@ export function InteractionStrip({ a }: { a: LiveAccount }) {
             <title>{t.label}</title>
           </g>
         ))}
-      </svg>
+      </svg></div>
       <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-meta text-ink-2">
         <span>
           <span aria-hidden="true" className="text-accent">

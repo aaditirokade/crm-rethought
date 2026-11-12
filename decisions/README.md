@@ -105,3 +105,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0099 | [A draft chosen in Ask really waits in Review](0099-ask-drafts-in-review.md) | 2026-11-12 |
 | 0100 | [A task chosen in Ask lands on Your tasks, and Undo is an icon](0100-ask-tasks-and-undo-icon.md) | 2026-11-12 |
 | 0101 | [Ask and phone recordings made again from the current prototype](0101-recordings-light-ask.md) | 2026-11-12 |
+| 0102 | [Checked on phones, and fixed](0102-phone-fixes.md) | 2026-11-12 |

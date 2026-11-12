@@ -124,3 +124,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Ask: Draft it adds a real draft to Review, first in the list, with a Review it button on the row (decision 0099)
 - Ask: Add task puts a real task on Your tasks, with View task on the row; Undo is a round icon (decision 0100)
 - Case study: the Ask and phone recordings are made again from the current prototype, ending on Review it (decision 0101)
+- Phones: grids can't push past the screen edge, Ask keeps its button on one line, account charts scroll sideways, the sparkline dot stays round (decision 0102)

@@ -133,7 +133,9 @@ function Spark({ values, label }: { values: number[]; label: string }) {
   return (
     <svg viewBox={`0 0 ${w} ${h}`} className="h-9 w-full" role="img" aria-label={label} preserveAspectRatio="none">
       <path d={d} pathLength={1} className="spark-draw" fill="none" stroke="var(--data)" strokeWidth="1.75" vectorEffect="non-scaling-stroke" />
-      <circle className="spark-dot" cx={x(values.length - 1)} cy={y(values.at(-1) ?? 0)} r="2.5" fill="var(--ink)" />
+      {/* The last point is a round cap on a zero length line, so it stays a circle when the tile stretches the
+          sparkline sideways on a phone (a circle would turn into an oval). */}
+      <path className="spark-dot" d={`M${x(values.length - 1).toFixed(1)} ${y(values.at(-1) ?? 0).toFixed(1)}h0`} stroke="var(--ink)" strokeWidth="5" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
     </svg>
   );
 }

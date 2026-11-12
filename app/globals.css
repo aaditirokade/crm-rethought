@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+/* Small screens (decision 0102): a grid with no base column count gets one column that may shrink below its
+   content's widest line, so a wide child (a chart that scrolls sideways, a long table) can never stretch the page
+   past a phone's edge. In the base layer, so every grid-cols utility, at any breakpoint, still wins. */
+@layer base {
+  .grid:not([class^="grid-cols-"]):not([class*=" grid-cols-"]):not([class*="grid-flow-col"]) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 /*
  * Canvas (decision 0017), replacing Signal's boxed look. Space and type do the grouping; only things you act on
  * lift off the page. AI drafts carry their own material: a soft violet tint and edge.
@@ -1642,13 +1651,13 @@ li.proto-card:focus-within::before,
   transition: stroke-width 200ms ease;
 }
 .board-item .spark-dot {
-  transition: r 200ms var(--press);
+  transition: stroke-width 200ms var(--press);
 }
 .board-item:hover .spark-draw {
   stroke-width: 2.75;
 }
 .board-item:hover .spark-dot {
-  r: 4;
+  stroke-width: 8;
 }
 .board-item:hover h3 a {
   text-decoration: underline;

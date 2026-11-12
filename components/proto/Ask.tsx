@@ -285,7 +285,7 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
         <span className="font-mono text-meta tracking-wide text-ink-2">READ ONLY · EVERY CLAIM HAS A SOURCE</span>
       </div>
       <form
-        className="mt-3 flex flex-col gap-2 sm:flex-row"
+        className="mt-3 flex items-center gap-2"
         onSubmit={(e) => {
           e.preventDefault();
           if (input.trim()) {
@@ -301,7 +301,7 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
         <input
           ref={field}
           id="ask-q"
-          className="proto-input ask-input"
+          className="proto-input ask-input min-w-0 flex-1"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Why is Fernhill slipping?"
