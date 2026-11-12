@@ -23,6 +23,9 @@ function subscribe(cb: () => void) {
   return () => m.removeEventListener("change", cb);
 }
 
+/** The walkthrough recordings play at 70% speed, so each tap and its result can be followed (decision 0096). */
+const RATE = 0.7;
+
 /** A muted, looping recording in the current theme that plays only while `playing`. */
 function StepVideo({ step, playing, rewindOn }: { step: Step; playing: boolean; rewindOn?: number }) {
   const theme = useTheme();
@@ -31,6 +34,8 @@ function StepVideo({ step, playing, rewindOn }: { step: Step; playing: boolean; 
     const v = ref.current;
     if (!v) return;
     v.muted = true;
+    v.defaultPlaybackRate = RATE;
+    v.playbackRate = RATE;
     if (playing) void v.play().catch(() => {});
     else v.pause();
   }, [playing, theme]);
@@ -53,6 +58,9 @@ function StepVideo({ step, playing, rewindOn }: { step: Step; playing: boolean; 
             loop
             playsInline
             preload={playing ? "auto" : "metadata"}
+            onLoadedMetadata={(e) => {
+              e.currentTarget.playbackRate = RATE;
+            }}
             aria-hidden="true"
           />
         ) : null}

@@ -116,3 +116,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Ask and phone app recordings made again with the suggested actions panel (decision 0093)
 - The hero recording shows its still at once and fades the video in; the problem reel starts when seen (decision 0094)
 - Research: the coverage bars fill slowly from left to right on first view (decision 0095)
+- How it works: the three walkthrough recordings play at 70% speed (decision 0096)
