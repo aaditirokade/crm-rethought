@@ -96,3 +96,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0090 | [Next: the test rows light up under the pointer too](0090-next-rows-hover.md) | 2026-11-12 |
 | 0091 | [Suggested actions on their own light panel](0091-actions-panel.md) | 2026-11-12 |
 | 0092 | [Clear takes you back to the top](0092-clear-scrolls-up.md) | 2026-11-12 |
+| 0093 | [Ask recordings show the actions panel](0093-recordings-actions-panel.md) | 2026-11-12 |

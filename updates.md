@@ -113,3 +113,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Next: the three test rows light up under the pointer, like Built in the open (decision 0090)
 - Suggested actions on their own light panel inside Ask, with the violet edge (decision 0091)
 - Clearing an answer in Ask scrolls back to the top and puts focus in the question field (decision 0092)
+- Ask and phone app recordings made again with the suggested actions panel (decision 0093)
