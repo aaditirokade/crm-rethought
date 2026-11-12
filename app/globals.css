@@ -3443,3 +3443,20 @@ html:root .ask-wrap .ask-actions .ask-action .sig-btn:focus-visible {
   outline: 2px solid #ffffff;
   outline-offset: 3px;
 }
+
+/* Undo on a chosen suggested action is a round icon button, not a word (decision 0100). */
+html:root .ask-wrap .ask-actions .ask-action .sig-btn.ask-undo {
+  width: 2.25rem;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border-radius: 999px;
+}
+
+/* A task added from Ask, reached with View task, shows where focus landed. */
+.task-row:focus-visible,
+.task-row:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+  border-radius: 8px;
+}

@@ -13,7 +13,7 @@ export type Stat = { label: string; value: number; prefix?: string; suffix?: str
  * An action the AI suggests from its answer. Nothing happens until the person chooses it: a draft or a task waits in
  * Review like any other line, and "open" only takes them to the place to do it.
  */
-export type SuggestedAction = { id: string; kind: "email" | "task" | "meeting" | "open"; title: string; detail: string; href?: string };
+export type SuggestedAction = { id: string; kind: "email" | "task" | "meeting" | "open"; title: string; detail: string; href?: string; due?: string };
 export type Answer = {
   id: string;
   question: string;
@@ -59,7 +59,7 @@ const WRITTEN: (Answer & { match: (q: string) => boolean })[] = [
     next: "Bring a fix date for the refreshes and a new date for the report to today’s 10:00.",
     actions: [
       { id: "fh-priya", kind: "email", title: "Draft a note to Priya Nair", detail: "Introduce yourself as her contact, own the missed markdown report and give a new date." },
-      { id: "fh-ticket", kind: "task", title: "Ask support for a fix date on ticket 4821", detail: "Due before today’s 10:00, so you can bring it to the quarterly review." },
+      { id: "fh-ticket", kind: "task", title: "Ask support for a fix date on ticket 4821", detail: "Due before today’s 10:00, so you can bring it to the quarterly review.", due: "Today, 10:00" },
       { id: "fh-qbr", kind: "open", title: "Open the 10:00 quarterly review", detail: "Drafted lines from the call are waiting there.", href: "/prototype/log/fernhill-qbr" },
     ],
   },
@@ -87,7 +87,7 @@ const WRITTEN: (Answer & { match: (q: string) => boolean })[] = [
     next: NEXT_MOVE.harbor,
     actions: [
       { id: "hl-owner", kind: "email", title: "Draft a follow up to Harbor Lane’s owner", detail: "21 days without a reply: offer two times this week to walk through the proposal." },
-      { id: "hl-alder", kind: "task", title: "Chase ticket 4877 for Alder & Finch", detail: "Close it before the Dec 1 kickoff." },
+      { id: "hl-alder", kind: "task", title: "Chase ticket 4877 for Alder & Finch", detail: "Close it before the Dec 1 kickoff.", due: "Mon, Nov 30" },
       { id: "hl-brief", kind: "open", title: "Open the brief for the Nov 18 owner visit", detail: "Booked as high stakes; the brief is ready.", href: "/prototype/brief/harbor-owner" },
     ],
   },

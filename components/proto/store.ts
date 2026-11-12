@@ -43,10 +43,12 @@ export type State = {
   moves: Record<string, { stage: Stage; at: string }>;
   /** The import: the mapping a person confirmed, each rule's decision, and when it ran. */
   imp: { mapping: Record<string, string>; mappingOk: boolean; rules: Record<string, string>; doneAt?: string };
+  /** Tasks a person added from Ask's suggested actions (decision 0100). */
+  asked: { id: string; text: string; due: string; account: string; source?: string }[];
 };
 
 const KEY = "crm-rethought-prototype-v2";
-const INITIAL: State = { entries: {}, pinned: [], clock: 0, message: "", seq: 0, custom: [], notes: {}, order: [], snoozed: [], lists: [], moves: {}, imp: { mapping: {}, mappingOk: false, rules: {} } };
+const INITIAL: State = { entries: {}, pinned: [], clock: 0, message: "", seq: 0, custom: [], notes: {}, order: [], snoozed: [], lists: [], moves: {}, imp: { mapping: {}, mappingOk: false, rules: {} }, asked: [] };
 
 let state: State = INITIAL;
 let loaded = false;
@@ -265,6 +267,18 @@ export const actions = {
       message: "Drafted. It waits in Review; nothing is sent until you approve it.",
     });
   },
+  /** A task chosen from Ask's suggested actions: it goes straight onto Your tasks, newest first (decision 0100). */
+  addTaskFromAsk(action: { id: string; title: string; due?: string }, accountId: string, source?: string) {
+    const asked = (state.asked ?? []).filter((t) => t.id !== action.id);
+    commit({
+      ...state,
+      asked: [{ id: action.id, text: action.title, due: action.due ?? "This week", account: accountId, source }, ...asked],
+      message: "Added to your tasks.",
+    });
+  },
+  removeTaskFromAsk(actionId: string) {
+    commit({ ...state, asked: (state.asked ?? []).filter((t) => t.id !== actionId), message: "Task taken back." });
+  },
   undraftFromAsk(actionId: string) {
     const id = `ask-${actionId}`;
     commit({ ...state, custom: state.custom.filter((x) => x.id !== id), message: "Draft taken back." });
@@ -405,9 +419,10 @@ export function tasks(s: State) {
     .filter((sug) => sug.effect?.type === "task")
     .map((sug) => {
       const eff = sug.effect as Extract<Suggestion["effect"], { type: "task" }>;
-      return { text: eff.text, due: eff.due, account: eff.account, source: sug.sources[0] as string | undefined };
+      return { text: eff.text, due: eff.due, account: eff.account, source: sug.sources[0] as string | undefined, askId: undefined as string | undefined };
     });
-  return [...fromLogs, ...BASE_TASKS.map((t) => ({ ...t, source: undefined as string | undefined }))];
+  const fromAsk = (s.asked ?? []).map((t) => ({ text: t.text, due: t.due, account: t.account, source: t.source, askId: t.id as string | undefined }));
+  return [...fromAsk, ...fromLogs, ...BASE_TASKS.map((t) => ({ ...t, source: undefined as string | undefined, askId: undefined as string | undefined }))];
 }
 
 /** This week's outreach, ranked by the weight of its reasons; a person's reordering wins. */

@@ -122,3 +122,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Ask: each suggested action is its own dark indigo row with a light edge; the panel around them goes (decision 0098)
 - Ask: the suggested action rows sit closer together, 0.3rem apart (decision 0098)
 - Ask: Draft it adds a real draft to Review, first in the list, with a Review it button on the row (decision 0099)
+- Ask: Add task puts a real task on Your tasks, with View task on the row; Undo is a round icon (decision 0100)

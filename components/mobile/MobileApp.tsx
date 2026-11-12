@@ -8,7 +8,7 @@ import { AskActions } from "@/components/proto/Ask";
 import { originOf } from "@/components/proto/groups";
 import { FixBox, GateLine } from "@/components/proto/Lines";
 import { Meta, SourceChip } from "@/components/proto/Source";
-import { actions, allSugs, entryOf, isGated, me, textOf, useProto } from "@/components/proto/store";
+import { actions, allSugs, entryOf, isGated, me, tasks, textOf, useProto } from "@/components/proto/store";
 
 type Screen = "home" | "brief" | "approve" | "ask" | "note";
 
@@ -62,6 +62,7 @@ function Home({ go, waiting }: { go: (s: Screen) => void; waiting: number }) {
   const a = account(next.account);
   const know = ["b1", "b5", "b2"].map((id) => forMeeting(next.id).find((x) => x.id === id)!).filter(Boolean);
   const later = MEETINGS.filter((m) => m.day === "Today").slice(1);
+  const myTasks = tasks(s);
   return (
     <div>
       <p className="font-mono text-meta tracking-wide text-ink-2">
@@ -114,6 +115,24 @@ function Home({ go, waiting }: { go: (s: Screen) => void; waiting: number }) {
           </span>
         </span>
       </button>
+
+      {myTasks.length ? (
+        <section aria-labelledby="m-tasks" className="mt-5">
+          <h2 id="m-tasks" className="font-mono text-meta tracking-wide text-ink-2">
+            YOUR TASKS
+          </h2>
+          <ul className="mt-1 divide-y divide-line">
+            {myTasks.map((t) => (
+              <li key={t.text} id={t.askId ? `task-${t.askId}` : undefined} tabIndex={t.askId ? -1 : undefined} className="task-row py-3">
+                <span className="block text-small">{t.text}</span>
+                <span className="mt-1 block font-mono text-meta tracking-wide text-ink-2">
+                  {t.askId ? <span className="text-accent">FROM ASK · </span> : null}DUE {t.due.toUpperCase()}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       <section aria-labelledby="m-later" className="mt-5">
         <h2 id="m-later" className="font-mono text-meta tracking-wide text-ink-2">
@@ -358,7 +377,7 @@ function AskScreen({ go }: { go: (s: Screen) => void }) {
                   {answer.next}
                 </p>
               ) : null}
-              {answer.actions?.length ? <AskActions key={answer.id} items={answer.actions} answer={answer} onReview={() => go("approve")} /> : null}
+              {answer.actions?.length ? <AskActions key={answer.id} items={answer.actions} answer={answer} onReview={() => go("approve")} onViewTask={(id) => { go("home"); window.setTimeout(() => { const el = document.getElementById(`task-${id}`); el?.scrollIntoView({ block: "center" }); el?.focus({ preventScroll: true }); }, 120); }} /> : null}
               <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
                 <p className="font-mono text-meta tracking-wide text-ink-2">
                   {sources ? `${sources} SOURCES · ` : ""}NOTHING IN THE RECORD CHANGED

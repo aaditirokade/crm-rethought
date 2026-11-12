@@ -41,17 +41,44 @@ const KIND: Record<SuggestedAction["kind"], { tag: string; verb: string; done: s
  * Actions the AI suggests from its answer (Nov 2026). Each says what it would do; nothing happens until the person
  * chooses it, a draft waits in Review like any other line, and Undo takes it back.
  */
-export function AskActions({ items, answer, onReview }: { items: SuggestedAction[]; answer: Answer; onReview?: () => void }) {
+/** Scrolls to a task added from Ask on Your tasks and puts focus on it (decision 0100). */
+function showTask(id: string) {
+  const el = document.getElementById(`task-${id}`);
+  if (!el) return;
+  const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  el.scrollIntoView({ behavior: still ? "auto" : "smooth", block: "center" });
+  el.focus({ preventScroll: true });
+}
+
+export function AskActions({
+  items,
+  answer,
+  onReview,
+  onViewTask,
+}: {
+  items: SuggestedAction[];
+  answer: Answer;
+  onReview?: () => void;
+  onViewTask?: (id: string) => void;
+}) {
   const s = useProto();
   const [taken, setTaken] = useState<Record<string, boolean>>({});
   // A drafted email or invite is a real line in Review (decision 0099), so its state comes from the store.
   const drafts = (a: SuggestedAction) => a.kind === "email" || a.kind === "meeting";
-  const isDone = (a: SuggestedAction) => (drafts(a) ? s.custom.some((x) => x.id === `ask-${a.id}`) : !!taken[a.id]);
+  const isDone = (a: SuggestedAction) =>
+    drafts(a) ? s.custom.some((x) => x.id === `ask-${a.id}`) : a.kind === "task" ? (s.asked ?? []).some((t) => t.id === a.id) : !!taken[a.id];
   const cited = [...new Set(answer.segments.flatMap((g) => g.cite ?? []))].filter((id) => SOURCES[id]).slice(0, 3);
   const take = (a: SuggestedAction, on: boolean) => {
     if (drafts(a)) {
       if (on) store.draftFromAsk(a, answer.accounts[0] ?? "", cited);
       else store.undraftFromAsk(a.id);
+      return;
+    }
+    if (a.kind === "task") {
+      // The task points at the source it names, such as the ticket, else the answer's first source.
+      const named = cited.find((id) => a.title.toLowerCase().includes(SOURCES[id].kind.toLowerCase()));
+      if (on) store.addTaskFromAsk(a, answer.accounts[0] ?? "", named ?? cited[0]);
+      else store.removeTaskFromAsk(a.id);
       return;
     }
     setTaken((t) => ({ ...t, [a.id]: on }));
@@ -88,9 +115,16 @@ export function AskActions({ items, answer, onReview }: { items: SuggestedAction
                         Review it<span className="sr-only">: {a.title}</span>
                       </Link>
                     )
+                  ) : a.kind === "task" ? (
+                    <button type="button" className="sig-btn" onClick={() => (onViewTask ?? showTask)(a.id)}>
+                      View task<span className="sr-only">: {a.title}</span>
+                    </button>
                   ) : null}
-                  <button type="button" className="sig-btn" onClick={() => take(a, false)}>
-                    Undo<span className="sr-only"> {a.title}</span>
+                  <button type="button" className="sig-btn ask-undo" onClick={() => take(a, false)} aria-label={`Undo: ${a.title}`} title="Undo">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M9 14L4 9l5-5" />
+                      <path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11" />
+                    </svg>
                   </button>
                 </span>
               ) : (

@@ -127,9 +127,10 @@ export function Today() {
               </h2>
               <ul className="proto-card mt-3 divide-y divide-line">
                 {myTasks.map((t) => (
-                  <li key={t.text} className="p-3">
+                  <li key={t.text} id={t.askId ? `task-${t.askId}` : undefined} tabIndex={t.askId ? -1 : undefined} className="task-row p-3">
                     <p className="text-small">{t.text}</p>
                     <div className="mt-1 flex flex-wrap items-center gap-2">
+                      {t.askId ? <span className="font-mono text-meta tracking-wide text-accent">FROM ASK</span> : null}
                       <span className="font-mono text-meta text-ink-2">DUE {t.due.toUpperCase()}</span>
                       {t.source ? <SourceChip id={t.source} /> : null}
                     </div>

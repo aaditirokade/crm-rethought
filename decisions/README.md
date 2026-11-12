@@ -103,3 +103,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0097 | [Ask goes light again, its suggested actions go dark](0097-ask-light-actions-dark.md) | 2026-11-12 |
 | 0098 | [Each suggested action on its own dark row](0098-action-rows-dark.md) | 2026-11-12 |
 | 0099 | [A draft chosen in Ask really waits in Review](0099-ask-drafts-in-review.md) | 2026-11-12 |
+| 0100 | [A task chosen in Ask lands on Your tasks, and Undo is an icon](0100-ask-tasks-and-undo-icon.md) | 2026-11-12 |
