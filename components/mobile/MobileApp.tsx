@@ -283,6 +283,8 @@ function Approve() {
 }
 
 function AskScreen() {
+  const box = useRef<HTMLElement>(null);
+  const field = useRef<HTMLInputElement>(null);
   const [q, setQ] = useState("");
   const [answer, setAnswer] = useState<Answer | null>(null);
   const ask = (text: string) => {
@@ -291,7 +293,7 @@ function AskScreen() {
   };
   const sources = answer ? new Set(answer.segments.flatMap((x) => x.cite ?? [])).size : 0;
   return (
-    <section aria-labelledby="m-ask-h" className="ask-wrap proto-card p-4">
+    <section ref={box} aria-labelledby="m-ask-h" className="ask-wrap proto-card p-4">
       <h1 id="m-ask-h" className="text-h2 font-semibold">
         Ask
       </h1>
@@ -306,7 +308,7 @@ function AskScreen() {
         <label htmlFor="m-ask" className="sr-only">
           Your question
         </label>
-        <input id="m-ask" className="proto-input ask-input min-w-0 flex-1" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Why is Fernhill slipping?" autoComplete="off" />
+        <input ref={field} id="m-ask" className="proto-input ask-input min-w-0 flex-1" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Why is Fernhill slipping?" autoComplete="off" />
         <button type="submit" className="sig-btn sig-btn-primary shrink-0" disabled={!q.trim()}>
           Ask
         </button>
@@ -367,6 +369,10 @@ function AskScreen() {
                   onClick={() => {
                     setAnswer(null);
                     setQ("");
+                    // Back up to the top of the screen, with focus on the question field.
+                    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+                    box.current?.closest(".mob-scroll")?.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+                    field.current?.focus({ preventScroll: true });
                   }}
                 >
                   Clear

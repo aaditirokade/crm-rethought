@@ -108,6 +108,8 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
   const frame = useRef(0);
   const timers = useRef<number[]>([]);
   const focused = useRef(false);
+  const box = useRef<HTMLElement>(null);
+  const field = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const f = frame;
@@ -219,7 +221,7 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
   const sourceCount = answer ? new Set(answer.segments.flatMap((s) => s.cite ?? [])).size : 0;
 
   return (
-    <section aria-labelledby="ask-h" className="ask-wrap proto-card p-4 sm:p-5">
+    <section ref={box} aria-labelledby="ask-h" className="ask-wrap proto-card p-4 sm:p-5">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h2 id="ask-h" className="text-h3 font-semibold">
           Ask about any account
@@ -241,6 +243,7 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
           Your question
         </label>
         <input
+          ref={field}
           id="ask-q"
           className="proto-input ask-input"
           value={input}
@@ -344,6 +347,14 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
                       setAnswer(null);
                       setInput("");
                       onFocus([]);
+                      // Back up to the top once the answer is cleared, with focus on the question field (Nov 2026).
+                      const el = box.current;
+                      if (el) {
+                        const top = el.getBoundingClientRect().top + window.scrollY;
+                        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+                        window.scrollTo({ top: top < window.innerHeight ? 0 : top - 24, behavior: reduce ? "auto" : "smooth" });
+                      }
+                      field.current?.focus({ preventScroll: true });
                     }}
                   >
                     Clear
