@@ -117,3 +117,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - The hero recording shows its still at once and fades the video in; the problem reel starts when seen (decision 0094)
 - Research: the coverage bars fill slowly from left to right on first view (decision 0095)
 - How it works: the three walkthrough recordings play at 70% speed (decision 0096)
+- How it works: the walkthrough recordings show their stills and fade the video in, fixing the empty boxes left by decision 0094

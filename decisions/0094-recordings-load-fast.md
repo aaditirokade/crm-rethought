@@ -7,3 +7,5 @@
 **Why:** the author saw a black box while the hero loaded, and the problem reel seemed slow to start.
 
 **Checks:** without script the stills show; with reduced motion the video stays on its still until Play.
+
+**Follow up (same day):** the rule that hides a video until it has a frame applied to every recording on the page, but only the hero marked its video ready, so the three walkthrough recordings in 03 · How it works showed as empty boxes. They now load the same way as the hero: their stills show at once and each video fades in over its still.

@@ -30,6 +30,8 @@ const RATE = 0.7;
 function StepVideo({ step, playing, rewindOn }: { step: Step; playing: boolean; rewindOn?: number }) {
   const theme = useTheme();
   const ref = useRef<HTMLVideoElement>(null);
+  // Like the hero (decision 0094): the still shows at once, and the video fades in over it once it has a frame.
+  const [ready, setReady] = useState<string | null>(null);
   useEffect(() => {
     const v = ref.current;
     if (!v) return;
@@ -46,12 +48,28 @@ function StepVideo({ step, playing, rewindOn }: { step: Step; playing: boolean; 
   return (
     <div className={`case-demo ${step.phone ? "is-phone" : ""}`}>
       <div className="case-demo-frame" style={{ aspectRatio: `${step.width} / ${step.height}` }}>
+        {(["light", "dark"] as const).map((t) => (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            key={t}
+            src={`${BASE}/case/${step.video}-${t}.jpg`}
+            alt=""
+            aria-hidden="true"
+            width={step.width}
+            height={step.height}
+            className={`case-demo-still is-${t}`}
+            loading="lazy"
+            decoding="async"
+          />
+        ))}
         {theme ? (
           <video
             key={theme}
             ref={ref}
             src={`${BASE}/case/${step.video}-${theme}.mp4`}
-            poster={`${BASE}/case/${step.video}-${theme}.jpg`}
+            className={ready === theme ? "is-ready" : ""}
+            onLoadedData={() => setReady(theme)}
+            onPlaying={() => setReady(theme)}
             width={step.width}
             height={step.height}
             muted
