@@ -108,3 +108,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - The phone app follows the desktop: light wash with the violet edge, and Ask in the indigo box with suggested actions (decision 0085)
 - Case study recordings made again from the indigo prototype (decision 0086)
 - The case study's Ask pictures on the light wash with the violet edge, like Waiting for you (decision 0087)
+- The design system's swatch tiles on the light wash with the violet edge (decision 0088)

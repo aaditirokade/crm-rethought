@@ -258,7 +258,7 @@ export default function Home() {
               <div className="max-w-[26rem]">
                 <ul className="grid grid-cols-2 gap-2 sm:grid-cols-3">
                   {SWATCHES.map((s) => (
-                    <li key={s.name} className="ask-tile flex flex-col rounded-[14px] bg-surface-2 p-3">
+                    <li key={s.name} className="ask-tile ds-swatch flex flex-col rounded-[14px] p-3">
                       <span className="flex h-6 w-10 overflow-hidden rounded-[7px] border border-[var(--line-strong)]" aria-hidden="true">
                         <span className="flex-1" style={{ background: s.light }} />
                         <span className="flex-1" style={{ background: s.dark }} />

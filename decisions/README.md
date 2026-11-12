@@ -91,3 +91,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0085 | [The phone app follows the desktop](0085-phone-follows-desktop.md) | 2026-11-11 |
 | 0086 | [Case study recordings match the indigo prototype](0086-visuals-rerecorded.md) | 2026-11-11 |
 | 0087 | [The case study's Ask pictures on the light wash](0087-ask-pictures-light.md) | 2026-11-11 |
+| 0088 | [The design system's swatch tiles on the light wash](0088-swatches-light.md) | 2026-11-12 |

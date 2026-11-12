@@ -3188,3 +3188,12 @@ html:root .mob .ask-wrap .ask-action .sig-btn {
     transition: none;
   }
 }
+
+/* The design system's swatch tiles on the light draft wash with the violet edge, like Waiting for you and the Ask
+   pictures (decision 0088), with the page's own tokens. The edge stays under the pointer. */
+.ask-tile.ds-swatch,
+.ask-tile.ds-swatch:hover {
+  background: var(--draft);
+  box-shadow: inset 3px 0 0 color-mix(in srgb, var(--accent) 70%, transparent);
+  padding-left: 1rem;
+}
