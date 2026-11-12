@@ -125,7 +125,7 @@ const WALKTHROUGH: Step[] = [
     width: 750,
     height: 1484,
     phone: true,
-    alt: "Mobile app: from Next up, a person opens the drafts waiting for them and approves one card, then opens Ask, picks “Why is Fernhill slipping?” and reads the answer with its sources, three numbers and suggested actions.",
+    alt: "Mobile app: from Next up, a person opens the drafts waiting for them and approves one card, then opens Ask, picks “Why is Fernhill slipping?” reads the answer with its sources, three numbers and suggested actions, and chooses “Draft it”, which offers “Review it”.",
   },
 ];
 
@@ -184,7 +184,7 @@ export default function Home() {
               name="ask"
               width={1520}
               height={960}
-              alt="Ask about any account: a person picks “Why is Fernhill slipping?”, the AI reads emails, tickets, the last call and usage, then answers with a source on every claim, three numbers, a suggested next move and suggested actions. Choosing “Draft it” drafts a note that waits in Review."
+              alt="Ask about any account: a person picks “Why is Fernhill slipping?”, the AI reads emails, tickets, the last call and usage, then answers with a source on every claim, three numbers, a suggested next move and suggested actions. Choosing “Draft it” drafts a note, and “Review it” opens Review with that note at the top, ready to approve."
             />
           </div>
         </header>
