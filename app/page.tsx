@@ -302,7 +302,7 @@ export default function Home() {
                   ["Wireframes", "The grayscale meeting loop before any color", "/wireframes"],
                 ].map(([t, d, href]) => (
                   <li key={t}>
-                    <a href={href.startsWith("/") ? BASE + href : href} className="group flex items-center justify-between gap-4 py-4">
+                    <a href={href.startsWith("/") ? BASE + href : href} className="open-row group flex items-center justify-between gap-4 py-4">
                       <span>
                         <span className="block font-medium">{t}</span>
                         <span className="block text-small text-ink-2">{d}</span>

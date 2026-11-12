@@ -3197,3 +3197,26 @@ html:root .mob .ask-wrap .ask-action .sig-btn {
   box-shadow: inset 3px 0 0 color-mix(in srgb, var(--accent) 70%, transparent);
   padding-left: 1rem;
 }
+
+/* Built in the open: each link row lights up on the light draft wash with the violet edge under the pointer or with
+   keyboard focus (decision 0089). The row reaches a little past the rules on each side, so the text does not move. */
+.open-row {
+  margin-inline: -0.75rem;
+  border-radius: 14px;
+  padding-inline: 0.75rem 1rem;
+  transition: background-color 160ms ease, box-shadow 160ms ease;
+}
+.open-row:hover,
+.open-row:focus-visible {
+  background: var(--draft);
+  box-shadow: inset 3px 0 0 color-mix(in srgb, var(--accent) 70%, transparent);
+}
+.open-row:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .open-row {
+    transition: none;
+  }
+}
