@@ -4,6 +4,9 @@ import { account, MEETINGS, type Suggestion } from "@/content/prototype";
 /** Where a pending line came from, and where to review it in context. */
 export function originOf(sug: Suggestion) {
   if (!sug.meeting) return { key: "opps", label: "Spotted by AI · opportunities", href: "/prototype/opportunities", when: "" };
+  if (sug.meeting.startsWith("ask:")) {
+    return { key: sug.meeting, label: `${account(sug.account)?.name} · Drafted from Ask`, href: "/prototype", when: "" };
+  }
   if (sug.meeting.startsWith("event:")) {
     const ev = EVENTS.find((e) => `event:${e.id}` === sug.meeting);
     return { key: sug.meeting, label: `${account(sug.account)?.name} · ${ev?.title ?? "Notes"}`, href: `/prototype/quick-log/${ev?.id}`, when: ev?.day ?? "" };
@@ -24,5 +27,7 @@ export function groupByOrigin(items: Suggestion[]) {
     if (!map.has(o.key)) map.set(o.key, { origin: o, items: [] });
     map.get(o.key)!.items.push(x);
   }
-  return [...map.values()];
+  // Drafts chosen from Ask come first, so "Review it" lands on them (decision 0099).
+  const all = [...map.values()];
+  return [...all.filter((g) => g.origin.key.startsWith("ask:")), ...all.filter((g) => !g.origin.key.startsWith("ask:"))];
 }

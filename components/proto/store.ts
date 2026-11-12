@@ -244,6 +244,31 @@ export const actions = {
   deleteList(id: string) {
     commit({ ...state, lists: state.lists.filter((l) => l.id !== id), message: "List removed." });
   },
+  /**
+   * A draft the person chose from Ask's suggested actions (decision 0099): it joins Review like any other line,
+   * grouped as drafted from Ask, with the sources of the answer it came from. Nothing is sent until it is approved.
+   */
+  draftFromAsk(action: { id: string; title: string; detail: string }, accountId: string, sources: string[]) {
+    const id = `ask-${action.id}`;
+    const lc = (t: string) => t.charAt(0).toLowerCase() + t.slice(1);
+    const what = action.title.replace(/^(Draft|Send) /, "");
+    const text = `${what.charAt(0).toUpperCase()}${what.slice(1)}: ${lc(action.detail)}`;
+    const entries = { ...state.entries };
+    delete entries[id];
+    commit({
+      ...state,
+      custom: [
+        ...state.custom.filter((x) => x.id !== id),
+        { id, meeting: `ask:${accountId}`, account: accountId, kind: "email", section: "Drafted from Ask", text, sources, confidence: "Medium" },
+      ],
+      entries,
+      message: "Drafted. It waits in Review; nothing is sent until you approve it.",
+    });
+  },
+  undraftFromAsk(actionId: string) {
+    const id = `ask-${actionId}`;
+    commit({ ...state, custom: state.custom.filter((x) => x.id !== id), message: "Draft taken back." });
+  },
   announce(message: string) {
     commit({ ...state, message });
   },
@@ -254,7 +279,8 @@ export const actions = {
 
 /* ---------- Derived views ---------- */
 
-export const isGated = (s: Suggestion) => GATED.includes(s.kind);
+/** Lines that wait for approval: the gated kinds, and every draft chosen from Ask (decision 0099). */
+export const isGated = (s: Suggestion) => GATED.includes(s.kind) || !!s.meeting?.startsWith("ask:");
 
 export function pending(s: State, filter?: (sug: Suggestion) => boolean) {
   return allSugs(s).filter((sug) => isGated(sug) && entryOf(s, sug.id).status === "pending" && (!filter || filter(sug)));

@@ -34,7 +34,7 @@ export function MobileApp() {
         {screen === "home" ? <Home go={setScreen} waiting={queue.length} /> : null}
         {screen === "brief" ? <Brief back={() => setScreen("home")} /> : null}
         {screen === "approve" ? <Approve /> : null}
-        {screen === "ask" ? <AskScreen /> : null}
+        {screen === "ask" ? <AskScreen go={setScreen} /> : null}
         {screen === "note" ? <VoiceNote /> : null}
         </div>
       </div>
@@ -282,7 +282,7 @@ function Approve() {
   );
 }
 
-function AskScreen() {
+function AskScreen({ go }: { go: (s: Screen) => void }) {
   const box = useRef<HTMLElement>(null);
   const field = useRef<HTMLInputElement>(null);
   const [q, setQ] = useState("");
@@ -358,7 +358,7 @@ function AskScreen() {
                   {answer.next}
                 </p>
               ) : null}
-              {answer.actions?.length ? <AskActions key={answer.id} items={answer.actions} /> : null}
+              {answer.actions?.length ? <AskActions key={answer.id} items={answer.actions} answer={answer} onReview={() => go("approve")} /> : null}
               <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
                 <p className="font-mono text-meta tracking-wide text-ink-2">
                   {sources ? `${sources} SOURCES · ` : ""}NOTHING IN THE RECORD CHANGED

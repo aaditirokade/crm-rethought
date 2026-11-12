@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { answerFor, SUGGESTED, type Answer, type Stat, type SuggestedAction } from "@/content/ask";
+import { SOURCES } from "@/content/prototype";
 import { SourceChip } from "./Source";
-import { actions as store } from "./store";
+import { actions as store, useProto } from "./store";
 
 const STEP_MS = 420;
 const WORD_MS = 32;
@@ -30,9 +31,9 @@ function timeline(a: Answer) {
 }
 
 const KIND: Record<SuggestedAction["kind"], { tag: string; verb: string; done: string }> = {
-  email: { tag: "EMAIL", verb: "Draft it", done: "Drafted · waiting in Review" },
+  email: { tag: "EMAIL", verb: "Draft it", done: "Drafted" },
   task: { tag: "TASK", verb: "Add task", done: "Added to your tasks" },
-  meeting: { tag: "INVITE", verb: "Draft invite", done: "Invite drafted · waiting in Review" },
+  meeting: { tag: "INVITE", verb: "Draft invite", done: "Invite drafted" },
   open: { tag: "OPEN", verb: "Open", done: "" },
 };
 
@@ -40,9 +41,19 @@ const KIND: Record<SuggestedAction["kind"], { tag: string; verb: string; done: s
  * Actions the AI suggests from its answer (Nov 2026). Each says what it would do; nothing happens until the person
  * chooses it, a draft waits in Review like any other line, and Undo takes it back.
  */
-export function AskActions({ items }: { items: SuggestedAction[] }) {
+export function AskActions({ items, answer, onReview }: { items: SuggestedAction[]; answer: Answer; onReview?: () => void }) {
+  const s = useProto();
   const [taken, setTaken] = useState<Record<string, boolean>>({});
+  // A drafted email or invite is a real line in Review (decision 0099), so its state comes from the store.
+  const drafts = (a: SuggestedAction) => a.kind === "email" || a.kind === "meeting";
+  const isDone = (a: SuggestedAction) => (drafts(a) ? s.custom.some((x) => x.id === `ask-${a.id}`) : !!taken[a.id]);
+  const cited = [...new Set(answer.segments.flatMap((g) => g.cite ?? []))].filter((id) => SOURCES[id]).slice(0, 3);
   const take = (a: SuggestedAction, on: boolean) => {
+    if (drafts(a)) {
+      if (on) store.draftFromAsk(a, answer.accounts[0] ?? "", cited);
+      else store.undraftFromAsk(a.id);
+      return;
+    }
     setTaken((t) => ({ ...t, [a.id]: on }));
     store.announce(on ? `${KIND[a.kind].done}: ${a.title}` : `Undone: ${a.title}`);
   };
@@ -52,7 +63,7 @@ export function AskActions({ items }: { items: SuggestedAction[] }) {
       <ul className="mt-2">
         {items.map((a, i) => {
           const k = KIND[a.kind];
-          const done = taken[a.id];
+          const done = isDone(a);
           return (
             <li key={a.id} className="ask-action flex flex-wrap items-center justify-between gap-x-4 gap-y-2 py-3" style={{ animationDelay: `${i * 90}ms` }}>
               <div className="min-w-0 flex-1">
@@ -67,6 +78,17 @@ export function AskActions({ items }: { items: SuggestedAction[] }) {
               ) : done ? (
                 <span className="flex shrink-0 items-center gap-2">
                   <span className="font-mono text-meta tracking-wide text-good">✓ {k.done.toUpperCase()}</span>
+                  {drafts(a) ? (
+                    onReview ? (
+                      <button type="button" className="sig-btn" onClick={onReview}>
+                        Review it<span className="sr-only">: {a.title}</span>
+                      </button>
+                    ) : (
+                      <Link href="/prototype/review" className="sig-btn">
+                        Review it<span className="sr-only">: {a.title}</span>
+                      </Link>
+                    )
+                  ) : null}
                   <button type="button" className="sig-btn" onClick={() => take(a, false)}>
                     Undo<span className="sr-only"> {a.title}</span>
                   </button>
@@ -331,7 +353,7 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
                 </p>
               ) : null}
 
-              {answer.actions?.length && done ? <AskActions key={answer.id} items={answer.actions} /> : null}
+              {answer.actions?.length && done ? <AskActions key={answer.id} items={answer.actions} answer={answer} /> : null}
 
               {done ? (
                 <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
