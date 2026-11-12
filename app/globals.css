@@ -3420,7 +3420,7 @@ html:root .ask-wrap .ask-actions .ask-action:focus-within {
   color: var(--ink);
 }
 html:root .ask-wrap .ask-actions > ul > li + li {
-  margin-top: 0.6rem;
+  margin-top: 0.3rem;
   border-top: 0;
 }
 html:root .ask-wrap .ask-actions .ask-action:hover,

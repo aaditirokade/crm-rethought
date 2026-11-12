@@ -120,3 +120,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - How it works: the walkthrough recordings show their stills and fade the video in, fixing the empty boxes left by decision 0094
 - Ask is back on the lighter periwinkle; its suggested actions panel is on the dark indigo (decision 0097)
 - Ask: each suggested action is its own dark indigo row with a light edge; the panel around them goes (decision 0098)
+- Ask: the suggested action rows sit closer together, 0.3rem apart (decision 0098)

@@ -2,7 +2,7 @@
 
 **Date:** 2026-11-12
 
-**Decision:** the suggested actions lose the dark panel of decision 0097. Their heading sits on the Ask box with the box's own tokens, and each suggestion is its own rounded row on the dark indigo with a light violet edge (#c9c6ff) down the left: the reverse of the light highlights with a violet edge elsewhere in the app. Rows sit a little apart instead of sharing rules, keep their white outline buttons, and lighten a step under the pointer or with focus inside. The phone's Ask follows.
+**Decision:** the suggested actions lose the dark panel of decision 0097. Their heading sits on the Ask box with the box's own tokens, and each suggestion is its own rounded row on the dark indigo with a light violet edge (#c9c6ff) down the left: the reverse of the light highlights with a violet edge elsewhere in the app. Rows sit 0.3rem apart (first 0.6rem, tightened the same day at the author’s request) instead of sharing rules, keep their white outline buttons, and lighten a step under the pointer or with focus inside. The phone's Ask follows.
 
 **Why:** the author asked for the dark background on each suggestion rather than the whole group, with the edge effect reversed.
 
