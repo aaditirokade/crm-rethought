@@ -180,6 +180,7 @@ export default function Home() {
           </div>
           <div className="min-w-0 lg:col-span-7 lg:self-center">
             <Demo
+              priority
               name="ask"
               width={1520}
               height={960}

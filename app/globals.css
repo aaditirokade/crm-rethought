@@ -3263,3 +3263,48 @@ html:root .ask-wrap .ask-actions .ask-action .sig-btn:focus-visible {
   outline: 2px solid #2e2c8a;
   outline-offset: 3px;
 }
+
+/* The case study's recordings load without a black box (decision 0094): the still for the page's theme is in the
+   first HTML and shows at once; the video sits on top, hidden until it has a frame, then fades in. */
+.case-demo-frame .case-demo-still {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+:root[data-theme="dark"] .case-demo-still.is-light,
+:root:not([data-theme="dark"]) .case-demo-still.is-dark {
+  display: none;
+}
+.case-demo-frame video {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 240ms ease;
+}
+.case-demo-frame video.is-ready {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .case-demo-frame video {
+    transition: none;
+  }
+}
+
+/* Research: the coverage bars fill slowly from left to right, one row after another, the first time the chart
+   scrolls into view (decision 0095). Hidden only when script runs (so without it the chart shows complete), and
+   shown complete and still for reduced motion. */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .cov-anim .cov-bar {
+    clip-path: inset(0 100% 0 0);
+  }
+  .cov-anim.is-on .cov-bar {
+    animation: cov-fill 2.2s cubic-bezier(0.33, 0.1, 0.25, 1) both;
+    animation-delay: calc(0.2s + var(--cov-i, 0) * 260ms);
+  }
+}
+@keyframes cov-fill {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}

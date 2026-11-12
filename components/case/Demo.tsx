@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { useTheme } from "../proto/ThemeToggle";
 import { BASE } from "@/lib/base";
 
@@ -22,12 +22,15 @@ export function Demo({
   width,
   height,
   phone = false,
+  priority = false,
 }: {
   name: string;
   alt: string;
   width: number;
   height: number;
   phone?: boolean;
+  /** The page's first visual: its still loads first and eagerly. */
+  priority?: boolean;
 }) {
   const theme = useTheme();
   const reduce = useSyncExternalStore(subscribe, () => window.matchMedia(reduceQuery).matches, () => true);
@@ -35,6 +38,14 @@ export function Demo({
   const playing = choice ?? !reduce;
   const video = useRef<HTMLVideoElement>(null);
   const id = `demo-${name}`;
+  // The recording fades in over its still once it has a frame to show, so the frame is never an empty or black box.
+  const [ready, setReady] = useState<string | null>(null);
+
+  // Autoplay is decided after hydration (reduced motion and the theme are only known in the browser), so start it here.
+  useEffect(() => {
+    const v = video.current;
+    if (v && playing) void v.play().catch(() => {});
+  }, [playing, theme]);
 
   const toggle = () => {
     const v = video.current;
@@ -51,19 +62,37 @@ export function Demo({
         {alt}
       </figcaption>
       <div className="case-demo-frame" style={{ aspectRatio: `${width} / ${height}` }}>
+        {/* Both stills are in the first HTML; the page's theme (set before paint) shows the right one at once. */}
+        {(["light", "dark"] as const).map((t) => (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            key={t}
+            src={`${BASE}/case/${name}-${t}.jpg`}
+            alt=""
+            aria-hidden="true"
+            width={width}
+            height={height}
+            className={`case-demo-still is-${t}`}
+            loading={priority ? "eager" : "lazy"}
+            fetchPriority={priority ? "high" : "auto"}
+            decoding="async"
+          />
+        ))}
         {theme ? (
           <video
             key={theme}
             ref={video}
             src={`${BASE}/case/${name}-${theme}.mp4`}
-            poster={`${BASE}/case/${name}-${theme}.jpg`}
             width={width}
             height={height}
             muted
             loop
             playsInline
             autoPlay={playing}
-            preload={playing ? "auto" : "none"}
+            preload={playing || priority ? "auto" : "metadata"}
+            className={ready === theme ? "is-ready" : ""}
+            onLoadedData={() => setReady(theme)}
+            onPlaying={() => setReady(theme)}
             aria-hidden="true"
           />
         ) : null}

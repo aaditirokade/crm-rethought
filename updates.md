@@ -114,3 +114,5 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Suggested actions on their own light panel inside Ask, with the violet edge (decision 0091)
 - Clearing an answer in Ask scrolls back to the top and puts focus in the question field (decision 0092)
 - Ask and phone app recordings made again with the suggested actions panel (decision 0093)
+- The hero recording shows its still at once and fades the video in; the problem reel starts when seen (decision 0094)
+- Research: the coverage bars fill slowly from left to right on first view (decision 0095)

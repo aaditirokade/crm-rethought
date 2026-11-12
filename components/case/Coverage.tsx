@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
 /**
  * How many of the 13 AI sales products we read do each of the six things Groundwork plans to do
  * (research/competitive-analysis.md, as of Nov 6, 2026). One ordinal scale in one hue:
@@ -14,8 +18,26 @@ const ROWS: { label: string; yes: number; partly: number; none: number; ours?: b
 const TOTAL = 13;
 
 export function Coverage() {
+  // The bars fill from left to right, one after another, the first time the chart scrolls into view (decision 0095).
+  const box = useRef<HTMLElement>(null);
+  const [on, setOn] = useState(false);
+  useEffect(() => {
+    const el = box.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setOn(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.35 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
   return (
-    <figure className="relative max-w-[32rem]">
+    <figure ref={box} className={`cov-anim relative max-w-[32rem] ${on ? "is-on" : ""}`}>
       <div className="flex flex-wrap items-center gap-x-5 gap-y-1 font-mono text-meta tracking-wide text-ink-2" aria-hidden="true">
         <span className="flex items-center gap-1.5">
           <span className="cov-key cov-yes" /> YES
@@ -28,8 +50,8 @@ export function Coverage() {
         </span>
       </div>
       <ol className="mt-4 space-y-3" aria-hidden="true">
-        {ROWS.map((r) => (
-          <li key={r.label}>
+        {ROWS.map((r, i) => (
+          <li key={r.label} style={{ "--cov-i": i } as React.CSSProperties}>
             <p className="flex justify-between gap-3 text-small">
               <span className="font-medium">{r.label}</span>
               <span className="font-mono text-meta text-ink-2">{r.yes} OF {TOTAL} YES</span>

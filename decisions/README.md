@@ -97,3 +97,5 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0091 | [Suggested actions on their own light panel](0091-actions-panel.md) | 2026-11-12 |
 | 0092 | [Clear takes you back to the top](0092-clear-scrolls-up.md) | 2026-11-12 |
 | 0093 | [Ask recordings show the actions panel](0093-recordings-actions-panel.md) | 2026-11-12 |
+| 0094 | [The case study's recordings load without a black box](0094-recordings-load-fast.md) | 2026-11-12 |
+| 0095 | [Research: the coverage bars fill from left to right](0095-coverage-fills.md) | 2026-11-12 |

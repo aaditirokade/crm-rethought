@@ -140,9 +140,32 @@ export function ProblemReel() {
   const [beat, setBeat] = useState(0);
   const [run, setRun] = useState(0);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const box = useRef<HTMLElement>(null);
+  const [inView, setInView] = useState(false);
+  const started = useRef(false);
+
+  // The reel starts when it scrolls into view, from the first beat, instead of having played out unseen below the
+  // fold; it waits while off screen (decision 0094).
+  useEffect(() => {
+    const el = box.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        setInView(e.isIntersecting);
+        if (e.isIntersecting && !started.current) {
+          started.current = true;
+          setBeat(0);
+          setRun((r) => r + 1);
+        }
+      },
+      { threshold: 0.4 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   useEffect(() => {
-    if (!playing) return;
+    if (!playing || !inView) return;
     timer.current = setTimeout(() => {
       setBeat((b) => (b + 1) % BEATS.length);
       setRun((r) => r + 1);
@@ -150,13 +173,13 @@ export function ProblemReel() {
     return () => {
       if (timer.current) clearTimeout(timer.current);
     };
-  }, [playing, beat, run]);
+  }, [playing, inView, beat, run]);
 
   const b = BEATS[beat];
   const n = useCount(b.n, run, still);
 
   return (
-    <figure className="max-w-[35rem]">
+    <figure ref={box} className="max-w-[35rem]">
       <figcaption className="sr-only">
         Three findings, shown in turn: 40% of a seller&apos;s time goes to selling; 68% of sellers say note taking and data entry take the most time;
         76% of CRM users say less than half their CRM data is accurate.
