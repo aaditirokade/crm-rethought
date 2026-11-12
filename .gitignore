@@ -22,3 +22,6 @@ npm-debug.log*
 *.tsbuildinfo
 next-env.d.ts
 .shots/
+
+# Local only: files set aside for deletion
+_to_delete/
