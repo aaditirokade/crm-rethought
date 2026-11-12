@@ -118,3 +118,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Research: the coverage bars fill slowly from left to right on first view (decision 0095)
 - How it works: the three walkthrough recordings play at 70% speed (decision 0096)
 - How it works: the walkthrough recordings show their stills and fade the video in, fixing the empty boxes left by decision 0094
+- Ask is back on the lighter periwinkle; its suggested actions panel is on the dark indigo (decision 0097)

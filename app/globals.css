@@ -3308,3 +3308,119 @@ html:root .ask-wrap .ask-actions .ask-action .sig-btn:focus-visible {
     clip-path: inset(0 0 0 0);
   }
 }
+
+/* Ask and its suggested actions swap places in color (decision 0097). The Ask box goes back to the lighter periwinkle
+   it had before decision 0066 (#e2e5fb with a soft white glow and a thin edge; the deep #25274f block in dark), with
+   that block's dark on light tokens: ink 12.7:1, secondary text 6.9:1, violet 7.3:1, status 5.4:1 or more, field
+   line 3.6:1. The Ask button is an indigo circle with white text (11.4:1; 8.5:1 on hover) and the suggestion pills
+   are white with indigo text (11.4:1 or more). The suggested actions panel takes the dark indigo the box had, with
+   its light on dark tokens, which pass AA on the panel's lightest point: white 6.8:1, secondary text 6.0:1, violet
+   5.6:1, status 5.2:1 or more, rules 4.0:1. Its violet edge stays. */
+html:not([data-theme="dark"]) .ask-wrap.ask-wrap.ask-wrap.proto-card,
+html:not([data-theme="dark"]) .ask-wrap.ask-wrap.ask-wrap.proto-card:has(.ask-panel.is-open) {
+  --bg: #e2e5fb;
+  --surface: #ffffff;
+  --surface-2: #f3f4fe;
+  --ink: #20222b;
+  --ink-2: #484c5a;
+  --line: #c9cdf3;
+  --line-strong: #6e71b8;
+  --rule: rgb(32 34 43 / 0.16);
+  --accent: #2c2cc9;
+  --accent-hover: #2f3399;
+  --accent-ink: #ffffff;
+  --draft: #eef0fd;
+  --good: #23663f;
+  --warn: #9c3c06;
+  --risk: #9e3a31;
+  color-scheme: light;
+  border: 1px solid #ccd0f4;
+  background: radial-gradient(120% 150% at 0% 0%, rgb(255 255 255 / 0.55), transparent 55%), #e2e5fb;
+  box-shadow: 0 1px 2px rgb(85 75 245 / 0.06), 0 12px 28px -16px rgb(85 75 245 / 0.28);
+  color: var(--ink);
+}
+html[data-theme="dark"] .ask-wrap.ask-wrap.ask-wrap.proto-card,
+html[data-theme="dark"] .ask-wrap.ask-wrap.ask-wrap.proto-card:has(.ask-panel.is-open) {
+  border: 1px solid #33356a;
+  background: radial-gradient(120% 150% at 0% 0%, rgb(140 148 255 / 0.16), transparent 58%), #25274f;
+  box-shadow: 0 1px 2px rgb(20 18 50 / 0.12), 0 14px 32px -18px rgb(20 18 50 / 0.4);
+}
+html:not([data-theme="dark"]) .ask-wrap .ask-input {
+  caret-color: var(--accent);
+}
+html:not([data-theme="dark"]) .ask-wrap .ask-input:hover,
+html:not([data-theme="dark"]) .ask-wrap .ask-input:focus {
+  border-bottom-color: var(--accent);
+}
+html:not([data-theme="dark"]) .ask-wrap .sig-btn.sig-btn-primary,
+html:not([data-theme="dark"]) .mob .mob-ask-go {
+  background: #2e2c8a;
+  color: #ffffff;
+  box-shadow: 0 6px 16px -8px rgb(46 44 138 / 0.55);
+}
+html:not([data-theme="dark"]) .ask-wrap .sig-btn.sig-btn-primary:not(:disabled):hover {
+  background: #3f3bb0;
+  color: #ffffff;
+}
+html:not([data-theme="dark"]) .ask-wrap .sig-btn.sig-btn-primary:disabled {
+  background: rgb(46 44 138 / 0.45);
+  color: #ffffff;
+}
+html:not([data-theme="dark"]) .ask-wrap .sig-btn.sig-btn-primary:focus-visible,
+html:not([data-theme="dark"]) .ask-wrap .sig-btn:not(.sig-btn-primary):focus-visible,
+html:not([data-theme="dark"]) .ask-wrap .ask-clear:focus-visible {
+  outline-color: #2e2c8a;
+}
+html:not([data-theme="dark"]) .ask-wrap .sig-btn:not(.sig-btn-primary):not(.ask-action .sig-btn) {
+  background: #ffffff;
+  color: #2e2c8a;
+}
+html:not([data-theme="dark"]) .ask-wrap .sig-btn:not(.sig-btn-primary):not(.ask-action .sig-btn):not(:disabled):hover,
+html:not([data-theme="dark"]) .ask-wrap .sig-btn:not(.sig-btn-primary):not(.ask-action .sig-btn)[aria-pressed="true"] {
+  background: #f4f3ff;
+  color: #2e2c8a;
+  box-shadow: 0 6px 14px -8px rgb(46 44 138 / 0.45) !important;
+}
+
+/* The suggested actions panel on the dark indigo, in both themes. */
+html:root .ask-wrap .ask-actions,
+html:root .ask-wrap .ask-actions .ask-action:hover,
+html:root .ask-wrap .ask-actions .ask-action:focus-within {
+  --ink: #ffffff;
+  --ink-2: #f1f0fd;
+  --accent: #e6e8ff;
+  --line-strong: #c3c5ec;
+  --rule: rgb(255 255 255 / 0.22);
+  --good: #b0f0cc;
+  --warn: #ffe0cc;
+  --risk: #ffdcd6;
+  color-scheme: dark;
+}
+html:root .ask-wrap .ask-actions {
+  background: var(--ask-pop);
+  box-shadow: inset 4px 0 0 #7d74ff, 0 10px 24px -14px rgb(10 8 60 / 0.6);
+  color: var(--ink);
+}
+html:root .ask-wrap .ask-actions .ask-action:hover,
+html:root .ask-wrap .ask-actions .ask-action:focus-within {
+  --ink-2: #f7f6ff;
+  --accent: #eef0ff;
+  --line-strong: #d6d8f4;
+  --good: #d8fae8;
+  --warn: #fff2e8;
+  --risk: #ffeeea;
+  background: rgb(255 255 255 / 0.08);
+}
+html:root .ask-wrap .ask-actions .ask-action .sig-btn {
+  border: 1.5px solid #ffffff;
+  background: transparent;
+  color: #ffffff;
+}
+html:root .ask-wrap .ask-actions .ask-action .sig-btn:not(:disabled):hover {
+  background: rgb(255 255 255 / 0.12);
+  color: #ffffff;
+}
+html:root .ask-wrap .ask-actions .ask-action .sig-btn:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}

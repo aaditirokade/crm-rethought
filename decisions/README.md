@@ -100,3 +100,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0094 | [The case study's recordings load without a black box](0094-recordings-load-fast.md) | 2026-11-12 |
 | 0095 | [Research: the coverage bars fill from left to right](0095-coverage-fills.md) | 2026-11-12 |
 | 0096 | [The walkthrough recordings play slower](0096-walkthrough-slower.md) | 2026-11-12 |
+| 0097 | [Ask goes light again, its suggested actions go dark](0097-ask-light-actions-dark.md) | 2026-11-12 |
