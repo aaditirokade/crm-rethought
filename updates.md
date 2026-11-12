@@ -111,3 +111,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - The design system's swatch tiles on the light wash with the violet edge (decision 0088)
 - Built in the open: each link row lights up on the light wash with the violet edge (decision 0089)
 - Next: the three test rows light up under the pointer, like Built in the open (decision 0090)
+- Suggested actions on their own light panel inside Ask, with the violet edge (decision 0091)

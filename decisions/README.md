@@ -94,3 +94,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0088 | [The design system's swatch tiles on the light wash](0088-swatches-light.md) | 2026-11-12 |
 | 0089 | [Built in the open: rows light up under the pointer](0089-open-rows-hover.md) | 2026-11-12 |
 | 0090 | [Next: the test rows light up under the pointer too](0090-next-rows-hover.md) | 2026-11-12 |
+| 0091 | [Suggested actions on their own light panel](0091-actions-panel.md) | 2026-11-12 |

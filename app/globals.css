@@ -3220,3 +3220,46 @@ html:root .mob .ask-wrap .ask-action .sig-btn {
     transition: none;
   }
 }
+
+/* Suggested actions get their own light panel inside Ask (decision 0091): the answer is the AI's, on the indigo; what
+   the person could do next sits apart on a near white panel with the violet edge, in both themes. Dark text on it:
+   ink 14.4:1, secondary 7.3:1, indigo 10.4:1, done green 5.9:1; 13:1, 6.6:1, 9.4:1 and 5.4:1 on a hovered
+   row. The action buttons are indigo outlines (10.4:1). */
+html:root .ask-wrap .ask-actions {
+  --ink: #20222b;
+  --ink-2: #4b4f66;
+  --accent: #2e2c8a;
+  --line-strong: #2e2c8a;
+  --rule: rgb(46 44 138 / 0.16);
+  --good: #1a6b40;
+  color-scheme: light;
+  border-radius: 16px;
+  background: #f4f3ff;
+  /* The edge is a lighter violet and a step wider here, so it reads against the indigo around the panel (2.6:1)
+     as well as against the panel (3.3:1). */
+  box-shadow: inset 4px 0 0 #7d74ff, 0 10px 24px -16px rgb(10 8 60 / 0.55);
+  padding: 1rem 1.25rem 0.5rem 1.5rem;
+  color: var(--ink);
+}
+html:root .ask-wrap .ask-actions .ask-action:hover,
+html:root .ask-wrap .ask-actions .ask-action:focus-within {
+  --ink: #20222b;
+  --ink-2: #4b4f66;
+  --accent: #2e2c8a;
+  --line-strong: #2e2c8a;
+  --good: #1a6b40;
+  background: #e9e7fb;
+}
+html:root .ask-wrap .ask-actions .ask-action .sig-btn {
+  border: 1.5px solid #2e2c8a;
+  background: transparent;
+  color: #2e2c8a;
+}
+html:root .ask-wrap .ask-actions .ask-action .sig-btn:not(:disabled):hover {
+  background: rgb(46 44 138 / 0.08);
+  color: #2e2c8a;
+}
+html:root .ask-wrap .ask-actions .ask-action .sig-btn:focus-visible {
+  outline: 2px solid #2e2c8a;
+  outline-offset: 3px;
+}
