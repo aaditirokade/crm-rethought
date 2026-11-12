@@ -334,7 +334,7 @@ export default function Home() {
                   ["Is the record more complete?", "Meetings with a logged note within a day, against the CRM people use today."],
                   ["Do people trust Ask?", "Answers opened to their source, and questions asked again in other words."],
                 ].map(([t, d]) => (
-                  <li key={t} className="py-4">
+                  <li key={t} className="open-row py-4">
                     <span className="block font-medium">{t}</span>
                     <span className="block text-small text-ink-2">{d}</span>
                   </li>

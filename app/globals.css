@@ -3199,7 +3199,7 @@ html:root .mob .ask-wrap .ask-action .sig-btn {
 }
 
 /* Built in the open: each link row lights up on the light draft wash with the violet edge under the pointer or with
-   keyboard focus (decision 0089). The row reaches a little past the rules on each side, so the text does not move. */
+   keyboard focus (decision 0089; the rows in Next, what I would test first, too since 0090). The row reaches a little past the rules on each side, so the text does not move. */
 .open-row {
   margin-inline: -0.75rem;
   border-radius: 14px;
