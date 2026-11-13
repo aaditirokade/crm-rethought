@@ -36,7 +36,8 @@ export function SiteNav() {
           </div>
         </div>
         <div className="flex items-center gap-4 text-small font-medium sm:gap-6">
-          <a href="/#work" className="site-nav-link">
+          {/* /work forwards to the work on the portfolio home page; a plain link, since this app has its own base path. */}
+          <a href="/work" className="site-nav-link">
             Work
           </a>
           <a href="/resume" className="site-nav-link">

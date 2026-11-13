@@ -6,7 +6,7 @@
 
 - **Three directions, one kept.** The visual directions from decision 0010 now sit in the case study, drawn from their own tokens: Ledger and Margin note dropped, Signal kept, each with the reason. Guides look for the explorations a designer rejected, not only the final screens.
 - **The code, one click away.** Built in code links to the tests, the store and the repository.
-- **The nav says Work, not Gallery**, to match the portfolio, and links to the work on its home page.
+- **The nav says Work, not Gallery**, to match the portfolio; /work forwards to the work on its home page.
 
 **Why:** reviewers trust a portfolio that shows what was discarded and lets them check claims against the code.
 
