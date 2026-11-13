@@ -7,6 +7,16 @@
   .grid:not([class^="grid-cols-"]):not([class*=" grid-cols-"]):not([class*="grid-flow-col"]) {
     grid-template-columns: minmax(0, 1fr);
   }
+
+  /* No orphan words anywhere (Nov 2026): text wraps so a line never ends with one word left on its own, and
+     headings balance their lines. text-wrap is inherited, so this reaches every paragraph, list item, label and
+     caption; a utility class on an element still wins. */
+  body {
+    text-wrap: pretty;
+  }
+  :is(h1, h2, h3, h4, h5, h6) {
+    text-wrap: balance;
+  }
 }
 
 /*

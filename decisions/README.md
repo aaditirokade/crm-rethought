@@ -107,3 +107,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0101 | [Ask and phone recordings made again from the current prototype](0101-recordings-light-ask.md) | 2026-11-12 |
 | 0102 | [Checked on phones, and fixed](0102-phone-fixes.md) | 2026-11-12 |
 | 0103 | [Built in code: a walkthrough chapter and tests on the approval rules](0103-built-in-code.md) | 2026-11-13 |
+| 0104 | [No orphan words anywhere](0104-no-orphan-words.md) | 2026-11-13 |
