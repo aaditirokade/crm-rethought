@@ -1,6 +1,8 @@
 /* Built in code (decision 0103): how Groundwork is put together, why this stack, the changes worth walking through
    in an interview, and the tests on the approval rules. Every claim here can be checked in the repo. */
 
+const REPO = "https://github.com/aaditirokade/crm-rethought";
+
 const STACK: [string, string][] = [
   ["Next.js and React", "The tools a product team would ship with. The web prototype and the phone app are one app, served from one codebase."],
   ["TypeScript, strict", "Accounts, AI lines, sources and approvals all have types, so a line that leaves out its sources fails the build."],
@@ -88,6 +90,19 @@ export function BuiltInCode() {
           <p className="mt-3 text-small leading-relaxed text-ink-2">
             The promise that nothing saves without you is the one that matters most, so it has tests. They run with
             Node’s own test runner, with nothing extra to install, and I run them before every commit.
+          </p>
+          {/* The code is public (Nov 2026, decision 0106): the store and its tests, one click from the claims above. */}
+          <p className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-small font-medium">
+            {[
+              ["See the tests", `${REPO}/blob/main/test/store.test.ts`],
+              ["See the store", `${REPO}/blob/main/components/proto/store.ts`],
+              ["All the code", REPO],
+            ].map(([t, href]) => (
+              <a key={t} href={href} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-4">
+                {t}
+                <span className="sr-only"> (opens GitHub in a new tab)</span>
+              </a>
+            ))}
           </p>
           <h3 className="mt-8 font-mono text-meta tracking-wide text-ink-2">WORKING WITH AI</h3>
           <p className="mt-3 text-small leading-relaxed text-ink-2">

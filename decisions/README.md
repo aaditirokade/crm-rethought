@@ -109,3 +109,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0103 | [Built in code: a walkthrough chapter and tests on the approval rules](0103-built-in-code.md) | 2026-11-13 |
 | 0104 | [No orphan words anywhere](0104-no-orphan-words.md) | 2026-11-13 |
 | 0105 | [The case study tells the loop before and after, and the test I'd run](0105-case-study-story.md) | 2026-11-13 |
+| 0106 | [Fixes from a review of 2026's top portfolios](0106-review-fixes.md) | 2026-11-14 |

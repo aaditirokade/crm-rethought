@@ -1,6 +1,8 @@
 /* Story blocks for the case study (decision 0105): the meeting loop before and after, the experiment I'd run on
    the approval step, and what I'd do differently. A plan, not a result: Groundwork has no users yet. */
 
+import { BASE } from "@/lib/base";
+
 const kick = "font-mono text-meta tracking-wide text-ink-2";
 
 const BEFORE = ["Prep from five tabs", "Take notes on paper", "Type the call in later", "A promise slips", "The record goes stale"];
@@ -133,5 +135,71 @@ export function NextTime() {
         bet, that people want to approve every line, before I built around it.
       </p>
     </div>
+  );
+}
+
+/* The three visual directions from decision 0010, drawn from their own tokens: two not taken, and why. */
+type Dir = { name: string; idea: string; bg: string; surface: string; ink: string; ink2: string; line: string; accent: string; draft: string; style: "margin" | "badge" | "note"; verdict: string; kept?: boolean };
+const DIRS: Dir[] = [
+  { name: "Ledger", idea: "Calm and editorial, one deep green", bg: "#f6f4ef", surface: "#fffdf8", ink: "#1d1b16", ink2: "#5b574d", line: "#ddd8cc", accent: "#1f5c4a", draft: "#efeadf", style: "margin", verdict: "Drafts were marked by italics alone, which a screen reader can’t hear and low vision can miss." },
+  { name: "Signal", idea: "Dense and precise, one electric blue", bg: "#f4f5f7", surface: "#ffffff", ink: "#111318", ink2: "#535866", line: "#dde0e6", accent: "#2d5bff", draft: "#eef2ff", style: "badge", verdict: "Chosen: DRAFT is a word, so everyone gets it, and density suits a tool open all day. Its blue later became today’s violet.", kept: true },
+  { name: "Margin note", idea: "Warm and human, a clay accent", bg: "#fbf8f3", surface: "#ffffff", ink: "#2a2420", ink2: "#6b5f57", line: "#e7ded3", accent: "#b4532a", draft: "#fdf1d8", style: "note", verdict: "The clay sat too close to the warning colors a risk flag needs, and drafts relied on a tint." },
+];
+
+function DirCard({ d }: { d: Dir }) {
+  const line = "Fernhill will renew all 40 stores on Jan 25.";
+  return (
+    <div className="rounded-xl p-4" style={{ background: d.bg, color: d.ink, border: `1px solid ${d.line}` }} aria-hidden="true">
+      <div className="flex gap-1.5">
+        {[d.ink, d.accent, d.draft, d.line].map((c) => (
+          <span key={c} className="h-4 w-4 rounded-full" style={{ background: c, border: `1px solid ${d.line}` }} />
+        ))}
+      </div>
+      <div className="mt-3 rounded-lg p-3" style={{ background: d.surface, border: `1px solid ${d.line}` }}>
+        {d.style === "badge" ? (
+          <p className="text-[12.5px] leading-snug">
+            <span className="mr-1.5 rounded px-1.5 py-0.5 font-mono text-[10px] font-semibold" style={{ background: d.draft, color: d.accent }}>DRAFT</span>
+            {line}
+          </p>
+        ) : d.style === "margin" ? (
+          <p className="border-l-2 pl-2 text-[12.5px] italic leading-snug" style={{ borderColor: d.line, color: d.ink2 }}>{line}</p>
+        ) : (
+          <p className="rounded-md px-2 py-1.5 text-[12.5px] leading-snug" style={{ background: d.draft }}>{line}</p>
+        )}
+        <p className="mt-2 text-[11.5px] font-semibold" style={{ color: d.accent }}>Approve</p>
+      </div>
+    </div>
+  );
+}
+
+/** Directions I didn't take: the three visual directions side by side, with the reason each was kept or dropped. */
+export function DirectionsNotTaken() {
+  return (
+    <section aria-labelledby="dirs-h" className="border-t border-[var(--rule)] py-14 lg:py-16">
+      <h2 id="dirs-h" className="max-w-[40ch] text-[1.5rem] font-medium leading-snug tracking-tight sm:text-[1.75rem]">
+        Three directions, one kept
+      </h2>
+      <p className="mt-4 max-w-[60ch] text-[17px] leading-relaxed text-ink-2">
+        Before any tokens, I asked for three visual directions and judged them on how a draft line reads, not on mood alone. The deciding
+        question was whether someone who can’t see color or italics still knows a line is a draft.
+      </p>
+      <ul className="mt-8 grid gap-6 md:grid-cols-3">
+        {DIRS.map((d) => (
+          <li key={d.name}>
+            <DirCard d={d} />
+            <p className="mt-3 flex items-baseline gap-2">
+              <span className="font-medium">{d.name}</span>
+              <span className={`font-mono text-meta ${d.kept ? "text-accent" : "text-ink-2"}`}>{d.kept ? "KEPT" : "DROPPED"}</span>
+            </p>
+            <p className="text-small text-ink-2">{d.idea}</p>
+            <p className="mt-2 text-small leading-relaxed text-ink-2">{d.verdict}</p>
+          </li>
+        ))}
+      </ul>
+      <p className="mt-6 text-small text-ink-2">
+        The three, as they were judged:{" "}
+        <a href={`${BASE}/directions`} className="font-medium text-ink underline underline-offset-4">see the directions page</a>.
+      </p>
+    </section>
   );
 }

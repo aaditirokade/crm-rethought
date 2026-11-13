@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 /**
  * The aaditirokade.com nav on the case study (decision 0052), so a reader can get back to the portfolio in one click.
- * Same shape as the site: "AR" on the left, Gallery and Resume on the right, and a floating pill once the page scrolls.
+ * Same shape as the site: "AR" on the left, Work and Resume on the right, and a floating pill once the page scrolls.
  * Groundwork is its own app served under /groundwork, so these are plain links that leave this app for the site's pages.
  */
 export function SiteNav() {
@@ -36,8 +36,8 @@ export function SiteNav() {
           </div>
         </div>
         <div className="flex items-center gap-4 text-small font-medium sm:gap-6">
-          <a href="/work" className="site-nav-link">
-            Gallery
+          <a href="/#work" className="site-nav-link">
+            Work
           </a>
           <a href="/resume" className="site-nav-link">
             Resume

@@ -10,7 +10,7 @@ import { BASE } from "@/lib/base";
 import { AskAnatomy } from "@/components/case/AskAnatomy";
 import { SiteNav } from "@/components/case/SiteNav";
 import { BuiltInCode } from "@/components/case/BuiltInCode";
-import { ApprovalExperiment, LoopBeforeAfter, NextTime } from "@/components/case/Story";
+import { ApprovalExperiment, DirectionsNotTaken, LoopBeforeAfter, NextTime } from "@/components/case/Story";
 
 export const metadata: Metadata = {
   title: "Groundwork · CRM, rethought",
@@ -295,6 +295,8 @@ export default function Home() {
               </Link>
             </p>
           </Chapter>
+
+          <DirectionsNotTaken />
 
           <Chapter
             n="05"
