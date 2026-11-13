@@ -127,3 +127,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Phones: grids can't push past the screen edge, Ask keeps its button on one line, account charts scroll sideways, the sparkline dot stays round (decision 0102)
 - Case study: a 06 · Built in code chapter (stack, three changes, tests, working with AI); unit tests on the approval rules with npm test; Next is now 07 (decision 0103)
 - Whole app: no orphan words: body text wraps pretty and headings balance (decision 0104)
+- Case study: before and after of the meeting loop; 07 · The test I'd run first (approve every line or the meeting); What I'd do differently; Next is now 08 (decision 0105)

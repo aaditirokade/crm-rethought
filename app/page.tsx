@@ -10,6 +10,7 @@ import { BASE } from "@/lib/base";
 import { AskAnatomy } from "@/components/case/AskAnatomy";
 import { SiteNav } from "@/components/case/SiteNav";
 import { BuiltInCode } from "@/components/case/BuiltInCode";
+import { ApprovalExperiment, LoopBeforeAfter, NextTime } from "@/components/case/Story";
 
 export const metadata: Metadata = {
   title: "Groundwork · CRM, rethought",
@@ -99,7 +100,8 @@ const CHAPTERS: RailChapter[] = [
   { id: "ch-04", label: "Design system" },
   { id: "ch-05", label: "Built in the open" },
   { id: "ch-06", label: "Built in code" },
-  { id: "ch-07", label: "Next" },
+  { id: "ch-07", label: "The test" },
+  { id: "ch-08", label: "Next" },
   { id: "try", label: "Try it" },
 ];
 
@@ -206,6 +208,8 @@ export default function Home() {
             </p>
             <p>I started from the people who keep the record, not the people who read the report.</p>
           </Chapter>
+
+          <LoopBeforeAfter />
 
           <Chapter
             n="02"
@@ -328,10 +332,12 @@ export default function Home() {
 
           <BuiltInCode />
 
+          <ApprovalExperiment />
+
           <Chapter
-            n="07"
+            n="08"
             kicker="Next"
-            title="What I’d test first, and how I’d measure it"
+            title="What I’d want to learn next, and how I’d measure it"
             visual={
               <ul className="divide-y divide-[var(--rule)] border-y border-[var(--rule)]">
                 {[
@@ -347,7 +353,8 @@ export default function Home() {
               </ul>
             }
           >
-            <p>Groundwork is a concept, so there are no outcomes to claim yet. These are the three things I’d test first with account teams, and the numbers I’d watch after launch.</p>
+            <p>Groundwork is a concept, so there are no outcomes to claim yet. These are the three things I’d want to learn with account teams, and the numbers I’d watch after launch.</p>
+            <NextTime />
           </Chapter>
         <section aria-labelledby="try" className="border-t border-[var(--rule)] py-20 text-center">
           {/* On wide screens, center on the gap between the chapters' 5 and 7 column split: (100% + gap) / 6 off the right. */}
