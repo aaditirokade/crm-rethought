@@ -9,6 +9,7 @@ import { ThemeButton } from "@/components/case/ThemeButton";
 import { BASE } from "@/lib/base";
 import { AskAnatomy } from "@/components/case/AskAnatomy";
 import { SiteNav } from "@/components/case/SiteNav";
+import { BuiltInCode } from "@/components/case/BuiltInCode";
 
 export const metadata: Metadata = {
   title: "Groundwork · CRM, rethought",
@@ -97,7 +98,8 @@ const CHAPTERS: RailChapter[] = [
   { id: "how", label: "How it works" },
   { id: "ch-04", label: "Design system" },
   { id: "ch-05", label: "Built in the open" },
-  { id: "ch-06", label: "Next" },
+  { id: "ch-06", label: "Built in code" },
+  { id: "ch-07", label: "Next" },
   { id: "try", label: "Try it" },
 ];
 
@@ -324,8 +326,10 @@ export default function Home() {
             <p>It is designed from scratch and uses nothing from any CRM I worked on before.</p>
           </Chapter>
 
+          <BuiltInCode />
+
           <Chapter
-            n="06"
+            n="07"
             kicker="Next"
             title="What I’d test first, and how I’d measure it"
             visual={

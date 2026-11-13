@@ -75,6 +75,9 @@ function commit(next: State) {
   listeners.forEach((l) => l());
 }
 
+/** The current state, outside React: used by the unit tests in test/. */
+export const getState = () => state;
+
 function subscribe(l: () => void) {
   listeners.add(l);
   return () => listeners.delete(l);

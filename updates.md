@@ -125,3 +125,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Ask: Add task puts a real task on Your tasks, with View task on the row; Undo is a round icon (decision 0100)
 - Case study: the Ask and phone recordings are made again from the current prototype, ending on Review it (decision 0101)
 - Phones: grids can't push past the screen edge, Ask keeps its button on one line, account charts scroll sideways, the sparkline dot stays round (decision 0102)
+- Case study: a 06 · Built in code chapter (stack, three changes, tests, working with AI); unit tests on the approval rules with npm test; Next is now 07 (decision 0103)
