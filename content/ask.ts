@@ -177,6 +177,17 @@ export function answerFor(question: string): Answer {
   };
 }
 
+/**
+ * How sure Ask is (decision 0107): a written answer read the calls, emails and tickets behind it; an answer assembled
+ * from the record alone is medium; a question it couldn't tie to an account is low, and it says so instead of guessing.
+ */
+export function confidenceOf(a: Answer): { level: "High" | "Medium" | "Low"; why: string } {
+  const sources = new Set(a.segments.flatMap((g) => g.cite ?? [])).size;
+  if (a.id === "none") return { level: "Low", why: "No account matched, so nothing was read" };
+  if (a.id.startsWith("account-")) return { level: "Medium", why: `Assembled from the record${sources ? ` and ${sources} ${sources === 1 ? "source" : "sources"}` : ""}; no call was read` };
+  return { level: "High", why: `Read ${sources} ${sources === 1 ? "source" : "sources"}, each cited` };
+}
+
 /** Weekly dashboard views per account, 8 weeks ending Nov 9. */
 export const PULSE: Record<string, number[]> = {
   fernhill: [398, 405, 412, 410, 300, 262, 258, 255],

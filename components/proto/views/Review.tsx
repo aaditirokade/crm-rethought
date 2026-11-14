@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { Corrections } from "../Corrections";
 import { Triage } from "../Triage";
 import { PageHead } from "../bits";
 import { groupByOrigin } from "../groups";
@@ -107,6 +108,7 @@ export function Review() {
           ))}
         </div>
       )}
+      <Corrections />
       <div className="action-bar sticky bottom-0 mt-8 flex flex-wrap items-center justify-between gap-3">
         <p className="font-mono text-meta tracking-wide">
           <span className="font-medium">{approved} APPROVED</span>

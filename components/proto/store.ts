@@ -25,7 +25,12 @@ import {
  * Kept in this browser only (localStorage), so the demo survives page changes and reloads.
  */
 export type Status = "pending" | "approved" | "dismissed" | "saved";
-export type Entry = { status: Status; text?: string; at?: string };
+/** `reason`: why a person dismissed an AI line (decision 0107), sent to the team as feedback. */
+export type Entry = { status: Status; text?: string; at?: string; reason?: string };
+/** Why an AI line or answer was wrong: one tap, and skipping it is fine (decision 0107). */
+export const REASONS = ["Wrong", "Out of date", "Wrong source"] as const;
+export type Reason = (typeof REASONS)[number];
+export type AskFlag = { id: string; question: string; reason: Reason; sources: string[] };
 export type SavedList = { id: string; name: string; query: string; chips: string[] };
 export type State = {
   entries: Record<string, Entry>;
@@ -45,10 +50,12 @@ export type State = {
   imp: { mapping: Record<string, string>; mappingOk: boolean; rules: Record<string, string>; doneAt?: string };
   /** Tasks a person added from Ask's suggested actions (decision 0100). */
   asked: { id: string; text: string; due: string; account: string; source?: string }[];
+  /** Ask answers a person flagged as wrong, newest first (decision 0107). */
+  askFlags?: AskFlag[];
 };
 
 const KEY = "crm-rethought-prototype-v2";
-const INITIAL: State = { entries: {}, pinned: [], clock: 0, message: "", seq: 0, custom: [], notes: {}, order: [], snoozed: [], lists: [], moves: {}, imp: { mapping: {}, mappingOk: false, rules: {} }, asked: [] };
+const INITIAL: State = { entries: {}, pinned: [], clock: 0, message: "", seq: 0, custom: [], notes: {}, order: [], snoozed: [], lists: [], moves: {}, imp: { mapping: {}, mappingOk: false, rules: {} }, asked: [], askFlags: [] };
 
 let state: State = INITIAL;
 let loaded = false;
@@ -139,7 +146,20 @@ export const actions = {
     set(id, { ...state.entries[id], status: "dismissed" }, "Dismissed. Undo is next to it.");
   },
   undo(id: string) {
-    set(id, { ...state.entries[id], status: "pending" }, "Undone.");
+    set(id, { ...state.entries[id], status: "pending", reason: undefined }, "Undone.");
+  },
+  /** Why a dismissed line was wrong; the same reason again clears it (decision 0107). */
+  reason(id: string, reason: Reason) {
+    const cur = state.entries[id];
+    if (!cur || cur.status !== "dismissed") return;
+    const next = cur.reason === reason ? undefined : reason;
+    set(id, { ...cur, reason: next }, next ? `Marked ${next.toLowerCase()}. Sent to the team.` : "Reason cleared.");
+  },
+  /** Flag an Ask answer as wrong, with a reason; flagging it again with the same reason takes it back. */
+  flagAnswer(flag: AskFlag) {
+    const rest = (state.askFlags ?? []).filter((f) => f.id !== flag.id);
+    const same = (state.askFlags ?? []).some((f) => f.id === flag.id && f.reason === flag.reason);
+    commit({ ...state, askFlags: same ? rest : [flag, ...rest], message: same ? "Flag taken back." : `Answer flagged: ${flag.reason.toLowerCase()}. Sent to the team.` });
   },
   /** Save every approved line, in one meeting or everywhere. */
   save(meetingId?: string) {
@@ -426,6 +446,23 @@ export function tasks(s: State) {
     });
   const fromAsk = (s.asked ?? []).map((t) => ({ text: t.text, due: t.due, account: t.account, source: t.source, askId: t.id as string | undefined }));
   return [...fromAsk, ...fromLogs, ...BASE_TASKS.map((t) => ({ ...t, source: undefined as string | undefined, askId: undefined as string | undefined }))];
+}
+
+/**
+ * What people corrected (decision 0107): every dismissed AI line that has a reason, and every flagged Ask answer,
+ * counted by reason and by the source behind them, so the team can see where the AI goes wrong.
+ */
+export function corrections(s: State) {
+  const lines = allSugs(s)
+    .map((sug) => ({ sug, e: entryOf(s, sug.id) }))
+    .filter(({ e }) => e.status === "dismissed" && e.reason)
+    .map(({ sug, e }) => ({ id: sug.id, text: textOf(s, sug), reason: e.reason as Reason, sources: sug.sources, kind: "line" as const }));
+  const answers = (s.askFlags ?? []).map((f) => ({ id: f.id, text: f.question, reason: f.reason, sources: f.sources, kind: "answer" as const }));
+  const all = [...answers, ...lines];
+  const byReason = REASONS.map((r) => ({ reason: r, count: all.filter((x) => x.reason === r).length }));
+  const bySource: Record<string, number> = {};
+  all.forEach((x) => x.sources.forEach((src) => (bySource[src] = (bySource[src] ?? 0) + 1)));
+  return { all, byReason, bySource };
 }
 
 /** This week's outreach, ranked by the weight of its reasons; a person's reordering wins. */

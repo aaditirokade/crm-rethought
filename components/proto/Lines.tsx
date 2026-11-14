@@ -3,23 +3,45 @@
 import { useState } from "react";
 import type { Suggestion } from "@/content/prototype";
 import { Meta } from "./Source";
-import { actions, entryOf, textOf, useProto } from "./store";
+import { REASONS, actions, entryOf, textOf, useProto } from "./store";
+
+/**
+ * A dismissed AI line (decision 0107): the line, one tap to say why it was wrong, and Undo. The reason goes to the team
+ * as feedback ("What people corrected" on Review); skipping it is fine.
+ */
+export function WhyWrong({ id, reason, className = "" }: { id: string; reason?: string; className?: string }) {
+  return (
+    <div className={`flex flex-wrap items-center gap-1.5 ${className}`} role="group" aria-label="Why was it wrong?">
+      <span className="font-mono text-meta tracking-wide text-ink-2">{reason ? "SENT TO THE TEAM ·" : "WHY?"}</span>
+      {REASONS.map((r) => (
+        <button key={r} type="button" className="why-chip" aria-pressed={reason === r} onClick={() => actions.reason(id, r)}>
+          {r}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function DismissedRow({ id, text, reason, pad = "" }: { id: string; text: string; reason?: string; pad?: string }) {
+  return (
+    <li className={`row-out py-3 text-small text-ink-2 ${pad}`}>
+      <div className="flex items-center justify-between gap-4">
+        <span>Dismissed: {text}</span>
+        <button type="button" className="sig-btn shrink-0" onClick={() => actions.undo(id)}>
+          Undo
+        </button>
+      </div>
+      <WhyWrong id={id} reason={reason} className="mt-2" />
+    </li>
+  );
+}
 
 /** A line in a brief: a private draft, so no gate. Pin or dismiss, with undo. */
 export function BriefLine({ sug }: { sug: Suggestion }) {
   const s = useProto();
   const e = entryOf(s, sug.id);
   const pinned = s.pinned.includes(sug.id);
-  if (e.status === "dismissed") {
-    return (
-      <li className="row-out flex items-center justify-between gap-4 py-3 text-small text-ink-2">
-        <span>Dismissed: {sug.text}</span>
-        <button type="button" className="sig-btn shrink-0" onClick={() => actions.undo(sug.id)}>
-          Undo
-        </button>
-      </li>
-    );
-  }
+  if (e.status === "dismissed") return <DismissedRow id={sug.id} text={sug.text} reason={e.reason} />;
   return (
     <li className={`@container py-4 ${pinned ? "proto-pinned" : ""}`}>
       <div className="flex flex-col gap-3 @lg:flex-row @lg:items-start">
@@ -72,6 +94,7 @@ export function FixBox({ sug }: { sug: Suggestion }) {
               <span className="font-mono text-meta text-ink-2">DISMISSED · RECORD UNCHANGED</span>
             )}
             <span className="mt-1 block text-small">{sug.text}</span>
+            {e.status === "dismissed" ? <WhyWrong id={sug.id} reason={e.reason} className="mt-2" /> : null}
           </span>
           <button type="button" className="sig-btn" onClick={() => actions.undo(sug.id)}>
             Undo
@@ -130,16 +153,7 @@ export function GateLine({ sug, icons = false }: { sug: Suggestion; icons?: bool
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(text);
 
-  if (e.status === "dismissed") {
-    return (
-      <li className="row-out flex items-center justify-between gap-4 px-3 py-3 text-small text-ink-2">
-        <span>Dismissed: {text}</span>
-        <button type="button" className="sig-btn shrink-0" onClick={() => actions.undo(sug.id)}>
-          Undo
-        </button>
-      </li>
-    );
-  }
+  if (e.status === "dismissed") return <DismissedRow id={sug.id} text={text} reason={e.reason} pad="px-3" />;
 
   return (
     <li className={`gate-row @container rounded-xl px-3 py-3 ${e.status === "pending" ? "sig-row-draft" : "is-decided"}`}>

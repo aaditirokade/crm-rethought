@@ -203,3 +203,74 @@ export function DirectionsNotTaken() {
     </section>
   );
 }
+
+/** When the AI is wrong (decision 0107): how sure it is, how a person says it was wrong, and what the team sees. */
+export function WhenWrong() {
+  const chip = (t: string, on = false) => (
+    <span className={`rounded-full border px-2 py-0.5 text-[11.5px] ${on ? "border-accent bg-accent text-accent-ink" : "border-[var(--rule)] text-ink-2"}`}>{t}</span>
+  );
+  const panels: { title: string; body: string; ui: React.ReactNode }[] = [
+    {
+      title: "It says how sure it is",
+      body: "Every AI line and every Ask answer carries its confidence. Medium means check this, and medium lines are hidden before a high stakes meeting.",
+      ui: (
+        <div className="rounded-lg bg-surface-2 p-3">
+          <p className="text-[13px] leading-snug">Price the 12 new stores as a separate expansion.</p>
+          <p className="mt-2 font-mono text-[10.5px] tracking-wide text-ink-2">CONFIDENCE MEDIUM · CHECK THIS</p>
+        </div>
+      ),
+    },
+    {
+      title: "Saying no takes one tap, and says why",
+      body: "Dismiss a line or flag an answer, then tap why: wrong, out of date, or the wrong source. Skipping is fine, and Undo is always there.",
+      ui: (
+        <div className="rounded-lg border border-[var(--rule)] p-3">
+          <p className="text-[13px] text-ink-2">Dismissed: Late data refreshes are their main complaint.</p>
+          <p className="mt-2 flex flex-wrap items-center gap-1.5">
+            <span className="font-mono text-[10.5px] tracking-wide text-ink-2">SENT TO THE TEAM ·</span>
+            {chip("Wrong")}
+            {chip("Out of date", true)}
+            {chip("Wrong source")}
+          </p>
+        </div>
+      ),
+    },
+    {
+      title: "The team sees the pattern",
+      body: "Review collects every correction by reason and by source. When several trace back to the same ticket or email, that source is checked first.",
+      ui: (
+        <div className="rounded-lg border border-[var(--rule)] p-3">
+          <p className="flex justify-between font-mono text-[10.5px] tracking-wide text-ink-2">
+            <span>WRONG 1</span>
+            <span>OUT OF DATE 2</span>
+            <span>SOURCE 1</span>
+          </p>
+          <p className="mt-2 border-l-2 border-accent pl-2 text-[12.5px] leading-snug">3 corrections trace back to Ticket 4821. Worth checking that source first.</p>
+        </div>
+      ),
+    },
+  ];
+  return (
+    <section aria-labelledby="wrong-h" className="border-t border-[var(--rule)] py-14 lg:py-16">
+      <h2 id="wrong-h" className="max-w-[40ch] text-[1.5rem] font-medium leading-snug tracking-tight sm:text-[1.75rem]">
+        Designed for the moment the AI is wrong
+      </h2>
+      <p className="mt-4 max-w-[60ch] text-[17px] leading-relaxed text-ink-2">
+        One bad suggestion makes people doubt the next several. So the explanation, the uncertainty and the way back were designed
+        first: how sure the AI is, how a person says it got something wrong, and how that reaches the team.
+      </p>
+      <ol className="mt-8 grid gap-6 md:grid-cols-3">
+        {panels.map((p, i) => (
+          <li key={p.title}>
+            {p.ui}
+            <p className="mt-3 font-medium">
+              <span className="text-ink-2">{i + 1}.</span> {p.title}
+            </p>
+            <p className="mt-1 text-small leading-relaxed text-ink-2">{p.body}</p>
+          </li>
+        ))}
+      </ol>
+      <p className="mt-6 text-small text-ink-2">Try it: dismiss any line or flag an Ask answer in the prototype, then open Review.</p>
+    </section>
+  );
+}

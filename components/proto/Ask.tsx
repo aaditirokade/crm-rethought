@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { answerFor, SUGGESTED, type Answer, type Stat, type SuggestedAction } from "@/content/ask";
+import { answerFor, confidenceOf, SUGGESTED, type Answer, type Stat, type SuggestedAction } from "@/content/ask";
 import { SOURCES } from "@/content/prototype";
 import { SourceChip } from "./Source";
-import { actions as store, useProto } from "./store";
+import { REASONS, actions as store, useProto } from "./store";
 
 const STEP_MS = 420;
 const WORD_MS = 32;
@@ -138,6 +138,46 @@ export function AskActions({
         })}
       </ul>
     </section>
+  );
+}
+
+/**
+ * How sure the answer is, and a way to say it was wrong (decision 0107). A flag goes to the team with its reason
+ * ("What people corrected" on Review); choosing the same reason again takes it back.
+ */
+function AnswerTrust({ answer }: { answer: Answer }) {
+  const s = useProto();
+  const c = confidenceOf(answer);
+  const flag = (s.askFlags ?? []).find((f) => f.id === answer.id);
+  const [open, setOpen] = useState(!!flag);
+  const cited = [...new Set(answer.segments.flatMap((g) => g.cite ?? []))];
+  return (
+    <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-line pt-3">
+      <p className="font-mono text-meta tracking-wide text-ink-2">
+        CONFIDENCE {c.level.toUpperCase()}
+        {c.level !== "High" ? " · CHECK THIS" : ""} · {c.why.toUpperCase()}
+      </p>
+      {open ? (
+        <div className="flex flex-wrap items-center gap-1.5" role="group" aria-label="Why was this answer wrong?">
+          <span className="font-mono text-meta tracking-wide text-ink-2">{flag ? "FLAGGED · SENT TO THE TEAM ·" : "WHAT WAS WRONG?"}</span>
+          {REASONS.map((r) => (
+            <button
+              key={r}
+              type="button"
+              className="why-chip"
+              aria-pressed={flag?.reason === r}
+              onClick={() => store.flagAnswer({ id: answer.id, question: answer.question, reason: r, sources: cited })}
+            >
+              {r}
+            </button>
+          ))}
+        </div>
+      ) : (
+        <button type="button" className="why-chip" onClick={() => setOpen(true)}>
+          Flag this answer
+        </button>
+      )}
+    </div>
   );
 }
 
@@ -388,6 +428,8 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
               ) : null}
 
               {answer.actions?.length && done ? <AskActions key={answer.id} items={answer.actions} answer={answer} /> : null}
+
+              {done ? <AnswerTrust key={`trust-${answer.id}`} answer={answer} /> : null}
 
               {done ? (
                 <div className="mt-3 flex flex-wrap items-center justify-between gap-2">

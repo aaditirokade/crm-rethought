@@ -6,7 +6,7 @@ import { EVENTS } from "@/content/more";
 import { account, forMeeting, MEETINGS, NOW } from "@/content/prototype";
 import { AskActions } from "@/components/proto/Ask";
 import { originOf } from "@/components/proto/groups";
-import { FixBox, GateLine } from "@/components/proto/Lines";
+import { FixBox, GateLine, WhyWrong } from "@/components/proto/Lines";
 import { Meta, SourceChip } from "@/components/proto/Source";
 import { actions, allSugs, entryOf, isGated, me, tasks, textOf, useProto } from "@/components/proto/store";
 
@@ -206,13 +206,20 @@ function Approve() {
   const start = useRef<number | null>(null);
   const [dragging, setDragging] = useState(false);
   const cur = queue[0];
+  // The card just dismissed, so the person can say why it was wrong (decision 0107) before moving on.
+  const [last, setLast] = useState<string | null>(null);
 
   const decide = (dir: 1 | -1) => {
     if (!cur || leaving) return;
     setLeaving(dir);
     window.setTimeout(() => {
-      if (dir === 1) actions.approve(cur.id);
-      else actions.dismiss(cur.id);
+      if (dir === 1) {
+        actions.approve(cur.id);
+        setLast(null);
+      } else {
+        actions.dismiss(cur.id);
+        setLast(cur.id);
+      }
       setLeaving(0);
       setDx(0);
     }, 220);
@@ -266,6 +273,12 @@ function Approve() {
               <Meta sources={cur.sources} confidence={cur.confidence} />
             </article>
           </div>
+          {last && entryOf(s, last).status === "dismissed" ? (
+            <div className="mt-5 rounded-2xl border border-line p-3">
+              <p className="text-small text-ink-2">Dismissed. Was it wrong?</p>
+              <WhyWrong id={last} reason={entryOf(s, last).reason} className="mt-2" />
+            </div>
+          ) : null}
           <div className="mt-6 flex items-center justify-center gap-6">
             <button type="button" className="mob-round" onClick={() => decide(-1)}>
               <span aria-hidden="true">{"✕"}</span>

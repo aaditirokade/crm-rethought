@@ -2,7 +2,7 @@
    record fixes save the moment they are approved, and anything drafted from Ask waits in Review. */
 import { beforeEach, test } from "node:test";
 import assert from "node:assert/strict";
-import { actions, entryOf, getState, isGated, pending, tasks } from "@/components/proto/store";
+import { actions, corrections, entryOf, getState, isGated, pending, tasks } from "@/components/proto/store";
 import { SUGGESTIONS } from "@/content/prototype";
 
 const status = (id: string) => entryOf(getState(), id).status;
@@ -63,4 +63,34 @@ test("a task from Ask goes to the top of Your tasks, once", () => {
   assert.equal(list.filter((t) => t.askId === "t1").length, 1);
   actions.removeTaskFromAsk("t1");
   assert.ok(!tasks(getState()).some((t) => t.askId === "t1"));
+});
+
+test("a dismissed line can say why it was wrong, and the team sees it", () => {
+  actions.dismiss("l3");
+  actions.reason("l3", "Out of date");
+  assert.equal(entryOf(getState(), "l3").reason, "Out of date");
+  const c = corrections(getState());
+  assert.equal(c.byReason.find((r) => r.reason === "Out of date")?.count, 1);
+  assert.ok(c.all.some((x) => x.id === "l3"));
+});
+
+test("a reason only applies to a dismissed line, and undo clears it", () => {
+  actions.reason("l1", "Wrong");
+  assert.equal(entryOf(getState(), "l1").reason, undefined, "a pending line can't carry a reason");
+  actions.dismiss("l1");
+  actions.reason("l1", "Wrong");
+  actions.undo("l1");
+  assert.equal(entryOf(getState(), "l1").reason, undefined);
+  assert.equal(corrections(getState()).all.length, 0);
+});
+
+test("a flagged Ask answer reaches the team, and flagging it again takes it back", () => {
+  const flag = { id: "fernhill-why", question: "Why is Fernhill slipping?", reason: "Wrong source" as const, sources: ["t4821", "usage"] };
+  actions.flagAnswer(flag);
+  let c = corrections(getState());
+  assert.equal(c.all[0].kind, "answer");
+  assert.equal(c.bySource.t4821, 1);
+  actions.flagAnswer(flag);
+  c = corrections(getState());
+  assert.equal(c.all.length, 0);
 });

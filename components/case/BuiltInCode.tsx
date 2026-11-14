@@ -35,6 +35,8 @@ const TESTS = [
   "An edit counts as an approval and keeps the words",
   "A draft from Ask waits in Review until approved",
   "A task from Ask goes to the top of Your tasks, once",
+  "A dismissed line can say why, and the team sees it",
+  "A flagged Ask answer reaches the team; flagging again takes it back",
 ];
 
 export function BuiltInCode() {
