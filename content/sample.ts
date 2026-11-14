@@ -56,7 +56,7 @@ export const SOURCES: Record<string, Source> = {
     kind: "Email",
     label: "Auto reply from Lena Ortiz",
     date: "Nov 3",
-    excerpt: "“I’ve left Fernhill. For anything about Larkspur, please contact Priya Nair.”",
+    excerpt: "“I’ve left Fernhill. For anything about Larkspur, please contact Nora Castell.”",
   },
   sam: {
     id: "sam",
@@ -84,7 +84,7 @@ export const SOURCES: Record<string, Source> = {
     kind: "Call",
     label: "Today’s call · 04:10",
     date: "Nov 12",
-    excerpt: "Sam: “Priya Nair runs retail ops now. She’ll be your day to day contact.”",
+    excerpt: "Sam: “Nora Castell runs retail ops now. She’ll be your day to day contact.”",
   },
   c1205: {
     id: "c1205",
@@ -105,7 +105,7 @@ export const SOURCES: Record<string, Source> = {
     kind: "Call",
     label: "Today’s call · 21:30",
     date: "Nov 12",
-    excerpt: "Priya: “The late refreshes are the main issue. We need a date for a fix.”",
+    excerpt: "Nora: “The late refreshes are the main issue. We need a date for a fix.”",
   },
   c2655: {
     id: "c2655",
@@ -150,7 +150,7 @@ export const BRIEF = {
   lastTouch: "Last spoke Oct 14 · 29 days ago",
   attendees: [
     { name: "Sam Reyes", role: "VP Merchandising", note: "Last touch Nov 6, email" },
-    { name: "Priya Nair", role: "Retail Ops Manager", note: "New to you" },
+    { name: "Nora Castell", role: "Retail Ops Manager", note: "New to you" },
   ],
   sections: [
     {
@@ -159,10 +159,10 @@ export const BRIEF = {
       items: [
         {
           id: "b1",
-          text: "Lena Ortiz, your day to day contact, has left Fernhill. Priya Nair is taking over.",
+          text: "Lena Ortiz, your day to day contact, has left Fernhill. Nora Castell is taking over.",
           sources: ["bounce"],
           confidence: "Medium",
-          fix: "Mark Lena Ortiz as left and add Priya Nair as day to day contact",
+          fix: "Mark Lena Ortiz as left and add Nora Castell as day to day contact",
         },
         {
           id: "b2",
@@ -203,7 +203,7 @@ export const BRIEF = {
       hint: "Drafted from the lines above. Reorder or remove anything.",
       items: [
         { id: "b6", text: "Own the late markdown report and give a new date.", sources: ["promise"], confidence: "High" },
-        { id: "b7", text: "Meet Priya; ask what changed in the reorg.", sources: ["bounce", "usage"], confidence: "Medium" },
+        { id: "b7", text: "Meet Nora; ask what changed in the reorg.", sources: ["bounce", "usage"], confidence: "Medium" },
         { id: "b8", text: "Open the 12 store expansion before the Jan 25 renewal.", sources: ["sam", "stage"], confidence: "High" },
       ],
     },
@@ -216,10 +216,10 @@ export const LOG = {
   account: "Fernhill Outfitters",
   meeting: "Quarterly review · Today, 10:00 · ended 10:41",
   transcript: [
-    { t: "04:10", who: "Sam", text: "Priya Nair runs retail ops now. She’ll be your day to day contact." },
+    { t: "04:10", who: "Sam", text: "Nora Castell runs retail ops now. She’ll be your day to day contact." },
     { t: "12:05", who: "Sam", text: "We’re renewing all 40. The 12 new stores, price that separately." },
     { t: "12:40", who: "Daniel", text: "I’ll send pricing for the 12 stores by Monday." },
-    { t: "21:30", who: "Priya", text: "The late refreshes are the main issue. We need a date for a fix." },
+    { t: "21:30", who: "Nora", text: "The late refreshes are the main issue. We need a date for a fix." },
     { t: "26:55", who: "Daniel", text: "I’ll get you a fix date from our support lead by tomorrow." },
   ],
   sections: [
@@ -242,7 +242,7 @@ export const LOG = {
         {
           id: "l6",
           kind: "email",
-          text: "Follow up email to Sam and Priya: recap, the two dates, the overdue report.",
+          text: "Follow up email to Sam and Nora: recap, the two dates, the overdue report.",
           sources: ["c1240", "c2655", "promise"],
           confidence: "Medium",
         },
@@ -252,12 +252,12 @@ export const LOG = {
       id: "record",
       title: "Record updates",
       items: [
-        { id: "l7", text: "Add Priya Nair, Retail Ops Manager, as day to day contact.", sources: ["c0410"], confidence: "High" },
+        { id: "l7", text: "Add Nora Castell, Retail Ops Manager, as day to day contact.", sources: ["c0410"], confidence: "High" },
         { id: "l8", text: "Add an expansion deal: 12 stores, spring.", sources: ["c1205"], confidence: "Medium" },
         { id: "l9", text: "Set next step: send pricing by Nov 16.", sources: ["c1240"], confidence: "High" },
       ],
     },
   ] as { id: string; title: string; hint?: string; items: LogItem[] }[],
   emailDraft:
-    "Hi Sam and Priya,\n\nThanks for the time today. Pricing for the 12 new stores will be with you by Monday, and I’ll have a fix date for the late refreshes by tomorrow. I also owe you the markdown report I promised for Nov 1; I’m sorry it’s late, and I’ll include a new date with the pricing.\n\nDaniel",
+    "Hi Sam and Nora,\n\nThanks for the time today. Pricing for the 12 new stores will be with you by Monday, and I’ll have a fix date for the late refreshes by tomorrow. I also owe you the markdown report I promised for Nov 1; I’m sorry it’s late, and I’ll include a new date with the pricing.\n\nDaniel",
 };

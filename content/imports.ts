@@ -22,7 +22,7 @@ export type Row = { name: string; company: string; title: string; email: string;
 
 export const SAMPLE: Row[] = [
   { name: "Sam Reyes", company: "Fernhill Outfitters Inc.", title: "VP Merchandising", email: "sam.reyes@fernhill.example", date: "11/10/2026", note: "Wants a forecasting demo for his planners", rep: "Daniel O.", account: "fernhill" },
-  { name: "Priya Nair", company: "Fernhill Outfitters", title: "Retail Ops Manager", email: "priya.nair@fernhill.example", date: "10 Nov 2026", note: "Asked about the refresh delays", rep: "Daniel O.", account: "fernhill" },
+  { name: "Nora Castell", company: "Fernhill Outfitters", title: "Retail Ops Manager", email: "nora.castell@fernhill.example", date: "10 Nov 2026", note: "Asked about the refresh delays", rep: "Daniel O.", account: "fernhill" },
   { name: "Mei Tanaka", company: "Kestrel Home", title: "Director of Regional Ops", email: "", date: "11/10/2026", note: "Pacific and Mountain timing", rep: "Daniel O.", account: "kestrel" },
   { name: "Jordan Pike", company: "Lumen & Lane", title: "Head of Analytics", email: "jordan@lumenlane.example", date: "11/10/2026", note: "Evaluating vendors in Q1", rep: "Daniel O." },
   { name: "Sam Reyes", company: "Fernhill Outfitters", title: "VP, Merchandising", email: "sreyes@fernhill.example", date: "10 Nov 2026", note: "Came back with two planners", rep: "Daniel O.", account: "fernhill" },

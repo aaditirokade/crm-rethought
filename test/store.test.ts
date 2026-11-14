@@ -44,21 +44,21 @@ test("dismiss, then undo, puts a line back where it was", () => {
 });
 
 test("a draft from Ask waits in Review until someone approves it, and can be taken back", () => {
-  actions.draftFromAsk({ id: "a1", title: "Draft a note to Priya", detail: "Introduce yourself before Thursday" }, "fernhill", ["bounce"]);
+  actions.draftFromAsk({ id: "a1", title: "Draft a note to Nora", detail: "Introduce yourself before Thursday" }, "fernhill", ["bounce"]);
   const draft = getState().custom.find((c) => c.id === "ask-a1");
   assert.ok(draft);
   assert.ok(isGated(draft), "Ask drafts are always gated");
   assert.ok(pending(getState()).some((p) => p.id === "ask-a1"));
-  assert.equal(draft.text, "A note to Priya: introduce yourself before Thursday");
+  assert.equal(draft.text, "A note to Nora: introduce yourself before Thursday");
   actions.undraftFromAsk("a1");
   assert.ok(!getState().custom.some((c) => c.id === "ask-a1"));
 });
 
 test("a task from Ask goes to the top of Your tasks, once", () => {
-  actions.addTaskFromAsk({ id: "t1", title: "Call Priya" }, "fernhill");
-  actions.addTaskFromAsk({ id: "t1", title: "Call Priya" }, "fernhill");
+  actions.addTaskFromAsk({ id: "t1", title: "Call Nora" }, "fernhill");
+  actions.addTaskFromAsk({ id: "t1", title: "Call Nora" }, "fernhill");
   const list = tasks(getState());
-  assert.equal(list[0].text, "Call Priya");
+  assert.equal(list[0].text, "Call Nora");
   assert.equal(list[0].due, "This week");
   assert.equal(list.filter((t) => t.askId === "t1").length, 1);
   actions.removeTaskFromAsk("t1");

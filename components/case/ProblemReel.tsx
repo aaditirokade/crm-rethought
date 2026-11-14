@@ -73,7 +73,7 @@ function Typing({ run, still }: { run: number; still: boolean }) {
   const min = useCount(18, run, still, 2600);
   const fields = [
     ["Next step", "Send a fix date for the refreshes by Friday"],
-    ["Notes", "Lena left; Priya now owns the account. Usage down since Oct 20"],
+    ["Notes", "Lena left; Nora now owns the account. Usage down since Oct 20"],
     ["Stage", "Renewal · at risk"],
   ];
   return (

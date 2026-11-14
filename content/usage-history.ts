@@ -27,7 +27,7 @@ export const TOUCHES_EARLIER: Record<string, Touch[]> = {
     { date: "2026-06-11", type: "Call", title: "Monthly check in with Lena Ortiz" },
     { date: "2026-07-15", type: "In person", title: "Quarterly review at Fernhill HQ" },
     { date: "2026-08-20", type: "Email", title: "Q4 rollout outline to Lena Ortiz" },
-    { date: "2026-09-09", type: "Video", title: "Regional view scoping with Priya Nair" },
+    { date: "2026-09-09", type: "Video", title: "Regional view scoping with Nora Castell" },
   ],
   harbor: [
     { date: "2025-12-10", type: "Call", title: "Monthly check in with Theo Marsh" },

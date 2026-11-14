@@ -130,3 +130,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Case study: before and after of the meeting loop; 07 · The test I'd run first (approve every line or the meeting); What I'd do differently; Next is now 08 (decision 0105)
 - Case study: Three directions, one kept; links to the tests, store and repo in Built in code; the nav says Work (decision 0106)
 - Prototype: Why was it wrong? on every dismissed line; Ask shows its confidence and can be flagged; Review shows What people corrected; case study section Designed for the moment the AI is wrong; 3 new tests (decision 0107)
+- Sample data: the new Fernhill contact is Nora Castell, was Priya Nair (decision 0108)

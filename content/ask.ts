@@ -41,7 +41,7 @@ const WRITTEN: (Answer & { match: (q: string) => boolean })[] = [
       { text: "Three things changed since your last call on Oct 14. " },
       { text: "Dashboard use fell about 40% after their Oct 20 reorg", cite: ["usage"] },
       { text: ". " },
-      { text: "Lena Ortiz, your day to day contact, left, and Priya Nair took over", cite: ["bounce"] },
+      { text: "Lena Ortiz, your day to day contact, left, and Nora Castell took over", cite: ["bounce"] },
       { text: ". " },
       { text: "Two tickets about late data refreshes, one still open", cite: ["t4821", "t4790"] },
       { text: ", sit on top of a promise we missed: " },
@@ -58,7 +58,7 @@ const WRITTEN: (Answer & { match: (q: string) => boolean })[] = [
     accounts: ["fernhill"],
     next: "Bring a fix date for the refreshes and a new date for the report to today’s 10:00.",
     actions: [
-      { id: "fh-priya", kind: "email", title: "Draft a note to Priya Nair", detail: "Introduce yourself as her contact, own the missed markdown report and give a new date." },
+      { id: "fh-nora", kind: "email", title: "Draft a note to Nora Castell", detail: "Introduce yourself as her contact, own the missed markdown report and give a new date." },
       { id: "fh-ticket", kind: "task", title: "Ask support for a fix date on ticket 4821", detail: "Due before today’s 10:00, so you can bring it to the quarterly review.", due: "Today, 10:00" },
       { id: "fh-qbr", kind: "open", title: "Open the 10:00 quarterly review", detail: "Drafted lines from the call are waiting there.", href: "/prototype/log/fernhill-qbr" },
     ],

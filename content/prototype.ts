@@ -53,14 +53,14 @@ export const SOURCES: Record<string, Source> = {
   usage: { id: "usage", kind: "USAGE", when: "Nov 9", title: "Weekly usage, Fernhill", excerpt: "Store traffic dashboard: 412 weekly views before Oct 20, 255 in the week of Nov 2." },
   t4821: { id: "t4821", kind: "TICKET", when: "4821", title: "Ticket 4821 · open since Nov 5", excerpt: "“Sales data for the Northeast stores is a day late again. Our Monday meeting runs on stale numbers.”" },
   t4790: { id: "t4790", kind: "TICKET", when: "4790", title: "Ticket 4790 · closed Oct 29", excerpt: "“Refresh failed overnight for 6 stores.” Closed after a manual rerun." },
-  bounce: { id: "bounce", kind: "EMAIL", when: "Nov 3", title: "Auto reply from Lena Ortiz", excerpt: "“I’ve left Fernhill. For anything about Larkspur, please contact Priya Nair.”" },
+  bounce: { id: "bounce", kind: "EMAIL", when: "Nov 3", title: "Auto reply from Lena Ortiz", excerpt: "“I’ve left Fernhill. For anything about Larkspur, please contact Nora Castell.”" },
   sam: { id: "sam", kind: "EMAIL", when: "Nov 6", title: "Sam Reyes to Daniel", excerpt: "“Before Thursday, can you send rough pricing for adding our 12 new stores in the spring?”" },
   promise: { id: "promise", kind: "CALL", when: "Oct 14 18:42", title: "Call with Fernhill, Oct 14 · 18:42", excerpt: "Daniel: “We’ll have the custom markdown report to you by November 1.”" },
   renewal: { id: "renewal", kind: "RECORD", when: "Renewal", title: "Fernhill record · renewal", excerpt: "Renewal on Jan 25, 2027 · 40 stores · owner Daniel Orro." },
-  c0410: { id: "c0410", kind: "CALL", when: "04:10", title: "Today’s call · 04:10", excerpt: "Sam: “Priya Nair runs retail ops now. She’ll be your day to day contact.”" },
+  c0410: { id: "c0410", kind: "CALL", when: "04:10", title: "Today’s call · 04:10", excerpt: "Sam: “Nora Castell runs retail ops now. She’ll be your day to day contact.”" },
   c1205: { id: "c1205", kind: "CALL", when: "12:05", title: "Today’s call · 12:05", excerpt: "Sam: “We’re renewing all 40. The 12 new stores, price that separately.”" },
   c1240: { id: "c1240", kind: "CALL", when: "12:40", title: "Today’s call · 12:40", excerpt: "Daniel: “I’ll send pricing for the 12 stores by Monday.”" },
-  c2130: { id: "c2130", kind: "CALL", when: "21:30", title: "Today’s call · 21:30", excerpt: "Priya: “The late refreshes are the main issue. We need a date for a fix.”" },
+  c2130: { id: "c2130", kind: "CALL", when: "21:30", title: "Today’s call · 21:30", excerpt: "Nora: “The late refreshes are the main issue. We need a date for a fix.”" },
   c2655: { id: "c2655", kind: "CALL", when: "26:55", title: "Today’s call · 26:55", excerpt: "Daniel: “I’ll get you a fix date from our support lead by tomorrow.”" },
   bwUsage: { id: "bwUsage", kind: "USAGE", when: "Nov 10", title: "Weekly usage, Brightwater", excerpt: "Store manager logins since setup on Oct 29: 3 of 5 managers active, 2 with no login." },
   bwKickoff: { id: "bwKickoff", kind: "CALL", when: "Oct 29 31:10", title: "Kickoff call, Oct 29 · 31:10", excerpt: "Dana (IT lead): “Single sign on is a must before we roll out to all 18 stores.”" },
@@ -116,7 +116,7 @@ export const ACCOUNTS: Account[] = [
       { name: "Lena Ortiz", role: "Retail Ops Lead, day to day contact" },
     ],
     history: [
-      { date: "Nov 5", title: "Ticket 4821 opened", type: "Ticket", ours: "Support", with: "Priya Nair", lines: ["Late data refresh for Northeast stores."], source: "t4821" },
+      { date: "Nov 5", title: "Ticket 4821 opened", type: "Ticket", ours: "Support", with: "Nora Castell", lines: ["Late data refresh for Northeast stores."], source: "t4821" },
       { date: "Oct 27", title: "Ticket 4790 opened and closed", type: "Ticket", ours: "Support", with: "Lena Ortiz", lines: ["Refresh failed for 6 stores; rerun on Oct 29."], source: "t4790" },
       {
         date: "Oct 14",
@@ -228,7 +228,7 @@ export const MEETINGS: Meeting[] = [
     length: "45 min",
     context: "Renewal in 74 days",
     lastTouch: "Last spoke Oct 14 · 29 days ago",
-    attendees: ["Sam Reyes", "Priya Nair"],
+    attendees: ["Sam Reyes", "Nora Castell"],
     hasLog: true,
     type: "Video",
   },
@@ -265,7 +265,7 @@ export const MEETINGS: Meeting[] = [
     length: "30 min",
     context: "Booked at the end of today’s review",
     lastTouch: "Last spoke today",
-    attendees: ["Sam Reyes", "Priya Nair"],
+    attendees: ["Sam Reyes", "Nora Castell"],
     fromLog: "fernhill-qbr",
     type: "Video",
   },
@@ -288,10 +288,10 @@ export const TRANSCRIPT = {
   "fernhill-qbr": {
     ended: "ended 10:41",
     moments: [
-      { t: "04:10", who: "Sam", text: "Priya Nair runs retail ops now. She’ll be your day to day contact." },
+      { t: "04:10", who: "Sam", text: "Nora Castell runs retail ops now. She’ll be your day to day contact." },
       { t: "12:05", who: "Sam", text: "We’re renewing all 40. The 12 new stores, price that separately." },
       { t: "12:40", who: "Daniel", text: "I’ll send pricing for the 12 stores by Monday." },
-      { t: "21:30", who: "Priya", text: "The late refreshes are the main issue. We need a date for a fix." },
+      { t: "21:30", who: "Nora", text: "The late refreshes are the main issue. We need a date for a fix." },
       { t: "26:55", who: "Daniel", text: "I’ll get you a fix date from our support lead by tomorrow." },
     ],
   },
@@ -299,7 +299,7 @@ export const TRANSCRIPT = {
 
 export const EMAIL_DRAFT: Record<string, string> = {
   "fernhill-qbr":
-    "Hi Sam and Priya,\n\nThanks for the time today. Pricing for the 12 new stores will be with you by Monday, and I’ll have a fix date for the late refreshes by tomorrow. I also owe you the markdown report I promised for Nov 1. I’m sorry it’s late; I’ll include a new date with the pricing.\n\nDaniel",
+    "Hi Sam and Nora,\n\nThanks for the time today. Pricing for the 12 new stores will be with you by Monday, and I’ll have a fix date for the late refreshes by tomorrow. I also owe you the markdown report I promised for Nov 1. I’m sorry it’s late; I’ll include a new date with the pricing.\n\nDaniel",
 };
 
 export const BASE_TASKS = [{ text: "Send the store manager training invite", due: "Fri, Nov 13", account: "brightwater" }];
@@ -310,14 +310,14 @@ const K = "kestrel-expansion";
 
 export const SUGGESTIONS: Suggestion[] = [
   // Fernhill brief
-  { id: "b1", meeting: F, account: "fernhill", kind: "brief", section: "What changed since Oct 14", text: "Lena Ortiz, your day to day contact, has left Fernhill. Priya Nair is taking over.", sources: ["bounce"], confidence: "Medium" },
+  { id: "b1", meeting: F, account: "fernhill", kind: "brief", section: "What changed since Oct 14", text: "Lena Ortiz, your day to day contact, has left Fernhill. Nora Castell is taking over.", sources: ["bounce"], confidence: "Medium" },
   { id: "fx1", meeting: F, account: "fernhill", kind: "fix", section: "What changed since Oct 14", text: "Mark Lena Ortiz as left in the record.", sources: ["bounce"], confidence: "Medium", effect: { type: "personLeft", account: "fernhill", person: "Lena Ortiz" } },
   { id: "b2", meeting: F, account: "fernhill", kind: "brief", section: "What changed since Oct 14", text: "Sam Reyes asked for pricing on 12 new stores opening in the spring.", sources: ["sam"], confidence: "High" },
   { id: "b3", meeting: F, account: "fernhill", kind: "brief", section: "What changed since Oct 14", text: "Store traffic dashboard use fell by about 40% after their Oct 20 reorg.", sources: ["usage"], confidence: "High" },
   { id: "b4", meeting: F, account: "fernhill", kind: "brief", section: "What changed since Oct 14", text: "Two tickets about late data refreshes; one is still open.", sources: ["t4821", "t4790"], confidence: "High" },
   { id: "b5", meeting: F, account: "fernhill", kind: "brief", section: "Promises still open", text: "You promised a custom markdown report by Nov 1. It hasn’t been sent.", sources: ["promise"], confidence: "High", tag: "OVERDUE" },
   { id: "b6", meeting: F, account: "fernhill", kind: "brief", section: "Suggested agenda", text: "Own the late markdown report and give a new date.", sources: ["promise"], confidence: "High" },
-  { id: "b7", meeting: F, account: "fernhill", kind: "brief", section: "Suggested agenda", text: "Meet Priya; ask what changed in the reorg.", sources: ["bounce", "usage"], confidence: "Medium" },
+  { id: "b7", meeting: F, account: "fernhill", kind: "brief", section: "Suggested agenda", text: "Meet Nora; ask what changed in the reorg.", sources: ["bounce", "usage"], confidence: "Medium" },
   { id: "b8", meeting: F, account: "fernhill", kind: "brief", section: "Suggested agenda", text: "Open the 12 store expansion before the Jan 25 renewal.", sources: ["sam", "renewal"], confidence: "High" },
 
   // Fernhill log, drafted from the call
@@ -326,8 +326,8 @@ export const SUGGESTIONS: Suggestion[] = [
   { id: "l3", meeting: F, account: "fernhill", kind: "log", section: "Log", text: "Late data refreshes are their main complaint; they want a fix date.", sources: ["c2130"], confidence: "High" },
   { id: "l4", meeting: F, account: "fernhill", kind: "task", section: "Follow ups", text: "Send pricing for the 12 new stores.", sources: ["c1240"], confidence: "High", effect: { type: "task", text: "Send Fernhill pricing for 12 new stores", due: "Mon, Nov 16", account: "fernhill" } },
   { id: "l5", meeting: F, account: "fernhill", kind: "task", section: "Follow ups", text: "Get a fix date for the late refreshes from support.", sources: ["c2655"], confidence: "High", effect: { type: "task", text: "Get a refresh fix date from support for Fernhill", due: "Fri, Nov 13", account: "fernhill" } },
-  { id: "e1", meeting: F, account: "fernhill", kind: "email", section: "Follow ups", text: "Follow up email to Sam and Priya: recap, the two dates, the overdue report.", sources: ["c1240", "c2655", "promise"], confidence: "Medium" },
-  { id: "l7", meeting: F, account: "fernhill", kind: "record", section: "Record updates", text: "Add Priya Nair, Retail Ops Manager, as day to day contact.", sources: ["c0410"], confidence: "High", effect: { type: "addPerson", account: "fernhill", person: { name: "Priya Nair", role: "Retail Ops Manager, day to day contact" } } },
+  { id: "e1", meeting: F, account: "fernhill", kind: "email", section: "Follow ups", text: "Follow up email to Sam and Nora: recap, the two dates, the overdue report.", sources: ["c1240", "c2655", "promise"], confidence: "Medium" },
+  { id: "l7", meeting: F, account: "fernhill", kind: "record", section: "Record updates", text: "Add Nora Castell, Retail Ops Manager, as day to day contact.", sources: ["c0410"], confidence: "High", effect: { type: "addPerson", account: "fernhill", person: { name: "Nora Castell", role: "Retail Ops Manager, day to day contact" } } },
   { id: "l8", meeting: F, account: "fernhill", kind: "record", section: "Record updates", text: "Add an expansion deal: 12 new stores, spring.", sources: ["c1205"], confidence: "Medium", effect: { type: "addOpp", account: "fernhill", opp: { id: "fern-exp", account: "fernhill", name: "Expansion · 12 new stores", stage: "Idea", close: "Spring" } } },
   { id: "l9", meeting: F, account: "fernhill", kind: "record", section: "Record updates", text: "Set next step: send pricing by Nov 16.", sources: ["c1240"], confidence: "High", effect: { type: "nextStep", account: "fernhill", text: "Send pricing by Nov 16, then pricing call" } },
 

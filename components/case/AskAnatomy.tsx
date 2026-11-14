@@ -37,7 +37,7 @@ function Picture({ i }: { i: number }) {
         <span className="sig-source aa-pop">
           <b>Usage</b> Nov 9
         </span>{" "}
-        <span className="aa-claim aa-claim-2">Lena Ortiz left; Priya Nair took over</span>{" "}
+        <span className="aa-claim aa-claim-2">Lena Ortiz left; Nora Castell took over</span>{" "}
         <span className="sig-source aa-pop aa-pop-2">
           <b>Email</b> Nov 3
         </span>
