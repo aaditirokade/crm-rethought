@@ -57,7 +57,7 @@ function MiniLog({ v }: { v: "lines" | "meeting" }) {
           {lines.map((l) => (
             <li key={l} className="rounded-lg bg-surface-2 px-3 py-2">
               <p className="text-[13px] leading-snug">{l}</p>
-              <p className="mt-1.5 flex gap-3 text-[11.5px] font-medium"><span className="text-accent">Approve</span><span className="text-ink-2">Edit</span><span className="text-ink-2">Dismiss</span></p>
+              <p className="mt-1.5 flex gap-3 text-[12px] font-medium"><span className="text-accent">Approve</span><span className="text-ink-2">Edit</span><span className="text-ink-2">Dismiss</span></p>
             </li>
           ))}
           <li className="pt-1 text-center text-[12px] text-ink-2">+ 3 more, then Save</li>
@@ -65,7 +65,7 @@ function MiniLog({ v }: { v: "lines" | "meeting" }) {
       ) : (
         <div className="mt-3 space-y-2">
           <div className="rounded-lg border border-accent px-3 py-2">
-            <p className="text-[11.5px] font-medium text-accent">NEEDS A LOOK · LOW CONFIDENCE</p>
+            <p className="text-[12px] font-medium text-accent">NEEDS A LOOK · LOW CONFIDENCE</p>
             <p className="mt-1 text-[13px] leading-snug">Price the 12 new stores as a separate expansion.</p>
           </div>
           <p className="rounded-lg bg-surface-2 px-3 py-2 text-[13px] leading-snug text-ink-2">5 lines with a source and high confidence</p>
@@ -158,7 +158,7 @@ function DirCard({ d }: { d: Dir }) {
       <div className="mt-3 rounded-lg p-3" style={{ background: d.surface, border: `1px solid ${d.line}` }}>
         {d.style === "badge" ? (
           <p className="text-[12.5px] leading-snug">
-            <span className="mr-1.5 rounded px-1.5 py-0.5 font-mono text-[10px] font-semibold" style={{ background: d.draft, color: d.accent }}>DRAFT</span>
+            <span className="mr-1.5 rounded px-1.5 py-0.5 font-mono text-[12px] font-semibold" style={{ background: d.draft, color: d.accent }}>DRAFT</span>
             {line}
           </p>
         ) : d.style === "margin" ? (
@@ -166,7 +166,7 @@ function DirCard({ d }: { d: Dir }) {
         ) : (
           <p className="rounded-md px-2 py-1.5 text-[12.5px] leading-snug" style={{ background: d.draft }}>{line}</p>
         )}
-        <p className="mt-2 text-[11.5px] font-semibold" style={{ color: d.accent }}>Approve</p>
+        <p className="mt-2 text-[12px] font-semibold" style={{ color: d.accent }}>Approve</p>
       </div>
     </div>
   );
@@ -207,7 +207,7 @@ export function DirectionsNotTaken() {
 /** When the AI is wrong (decision 0107): how sure it is, how a person says it was wrong, and what the team sees. */
 export function WhenWrong() {
   const chip = (t: string, on = false) => (
-    <span className={`rounded-full border px-2 py-0.5 text-[11.5px] ${on ? "border-accent bg-accent text-accent-ink" : "border-[var(--rule)] text-ink-2"}`}>{t}</span>
+    <span className={`rounded-full border px-2 py-0.5 text-[12px] ${on ? "border-accent bg-accent text-accent-ink" : "border-[var(--rule)] text-ink-2"}`}>{t}</span>
   );
   const panels: { title: string; body: string; ui: React.ReactNode }[] = [
     {
@@ -216,7 +216,7 @@ export function WhenWrong() {
       ui: (
         <div className="rounded-lg bg-surface-2 p-3">
           <p className="text-[13px] leading-snug">Price the 12 new stores as a separate expansion.</p>
-          <p className="mt-2 font-mono text-[10.5px] tracking-wide text-ink-2">CONFIDENCE MEDIUM · CHECK THIS</p>
+          <p className="mt-2 font-mono text-[12px] tracking-wide text-ink-2">CONFIDENCE MEDIUM · CHECK THIS</p>
         </div>
       ),
     },
@@ -227,7 +227,7 @@ export function WhenWrong() {
         <div className="rounded-lg border border-[var(--rule)] p-3">
           <p className="text-[13px] text-ink-2">Dismissed: Late data refreshes are their main complaint.</p>
           <p className="mt-2 flex flex-wrap items-center gap-1.5">
-            <span className="font-mono text-[10.5px] tracking-wide text-ink-2">SENT TO THE TEAM ·</span>
+            <span className="font-mono text-[12px] tracking-wide text-ink-2">SENT TO THE TEAM ·</span>
             {chip("Wrong")}
             {chip("Out of date", true)}
             {chip("Wrong source")}
@@ -240,7 +240,7 @@ export function WhenWrong() {
       body: "Review collects every correction by reason and by source. When several trace back to the same ticket or email, that source is checked first.",
       ui: (
         <div className="rounded-lg border border-[var(--rule)] p-3">
-          <p className="flex justify-between font-mono text-[10.5px] tracking-wide text-ink-2">
+          <p className="flex justify-between font-mono text-[12px] tracking-wide text-ink-2">
             <span>WRONG 1</span>
             <span>OUT OF DATE 2</span>
             <span>SOURCE 1</span>
