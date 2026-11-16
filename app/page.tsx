@@ -108,7 +108,7 @@ const CHAPTERS: RailChapter[] = [
 const WALKTHROUGH: Step[] = [
   {
     title: "Approve drafts where they sit",
-    body: "Anything the AI writes arrives as a draft with its source and confidence. Open the source, then approve, edit or dismiss in place. Record fixes save at once; log lines wait to be saved together, so a meeting reaches the record as one decision.",
+    body: "AI writes drafts with a source. Approve, edit or dismiss in place.",
     video: "review",
     width: 1520,
     height: 960,
@@ -116,7 +116,7 @@ const WALKTHROUGH: Step[] = [
   },
   {
     title: "Say the list you want",
-    body: "Instead of a filter builder, type what you want. Groundwork shows how it understood you as chips, and every account says why it is on the list. If it misread you, remove the wrong chip.",
+    body: "Type what you want. It shows how it understood you, as chips you can remove.",
     video: "lists",
     width: 1520,
     height: 960,
@@ -124,7 +124,7 @@ const WALKTHROUGH: Step[] = [
   },
   {
     title: "Keep going between meetings",
-    body: "The phone app is what people do on the way to and from a meeting: read what to know, approve drafts one card at a time, ask about any account, and turn a voice note into lines to approve. Nothing saves without you.",
+    body: "On the way to a meeting: read, approve drafts, ask. Nothing saves without you.",
     video: "mobile",
     width: 750,
     height: 1484,
@@ -159,9 +159,8 @@ export default function Home() {
               </span>
             </p>
             <p className="mt-5 text-[17px] leading-relaxed text-ink-2">
-              A CRM for account teams with AI in every workflow: it preps the meeting, drafts the log, spots the risk and answers
-              questions about any account. Every line it writes shows its source, and nothing reaches the record until a person
-              approves it. I took it from research to a coded prototype.
+              A CRM where AI preps, drafts and answers, every line shows its source, and nothing saves until a person approves.
+              From research to a coded prototype.
             </p>
             <dl className="mt-8 grid grid-cols-3 gap-4 border-t border-[var(--rule)] pt-5 text-[14px] leading-5">
               <div>
@@ -203,10 +202,9 @@ export default function Home() {
             visual={<ProblemReel />}
           >
             <p>
-              Account managers spend their week typing calls into a system that mostly serves the dashboard above them. The data
-              goes stale, so nobody trusts it, so the AI built on top of it can&rsquo;t be trusted either.
+              Account managers type for a dashboard above them. The data goes stale, so the AI on top can&rsquo;t be trusted.
             </p>
-            <p>I started from the people who keep the record, not the people who read the report.</p>
+            <p>I started from the people who keep the record.</p>
           </Chapter>
 
           <LoopBeforeAfter />
@@ -223,10 +221,9 @@ export default function Home() {
               newer AI first CRMs, against the six things Groundwork set out to do.
             </p>
             <p>
-              Briefs and call logs are everywhere. Approval is rare and usually a setting, and none of the thirteen shows a source
-              on every AI line. So Groundwork competes on trust, not features.
+              None of thirteen products shows a source on every AI line. So Groundwork competes on trust.
             </p>
-            <p className="text-small">Interviews so far are simulated and labeled SIMULATED in the repo; real ones are next.</p>
+            <p className="text-small">Interviews so far are simulated; real ones are next.</p>
           </Chapter>
 
           <Chapter
@@ -241,10 +238,9 @@ export default function Home() {
             }
           >
             <p>
-              Ask sits at the top of the day. It shows what it is reading while it works, then answers in plain words with a
-              source after each claim: the email, the ticket, the call, the usage chart.
+              Ask answers in plain words, with a source after each claim.
             </p>
-            <p>The animation at the top of this page is the real prototype answering “Why is Fernhill slipping?”.</p>
+            
           </Chapter>
 
           <ScrollSteps
@@ -284,12 +280,10 @@ export default function Home() {
             }
           >
             <p>
-              Most CRMs feel like a spreadsheet in uniform. Groundwork uses space and full width rules instead of boxes, one friendly
-              typeface, cream and warm charcoal instead of white and black, and a light and dark switch.
+              Space and rules instead of boxes, one friendly typeface, cream and warm charcoal.
             </p>
             <p>
-              Violet belongs to the AI alone: drafts, Ask and the counts of what waits for you. Charts use a soft teal so they never
-              read as the AI talking.
+              Violet belongs to the AI alone.
             </p>
             <p>
               <Link href="/tokens" className="font-medium text-ink underline underline-offset-4">
@@ -328,8 +322,7 @@ export default function Home() {
             }
           >
             <p>
-              I built Groundwork by prompting AI in the editor and the terminal, and kept the receipts: each decision has a record,
-              each step has its prompt, and each commit adds a line to the updates log.
+              Built by prompting AI, with a record for every decision and prompt.
             </p>
             <p>It is designed from scratch and uses nothing from any CRM I worked on before.</p>
           </Chapter>
@@ -345,9 +338,9 @@ export default function Home() {
             visual={
               <ul className="divide-y divide-[var(--rule)] border-y border-[var(--rule)]">
                 {[
-                  ["Do people approve drafts as they are?", "Drafts approved without edits, and the edits people make when they don’t."],
-                  ["Is the record more complete?", "Meetings with a logged note within a day, against the CRM people use today."],
-                  ["Do people trust Ask?", "Answers opened to their source, and questions asked again in other words."],
+                  ["Do people approve drafts as they are?", "Drafts approved without edits."],
+                  ["Is the record more complete?", "Meetings logged within a day."],
+                  ["Do people trust Ask?", "Answers opened to their source."],
                 ].map(([t, d]) => (
                   <li key={t} className="open-row py-4">
                     <span className="block font-medium">{t}</span>
@@ -357,7 +350,7 @@ export default function Home() {
               </ul>
             }
           >
-            <p>Groundwork is a concept, so there are no outcomes to claim yet. These are the three things I’d want to learn with account teams, and the numbers I’d watch after launch.</p>
+            <p>A concept, so no outcomes yet. What I’d measure:</p>
             <NextTime />
           </Chapter>
         <section aria-labelledby="try" className="border-t border-[var(--rule)] py-20 text-center">
@@ -367,8 +360,7 @@ export default function Home() {
               Try it.
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-[17px] leading-relaxed text-ink-2">
-              Ask about an account, approve a draft, make a list. The demo resets from the dock whenever you like. Next: real
-              interviews and usability tests.
+              Ask, approve, make a list. Next: real interviews.
             </p>
             <div className="mt-8">
               <Links big center />

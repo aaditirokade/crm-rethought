@@ -29,8 +29,7 @@ export function LoopBeforeAfter() {
         Take the typing out of the week.
       </h2>
       <p className="mt-4 max-w-[60ch] text-[17px] leading-relaxed text-ink-2">
-        The meetings stay as they are. What changes is who writes them up: the AI drafts, the person approves, and the record is current by
-        the end of the call.
+        The AI drafts, the person approves, and the record is current by the end of the call.
       </p>
       <div className="mt-8 grid gap-5">
         <div className="rounded-2xl border border-[var(--rule)] p-5 sm:p-6">
@@ -77,12 +76,12 @@ function MiniLog({ v }: { v: "lines" | "meeting" }) {
 }
 
 const PLAN: [string, string][] = [
-  ["Hypothesis", "Approving a meeting at once, with only the doubtful lines held back, gets more meetings logged the same day without more mistakes in the record."],
-  ["Who sees what", "Split by person, not by meeting: one account manager switching between both would learn one from the other."],
+  ["Hypothesis", "Approving a meeting at once logs more meetings the same day, without more mistakes."],
+  ["Who sees what", "Split by person, not by meeting."],
   ["Main number", "Meetings with an approved log on the same day."],
-  ["Guardrails", "Lines edited or removed after saving, sources opened per meeting, and lines flagged by a manager later."],
+  ["Guardrails", "Edits after saving, sources opened, lines flagged later."],
   ["How long", "Four weeks, so each person has enough meetings to compare."],
-  ["Decision rule", "Ship B only if same day logs rise and corrections after saving don’t. If corrections rise, B is teaching people to stop reading, and A stays."],
+  ["Decision rule", "Ship B only if same day logs rise and corrections don’t."],
 ];
 
 /** The test I'd run first: line by line approval, or the meeting at once. It tests the product's own core rule. */
@@ -96,10 +95,9 @@ export function ApprovalExperiment() {
         </h2>
         <div className="mt-5 space-y-4 text-[17px] leading-relaxed text-ink-2">
           <p>
-            Groundwork’s core rule is that nothing reaches the record without a person. Approving line by line keeps that rule strict, but six
-            lines after every call is work, and work is what made CRMs go stale in the first place.
+            Approving line by line keeps the core rule strict, but it’s work, and work made CRMs go stale.
           </p>
-          <p>So the first test would question the rule itself, with a guardrail that catches people approving without reading.</p>
+          <p>So the first test questions the rule itself.</p>
         </div>
       </div>
       <div className="mt-10 grid gap-6 sm:grid-cols-2">
@@ -131,8 +129,7 @@ export function NextTime() {
     <div className="border-t border-[var(--rule)] pt-5">
       <p className="font-medium text-ink">What I’d do differently</p>
       <p className="mt-2">
-        Talk to account managers before writing the simulated interviews. Simulated ones were quick, but real ones would have tested the core
-        bet, that people want to approve every line, before I built around it.
+        Talk to account managers first. Real interviews would have tested the core bet sooner.
       </p>
     </div>
   );
@@ -180,8 +177,7 @@ export function DirectionsNotTaken() {
         Three directions, one kept
       </h2>
       <p className="mt-4 max-w-[60ch] text-[17px] leading-relaxed text-ink-2">
-        Before any tokens, I asked for three visual directions and judged them on how a draft line reads, not on mood alone. The deciding
-        question was whether someone who can’t see color or italics still knows a line is a draft.
+        Three directions, judged on one question: does someone who can’t see color still know a line is a draft?
       </p>
       <ul className="mt-8 grid gap-6 md:grid-cols-3">
         {DIRS.map((d) => (
@@ -212,7 +208,7 @@ export function WhenWrong() {
   const panels: { title: string; body: string; ui: React.ReactNode }[] = [
     {
       title: "It says how sure it is",
-      body: "Every AI line and every Ask answer carries its confidence. Medium means check this, and medium lines are hidden before a high stakes meeting.",
+      body: "Every AI line carries its confidence. Medium means check this.",
       ui: (
         <div className="rounded-lg bg-surface-2 p-3">
           <p className="text-[13px] leading-snug">Price the 12 new stores as a separate expansion.</p>
@@ -222,7 +218,7 @@ export function WhenWrong() {
     },
     {
       title: "Saying no takes one tap, and says why",
-      body: "Dismiss a line or flag an answer, then tap why: wrong, out of date, or the wrong source. Skipping is fine, and Undo is always there.",
+      body: "Dismiss a line and tap why. Undo is always there.",
       ui: (
         <div className="rounded-lg border border-[var(--rule)] p-3">
           <p className="text-[13px] text-ink-2">Dismissed: Late data refreshes are their main complaint.</p>
@@ -237,7 +233,7 @@ export function WhenWrong() {
     },
     {
       title: "The team sees the pattern",
-      body: "Review collects every correction by reason and by source. When several trace back to the same ticket or email, that source is checked first.",
+      body: "Corrections gather by source, so a bad source gets checked first.",
       ui: (
         <div className="rounded-lg border border-[var(--rule)] p-3">
           <p className="flex justify-between font-mono text-[12px] tracking-wide text-ink-2">
@@ -256,8 +252,7 @@ export function WhenWrong() {
         Designed for the moment the AI is wrong
       </h2>
       <p className="mt-4 max-w-[60ch] text-[17px] leading-relaxed text-ink-2">
-        One bad suggestion makes people doubt the next several. So the explanation, the uncertainty and the way back were designed
-        first: how sure the AI is, how a person says it got something wrong, and how that reaches the team.
+        One bad suggestion breeds doubt, so how sure the AI is and how people correct it were designed first.
       </p>
       <ol className="mt-8 grid gap-6 md:grid-cols-3">
         {panels.map((p, i) => (

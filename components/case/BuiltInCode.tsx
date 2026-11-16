@@ -4,27 +4,27 @@
 const REPO = "https://github.com/aaditirokade/crm-rethought";
 
 const STACK: [string, string][] = [
-  ["Next.js and React", "The tools a product team would ship with. The web prototype and the phone app are one app, served from one codebase."],
-  ["TypeScript, strict", "Accounts, AI lines, sources and approvals all have types, so a line that leaves out its sources fails the build."],
-  ["Tailwind CSS", "Colors, type and spacing come from the design tokens, in light and dark, with contrast checked on the tokens page."],
-  ["No component library", "Every control is built here, so focus, keyboard use and screen reader labels are designed, not inherited."],
+  ["Next.js and React", "Web and phone from one codebase."],
+  ["TypeScript, strict", "A line without sources fails the build."],
+  ["Tailwind CSS", "Tokens for light and dark, contrast checked."],
+  ["No component library", "Focus and labels designed, not inherited."],
 ];
 
 const CHANGES: { t: string; problem: string; change: string }[] = [
   {
     t: "One gate for everything the AI writes",
-    problem: "AI lines could reach the record from a meeting, from notes and later from Ask. Each path was a new chance to skip review.",
-    change: "Every line goes through one check, isGated, and one list of kinds that need approval. When Ask learned to draft emails, joining the gate was one line, and a test now proves an Ask draft waits in Review.",
+    problem: "Every new path to the record was a chance to skip review.",
+    change: "One gate for every line, with a test that proves it.",
   },
   {
     t: "Phone and web share one store",
-    problem: "Approve a line on the phone and the web prototype has to know, or the demo stops making sense.",
-    change: "Both read one store through React’s useSyncExternalStore, kept in the browser so it survives page changes and reloads. Every change goes through a single commit function, which also writes the message a screen reader announces.",
+    problem: "Phone and web had to agree.",
+    change: "One store and one commit function for both.",
   },
   {
     t: "“Drafted”, but where?",
-    problem: "After choosing an action in Ask, the confirmation said a draft was waiting, with no way to get to it.",
-    change: "The confirmation now has Review it, which opens the draft in Review, and View task, which scrolls to the new task and moves focus to it, so keyboard and screen reader users land in the same place.",
+    problem: "A confirmation pointed to a draft with no way to reach it.",
+    change: "Review it now opens the draft, with focus moved there.",
   },
 ];
 
@@ -49,11 +49,9 @@ export function BuiltInCode() {
         </h2>
         <div className="mt-5 space-y-4 text-[17px] leading-relaxed text-ink-2">
           <p>
-            Groundwork is a working app, not a mockup. An AI tool for a CRM is mostly rules about trust: what can save on
-            its own, what has to wait for a person, what has to cite a source. Those rules only feel real when you can
-            approve a line and watch the record change.
+            An AI CRM is mostly rules about trust, and they only feel real when you can approve a line and watch the record change.
           </p>
-          <p>It is about 8,500 lines of TypeScript across 73 files, built over more than 100 commits, each with a line in the updates log.</p>
+          <p>About 8,500 lines of TypeScript, over 100 commits.</p>
         </div>
       </div>
 
@@ -90,8 +88,7 @@ export function BuiltInCode() {
         <div className="lg:col-span-5">
           <h3 className="font-mono text-meta tracking-wide text-ink-2">THE RULES, CHECKED IN CODE</h3>
           <p className="mt-3 text-small leading-relaxed text-ink-2">
-            The promise that nothing saves without you is the one that matters most, so it has tests. They run with
-            Node’s own test runner, with nothing extra to install, and I run them before every commit.
+            Nothing saves without you, and tests prove it.
           </p>
           {/* The code is public (Nov 2026, decision 0106): the store and its tests, one click from the claims above. */}
           <p className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-small font-medium">
@@ -108,8 +105,7 @@ export function BuiltInCode() {
           </p>
           <h3 className="mt-8 font-mono text-meta tracking-wide text-ink-2">WORKING WITH AI</h3>
           <p className="mt-3 text-small leading-relaxed text-ink-2">
-            AI wrote first drafts of components and tests. I read every change, made the calls recorded in the decision
-            records, and kept the prompt behind each step in the prompt log.
+            AI drafted components and tests. I read every change and made every call.
           </p>
         </div>
         <ul className="space-y-2 rounded-lg bg-surface-2 p-5 font-mono text-[13px] leading-relaxed text-ink-2 lg:col-span-7">

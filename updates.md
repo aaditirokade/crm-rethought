@@ -132,3 +132,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Prototype: Why was it wrong? on every dismissed line; Ask shows its confidence and can be flagged; Review shows What people corrected; case study section Designed for the moment the AI is wrong; 3 new tests (decision 0107)
 - Sample data: the new Fernhill contact is Nora Castell, was Priya Nair (decision 0108)
 - Case study: story labels raised to 12px, no readable text below 12px (decision 0109)
+- Case study: every paragraph, card and caption cut to a line or two, sections kept (decision 0110)
