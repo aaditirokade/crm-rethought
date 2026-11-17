@@ -1010,9 +1010,13 @@ button.sig-source:hover b {
   border-radius: 12px;
   box-shadow: var(--shadow-lift);
 }
+/* Silver in both themes (decision 0112): a brushed aluminum band, a thin dark bezel inside it. */
 .mob-frame {
-  border-color: #20222b;
-  box-shadow: var(--shadow-lift);
+  border-color: transparent;
+  background:
+    linear-gradient(var(--bg), var(--bg)) padding-box,
+    linear-gradient(145deg, #f6f7f9 0%, #cfd2d8 38%, #eceef1 62%, #b8bcc4 100%) border-box;
+  box-shadow: 0 0 0 1px #a9adb5, inset 0 0 0 3px #111216, var(--shadow-lift);
 }
 .mob-tabs {
   border: 0;
