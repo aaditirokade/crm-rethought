@@ -1010,13 +1010,24 @@ button.sig-source:hover b {
   border-radius: 12px;
   box-shadow: var(--shadow-lift);
 }
-/* Silver in both themes (decision 0112): a brushed aluminum band, a thin dark bezel inside it. */
+/* Silver in the light theme (decision 0112), graphite in the dark (0113): a brushed band, a thin dark bezel inside it. */
 .mob-frame {
   border-color: transparent;
   background:
     linear-gradient(var(--bg), var(--bg)) padding-box,
     linear-gradient(145deg, #f6f7f9 0%, #cfd2d8 38%, #eceef1 62%, #b8bcc4 100%) border-box;
   box-shadow: 0 0 0 1px #a9adb5, inset 0 0 0 3px #111216, var(--shadow-lift);
+}
+/* Dark theme (decision 0113): graphite, with a thin light edge so it holds its shape on the dark page. */
+:root[data-theme="dark"] .mob-frame {
+  background: linear-gradient(var(--bg), var(--bg)) padding-box, linear-gradient(145deg, #3d4048 0%, #1d1f24 38%, #2b2e34 62%, #111215 100%) border-box;
+  box-shadow: 0 0 0 1px #3a3d45, inset 0 0 0 3px #111216, var(--shadow-lift);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .mob-frame {
+    background: linear-gradient(var(--bg), var(--bg)) padding-box, linear-gradient(145deg, #3d4048 0%, #1d1f24 38%, #2b2e34 62%, #111215 100%) border-box;
+    box-shadow: 0 0 0 1px #3a3d45, inset 0 0 0 3px #111216, var(--shadow-lift);
+  }
 }
 .mob-tabs {
   border: 0;
