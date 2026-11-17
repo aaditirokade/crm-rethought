@@ -133,3 +133,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Sample data: the new Fernhill contact is Nora Castell, was Priya Nair (decision 0108)
 - Case study: story labels raised to 12px, no readable text below 12px (decision 0109)
 - Case study: every paragraph, card and caption cut to a line or two, sections kept (decision 0110)
+- Case study: 'The story in six lines' under the opening, goal to result (decision 0111)
