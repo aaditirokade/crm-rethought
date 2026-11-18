@@ -3507,3 +3507,10 @@ html:root .ask-wrap .ask-actions .ask-action .sig-btn.ask-undo {
 .why-chip:hover { color: var(--ink); border-color: var(--ink-2); }
 .why-chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 .why-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* The three directions in the case study (decision 0117): light palettes, or their dark versions in the dark theme. */
+.dir-card { --d-bg: var(--bg-l); --d-surface: var(--surface-l); --d-ink: var(--ink-l); --d-ink2: var(--ink2-l); --d-line: var(--line-l); --d-accent: var(--accent-l); --d-draft: var(--draft-l); }
+:root[data-theme="dark"] .dir-card { --d-bg: var(--bg-d); --d-surface: var(--surface-d); --d-ink: var(--ink-d); --d-ink2: var(--ink2-d); --d-line: var(--line-d); --d-accent: var(--accent-d); --d-draft: var(--draft-d); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .dir-card { --d-bg: var(--bg-d); --d-surface: var(--surface-d); --d-ink: var(--ink-d); --d-ink2: var(--ink2-d); --d-line: var(--line-d); --d-accent: var(--accent-d); --d-draft: var(--draft-d); }
+}

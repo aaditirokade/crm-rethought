@@ -138,3 +138,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - 2026-11-18: facts and prototype links back under the description; the story in six lines stays in its own section (decision 0115).
 - 2026-11-18: removed the 'every company, person and number is made up' note under the case study links.
 - 2026-11-18: the story in six lines is six numbered tiles (decision 0116).
+- 2026-11-18: the three direction cards follow the theme, with a dark palette for each (decision 0117).

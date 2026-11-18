@@ -136,34 +136,39 @@ export function NextTime() {
 }
 
 /* The three visual directions from decision 0010, drawn from their own tokens: two not taken, and why. */
-type Dir = { name: string; idea: string; bg: string; surface: string; ink: string; ink2: string; line: string; accent: string; draft: string; style: "margin" | "badge" | "note"; verdict: string; kept?: boolean };
+type Dir = { name: string; idea: string; bg: string; surface: string; ink: string; ink2: string; line: string; accent: string; draft: string; style: "margin" | "badge" | "note"; verdict: string; kept?: boolean; dark: { bg: string; surface: string; ink: string; ink2: string; line: string; accent: string; draft: string } };
 const DIRS: Dir[] = [
-  { name: "Ledger", idea: "Calm and editorial, one deep green", bg: "#f6f4ef", surface: "#fffdf8", ink: "#1d1b16", ink2: "#5b574d", line: "#ddd8cc", accent: "#1f5c4a", draft: "#efeadf", style: "margin", verdict: "Drafts were marked by italics alone, which a screen reader can’t hear and low vision can miss." },
-  { name: "Signal", idea: "Dense and precise, one electric blue", bg: "#f4f5f7", surface: "#ffffff", ink: "#111318", ink2: "#535866", line: "#dde0e6", accent: "#2d5bff", draft: "#eef2ff", style: "badge", verdict: "Chosen: DRAFT is a word, so everyone gets it, and density suits a tool open all day. Its blue later became today’s violet.", kept: true },
-  { name: "Margin note", idea: "Warm and human, a clay accent", bg: "#fbf8f3", surface: "#ffffff", ink: "#2a2420", ink2: "#6b5f57", line: "#e7ded3", accent: "#b4532a", draft: "#fdf1d8", style: "note", verdict: "The clay sat too close to the warning colors a risk flag needs, and drafts relied on a tint." },
+  { name: "Ledger", idea: "Calm and editorial, one deep green", bg: "#f6f4ef", surface: "#fffdf8", ink: "#1d1b16", ink2: "#5b574d", line: "#ddd8cc", accent: "#1f5c4a", draft: "#efeadf", style: "margin", verdict: "Drafts were marked by italics alone, which a screen reader can’t hear and low vision can miss.", dark: { bg: "#171612", surface: "#201e19", ink: "#ece8de", ink2: "#b3ad9f", line: "#36332b", accent: "#6fc2a6", draft: "#2a2720" } },
+  { name: "Signal", idea: "Dense and precise, one electric blue", bg: "#f4f5f7", surface: "#ffffff", ink: "#111318", ink2: "#535866", line: "#dde0e6", accent: "#2d5bff", draft: "#eef2ff", style: "badge", verdict: "Chosen: DRAFT is a word, so everyone gets it, and density suits a tool open all day. Its blue later became today’s violet.", kept: true, dark: { bg: "#111318", surface: "#191c23", ink: "#eceef3", ink2: "#a8adba", line: "#2c303a", accent: "#8aa4ff", draft: "#1f2640" } },
+  { name: "Margin note", idea: "Warm and human, a clay accent", bg: "#fbf8f3", surface: "#ffffff", ink: "#2a2420", ink2: "#6b5f57", line: "#e7ded3", accent: "#b4532a", draft: "#fdf1d8", style: "note", verdict: "The clay sat too close to the warning colors a risk flag needs, and drafts relied on a tint.", dark: { bg: "#1a1714", surface: "#221e1a", ink: "#efe7df", ink2: "#b9aca1", line: "#3a332c", accent: "#e08a62", draft: "#3a2f1c" } },
 ];
 
+/* Each direction in the site's theme (Nov 2026, decision 0117): its light palette, or a dark one drawn from the same
+   hues, set as CSS variables and picked by .dir-card in globals.css. */
 function DirCard({ d }: { d: Dir }) {
   const line = "Fernhill will renew all 40 stores on Jan 25.";
+  const vars = Object.fromEntries(
+    (["bg", "surface", "ink", "ink2", "line", "accent", "draft"] as const).flatMap((k) => [[`--${k}-l`, d[k]], [`--${k}-d`, d.dark[k]]]),
+  ) as React.CSSProperties;
   return (
-    <div className="rounded-xl p-4" style={{ background: d.bg, color: d.ink, border: `1px solid ${d.line}` }} aria-hidden="true">
+    <div className="dir-card rounded-xl p-4" style={{ ...vars, background: "var(--d-bg)", color: "var(--d-ink)", border: "1px solid var(--d-line)" }} aria-hidden="true">
       <div className="flex gap-1.5">
-        {[d.ink, d.accent, d.draft, d.line].map((c) => (
-          <span key={c} className="h-4 w-4 rounded-full" style={{ background: c, border: `1px solid ${d.line}` }} />
+        {(["ink", "accent", "draft", "line"] as const).map((c) => (
+          <span key={c} className="h-4 w-4 rounded-full" style={{ background: `var(--d-${c})`, border: "1px solid var(--d-line)" }} />
         ))}
       </div>
-      <div className="mt-3 rounded-lg p-3" style={{ background: d.surface, border: `1px solid ${d.line}` }}>
+      <div className="mt-3 rounded-lg p-3" style={{ background: "var(--d-surface)", border: "1px solid var(--d-line)" }}>
         {d.style === "badge" ? (
           <p className="text-[12.5px] leading-snug">
-            <span className="mr-1.5 rounded px-1.5 py-0.5 font-mono text-[12px] font-semibold" style={{ background: d.draft, color: d.accent }}>DRAFT</span>
+            <span className="mr-1.5 rounded px-1.5 py-0.5 font-mono text-[12px] font-semibold" style={{ background: "var(--d-draft)", color: "var(--d-accent)" }}>DRAFT</span>
             {line}
           </p>
         ) : d.style === "margin" ? (
-          <p className="border-l-2 pl-2 text-[12.5px] italic leading-snug" style={{ borderColor: d.line, color: d.ink2 }}>{line}</p>
+          <p className="border-l-2 pl-2 text-[12.5px] italic leading-snug" style={{ borderColor: "var(--d-line)", color: "var(--d-ink2)" }}>{line}</p>
         ) : (
-          <p className="rounded-md px-2 py-1.5 text-[12.5px] leading-snug" style={{ background: d.draft }}>{line}</p>
+          <p className="rounded-md px-2 py-1.5 text-[12.5px] leading-snug" style={{ background: "var(--d-draft)" }}>{line}</p>
         )}
-        <p className="mt-2 text-[12px] font-semibold" style={{ color: d.accent }}>Approve</p>
+        <p className="mt-2 text-[12px] font-semibold" style={{ color: "var(--d-accent)" }}>Approve</p>
       </div>
     </div>
   );
