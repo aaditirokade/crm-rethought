@@ -26,6 +26,8 @@ export function Today() {
       {/* The greeting sits on the leaves block, and Ask lifts over its lower edge (decision 0119). */}
       <section aria-label="Your morning" className="gw-block gw-hero">
         <Leaves seed={3} count={13} scale={1.2} />
+        {/* A few shorter, fainter leaves wander toward the middle, under the line of text. */}
+        <Leaves seed={11} count={9} scale={0.42} spread={[0.08, 0.95]} wide className="gw-leaves-low" />
       <p className="font-mono text-meta tracking-wide text-ink-2">
         {NOW.day.toUpperCase()} · {NOW.time}
       </p>

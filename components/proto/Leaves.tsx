@@ -17,10 +17,14 @@ type Props = {
   from?: "bottom-right" | "bottom-left" | "top-right";
   /** Leaf size relative to the default. */
   scale?: number;
+  /** Where along the width the leaves take root, as fractions of it. */
+  spread?: [number, number];
+  /** Span the whole width of the block, anchored to its bottom edge, instead of its height. */
+  wide?: boolean;
   className?: string;
 };
 
-const W = 600;
+const WN = 600;
 const H = 240;
 
 function rng(seed: number) {
@@ -41,11 +45,12 @@ const PAIRS: [string, string][] = [
 
 const f = (n: number) => Math.round(n * 10) / 10;
 
-export function Leaves({ seed = 1, count = 11, from = "bottom-right", scale = 1, className = "" }: Props) {
+export function Leaves({ seed = 1, count = 11, from = "bottom-right", scale = 1, spread = [0.7, 1.04], wide = false, className = "" }: Props) {
+  const W = wide ? 1400 : WN;
   const id = useId().replace(/:/g, "");
   const r = rng(seed);
   const leaves = Array.from({ length: count }, () => ({
-    bx: W * 0.7 + r() * W * 0.34,
+    bx: W * spread[0] + r() * W * (spread[1] - spread[0]),
     len: (160 + r() * 150) * scale,
     wid: (30 + r() * 22) * scale,
     lean: -0.55 + r() * 1.0,
@@ -53,8 +58,8 @@ export function Leaves({ seed = 1, count = 11, from = "bottom-right", scale = 1,
     fill: Math.floor(r() * PAIRS.length),
     op: 0.78 + r() * 0.2,
   })).sort((a, b) => b.len - a.len);
-  const sparks = Array.from({ length: 22 }, () => ({ x: W * 0.5 + r() * W * 0.5, y: r() * H, r: r() * 1.5 + 0.3 }));
-  const flip = from === "bottom-left" ? "scale(-1 1) translate(-600 0)" : from === "top-right" ? "scale(1 -1) translate(0 -240)" : undefined;
+  const sparks = Array.from({ length: Math.round(count * 2) }, () => ({ x: W * 0.5 + r() * W * 0.5, y: r() * H, r: r() * 1.5 + 0.3 }));
+  const flip = from === "bottom-left" ? `scale(-1 1) translate(-${W} 0)` : from === "top-right" ? "scale(1 -1) translate(0 -240)" : undefined;
 
   return (
     <svg
@@ -63,7 +68,7 @@ export function Leaves({ seed = 1, count = 11, from = "bottom-right", scale = 1,
       viewBox={`0 0 ${W} ${H}`}
       preserveAspectRatio="xMaxYMax meet"
       style={{ aspectRatio: `${W} / ${H}` }}
-      className={`gw-leaves pointer-events-none absolute bottom-0 -z-10 h-full w-auto max-w-none ${from === "bottom-left" ? "left-0" : "right-0"} ${from === "top-right" ? "top-0" : ""} ${className}`}
+      className={`gw-leaves pointer-events-none absolute bottom-0 -z-10 ${wide ? "left-0 h-auto w-full" : `h-full w-auto max-w-none ${from === "bottom-left" ? "left-0" : "right-0"}`} ${from === "top-right" ? "top-0" : ""} ${className}`}
     >
       <defs>
         {PAIRS.map(([tip, base], i) => (

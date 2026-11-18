@@ -3658,3 +3658,46 @@ html[data-theme="dark"] .ask-wrap .sig-btn.sig-btn-primary:disabled {
   background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 82%, white), var(--accent));
   color: var(--accent-ink);
 }
+
+/* Little leaves (decision 0119, round two): small sprigs of the same leaves in the corners of the soft highlights,
+   so the material turns up across the app and not only at the top right: lines the AI drafted, Ask, Lists, the
+   pipeline's AI cards, Review's AI cards, and the phone's cards. Baked into the background, under the text side. */
+:root {
+  --sprig-r: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 120 80%22%3E%3Cpath d=%22M105.5,86.7 Q81.7,65 73.6,29.1 Q107.5,46.2 118.5,77.3 Z%22 fill=%22%23abc0f6%22 fill-opacity=%220.75%22 stroke=%22%23fff%22 stroke-opacity=%22.8%22 stroke-width=%22.8%22/%3E%3Cpath d=%22M112,82 Q94.6,55.6 73.6,29.1%22 fill=%22none%22 stroke=%22%23fff%22 stroke-opacity=%22.7%22 stroke-width=%22.8%22/%3E%3Cpath d=%22M99.6,87.5 Q76.6,79 69,54.1 Q94,57.1 108.4,76.5 Z%22 fill=%22%23fbb7cf%22 fill-opacity=%220.75%22 stroke=%22%23fff%22 stroke-opacity=%22.8%22 stroke-width=%22.8%22/%3E%3Cpath d=%22M104,82 Q85.3,68 69,54.1%22 fill=%22none%22 stroke=%22%23fff%22 stroke-opacity=%22.7%22 stroke-width=%22.8%22/%3E%3Cpath d=%22M110.2,83.5 Q100.6,65.2 106,42.4 Q123.8,59.3 121.8,80.5 Z%22 fill=%22%23c8b6ff%22 fill-opacity=%220.7%22 stroke=%22%23fff%22 stroke-opacity=%22.8%22 stroke-width=%22.8%22/%3E%3Cpath d=%22M116,82 Q112.2,62.2 106,42.4%22 fill=%22none%22 stroke=%22%23fff%22 stroke-opacity=%22.7%22 stroke-width=%22.8%22/%3E%3Cpath d=%22M94.3,86.7 Q79.4,87.4 73.1,74 Q86.1,68.5 97.7,77.3 Z%22 fill=%22%23fedcd2%22 fill-opacity=%220.75%22 stroke=%22%23fff%22 stroke-opacity=%22.8%22 stroke-width=%22.8%22/%3E%3Cpath d=%22M96,82 Q82.7,78 73.1,74%22 fill=%22none%22 stroke=%22%23fff%22 stroke-opacity=%22.7%22 stroke-width=%22.8%22/%3E%3C/svg%3E");
+  --sprig-l: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 120 80%22%3E%3Cpath d=%22M1.8,77 Q13.1,48 46.7,34.1 Q38,68.1 14.2,87 Z%22 fill=%22%23c8b6ff%22 fill-opacity=%220.75%22 stroke=%22%23fff%22 stroke-opacity=%22.8%22 stroke-width=%22.8%22/%3E%3Cpath d=%22M8,82 Q25.6,58.1 46.7,34.1%22 fill=%22none%22 stroke=%22%23fff%22 stroke-opacity=%22.7%22 stroke-width=%22.8%22/%3E%3Cpath d=%22M12.2,76.7 Q26.1,59.6 49,58.2 Q41.3,80.7 19.8,87.3 Z%22 fill=%22%23fbb7cf%22 fill-opacity=%220.75%22 stroke=%22%23fff%22 stroke-opacity=%22.8%22 stroke-width=%22.8%22/%3E%3Cpath d=%22M16,82 Q33.7,70.1 49,58.2%22 fill=%22none%22 stroke=%22%23fff%22 stroke-opacity=%22.7%22 stroke-width=%22.8%22/%3E%3Cpath d=%22M-1.2,80.3 Q-2.1,61 15.2,46.7 Q18.9,67.7 9.2,83.7 Z%22 fill=%22%23abc0f6%22 fill-opacity=%220.7%22 stroke=%22%23fff%22 stroke-opacity=%22.8%22 stroke-width=%22.8%22/%3E%3Cpath d=%22M4,82 Q8.4,64.4 15.2,46.7%22 fill=%22none%22 stroke=%22%23fff%22 stroke-opacity=%22.7%22 stroke-width=%22.8%22/%3E%3C/svg%3E");
+}
+.sig-row-draft {
+  background: var(--sprig-r) right 0.5rem bottom 0 / 4.5rem auto no-repeat, var(--draft);
+}
+.gate-row.sig-row-draft:hover,
+.gate-row.sig-row-draft:focus-within {
+  background: var(--sprig-r) right 0.5rem bottom 0 / 4.5rem auto no-repeat, color-mix(in srgb, var(--accent) 10%, var(--draft));
+}
+html:root .tone-ai,
+html:root .proto-card.tone-ai,
+.mob-wash {
+  background: var(--sprig-r) right 0.75rem bottom 0 / 5.5rem auto no-repeat, var(--draft);
+}
+.pipe-col[data-stage="Idea"] .pipe-card,
+.pipe-col[data-stage="Idea"] .pipe-ghost,
+.rail-box .card-rail > li:hover,
+.rail-box .card-rail > li:focus-within,
+.rail-box.is-ai .card-rail > li {
+  background: var(--sprig-r) right 0.25rem bottom 0 / 4rem auto no-repeat, var(--ai-grad);
+}
+.mob-ai {
+  background: var(--sprig-l) left 0.25rem bottom 0 / 4.5rem auto no-repeat, var(--ask-pop);
+}
+html:not([data-theme="dark"]) .ask-wrap.ask-wrap.ask-wrap.proto-card,
+html:not([data-theme="dark"]) .ask-wrap.ask-wrap.ask-wrap.proto-card:has(.ask-panel.is-open) {
+  background: var(--sprig-r) right 1rem bottom 0 / 7rem auto no-repeat, radial-gradient(120% 150% at 0% 0%, rgb(255 255 255 / 0.55), transparent 55%), #e2e5fb;
+}
+html[data-theme="dark"] .ask-wrap.ask-wrap.ask-wrap.proto-card,
+html[data-theme="dark"] .ask-wrap.ask-wrap.ask-wrap.proto-card:has(.ask-panel.is-open) {
+  background: var(--sprig-r) right 1rem bottom 0 / 7rem auto no-repeat, radial-gradient(120% 150% at 0% 0%, rgb(140 148 255 / 0.16), transparent 58%), #25274f;
+}
+/* The hero's wandering leaves: wide, low and faint. */
+.gw-block .gw-leaves.gw-leaves-low {
+  bottom: 3rem; /* rooted behind Ask's top edge, so they grow out from under it */
+  opacity: 0.5;
+}
