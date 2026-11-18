@@ -193,27 +193,26 @@ export default function Home() {
 
         {/* Nov 2026: the story in six lines sits in its own section just below the top (decisions 0114, 0115). */}
         <section aria-label="The case at a glance" className="mt-16 grid gap-10 border-t border-[var(--rule)] pt-12 lg:grid-cols-12 lg:gap-16 lg:pt-16">
-          <div className="lg:col-span-7">
-              {/* Nov 2026: the whole case in six lines, in the order hiring teams read: goal to result. */}
-              <div>
-                <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-ink-2">The story in six lines</p>
-                <ol className="mt-3 border-l border-[var(--rule)]">
-                  {([
-                  ["Goal", "A CRM that account managers keep current without the typing."],
-                  ["Problem", "68% of sellers say note taking and data entry take the most time (Salesforce State of Sales)."],
-                  ["Approach", "AI drafts the record from meetings, every line shows its source, and a person approves."],
-                  ["Decision", "Every AI line waits for a person, over saving on its own. None of 13 similar products shows a source on every line."],
-                  ["Launch", "A concept: a working web and phone app, about 8,500 lines of TypeScript, with tests."],
-                  ["Result", "What I’d measure: drafts approved without edits, and meetings logged within a day."],
-                  ] as const).map(([step, text], i, all) => (
-                    <li key={step} className="relative grid grid-cols-[5.5rem_minmax(0,1fr)] gap-3 py-1.5 pl-4 text-[14.5px] leading-snug">
-                      <span aria-hidden="true" className={`absolute -left-[4.5px] top-[0.7rem] h-2 w-2 rounded-full ${i === all.length - 1 ? "bg-current" : "bg-current opacity-40"}`} />
-                      <span className="font-medium">{step}</span>
-                      <span className="text-ink-2 [text-wrap:pretty]">{text}</span>
-                    </li>
-                  ))}
-                </ol>
-              </div>
+          {/* Nov 2026: the whole case in six lines, in the order hiring teams read: goal to result. Numbered tiles,
+              three across on a wide screen (decision 0116). */}
+          <div className="lg:col-span-12">
+            <h2 className="text-[12px] font-medium uppercase tracking-[0.14em] text-ink-2">The story in six lines</h2>
+            <ol className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {([
+                ["Goal", "A CRM that account managers keep current without the typing."],
+                ["Problem", "68% of sellers say note taking and data entry take the most time (Salesforce State of Sales)."],
+                ["Approach", "AI drafts the record from meetings, every line shows its source, and a person approves."],
+                ["Decision", "Every AI line waits for a person, over saving on its own. None of 13 similar products shows a source on every line."],
+                ["Launch", "A concept: a working web and phone app, about 8,500 lines of TypeScript, with tests."],
+                ["Result", "What I’d measure: drafts approved without edits, and meetings logged within a day."],
+              ] as const).map(([step, text], i) => (
+                <li key={step} className="flex flex-col rounded-xl border border-line bg-surface p-5 sm:p-6">
+                  <span className="font-mono text-[13px] tracking-wide text-accent">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="mt-3 text-[17px] font-medium leading-snug">{step}</span>
+                  <span className="mt-2 text-[15px] leading-relaxed text-ink-2 [text-wrap:pretty]">{text}</span>
+                </li>
+              ))}
+            </ol>
           </div>
         </section>
 
