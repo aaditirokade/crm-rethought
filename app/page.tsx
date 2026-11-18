@@ -178,7 +178,6 @@ export default function Home() {
             </dl>
             <div className="mt-8">
               <Links />
-              <p className="mt-4 text-small text-ink-2">Concept prototype · every company, person and number is made up</p>
             </div>
           </div>
           <div className="min-w-0 lg:col-span-7 lg:self-center">

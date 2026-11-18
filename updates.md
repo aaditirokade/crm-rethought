@@ -136,3 +136,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Case study: 'The story in six lines' under the opening, goal to result (decision 0111)
 - 2026-11-18: case study top is now only the name, line, description and demo; the story in six lines, facts and links moved to a section below (decision 0114).
 - 2026-11-18: facts and prototype links back under the description; the story in six lines stays in its own section (decision 0115).
+- 2026-11-18: removed the 'every company, person and number is made up' note under the case study links.
