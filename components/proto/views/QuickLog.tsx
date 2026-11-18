@@ -7,6 +7,7 @@ import { account } from "@/content/prototype";
 import { PageHead } from "../bits";
 import { GateLine } from "../Lines";
 import { actions, allSugs, entryOf, useProto } from "../store";
+import { Leaves } from "../Leaves";
 
 /** Log an interaction that had no recording: a booth chat, a dinner, a hallway conversation. */
 export function QuickLog({ id }: { id: string }) {
@@ -104,6 +105,7 @@ export function QuickLog({ id }: { id: string }) {
             ))}
           </ul>
           <div className="action-bar sticky bottom-0 mt-6 flex flex-wrap items-center justify-between gap-3">
+            <Leaves seed={21} count={6} scale={0.55} />
             <p className="font-mono text-meta tracking-wide">
               <span className="font-medium">{approved} APPROVED</span>
               {savedN ? <span className="text-good"> · {savedN} SAVED</span> : null}

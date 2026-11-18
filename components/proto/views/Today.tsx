@@ -5,6 +5,7 @@ import { useState } from "react";
 import { EVENTS } from "@/content/more";
 import { account, MEETINGS, NOW } from "@/content/prototype";
 import { Ask } from "../Ask";
+import { Leaves } from "../Leaves";
 import { DayStrip, PulseTiles } from "../Board";
 import { groupByOrigin } from "../groups";
 import { Num } from "../Num";
@@ -22,6 +23,9 @@ export function Today() {
 
   return (
     <div>
+      {/* The greeting sits on the leaves block, and Ask lifts over its lower edge (decision 0119). */}
+      <section aria-label="Your morning" className="gw-block gw-hero">
+        <Leaves seed={3} count={13} scale={1.2} />
       <p className="font-mono text-meta tracking-wide text-ink-2">
         {NOW.day.toUpperCase()} · {NOW.time}
       </p>
@@ -36,16 +40,20 @@ export function Today() {
         )}
         Fernhill needs you most this week.
       </p>
-
-      <div className="mt-10 space-y-14">
+      </section>
+      <div className="ask-lift">
         <Ask onFocus={setFocus} />
+      </div>
+
+      <div className="mt-14 space-y-14">
         <DayStrip s={s} focus={focus} />
 
         <div className="grid gap-x-12 gap-y-14 lg:grid-cols-[minmax(0,1fr)_18rem] 2xl:grid-cols-[minmax(0,1fr)_24rem]">
           <PulseTiles s={s} focus={focus} />
 
           <aside className="tone-block space-y-10 lg:self-start">
-            <section aria-labelledby="h-waiting" className="ai-wash">
+            <section aria-labelledby="h-waiting" className="gw-block p-5">
+              <Leaves seed={7} count={6} scale={0.7} />
               <h2 id="h-waiting" className="text-h3 font-semibold">
                 Waiting for you
               </h2>

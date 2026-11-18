@@ -4,6 +4,7 @@ import Link from "next/link";
 import { COLUMNS, FIELDS, FILE, RULES, SAMPLE } from "@/content/imports";
 import { PageHead } from "../bits";
 import { actions, useProto } from "../store";
+import { Leaves } from "../Leaves";
 
 /**
  * Import a trade show lead list. The AI proposes the column mapping and finds problems; a person confirms
@@ -234,6 +235,7 @@ export function Imports() {
       </section>
 
       <section aria-labelledby="h-run" className="action-bar sticky bottom-0 mt-6">
+            <Leaves seed={23} count={6} scale={0.55} />
         <h2 id="h-run" className="sr-only">
           4 · Import
         </h2>

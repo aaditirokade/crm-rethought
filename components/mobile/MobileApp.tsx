@@ -9,6 +9,7 @@ import { originOf } from "@/components/proto/groups";
 import { FixBox, GateLine, WhyWrong } from "@/components/proto/Lines";
 import { Meta, SourceChip } from "@/components/proto/Source";
 import { actions, allSugs, entryOf, isGated, me, tasks, textOf, useProto } from "@/components/proto/store";
+import { Leaves } from "@/components/proto/Leaves";
 
 type Screen = "home" | "brief" | "approve" | "ask" | "note";
 
@@ -65,10 +66,14 @@ function Home({ go, waiting }: { go: (s: Screen) => void; waiting: number }) {
   const myTasks = tasks(s);
   return (
     <div>
-      <p className="font-mono text-meta tracking-wide text-ink-2">
-        {NOW.day.toUpperCase()} · {NOW.time}
-      </p>
-      <h1 className="text-h2 font-semibold">Hi {me.short}</h1>
+      {/* The greeting on the leaves block (decision 0119). */}
+      <section aria-label="Your morning" className="gw-block -mx-1 px-4 pb-8 pt-4">
+        <Leaves seed={4} count={8} />
+        <p className="font-mono text-meta tracking-wide text-ink-2">
+          {NOW.day.toUpperCase()} · {NOW.time}
+        </p>
+        <h1 className="text-h2 font-semibold">Hi {me.short}</h1>
+      </section>
 
       <section aria-labelledby="m-next" className="mt-5">
         <p className="font-mono text-meta tracking-wide text-ink-2">NEXT UP · IN 55 MIN</p>

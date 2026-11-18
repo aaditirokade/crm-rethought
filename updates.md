@@ -140,3 +140,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - 2026-11-18: the story in six lines is six numbered tiles (decision 0116).
 - 2026-11-18: the three direction cards follow the theme, with a dark palette for each (decision 0117).
 - 2026-11-18: the working phone app sits live in its frame right after the story in six lines (decision 0118).
+- 2026-11-18: visual revamp: periwinkle and rose palette, glass leaves on Today, every page's title band, Waiting for you, the phone and the commit bars; rose for actions (decision 0119).

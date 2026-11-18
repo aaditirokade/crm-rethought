@@ -26,18 +26,18 @@
  * Control borders (line-strong) pass 3:1. Full table at /tokens.
  */
 :root {
-  --bg: #f7f8fc; /* cool white (Nov 2026: no warm washes) */
+  --bg: #f9f8fc; /* lavender white (Nov 2026 revamp, decision 0119) */
   --surface: #ffffff;
-  --surface-2: #e5e8f3; /* cool mist */
-  --ink: #20222b; /* deep ink, never pure black; 13.0:1 or more */
-  --ink-2: #4f5466; /* 5.7:1 or more */
-  --line: #dadeed; /* hairlines, decorative only */
-  --line-strong: #73798f; /* control borders, 3.2:1 or more */
-  --accent: #554bf5; /* the AI’s color, Henu’s Electric Pulse violet (deepened a step for text): drafts, Ask, waiting counts; 5.0:1 or more */
-  --accent-hover: #4338e0;
-  --accent-ink: #ffffff; /* 5.7:1 on accent */
-  --draft: #edf1fc; /* periwinkle wash behind lines the AI drafted */
-  --data: #009aa3; /* charts: sparklines, bars, the day strip, in Electric Pulse aqua (deepened to 3.2:1 on the page) so they don’t read as the AI */
+  --surface-2: #ece9f5; /* lavender mist */
+  --ink: #1e2140; /* deep ink, never pure black; 13.0:1 or more */
+  --ink-2: #52566f; /* 6.0:1 or more */
+  --line: #e4e2ee; /* hairlines, decorative only */
+  --line-strong: #787b93; /* control borders, 3.4:1 or more */
+  --accent: #b03c77; /* rose: the AI and the actions it asks for (drafts, Ask, approve, waiting counts); 4.6:1 or more */
+  --accent-hover: #97305f;
+  --accent-ink: #ffffff; /* 5.6:1 on accent */
+  --draft: #fbedf4; /* blush wash behind lines the AI drafted */
+  --data: #6576d4; /* charts in periwinkle, so they never read as the AI; 3.4:1 or more */
   --good: #2b7550; /* 4.9:1 or more */
   --warn: #b54708; /* 5.1:1 or more */
   --risk: #b2443a; /* 4.8:1 or more */
@@ -52,18 +52,18 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #10111a; /* deep navy charcoal */
-    --surface: #181a25;
-    --surface-2: #212433;
-    --ink: #e8eaf2; /* cool white, softer than white; 13.4:1 or more */
-    --ink-2: #a2a6b4; /* 6.9:1 or more */
-    --line: #292a2c;
-    --line-strong: #6d707d; /* 3.4:1 or more */
-    --accent: #9a95ff; /* 6.7:1 or more */
-    --accent-hover: #c6ccff;
-    --accent-ink: #1a1c3a; /* 8.6:1 on accent */
-    --draft: #23242e;
-    --data: #00E5E5; /* electric aqua, so charts don't read as the AI */
+    --bg: #11111c; /* night periwinkle */
+    --surface: #1a1a2b;
+    --surface-2: #24243a;
+    --ink: #eceefa; /* 13.0:1 or more */
+    --ink-2: #a6a9c2; /* 6.5:1 or more */
+    --line: #2a2a40;
+    --line-strong: #6f7290; /* 3.2:1 or more */
+    --accent: #f394c4; /* rose, lifted for the dark; 7.0:1 or more */
+    --accent-hover: #f9b6d8;
+    --accent-ink: #2b0d1d; /* 8.3:1 on accent */
+    --draft: #262036;
+    --data: #8f9cf0; /* periwinkle */
     --good: #8ad9ae;
     --warn: #ffab70;
     --risk: #ff9e92;
@@ -264,13 +264,15 @@ button.sig-source:hover b {
   opacity: 0.5;
 }
 .sig-btn-primary {
-  border-color: var(--ink);
-  background: var(--ink);
-  color: var(--bg);
+  /* Nov 2026 revamp: actions wear the rose, the one warm color on a cool page. */
+  border-color: var(--accent);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 82%, white), var(--accent));
+  color: var(--accent-ink);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.28), 0 6px 14px -8px var(--accent);
 }
 .sig-btn-primary:hover {
-  border-color: var(--ink);
-  background: color-mix(in srgb, var(--ink) 85%, var(--bg));
+  border-color: var(--accent-hover);
+  background: var(--accent-hover);
 }
 :where(.sig) :focus-visible {
   outline: 2px solid var(--accent);
@@ -1407,14 +1409,14 @@ li.proto-card:focus-within {
    periwinkle for the AI and for charts, a dusk indigo instead of black at night. Every text color still passes AA. */
 .sig {
   background:
-    radial-gradient(90rem 34rem at 12% -12%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 70%),
-    radial-gradient(60rem 30rem at 100% 0%, color-mix(in srgb, #00E5E5 10%, transparent), transparent 70%),
+    radial-gradient(90rem 34rem at 12% -12%, color-mix(in srgb, #abc0f6 16%, transparent), transparent 70%),
+    radial-gradient(60rem 30rem at 100% 0%, color-mix(in srgb, #c8b6ff 22%, transparent), transparent 70%),
     var(--bg);
 }
 .ask-wrap.proto-card {
   background:
-    radial-gradient(120% 160% at 0% 0%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 60%),
-    linear-gradient(160deg, var(--draft), var(--surface) 75%);
+    radial-gradient(120% 160% at 0% 0%, color-mix(in srgb, #c8b6ff 20%, transparent), transparent 60%),
+    linear-gradient(160deg, #f1f0fc, var(--surface) 75%);
 }
 .board-block {
   background: var(--data);
@@ -1457,12 +1459,12 @@ li.proto-card:focus-within {
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .sig {
     background:
-      radial-gradient(70rem 30rem at 85% -10%, color-mix(in srgb, #00E5E5 6%, transparent), transparent 70%),
+      radial-gradient(70rem 30rem at 85% -10%, color-mix(in srgb, #8f9cf0 9%, transparent), transparent 70%),
       var(--bg);
   }
   :root:not([data-theme="light"]) .ask-wrap.proto-card {
     background:
-      radial-gradient(120% 160% at 0% 0%, color-mix(in srgb, var(--accent) 7%, transparent), transparent 60%),
+      radial-gradient(120% 160% at 0% 0%, color-mix(in srgb, #8f9cf0 9%, transparent), transparent 60%),
       var(--surface);
   }
 }
@@ -1475,18 +1477,18 @@ li.proto-card:focus-within {
   color-scheme: dark;
 }
 :root[data-theme="dark"] {
-  --bg: #10111a; /* deep navy charcoal */
-  --surface: #181a25;
-  --surface-2: #212433;
-  --ink: #e8eaf2; /* cool white, softer than white; 13.4:1 or more */
-  --ink-2: #a2a6b4; /* 6.9:1 or more */
-  --line: #292a2c;
-  --line-strong: #6d707d; /* 3.4:1 or more */
-  --accent: #9a95ff; /* 6.7:1 or more */
-  --accent-hover: #c6ccff;
-  --accent-ink: #1a1c3a; /* 8.6:1 on accent */
-  --draft: #23242e;
-  --data: #00E5E5; /* electric aqua, so charts don't read as the AI */
+  --bg: #11111c; /* night periwinkle */
+  --surface: #1a1a2b;
+  --surface-2: #24243a;
+  --ink: #eceefa; /* 13.0:1 or more */
+  --ink-2: #a6a9c2; /* 6.5:1 or more */
+  --line: #2a2a40;
+  --line-strong: #6f7290; /* 3.2:1 or more */
+  --accent: #f394c4; /* rose, lifted for the dark; 7.0:1 or more */
+  --accent-hover: #f9b6d8;
+  --accent-ink: #2b0d1d; /* 8.3:1 on accent */
+  --draft: #262036;
+  --data: #8f9cf0; /* periwinkle */
   --good: #8ad9ae;
   --warn: #ffab70;
   --risk: #ff9e92;
@@ -1500,12 +1502,12 @@ li.proto-card:focus-within {
 }
 :root[data-theme="dark"] .sig {
   background:
-    radial-gradient(70rem 30rem at 85% -10%, color-mix(in srgb, #00E5E5 6%, transparent), transparent 70%),
+    radial-gradient(70rem 30rem at 85% -10%, color-mix(in srgb, #8f9cf0 9%, transparent), transparent 70%),
     var(--bg);
 }
 :root[data-theme="dark"] .ask-wrap.proto-card {
   background:
-    radial-gradient(120% 160% at 0% 0%, color-mix(in srgb, var(--accent) 7%, transparent), transparent 60%),
+    radial-gradient(120% 160% at 0% 0%, color-mix(in srgb, #8f9cf0 9%, transparent), transparent 60%),
     var(--surface);
 }
 
@@ -2286,14 +2288,17 @@ html:root .ask-wrap:not(.proto-card) {
 }
 
 .action-bar {
-  --bg: #20222b;
-  --surface: #2b2e38;
-  --surface-2: #333643;
+  --bg: #1d1f3d; /* night periwinkle (decision 0119) */
+  --surface: #282a4a;
+  --surface-2: #31335a;
   --ink: #eff1f8; /* 13.9:1 */
-  --ink-2: #b8bdcf; /* 8.9:1 */
-  --line: #383c4a;
-  --line-strong: #80859a; /* 4.7:1 */
-  --accent: #bcc2ff;
+  --ink-2: #b8bdd6; /* 8.6:1 */
+  --line: #383b62;
+  --line-strong: #8085a8; /* 4.2:1 */
+  --accent: #f394c4;
+  --accent-ink: #2b0d1d;
+  --leaf-tip: #7d82c9;
+  --leaf-edge: rgb(255 255 255 / 0.55);
   --good: #8ad9ae;
   --warn: #ffab70;
   --risk: #ff9e92;
@@ -2301,32 +2306,20 @@ html:root .ask-wrap:not(.proto-card) {
   color: var(--ink);
   border: 0;
   border-radius: 20px;
-  background: var(--bg);
+  background: linear-gradient(100deg, #1d1f3d 45%, #2a2140 75%, #36223c);
   padding: 0.875rem 0.875rem 0.875rem 1.25rem;
+  isolation: isolate;
+  overflow: hidden;
   box-shadow: 0 1px 2px rgb(32 34 43 / 0.12), 0 14px 30px -14px rgb(32 34 43 / 0.45);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .action-bar {
-    --bg: #28292c;
-    --surface: #2f3036;
-    --surface-2: #36373d;
-    --ink: #e8eaf2; /* 12.4:1 */
-    --ink-2: #b2b6c4; /* 7.6:1 */
-    --line: #3c3e45;
-    --line-strong: #787c8a; /* 3.8:1 */
-    border: 1px solid #33343a;
+    border: 1px solid #2c2e50;
     box-shadow: 0 14px 30px -14px rgb(0 0 0 / 0.7);
   }
 }
 :root[data-theme="dark"] .action-bar {
-  --bg: #28292c;
-  --surface: #2f3036;
-  --surface-2: #36373d;
-  --ink: #e8eaf2;
-  --ink-2: #b2b6c4;
-  --line: #3c3e45;
-  --line-strong: #787c8a;
-  border: 1px solid #33343a;
+  border: 1px solid #2c2e50;
   box-shadow: 0 14px 30px -14px rgb(0 0 0 / 0.7);
 }
 /* The bar floats just above the dock on phones and tablets, and a little off the bottom edge on desktop. */
@@ -3513,4 +3506,155 @@ html:root .ask-wrap .ask-actions .ask-action .sig-btn.ask-undo {
 :root[data-theme="dark"] .dir-card { --d-bg: var(--bg-d); --d-surface: var(--surface-d); --d-ink: var(--ink-d); --d-ink2: var(--ink2-d); --d-line: var(--line-d); --d-accent: var(--accent-d); --d-draft: var(--draft-d); }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .dir-card { --d-bg: var(--bg-d); --d-surface: var(--surface-d); --d-ink: var(--ink-d); --d-ink2: var(--ink2-d); --d-line: var(--line-d); --d-accent: var(--accent-d); --d-draft: var(--draft-d); }
+}
+
+/* The glass leaves (decision 0119): one material across the app. Blocks of soft periwinkle warming to blush,
+   with leaves growing from a corner; night periwinkle warming to plum in the dark. Text sits on the plain side,
+   and a fade keeps the leaves from ever passing behind it. */
+:root {
+  --leaf-tip: #ffffff;
+  --leaf-edge: #ffffff;
+  --gw-block: #e8e9fb;
+  --gw-block-bg: linear-gradient(100deg, #e8e9fb 35%, #f3e9f6 70%, #fbebf0);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --leaf-tip: #7d82c9;
+    --leaf-edge: rgb(255 255 255 / 0.55);
+    --gw-block: #1d1f3d;
+    --gw-block-bg: linear-gradient(100deg, #1d1f3d 35%, #2a2140 70%, #36223c);
+  }
+}
+:root[data-theme="dark"] {
+  --leaf-tip: #7d82c9;
+  --leaf-edge: rgb(255 255 255 / 0.55);
+  --gw-block: #1d1f3d;
+  --gw-block-bg: linear-gradient(100deg, #1d1f3d 35%, #2a2140 70%, #36223c);
+}
+.gw-block {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 28px;
+  background: var(--gw-block-bg);
+}
+.gw-block::after,
+.action-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--gw-block) 34%, transparent 70%);
+}
+.action-bar::after {
+  background: linear-gradient(90deg, #1d1f3d 50%, transparent 85%);
+}
+.gw-block .gw-leaves,
+.action-bar .gw-leaves {
+  z-index: -2;
+}
+:root[data-theme="dark"] .gw-leaves {
+  opacity: 0.8;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .gw-leaves {
+    opacity: 0.8;
+  }
+}
+.action-bar .gw-leaves {
+  opacity: 0.75;
+}
+/* Today's greeting: the block, with Ask lifting over its lower edge. */
+.gw-hero {
+  padding: 1.75rem 1.5rem 4.5rem;
+}
+@media (min-width: 640px) {
+  .gw-hero {
+    padding: 2.25rem 2.25rem 5rem;
+  }
+}
+.gw-hero + .ask-lift {
+  position: relative;
+  margin: -3.25rem 0.75rem 0;
+}
+@media (min-width: 640px) {
+  .gw-hero + .ask-lift {
+    margin-inline: 1.5rem;
+  }
+}
+/* Every other page: a quiet band of leaves behind the title, top right, fading into the page. */
+.gw-band {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 0;
+  width: min(46rem, 60%);
+  height: 15rem;
+  pointer-events: none;
+  isolation: isolate;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, black 35%, transparent), linear-gradient(to right, transparent, black 40%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to bottom, black 35%, transparent), linear-gradient(to right, transparent, black 40%);
+  mask-composite: intersect;
+  opacity: 0.85;
+}
+
+/* Rose leads (decision 0119). The cool page is periwinkle and lavender; the actions are the one warm color, so they
+   stand out: primary buttons, Ask, the dock's current step and the phone's current tab. The indigo the AI's blocks
+   wore since decision 0066 becomes night periwinkle warming to plum, the same night as the leaves, with light on dark
+   tokens (white 12:1 or more, secondary text 9:1, the rose 7.6:1 on its lightest point) and rose actions inside. */
+:root {
+  --ask-pop: radial-gradient(120% 140% at 100% 100%, rgb(243 148 196 / 0.2), transparent 60%), linear-gradient(120deg, #2a2c5c 0%, #1f2147 55%, #33244a 100%);
+}
+.pipe-col[data-stage="Idea"] :is(.pipe-card, .pipe-ghost),
+.rail-box.is-ai .card-rail > li,
+.rail-box .card-rail > li:hover,
+.rail-box .card-rail > li:focus-within,
+.mob-ai {
+  --bg: #24264f;
+  --surface: #2e3060;
+  --surface-2: #34366a;
+  --line: #4a4d86;
+  --accent: #f8b4d6;
+  --accent-hover: #ffd2e8;
+  --accent-ink: #3a1027;
+  --draft: #2e3060;
+}
+html:root .ask-wrap .sig-btn.sig-btn-primary,
+html:root .mob .mob-ask-go,
+html:not([data-theme="dark"]) .ask-wrap .sig-btn.sig-btn-primary,
+html:not([data-theme="dark"]) .mob .mob-ask-go {
+  background: linear-gradient(180deg, #c95a92, #b03c77);
+  color: #ffffff;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.28), 0 6px 16px -8px rgb(176 60 119 / 0.6);
+}
+html:root .ask-wrap .sig-btn.sig-btn-primary:not(:disabled):hover,
+html:not([data-theme="dark"]) .ask-wrap .sig-btn.sig-btn-primary:not(:disabled):hover {
+  background: #97305f;
+  color: #ffffff;
+}
+html:root .ask-wrap .sig-btn.sig-btn-primary:disabled,
+html:not([data-theme="dark"]) .ask-wrap .sig-btn.sig-btn-primary:disabled {
+  background: rgb(176 60 119 / 0.5);
+  color: #ffffff;
+}
+html[data-theme="dark"] .ask-wrap .sig-btn.sig-btn-primary,
+html[data-theme="dark"] .mob .mob-ask-go {
+  background: linear-gradient(180deg, #f8b4d6, #f394c4);
+  color: #2b0d1d;
+}
+html[data-theme="dark"] .ask-wrap .sig-btn.sig-btn-primary:not(:disabled):hover {
+  background: #f9b6d8;
+  color: #2b0d1d;
+}
+html[data-theme="dark"] .ask-wrap .sig-btn.sig-btn-primary:disabled {
+  background: rgb(243 148 196 / 0.45);
+  color: #2b0d1d;
+}
+.dock-btn[aria-current="page"] .dock-icon,
+.mob-tabs button[aria-current="page"] {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 82%, white), var(--accent));
+  color: var(--accent-ink);
 }

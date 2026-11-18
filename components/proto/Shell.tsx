@@ -6,6 +6,7 @@ import { IconAccounts, IconImport, IconPhone, IconPipeline, IconReset, IconRevie
 import { actions, allSugs, entryOf, me, pending, useProto } from "./store";
 import { ScrollNext } from "./ScrollNext";
 import { ThemeToggle } from "./ThemeToggle";
+import { Leaves } from "./Leaves";
 import { BASE } from "@/lib/base";
 
 /**
@@ -122,8 +123,14 @@ export function Shell({ children }: { children: React.ReactNode }) {
         </div>
       </nav>
 
-      <main id="main" tabIndex={-1} className="w-full px-5 md:px-8 lg:pl-32 lg:pr-8 pt-10 pb-32 outline-none lg:pb-12">
-        {children}
+      <main id="main" tabIndex={-1} className="relative w-full px-5 md:px-8 lg:pl-32 lg:pr-8 pt-10 pb-32 outline-none lg:pb-12">
+        {/* Every page but Today, whose greeting has its own block, carries a quiet band of the leaves (decision 0119). */}
+        {path !== "/prototype" ? (
+          <div className="gw-band" aria-hidden="true">
+            <Leaves seed={steps.findIndex((st) => st.current) + 5} count={9} />
+          </div>
+        ) : null}
+        <div className="relative">{children}</div>
         <ScrollNext key={path} next={next} prev={prev} />
       </main>
       {s.message && s.seq ? (

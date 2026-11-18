@@ -5,6 +5,7 @@ import { account, EMAIL_DRAFT, forMeeting, MEETINGS, meeting, TRANSCRIPT } from 
 import { PageHead } from "../bits";
 import { EmailDraft, GateLine } from "../Lines";
 import { actions, entryOf, isGated, useProto } from "../store";
+import { Leaves } from "../Leaves";
 
 const SECTIONS = [
   { name: "Log", hint: "Goes on the account timeline once saved." },
@@ -89,6 +90,7 @@ export function Log({ id }: { id: string }) {
           </div>
 
           <div className="action-bar sticky bottom-0 mt-8">
+            <Leaves seed={22} count={6} scale={0.55} />
             <div className="flex flex-wrap items-center justify-between gap-3">
               <p className="font-mono text-meta tracking-wide">
                 <span className="font-medium">{approved} APPROVED</span>

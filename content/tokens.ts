@@ -11,23 +11,23 @@ export type ColorToken = {
 };
 
 export const BACKGROUNDS = {
-  light: { bg: "#f7f8fc", surface: "#ffffff", surface2: "#e5e8f3", draft: "#edf1fc", accent: "#554bf5", ink: "#20222b" },
-  dark: { bg: "#10111a", surface: "#181a25", surface2: "#212433", draft: "#23242e", accent: "#9a95ff", ink: "#e8eaf2" },
+  light: { bg: "#f9f8fc", surface: "#ffffff", surface2: "#ece9f5", draft: "#fbedf4", accent: "#b03c77", ink: "#1e2140" },
+  dark: { bg: "#11111c", surface: "#1a1a2b", surface2: "#24243a", draft: "#262036", accent: "#f394c4", ink: "#eceefa" },
 };
 
 export const COLORS: ColorToken[] = [
-  { name: "bg", role: "The page: cool white by day, deep navy charcoal at night", light: "#f7f8fc", dark: "#10111a", check: "background" },
-  { name: "surface", role: "The few things that lift: Ask, triage, menus", light: "#ffffff", dark: "#181a25", check: "background" },
-  { name: "surface-2", role: "Quiet fills: chips, inputs, tracks", light: "#e5e8f3", dark: "#212433", check: "background" },
-  { name: "draft", role: "Periwinkle wash behind lines the AI drafted", light: "#edf1fc", dark: "#23242e", check: "background" },
-  { name: "ink", role: "Text people read; primary buttons", light: "#20222b", dark: "#e8eaf2", check: "text" },
-  { name: "ink-2", role: "Quiet text, labels", light: "#4f5466", dark: "#a2a6b4", check: "text" },
-  { name: "accent", role: "The AI's color: drafts, Ask, waiting counts", light: "#554bf5", dark: "#9a95ff", check: "text" },
-  { name: "accent-ink", role: "Text on the accent", light: "#ffffff", dark: "#1a1c3a", check: "on-accent" },
+  { name: "bg", role: "The page: lavender white by day, night periwinkle at night", light: "#f9f8fc", dark: "#11111c", check: "background" },
+  { name: "surface", role: "The few things that lift: Ask, triage, menus", light: "#ffffff", dark: "#1a1a2b", check: "background" },
+  { name: "surface-2", role: "Quiet fills: chips, inputs, tracks", light: "#ece9f5", dark: "#24243a", check: "background" },
+  { name: "draft", role: "Blush wash behind lines the AI drafted", light: "#fbedf4", dark: "#262036", check: "background" },
+  { name: "ink", role: "Text people read; primary buttons", light: "#1e2140", dark: "#eceefa", check: "text" },
+  { name: "ink-2", role: "Quiet text, labels", light: "#52566f", dark: "#a6a9c2", check: "text" },
+  { name: "accent", role: "Rose: the AI and the actions it asks for (drafts, Ask, approve, waiting counts)", light: "#b03c77", dark: "#f394c4", check: "text" },
+  { name: "accent-ink", role: "Text on the accent", light: "#ffffff", dark: "#2b0d1d", check: "on-accent" },
   { name: "good", role: "Approved, healthy", light: "#2b7550", dark: "#8ad9ae", check: "text" },
   { name: "warn", role: "Needs a look", light: "#b54708", dark: "#ffab70", check: "text" },
   { name: "risk", role: "At risk, overdue", light: "#b2443a", dark: "#ff9e92", check: "text" },
-  { name: "line-strong", role: "Control borders", light: "#73798f", dark: "#6d707d", check: "border" },
-  { name: "data", role: "Charts: sparklines, bars, the day strip", light: "#009aa3", dark: "#00E5E5", check: "decorative" },
-  { name: "line", role: "Hairlines, rarely used", light: "#dadeed", dark: "#292a2c", check: "decorative" },
+  { name: "line-strong", role: "Control borders", light: "#787b93", dark: "#6f7290", check: "border" },
+  { name: "data", role: "Charts in periwinkle: sparklines, bars, the day strip", light: "#6576d4", dark: "#8f9cf0", check: "decorative" },
+  { name: "line", role: "Hairlines, rarely used", light: "#e4e2ee", dark: "#2a2a40", check: "decorative" },
 ];

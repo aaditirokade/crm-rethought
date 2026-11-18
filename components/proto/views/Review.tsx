@@ -8,6 +8,7 @@ import { PageHead } from "../bits";
 import { groupByOrigin } from "../groups";
 import { GateLine } from "../Lines";
 import { actions, allSugs, entryOf, isGated, useProto } from "../store";
+import { Leaves } from "../Leaves";
 
 /**
  * One group's cards as a row that scrolls sideways (decision 0046): cards snap into place,
@@ -110,6 +111,7 @@ export function Review() {
       )}
       <Corrections />
       <div className="action-bar sticky bottom-0 mt-8 flex flex-wrap items-center justify-between gap-3">
+            <Leaves seed={20} count={6} scale={0.55} />
         <p className="font-mono text-meta tracking-wide">
           <span className="font-medium">{approved} APPROVED</span>
           <span className="text-ink-2"> · RECORD FIXES AND OPPORTUNITY CHANGES SAVE AS SOON AS YOU APPROVE THEM</span>
