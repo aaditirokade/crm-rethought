@@ -134,3 +134,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - Case study: story labels raised to 12px, no readable text below 12px (decision 0109)
 - Case study: every paragraph, card and caption cut to a line or two, sections kept (decision 0110)
 - Case study: 'The story in six lines' under the opening, goal to result (decision 0111)
+- 2026-11-18: case study top is now only the name, line, description and demo; the story in six lines, facts and links moved to a section below (decision 0114).
