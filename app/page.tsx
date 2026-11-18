@@ -162,6 +162,24 @@ export default function Home() {
               A CRM where AI preps, drafts and answers, every line shows its source, and nothing saves until a person approves.
               From research to a coded prototype.
             </p>
+            <dl className="mt-8 grid grid-cols-3 gap-4 border-t border-[var(--rule)] pt-5 text-[14px] leading-5">
+              <div>
+                <dt className="text-ink-2">Role</dt>
+                <dd className="mt-1">Research, design, front end</dd>
+              </div>
+              <div>
+                <dt className="text-ink-2">Platforms</dt>
+                <dd className="mt-1">Desktop web and phone</dd>
+              </div>
+              <div>
+                <dt className="text-ink-2">Built with</dt>
+                <dd className="mt-1">Next.js, React, TypeScript</dd>
+              </div>
+            </dl>
+            <div className="mt-8">
+              <Links />
+              <p className="mt-4 text-small text-ink-2">Concept prototype · every company, person and number is made up</p>
+            </div>
           </div>
           <div className="min-w-0 lg:col-span-7 lg:self-center">
             <Demo
@@ -174,8 +192,7 @@ export default function Home() {
           </div>
         </header>
 
-        {/* Nov 2026: the top shows only the name, the line and the demo; the story in six lines, the facts and the
-            links sit in their own section just below. */}
+        {/* Nov 2026: the story in six lines sits in its own section just below the top (decisions 0114, 0115). */}
         <section aria-label="The case at a glance" className="mt-16 grid gap-10 border-t border-[var(--rule)] pt-12 lg:grid-cols-12 lg:gap-16 lg:pt-16">
           <div className="lg:col-span-7">
               {/* Nov 2026: the whole case in six lines, in the order hiring teams read: goal to result. */}
@@ -197,26 +214,6 @@ export default function Home() {
                     </li>
                   ))}
                 </ol>
-              </div>
-          </div>
-          <div className="lg:col-span-5">
-              <dl className="grid grid-cols-3 gap-4 text-[14px] leading-5">
-                <div>
-                  <dt className="text-ink-2">Role</dt>
-                  <dd className="mt-1">Research, design, front end</dd>
-                </div>
-                <div>
-                  <dt className="text-ink-2">Platforms</dt>
-                  <dd className="mt-1">Desktop web and phone</dd>
-                </div>
-                <div>
-                  <dt className="text-ink-2">Built with</dt>
-                  <dd className="mt-1">Next.js, React, TypeScript</dd>
-                </div>
-              </dl>
-              <div className="mt-8">
-                <Links />
-                <p className="mt-4 text-small text-ink-2">Concept prototype · every company, person and number is made up</p>
               </div>
           </div>
         </section>
