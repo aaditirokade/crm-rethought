@@ -7,6 +7,7 @@ import { ChapterRail, type Chapter as RailChapter } from "@/components/case/Chap
 import { ProblemReel } from "@/components/case/ProblemReel";
 import { ThemeButton } from "@/components/case/ThemeButton";
 import { BASE } from "@/lib/base";
+import { MobileApp } from "@/components/mobile/MobileApp";
 import { AskAnatomy } from "@/components/case/AskAnatomy";
 import { SiteNav } from "@/components/case/SiteNav";
 import { BuiltInCode } from "@/components/case/BuiltInCode";
@@ -213,6 +214,33 @@ export default function Home() {
                 </li>
               ))}
             </ol>
+          </div>
+        </section>
+
+        {/* Nov 2026 (decision 0118): the working phone app, right after the story, so a reader can use it before the
+            chapters. The same app as /mobile, live, in the phone frame. */}
+        <section aria-labelledby="phone-h" className="mt-16 grid items-center gap-10 border-t border-[var(--rule)] pt-12 lg:grid-cols-12 lg:gap-16 lg:pt-16">
+          <div className="lg:col-span-6">
+            <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-ink-2">Try it on the phone</p>
+            <h2 id="phone-h" className="mt-3 text-[1.75rem] font-medium leading-tight tracking-tight sm:text-[2rem]">For the minutes between meetings</h2>
+            <p className="mt-5 max-w-[52ch] text-[17px] leading-relaxed text-ink-2">
+              On the way to a meeting, the phone shows what to know, not a dashboard. After it, a minute logs it. Same rule as
+              the desktop: the AI drafts, a person approves.
+            </p>
+            <ul className="mt-5 space-y-2 text-[15px] leading-relaxed">
+              <li><span className="font-medium">Next up:</span> <span className="text-ink-2">the next meeting and what changed, each line with its source.</span></li>
+              <li><span className="font-medium">Approve:</span> <span className="text-ink-2">swipe right to approve, left to dismiss.</span></li>
+              <li><span className="font-medium">Ask:</span> <span className="text-ink-2">the same sourced answers as the desktop.</span></li>
+              <li><span className="font-medium">Voice note:</span> <span className="text-ink-2">each sentence becomes a line to approve.</span></li>
+            </ul>
+            <p className="mt-6 text-small text-ink-2">
+              The working app, with sample data. <Link href="/mobile" className="font-medium text-ink underline underline-offset-4">Open it full screen</Link>.
+            </p>
+          </div>
+          <div className="flex justify-center lg:col-span-6">
+            <div className="mob-frame" aria-label="Groundwork on a phone, working" role="region">
+              <MobileApp />
+            </div>
           </div>
         </section>
 
