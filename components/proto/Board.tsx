@@ -133,9 +133,9 @@ function Spark({ values, label }: { values: number[]; label: string }) {
   return (
     <svg viewBox={`0 0 ${w} ${h}`} className="h-9 w-full" role="img" aria-label={label} preserveAspectRatio="none">
       <path d={d} pathLength={1} className="spark-draw" fill="none" stroke="var(--data)" strokeWidth="1.75" vectorEffect="non-scaling-stroke" />
-      {/* The last point is a round cap on a zero length line, so it stays a circle when the tile stretches the
+      {/* This week's value: a dot at the end of the line. The last point is a round cap on a zero length line, so it stays a circle when the tile stretches the
           sparkline sideways on a phone (a circle would turn into an oval). */}
-      <path className="spark-dot" d={`M${x(values.length - 1).toFixed(1)} ${y(values.at(-1) ?? 0).toFixed(1)}h0`} stroke="var(--ink)" strokeWidth="5" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+      <path className="spark-dot" d={`M${x(values.length - 1).toFixed(1)} ${y(values.at(-1) ?? 0).toFixed(1)}h0`} stroke="var(--data)" strokeWidth="6" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
     </svg>
   );
 }
@@ -195,6 +195,13 @@ export function PulseTiles({ s, focus }: { s: State; focus: string[] }) {
                   <span className={isNew ? "text-ink-2" : change <= -20 ? "text-risk" : change >= 10 ? "text-good" : "text-ink-2"}>
                     {isNew ? "NEW" : <>{change >= 0 ? "▲" : "▼"} <Num value={Math.abs(change)} suffix="%" /></>}
                   </span>
+                </p>
+                {/* This week's views as a number, beside the line it ends (decision 0119). */}
+                <p className="mt-1 flex items-baseline gap-1.5">
+                  <span className="text-h3 font-semibold tabular-nums">
+                    <Num value={last} />
+                  </span>
+                  <span className="text-meta text-ink-2">this week{isNew ? "" : `, from ${first} 8 weeks ago`}</span>
                 </p>
                 <Spark values={series} label={`Weekly dashboard views, 8 weeks: ${trend}. Latest week ${last}.`} />
               </div>

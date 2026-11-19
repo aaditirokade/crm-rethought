@@ -5,13 +5,21 @@ export function Health({ a }: { a: Pick<Account, "health" | "healthWhy"> }) {
   const tone = a.health === "Healthy" ? "text-good" : a.health === "At risk" ? "text-risk" : "text-warn";
   const icon = a.health === "Healthy" ? "●" : a.health === "At risk" ? "■" : "▲";
   const wash = a.health === "Healthy" ? "is-good" : a.health === "At risk" ? "is-risk" : "is-warn";
+  const [first, ...rest] = a.healthWhy.split(" ");
   return (
-    <span>
-      <span className={`health-pill ${wash} ${tone}`}>
-        <span aria-hidden="true">{icon} </span>
-        {a.health}
+    <span className="health-why">
+      {/* The tag, the dot and the reason's first word never break apart, so the reason always starts beside the tag. */}
+      <span className="whitespace-nowrap">
+        <span className={`health-pill ${wash} ${tone}`}>
+          <span aria-hidden="true">{icon} </span>
+          {a.health}
+        </span>
+        <span className="text-ink-2">
+          {" \u00B7 "}
+          {first}
+        </span>
       </span>
-      <span className="text-ink-2"> · {a.healthWhy}</span>
+      {rest.length ? <span className="text-ink-2"> {rest.join(" ")}</span> : null}
     </span>
   );
 }

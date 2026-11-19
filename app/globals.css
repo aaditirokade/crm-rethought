@@ -1194,8 +1194,17 @@ button.sig-source:hover {
   transform: translateY(-1px);
 }
 .spark-draw {
-  stroke-dasharray: 1;
-  animation: draw 1100ms cubic-bezier(0.3, 0.6, 0.2, 1) both;
+  /* Revealed left to right with a clip, not a dash: a dash of length 1 on a stroke that does not scale was cut short
+     in the browser, so the line stopped well before its last point and the end dot sat on its own (decision 0119). */
+  animation: spark-reveal 1100ms cubic-bezier(0.3, 0.6, 0.2, 1) both;
+}
+@keyframes spark-reveal {
+  from {
+    clip-path: inset(-4px 100% -4px -4px);
+  }
+  to {
+    clip-path: inset(-4px -4px -4px -4px);
+  }
 }
 .spark-dot {
   animation: fade-in 300ms ease 900ms both;
@@ -1690,10 +1699,7 @@ li.proto-card:focus-within::before,
 .board-item:hover .spark-dot {
   stroke-width: 8;
 }
-.board-item:hover h3 a {
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
+/* The account name no longer underlines when the tile is hovered (decision 0119); the tile's lift says it's live. */
 
 /* Buttons rise a pixel on hover and press in on click. */
 .sig-btn {
@@ -4275,4 +4281,9 @@ html[data-theme="dark"] .acct-body {
 }
 .acct-body::before {
   content: none;
+}
+
+/* A health line never breaks right after its tag or the dot: the reason starts beside the tag (decision 0119). */
+.health-why {
+  text-wrap: wrap;
 }

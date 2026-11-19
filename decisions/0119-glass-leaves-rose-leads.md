@@ -18,6 +18,8 @@
 
 **Open ended blocks and quieter drafts (next day):** Today's greeting, every page title and the phone's greeting keep their rounded top but have no bottom edge: their color, leaves and a glass sheen fade down into the page; the text never fades. Lines the AI drafted sit on a very light periwinkle (#f0f2fd; #1f2140 at night) instead of blush, with the rose edge kept as the mark; every text token still passes AA on it.
 
+**Pulse tiles, details (next day):** each tile shows this week's dashboard views as a number, with the count 8 weeks ago; the sparkline's end dot is periwinkle and sits on the line's end (a dash bug had cut the line short); the account name no longer underlines on hover; a health reason always starts beside its tag.
+
 **Options:** twelve rounds, kept in research/color-exploration: dusk palettes with circles; glass cubes, tetrahedra and prisms on dark blocks; many faced polyhedra; rounded glass cubes; six light patterns (pearl cubes, rose quartz, crystal shards, prism facets, holographic folds, ink marble); grass in two shapes; the broad leaves in six palettes; a blend of periwinkle and rose quartz with either color leading.
 
 **Why:** the art carries the weight, so the colors stay light. On a page that is mostly periwinkle and lavender, rose is the one warm color, so the actions stand out; a periwinkle button blended in. Leaves in more than one place make the whole app read as one thing.
