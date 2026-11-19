@@ -89,24 +89,20 @@ export function Review() {
         </div>
       ) : (
         <div className="mt-8 space-y-8">
-          {groups.map(({ origin, items }) => (
-            <section key={origin.key} aria-labelledby={`h-${origin.key.replace(/[^a-z0-9]/gi, "")}`}>
-              <h2 id={`h-${origin.key.replace(/[^a-z0-9]/gi, "")}`} className="text-h3 font-semibold">
-                {origin.label}
-              </h2>
-              <p className="text-small text-ink-2">
-                {origin.when ? `${origin.when} · ` : ""}
-                <Link href={origin.href} className="underline underline-offset-4">
-                  Open in context
-                </Link>
-              </p>
-              <CardRail label={origin.label} count={items.length} ai={origin.key === "opps"}>
-                {items.map((x) => (
-                  <GateLine key={x.id} sug={x} icons />
-                ))}
-              </CardRail>
-            </section>
+          {/* Meetings take the full width; what Ask drafted and what the AI spotted sit side by side (decision 0123). */}
+          {groups.filter((g) => !paired(g.origin.key)).map((g) => (
+            <Group key={g.origin.key} {...g} />
           ))}
+          {groups.some((g) => paired(g.origin.key)) ? (
+            <div className={`grid gap-8 ${groups.filter((g) => paired(g.origin.key)).length > 1 ? "xl:grid-cols-2" : ""}`}>
+              {groups
+                .filter((g) => paired(g.origin.key))
+                .sort((x, y) => (x.origin.key === "opps" ? 1 : 0) - (y.origin.key === "opps" ? 1 : 0))
+                .map((g) => (
+                  <Group key={g.origin.key} {...g} />
+                ))}
+            </div>
+          ) : null}
         </div>
       )}
       <Corrections />
@@ -121,5 +117,29 @@ export function Review() {
         </button>
       </div>
     </div>
+  );
+}
+
+const paired = (key: string) => key === "opps" || key.startsWith("ask:");
+
+function Group({ origin, items }: ReturnType<typeof groupByOrigin>[number]) {
+  const hid = `h-${origin.key.replace(/[^a-z0-9]/gi, "")}`;
+  return (
+    <section aria-labelledby={hid} className="min-w-0">
+      <h2 id={hid} className="text-h3 font-semibold">
+        {origin.label}
+      </h2>
+      <p className="text-small text-ink-2">
+        {origin.when ? `${origin.when} · ` : ""}
+        <Link href={origin.href} className="underline underline-offset-4">
+          Open in context
+        </Link>
+      </p>
+      <CardRail label={origin.label} count={items.length} ai={origin.key === "opps"}>
+        {items.map((x) => (
+          <GateLine key={x.id} sug={x} icons />
+        ))}
+      </CardRail>
+    </section>
   );
 }

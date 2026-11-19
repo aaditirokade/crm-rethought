@@ -129,9 +129,15 @@ export function PortfolioMap({ accounts }: { accounts: LiveAccount[] }) {
         const p = pts.find((q) => q.a.id === tip);
         if (!p) return null;
         const left = (p.x / W) * 100;
-        const top = ((p.y - p.r) / H) * 100;
+        // Above the bubble, or below it when the bubble sits near the top of the chart.
+        const below = p.y < H * 0.45;
+        const top = ((below ? p.y + p.r : p.y - p.r) / H) * 100;
         return (
-          <div aria-hidden="true" className="map-tip" style={{ left: `${left}%`, top: `${top}%`, ["--shift" as string]: left > 70 ? "-88%" : left < 25 ? "-12%" : "-50%" }}>
+          <div
+            aria-hidden="true"
+            className={`map-tip ${below ? "is-below" : ""}`}
+            style={{ left: `${left}%`, top: `${top}%`, ["--shift" as string]: left > 70 ? "-92%" : left < 25 ? "-8%" : "-50%" }}
+          >
             <p className="font-semibold">{p.a.name}</p>
             <dl className="mt-1 grid grid-cols-[auto_auto] gap-x-4 gap-y-0.5">
               <dt className="text-ink-2">Health</dt>

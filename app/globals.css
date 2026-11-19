@@ -4133,9 +4133,13 @@ html[data-theme="dark"] .gw-head::before {
 .map-tip {
   position: absolute;
   z-index: 5;
+  /* As wide as its longest line, never squeezed by the chart's edge, so each fact stays on one line. */
+  width: max-content;
+  max-width: none;
   transform: translate(var(--shift, -50%), calc(-100% - 10px));
   pointer-events: none;
   white-space: nowrap;
+  line-height: 1.35;
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: 0.55rem 0.75rem;
@@ -4153,4 +4157,11 @@ html[data-theme="dark"] .map-tip {
   .map-tip {
     animation: none;
   }
+}
+.map-tip.is-below {
+  transform: translate(var(--shift, -50%), 10px);
+}
+.map-tip :is(p, dt, dd) {
+  white-space: nowrap;
+  text-wrap: nowrap;
 }
