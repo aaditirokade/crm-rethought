@@ -12,7 +12,7 @@
 
 **Health in charts (next day):** the portfolio map on Accounts draws its bubbles in solid, bright health colors (mint, amber, coral; a step deeper at night) with a ring of the page around each, instead of pale tints of the text colors. The set passes the colorblind separation check in both themes; the health words and their shapes stay beside every bubble, so color is never the only cue. The renewing soon zone is a rose wash.
 
-**Accounts and hover (next day):** the map and the table sit on frosted periwinkle glass panes, Lists on the night block with leaves, and every hover wash is periwinkle instead of gray.
+**Accounts and hover (next day):** the table sits on a frosted periwinkle glass pane (the map's pane came off the same day: too many boxes; the map sits on the page), Lists on the night block with leaves, and every hover wash is periwinkle instead of gray.
 
 **Imports (next day):** the draft column mapping sits on a periwinkle wash with a periwinkle edge instead of the blush, so the page isn't all rose; its tag and Confirm button stay rose. From 1280px, Columns sits on the left and Fixes on the right, so both steps are in view together; inside Fixes the four fixes sit two across. 1 · File shows the first 30 rows in a table of fixed height that scrolls, its header pinned.
 
