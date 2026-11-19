@@ -153,7 +153,7 @@ export function PulseTiles({ s, focus }: { s: State; focus: string[] }) {
           Ranked by who needs you this week
         </Link>
       </div>
-      <ol className="mt-4 grid gap-x-10 gap-y-8 sm:grid-cols-2 xl:grid-cols-3">
+      <ol className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {ranked.map((r, i) => {
           const a = liveAccount(s, r.account.id) ?? r.account;
           const series = PULSE[a.id] ?? [];
@@ -168,7 +168,7 @@ export function PulseTiles({ s, focus }: { s: State; focus: string[] }) {
           const hit = focus.includes(a.id);
           const trend = isNew ? "New this quarter, ramping up" : `${change >= 0 ? "Up" : "Down"} ${Math.abs(change)}% in 8 weeks`;
           return (
-            <li key={a.id} className={`board-item proto-card p-4 ${dim ? "is-dim" : ""} ${hit ? "is-hit" : ""}`}>
+            <li key={a.id} className={`board-item proto-card pulse-glass p-4 ${dim ? "is-dim" : ""} ${hit ? "is-hit" : ""}`}>
               <div className="flex items-start justify-between gap-2">
                 <div>
                   <p className="font-mono text-meta text-ink-2">{String(i + 1).padStart(2, "0")}</p>
