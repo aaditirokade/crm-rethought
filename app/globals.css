@@ -3682,3 +3682,36 @@ html[data-theme="dark"] .ask-wrap.ask-wrap.ask-wrap.proto-card:has(.ask-panel.is
   bottom: 3rem; /* rooted behind Ask's top edge, so they grow out from under it */
   opacity: 0.5;
 }
+
+/* Ask stands off the greeting block (decision 0119): a thin rose edge that fades out from the top left corner. */
+html:root .ask-wrap.ask-wrap.ask-wrap.proto-card {
+  position: relative;
+}
+html:root .ask-wrap.ask-wrap.ask-wrap.proto-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: radial-gradient(130% 170% at 0% 0%, #d25a97 0%, rgb(210 90 151 / 0.55) 22%, transparent 48%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+html[data-theme="dark"] .ask-wrap.ask-wrap.ask-wrap.proto-card::before {
+  background: radial-gradient(130% 170% at 0% 0%, #f394c4 0%, rgb(243 148 196 / 0.5) 22%, transparent 48%);
+}
+/* Ask is near white over the lavender block (dark: a deeper night), so it reads as the one thing to use on Today. */
+html:not([data-theme="dark"]) .ask-wrap.ask-wrap.ask-wrap.ask-wrap.ask-wrap.proto-card {
+  border-color: #ebe8f4;
+  background: var(--sprig-r) right 1rem bottom 0 / 7rem auto no-repeat, rgb(255 255 255 / 0.92);
+  box-shadow: 0 1px 2px rgb(30 33 64 / 0.05), 0 18px 40px -20px rgb(80 70 140 / 0.35);
+}
+html[data-theme="dark"] .ask-wrap.ask-wrap.ask-wrap.ask-wrap.ask-wrap.proto-card {
+  border-color: #2c2d4a;
+  background: var(--sprig-r) right 1rem bottom 0 / 7rem auto no-repeat, #1c1d33;
+}
+html:not([data-theme="dark"]) .ask-wrap.ask-wrap .sig-btn:not(.sig-btn-primary):not(.ask-action .sig-btn) {
+  background: #f1eff9;
+}

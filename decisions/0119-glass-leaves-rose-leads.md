@@ -6,6 +6,8 @@
 
 **Round two (same day):** the leaves stop living only at the top right. Small sprigs of them sit in the corner of Ask and of Lists. (They were on the small cards too, the drafted lines and the AI cards, but looked fussy at that size and came off the same day.) On Today a second, faint layer of shorter leaves wanders toward the middle, rooted behind Ask's top edge.
 
+**Ask on Today (same day):** Ask was lavender on the lavender block and merged into it. It is now near white with a soft shadow (a deeper night in the dark), with a thin rose edge fading out from its top left corner, and pale lavender suggestion pills. Text on it is 8.6:1 or more, the pills' text 10.0:1, the field line 4.5:1. Chosen over the edge alone and the white alone.
+
 **Options:** twelve rounds, kept in research/color-exploration: dusk palettes with circles; glass cubes, tetrahedra and prisms on dark blocks; many faced polyhedra; rounded glass cubes; six light patterns (pearl cubes, rose quartz, crystal shards, prism facets, holographic folds, ink marble); grass in two shapes; the broad leaves in six palettes; a blend of periwinkle and rose quartz with either color leading.
 
 **Why:** the art carries the weight, so the colors stay light. On a page that is mostly periwinkle and lavender, rose is the one warm color, so the actions stand out; a periwinkle button blended in. Leaves in more than one place make the whole app read as one thing.
