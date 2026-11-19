@@ -109,7 +109,9 @@ export function Imports() {
         </div>
       </section>
 
-      <section aria-labelledby="h-cols" className="proto-card mt-6 p-4 sm:p-5">
+      {/* Columns on the left, fixes on the right, from 1280px (decision 0119). */}
+      <div className="mt-6 grid gap-6 xl:grid-cols-2 xl:items-start">
+      <section aria-labelledby="h-cols" className="proto-card @container min-w-0 p-4 sm:p-5">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <h2 id="h-cols" className="text-h3 font-semibold">
             2 · Columns
@@ -119,7 +121,7 @@ export function Imports() {
         <p className="text-small text-ink-2">The AI matched each column to a field and says why. Change any of them before you confirm.</p>
         <ul className={`mt-3 divide-y divide-line rounded-xl ${imp.mappingOk ? "" : "map-draft"}`}>
           {COLUMNS.map((c) => (
-            <li key={c.col} className="grid gap-2 px-3 py-3 sm:grid-cols-[10rem_14rem_minmax(0,1fr)] sm:items-center">
+            <li key={c.col} className="grid gap-2 px-3 py-3 @lg:grid-cols-[7.5rem_11rem_minmax(0,1fr)] @lg:items-center">
               <span className="font-mono text-meta font-medium tracking-wide">{c.col.toUpperCase()}</span>
               <label>
                 <span className="sr-only">Field for {c.col}</span>
@@ -150,7 +152,7 @@ export function Imports() {
         </div>
       </section>
 
-      <section aria-labelledby="h-fixes" className="proto-card mt-6 p-4 sm:p-5">
+      <section aria-labelledby="h-fixes" className="proto-card min-w-0 p-4 sm:p-5">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <h2 id="h-fixes" className="text-h3 font-semibold">
             3 · Fixes
@@ -233,6 +235,7 @@ export function Imports() {
           })}
         </ul>
       </section>
+      </div>
 
       <section aria-labelledby="h-run" className="action-bar sticky bottom-0 mt-6">
             <Leaves seed={23} count={6} scale={0.55} />
