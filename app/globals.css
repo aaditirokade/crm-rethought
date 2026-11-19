@@ -595,8 +595,8 @@ button.sig-source:hover b {
 .map-dot circle {
   transition: stroke-width 160ms ease;
 }
-/* The bubble under the pointer stays solid and gets a wider ring of the page (decision 0122). */
-.map-dot:hover circle,
+/* The bubble under the pointer stays as it is; the tooltip is the answer. Keyboard focus still gets an ink ring,
+   so it is always visible where focus is (decision 0122). */
 .map-dot:focus-visible circle {
   stroke: var(--ink);
   stroke-width: 2.5;
