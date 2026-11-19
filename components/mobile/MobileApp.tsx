@@ -329,6 +329,25 @@ function AskScreen({ go }: { go: (s: Screen) => void }) {
     setAnswer(answerFor(text));
   };
   const sources = answer ? new Set(answer.segments.flatMap((x) => x.cite ?? [])).size : 0;
+  const clearBtn = (
+        <button
+          type="button"
+          className="ask-clear"
+          onClick={() => {
+            setAnswer(null);
+            setQ("");
+            // Back up to the top of the screen, with focus on the question field.
+            const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            box.current?.closest(".mob-scroll")?.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+            field.current?.focus({ preventScroll: true });
+          }}
+        >
+          Clear
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+            <path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+          </svg>
+        </button>
+  );
   return (
     <section ref={box} aria-labelledby="m-ask-h" className="ask-wrap proto-card p-4">
       <h1 id="m-ask-h" className="text-h2 font-semibold">
@@ -408,28 +427,12 @@ function AskScreen({ go }: { go: (s: Screen) => void }) {
                   <span className="ask-next-text">{answer.next}</span>
                 </p>
               ) : null}
-              {answer.actions?.length ? <AskActions key={answer.id} items={answer.actions} answer={answer} onReview={() => go("approve")} onViewTask={(id) => { go("home"); window.setTimeout(() => { const el = document.getElementById(`task-${id}`); el?.scrollIntoView({ block: "center" }); el?.focus({ preventScroll: true }); }, 120); }} /> : null}
+              {answer.actions?.length ? <AskActions key={answer.id} items={answer.actions} answer={answer} clear={clearBtn} onReview={() => go("approve")} onViewTask={(id) => { go("home"); window.setTimeout(() => { const el = document.getElementById(`task-${id}`); el?.scrollIntoView({ block: "center" }); el?.focus({ preventScroll: true }); }, 120); }} /> : null}
               <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
                 <p className="font-mono text-meta tracking-wide text-ink-2">
                   {sources ? `${sources} SOURCES · ` : ""}NOTHING IN THE RECORD CHANGED
                 </p>
-                <button
-                  type="button"
-                  className="ask-clear"
-                  onClick={() => {
-                    setAnswer(null);
-                    setQ("");
-                    // Back up to the top of the screen, with focus on the question field.
-                    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-                    box.current?.closest(".mob-scroll")?.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
-                    field.current?.focus({ preventScroll: true });
-                  }}
-                >
-                  Clear
-                  <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
-                    <path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-                  </svg>
-                </button>
+                {answer.actions?.length ? null : clearBtn}
               </div>
             </div>
           ) : null}

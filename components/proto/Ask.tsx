@@ -59,11 +59,14 @@ export function AskActions({
   answer,
   onReview,
   onViewTask,
+  clear,
 }: {
   items: SuggestedAction[];
   answer: Answer;
   onReview?: () => void;
   onViewTask?: (id: string) => void;
+  /** The Clear button, set on the heading's line (decision 0131). */
+  clear?: React.ReactNode;
 }) {
   const s = useProto();
   const [taken, setTaken] = useState<Record<string, boolean>>({});
@@ -90,7 +93,10 @@ export function AskActions({
   };
   return (
     <section className="ask-actions mt-5" aria-label="Suggested actions">
-      <p className="font-mono text-meta tracking-wide text-ink-2">SUGGESTED ACTIONS · NOTHING HAPPENS UNTIL YOU CHOOSE ONE</p>
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <p className="font-mono text-meta tracking-wide text-ink-2">SUGGESTED ACTIONS · NOTHING HAPPENS UNTIL YOU CHOOSE ONE</p>
+        {clear}
+      </div>
       <ul className="mt-2">
         {items.map((a, i) => {
           const k = KIND[a.kind];
@@ -318,6 +324,32 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
   })();
 
   const sourceCount = answer ? new Set(answer.segments.flatMap((s) => s.cite ?? [])).size : 0;
+  const clearBtn = (
+        <button
+          type="button"
+          className="ask-clear"
+          onClick={() => {
+            stopAll();
+            setPlaying(false);
+            setAnswer(null);
+            setInput("");
+            onFocus([]);
+            // Back up to the top once the answer is cleared, with focus on the question field (Nov 2026).
+            const el = box.current;
+            if (el) {
+              const top = el.getBoundingClientRect().top + window.scrollY;
+              const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+              window.scrollTo({ top: top < window.innerHeight ? 0 : top - 24, behavior: reduce ? "auto" : "smooth" });
+            }
+            field.current?.focus({ preventScroll: true });
+          }}
+        >
+          Clear
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+            <path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+          </svg>
+        </button>
+  );
 
   return (
     <section ref={box} aria-labelledby="ask-h" className="ask-wrap proto-card p-4 sm:p-5">
@@ -450,7 +482,7 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
                 </p>
               ) : null}
 
-              {answer.actions?.length && done ? <AskActions key={answer.id} items={answer.actions} answer={answer} /> : null}
+              {answer.actions?.length && done ? <AskActions key={answer.id} items={answer.actions} answer={answer} clear={clearBtn} /> : null}
 
               {done ? <AnswerTrust key={`trust-${answer.id}`} answer={answer} /> : null}
 
@@ -459,30 +491,7 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
                   <p className="font-mono text-meta tracking-wide text-ink-2">
                     {sourceCount ? `DRAFTED FROM ${sourceCount} SOURCES · ` : ""}NOTHING IN THE RECORD CHANGED
                   </p>
-                  <button
-                    type="button"
-                    className="ask-clear"
-                    onClick={() => {
-                      stopAll();
-                      setPlaying(false);
-                      setAnswer(null);
-                      setInput("");
-                      onFocus([]);
-                      // Back up to the top once the answer is cleared, with focus on the question field (Nov 2026).
-                      const el = box.current;
-                      if (el) {
-                        const top = el.getBoundingClientRect().top + window.scrollY;
-                        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-                        window.scrollTo({ top: top < window.innerHeight ? 0 : top - 24, behavior: reduce ? "auto" : "smooth" });
-                      }
-                      field.current?.focus({ preventScroll: true });
-                    }}
-                  >
-                    Clear
-                    <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
-                      <path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-                    </svg>
-                  </button>
+                  {answer.actions?.length ? null : clearBtn}
                 </div>
               ) : null}
             </div>
