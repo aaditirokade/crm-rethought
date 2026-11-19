@@ -7,7 +7,9 @@
 import { NEXT_MOVE, OPPS, SIGNALS } from "./more";
 import { ACCOUNTS } from "./prototype";
 
-export type Segment = { text: string; cite?: string[] };
+/** A piece of an answer. Pieces with the same `item` form one bullet; pieces before the first bullet are the lead,
+ *  pieces after the last are the close (decision 0131). */
+export type Segment = { text: string; cite?: string[]; item?: number };
 export type Stat = { label: string; value: number; prefix?: string; suffix?: string };
 /**
  * An action the AI suggests from its answer. Nothing happens until the person chooses it: a draft or a task waits in
@@ -38,15 +40,13 @@ const WRITTEN: (Answer & { match: (q: string) => boolean })[] = [
     match: (q) => /fern/.test(q) && /(why|slip|risk|churn|worr|wrong|happen)/.test(q),
     steps: ["Reading 3 emails", "Reading 2 support tickets", "Reading the Oct 14 call", "Checking weekly usage", "Checking the record"],
     segments: [
-      { text: "Three things changed since your last call on Oct 14. " },
-      { text: "Dashboard use fell about 40% after their Oct 20 reorg", cite: ["usage"] },
-      { text: ". " },
-      { text: "Lena Ortiz, your day to day contact, left, and Nora Castell took over", cite: ["bounce"] },
-      { text: ". " },
-      { text: "Two tickets about late data refreshes, one still open", cite: ["t4821", "t4790"] },
-      { text: ", sit on top of a promise we missed: " },
-      { text: "the markdown report due Nov 1", cite: ["promise"] },
-      { text: ". The renewal is still set for " },
+      { text: "Three things changed since your last call on Oct 14:" },
+      { text: "Dashboard use fell about 40% after their Oct 20 reorg.", cite: ["usage"], item: 1 },
+      { text: "Lena Ortiz, your day to day contact, left; Nora Castell took over.", cite: ["bounce"], item: 2 },
+      { text: "Two tickets about late data refreshes, one still open,", cite: ["t4821", "t4790"], item: 3 },
+      { text: " on top of a promise we missed: ", item: 3 },
+      { text: "the markdown report due Nov 1.", cite: ["promise"], item: 3 },
+      { text: "The renewal is still set for " },
       { text: "Jan 25", cite: ["renewal"] },
       { text: ", but it needs a visible fix before then." },
     ],
@@ -196,3 +196,25 @@ export const PULSE: Record<string, number[]> = {
   kestrel: [300, 310, 322, 330, 341, 352, 360, 371],
   alder: [520, 515, 530, 525, 518, 522, 527, 531],
 };
+
+/** Splits an answer's pieces into its lead, its bullets and its close, keeping each piece's index. */
+export function answerBlocks(segments: Segment[]) {
+  const blocks: { kind: "p" | "li"; parts: { seg: Segment; i: number }[] }[] = [];
+  segments.forEach((seg, i) => {
+    const kind = seg.item ? "li" : "p";
+    const last = blocks.at(-1);
+    const sameItem = last && kind === "li" && last.kind === "li" && last.parts[0].seg.item === seg.item;
+    if (last && (sameItem || (kind === "p" && last.kind === "p"))) last.parts.push({ seg, i });
+    else blocks.push({ kind, parts: [{ seg, i }] });
+  });
+  // Consecutive bullets share one list.
+  const out: ({ kind: "p"; parts: { seg: Segment; i: number }[] } | { kind: "ul"; items: { seg: Segment; i: number }[][] })[] = [];
+  for (const b of blocks) {
+    const last = out.at(-1);
+    if (b.kind === "li") {
+      if (last && last.kind === "ul") last.items.push(b.parts);
+      else out.push({ kind: "ul", items: [b.parts] });
+    } else out.push({ kind: "p", parts: b.parts });
+  }
+  return out;
+}

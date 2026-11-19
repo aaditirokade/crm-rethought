@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { answerFor, confidenceOf, SUGGESTED, type Answer, type Stat, type SuggestedAction } from "@/content/ask";
+import { answerBlocks, answerFor, confidenceOf, SUGGESTED, type Answer, type Segment, type Stat, type SuggestedAction } from "@/content/ask";
 import { SOURCES } from "@/content/prototype";
 import { SourceChip } from "./Source";
 import { REASONS, actions as store, useProto } from "./store";
@@ -395,19 +395,39 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
               </ol>
 
               <div className="ask-answer mt-3 text-body leading-relaxed" aria-hidden={!done}>
-                {answer.segments.map((seg, i) => (
-                  <span key={i} className={seg.cite && segView[i]?.text ? "ask-claim" : ""}>
-                    {segView[i]?.text}
-                    {seg.cite && segView[i]?.complete && writing
-                      ? seg.cite.map((c) => (
-                          <span key={c} className="ask-cite">
-                            {" "}
-                            <SourceChip id={c} />
-                          </span>
-                        ))
-                      : null}
-                  </span>
-                ))}
+                {/* A lead line, then each finding as its own bullet, then the close (decision 0131). */}
+                {answerBlocks(answer.segments).map((blk, k) => {
+                  const piece = ({ seg, i }: { seg: Segment; i: number }) => (
+                    <span key={i} className={seg.cite && segView[i]?.text ? "ask-claim" : ""}>
+                      {segView[i]?.text}
+                      {seg.cite && segView[i]?.complete && writing
+                        ? seg.cite.map((c) => (
+                            <span key={c} className="ask-cite">
+                              {" "}
+                              <SourceChip id={c} />
+                            </span>
+                          ))
+                        : null}
+                    </span>
+                  );
+                  if (blk.kind === "p") {
+                    if (!blk.parts.some(({ i }) => segView[i]?.text)) return null;
+                    return (
+                      <p key={k} className={k ? "mt-2" : ""}>
+                        {blk.parts.map(piece)}
+                      </p>
+                    );
+                  }
+                  const items = blk.items.filter((parts) => parts.some(({ i }) => segView[i]?.text));
+                  if (!items.length) return null;
+                  return (
+                    <ul key={k} className="ask-bullets mt-2">
+                      {items.map((parts) => (
+                        <li key={parts[0].i}>{parts.map(piece)}</li>
+                      ))}
+                    </ul>
+                  );
+                })}
                 {writing && !done && shown < tl.t.filter((x) => x.text.trim()).length ? <span className="ask-caret" aria-hidden="true" /> : null}
               </div>
 
@@ -427,7 +447,7 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
               {answer.next && done ? (
                 <p className="ask-next mt-4 border-l-2 border-accent pl-3 text-small">
                   <span className="font-mono text-meta tracking-wide text-ink-2">SUGGESTED NEXT MOVE · </span>
-                  {answer.next}
+                  <span className="ask-next-text">{answer.next}</span>
                 </p>
               ) : null}
 

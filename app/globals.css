@@ -4672,3 +4672,45 @@ html:root .ask-wrap #ask-h {
   font-size: 1.1875rem;
   line-height: 1.6rem;
 }
+
+/* Ask's findings as bullets (decision 0131): a small rose dot before each, a little air between them. */
+.ask-bullets {
+  display: grid;
+  gap: 0.45rem;
+}
+.ask-bullets > li {
+  position: relative;
+  padding-left: 1.1rem;
+}
+.ask-bullets > li::before {
+  content: "";
+  position: absolute;
+  left: 0.15rem;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+/* The suggested next move in rose (decision 0131): 5.6:1 on the light Ask box, 7.6:1 on the night one. */
+html:root .ask-next-text {
+  color: #b03c77;
+  font-weight: 600;
+}
+html[data-theme="dark"] .ask-next-text {
+  color: #f394c4;
+}
+/* Its bar is rose too, and so are the bullet dots inside Ask, which otherwise took the Ask box's indigo. */
+html:root .ask-next {
+  border-left-color: #b03c77;
+}
+html[data-theme="dark"] .ask-next {
+  border-left-color: #f394c4;
+}
+html:root .ask-wrap .ask-bullets > li::before {
+  background: #b03c77;
+}
+html[data-theme="dark"] .ask-wrap .ask-bullets > li::before {
+  background: #f394c4;
+}

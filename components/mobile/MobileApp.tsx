@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { answerFor, SUGGESTED, type Answer } from "@/content/ask";
+import { answerBlocks, answerFor, SUGGESTED, type Answer, type Segment } from "@/content/ask";
 import { EVENTS } from "@/content/more";
 import { account, forMeeting, MEETINGS, NOW } from "@/content/prototype";
 import { AskActions } from "@/components/proto/Ask";
@@ -363,19 +363,32 @@ function AskScreen({ go }: { go: (s: Screen) => void }) {
             <div key={answer.question} aria-label="Answer" role="region" className="mt-4 border-t border-line pt-4">
               <p className="font-mono text-meta tracking-wide text-ink-2">YOU ASKED</p>
               <p className="font-medium">{answer.question}</p>
-              <p className="mt-3 leading-relaxed">
-                {answer.segments.map((seg, i) => (
-                  <span key={i} className="mob-seg" style={{ animationDelay: `${i * 90}ms` }}>
-                    {seg.text}
-                    {seg.cite?.map((c) => (
-                      <span key={c}>
-                        {" "}
-                        <SourceChip id={c} />
-                      </span>
-                    ))}
-                  </span>
-                ))}
-              </p>
+              <div className="mt-3 leading-relaxed">
+                {answerBlocks(answer.segments).map((blk, k) => {
+                  const piece = ({ seg, i }: { seg: Segment; i: number }) => (
+                    <span key={i} className="mob-seg" style={{ animationDelay: `${i * 90}ms` }}>
+                      {seg.text}
+                      {seg.cite?.map((c) => (
+                        <span key={c}>
+                          {" "}
+                          <SourceChip id={c} />
+                        </span>
+                      ))}
+                    </span>
+                  );
+                  return blk.kind === "p" ? (
+                    <p key={k} className={k ? "mt-2" : ""}>
+                      {blk.parts.map(piece)}
+                    </p>
+                  ) : (
+                    <ul key={k} className="ask-bullets mt-2">
+                      {blk.items.map((parts) => (
+                        <li key={parts[0].i}>{parts.map(piece)}</li>
+                      ))}
+                    </ul>
+                  );
+                })}
+              </div>
               {answer.stats.length ? (
                 <dl className="ask-stats mt-4 grid grid-cols-3 gap-2">
                   {answer.stats.map((st) => (
@@ -392,7 +405,7 @@ function AskScreen({ go }: { go: (s: Screen) => void }) {
               {answer.next ? (
                 <p className="ask-next mt-4 border-l-2 border-accent pl-3 text-small">
                   <span className="font-mono text-meta tracking-wide text-ink-2">SUGGESTED NEXT MOVE · </span>
-                  {answer.next}
+                  <span className="ask-next-text">{answer.next}</span>
                 </p>
               ) : null}
               {answer.actions?.length ? <AskActions key={answer.id} items={answer.actions} answer={answer} onReview={() => go("approve")} onViewTask={(id) => { go("home"); window.setTimeout(() => { const el = document.getElementById(`task-${id}`); el?.scrollIntoView({ block: "center" }); el?.focus({ preventScroll: true }); }, 120); }} /> : null}
