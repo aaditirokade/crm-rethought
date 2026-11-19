@@ -85,12 +85,12 @@ function Chapter({
 }
 
 const SWATCHES = [
-  { name: "Page", light: "#f7f8fc", dark: "#10111a" },
-  { name: "Sand", light: "#e5e8f3", dark: "#212433" },
-  { name: "Ink", light: "#20222b", dark: "#e8eaf2" },
-  { name: "AI", light: "#554bf5", dark: "#9a95ff" },
-  { name: "AI wash", light: "#edf1fc", dark: "#23242e" },
-  { name: "Charts", light: "#009aa3", dark: "#00E5E5" },
+  { name: "Page", light: "#f9f8fc", dark: "#11111c" },
+  { name: "Mist", light: "#ece9f5", dark: "#24243a" },
+  { name: "Ink", light: "#1e2140", dark: "#eceefa" },
+  { name: "Rose: AI, actions", light: "#b03c77", dark: "#f394c4" },
+  { name: "Draft wash", light: "#fbedf4", dark: "#262036" },
+  { name: "Charts", light: "#6576d4", dark: "#8f9cf0" },
 ];
 
 const CHAPTERS: RailChapter[] = [
@@ -308,7 +308,7 @@ export default function Home() {
           <Chapter
             n="04"
             kicker="Design system"
-            title="Calm to use all day, violet only where the AI speaks"
+            title="Calm to use all day, rose where the AI asks you to act"
             flip
             narrow
             visual={
@@ -332,10 +332,10 @@ export default function Home() {
             }
           >
             <p>
-              Space and rules instead of boxes, one friendly typeface, cream and warm charcoal.
+              Space and rules instead of boxes, one friendly typeface, and one material: soft periwinkle blocks with glass leaves, night periwinkle in the dark.
             </p>
             <p>
-              Violet belongs to the AI alone.
+              Rose is the one warm color, for the AI and the actions it asks for. Periwinkle carries the data.
             </p>
             <p>
               <Link href="/tokens" className="font-medium text-ink underline underline-offset-4">

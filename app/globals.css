@@ -1598,12 +1598,12 @@ li.proto-card:focus-within {
   border-radius: 3px;
 }
 .cov-yes {
-  background: #2f7f90;
+  background: #4e5fc4; /* periwinkle, white text 5.9:1 (decision 0119) */
   color: #ffffff;
 }
 .cov-partly {
-  background: #b9dde4;
-  color: #20222b;
+  background: #c8d0f6;
+  color: #1e2140;
 }
 .cov-none {
   background: var(--surface-2);
@@ -1611,21 +1611,21 @@ li.proto-card:focus-within {
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .cov-yes {
-    background: #8fd0dd;
-    color: #10111a;
+    background: #a6b2f4;
+    color: #11111c;
   }
   :root:not([data-theme="light"]) .cov-partly {
-    background: #34606b;
-    color: #e8eaf2;
+    background: #3a4280;
+    color: #eceefa;
   }
 }
 :root[data-theme="dark"] .cov-yes {
-  background: #8fd0dd;
-  color: #10111a;
+  background: #a6b2f4;
+  color: #11111c;
 }
 :root[data-theme="dark"] .cov-partly {
-  background: #34606b;
-  color: #e8eaf2;
+  background: #3a4280;
+  color: #eceefa;
 }
 
 /* Micro interactions, round two (decision 0024): every row, card and button answers the pointer. */

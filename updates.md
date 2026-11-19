@@ -144,3 +144,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - 2026-11-18: little leaves in the corners of drafted lines, Ask, Lists, the AI cards and the phone's cards, and faint low leaves across Today's greeting (decision 0119).
 - 2026-11-18: no little leaves on the small cards (drafted lines, AI cards, the phone's cards); Ask and Lists keep theirs (decision 0119).
 - 2026-11-19: Ask on Today is near white with a rose edge from its top left corner, so it stands off the greeting block (decision 0119).
+- 2026-11-19: the case study's design system chapter and the research coverage chart follow the new palette (decision 0119).
