@@ -4610,3 +4610,39 @@ html:root section.gw-night[aria-labelledby="h-lists"] .gw-leaves {
 }
 /* Every text color here is checked against the brightest point of the block behind it: ink 7:1 or more, secondary
    text 4.6:1 or more, so no rose text sits on the block (the rose stays on the button, which has its own fill). */
+
+/* People in the meeting, level with the line that names them (decision 0129): each sits at that line's height with
+   a rose pointer toward it; people no line names follow below. */
+.people-col .person-pin {
+  position: relative;
+  margin-bottom: 0.75rem;
+}
+@media (min-width: 1024px) {
+  .people-col .person-pin.is-placed {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0;
+  }
+  .people-col .person-pin.has-line::before {
+    content: "";
+    position: absolute;
+    top: 0.55rem;
+    left: calc(-1.5rem - 2rem - 6px);
+    width: calc(1.5rem + 2rem - 2px);
+    border-top: 1.5px dashed color-mix(in srgb, var(--accent) 65%, transparent);
+  }
+  .people-col .person-pin.has-line::after {
+    content: "";
+    position: absolute;
+    top: calc(0.55rem - 3px);
+    left: calc(-1.5rem - 2rem - 10px);
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: var(--accent);
+  }
+}
+.gw-block.brief-side {
+  overflow: visible;
+}

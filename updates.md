@@ -178,3 +178,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - 2026-11-19: Today's side panel lines up with the first row of pulse tiles, one fixed height (decision 0127).
 - 2026-11-19: briefs: what changed and the open promises side by side on their own surfaces; side panel on the leaves block (decision 0128).
 - 2026-11-19: Lists on Accounts: larger type and every text color passing AA on the night block (decision 0119).
+- 2026-11-19: briefs: each person in the meeting sits level with the line that names them, pointing at it (decision 0129).

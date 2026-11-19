@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { forMeeting, meeting, type Suggestion } from "@/content/prototype";
 import { PageHead } from "../bits";
 import { Leaves } from "../Leaves";
@@ -32,8 +32,48 @@ function fromApprovedLog(s: State, sourceMeeting: string): { section: string; it
 export function Brief({ id }: { id: string }) {
   const s = useProto();
   const [showHidden, setShowHidden] = useState(false);
+  const row = useRef<HTMLDivElement>(null);
+  const [placed, setPlaced] = useState<Record<string, number> | null>(null);
+  const [placedHeight, setPlacedHeight] = useState(0);
   const m = meeting(id);
   const a = m ? liveAccount(s, m.account) : undefined;
+  const people = m?.attendees.join("|") ?? "";
+  useLayoutEffect(() => {
+    const el = row.current;
+    if (!el || !people) return;
+    const measure = () => {
+      if (!window.matchMedia("(min-width: 1024px)").matches) return setPlaced(null);
+      const col = el.querySelector<HTMLElement>(".people-col");
+      const lines = [...el.querySelectorAll<HTMLElement>("[data-brief-first] li")];
+      if (!col) return;
+      const base = col.getBoundingClientRect().top;
+      const pins = [...col.querySelectorAll<HTMLElement>(".person-pin")];
+      const out: Record<string, number> = {};
+      // Each person wants the height of the line that names them; people no line names go last. Placed top down,
+      // never overlapping.
+      const wants = people.split("|").map((name, k) => {
+        const hit = lines.find((li) => li.textContent?.includes(name) || li.textContent?.includes(name.split(" ")[0]));
+        return { name, k, want: hit ? hit.getBoundingClientRect().top - base + 4 : Infinity };
+      });
+      wants.sort((x, y) => x.want - y.want);
+      let floor = 0;
+      for (const w of wants) {
+        const y = Math.max(w.want === Infinity ? floor : w.want, floor);
+        out[w.name] = Math.round(y);
+        floor = y + (pins[w.k]?.offsetHeight ?? 48) + 12;
+      }
+      setPlaced(out);
+      setPlacedHeight(Math.round(floor));
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    window.addEventListener("resize", measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, [people, s]);
   if (!m || !a) return null;
 
   const groups: { section: string; items: Suggestion[] }[] = m.fromLog
@@ -53,10 +93,19 @@ export function Brief({ id }: { id: string }) {
     for (const g of groups) g.items = g.items.filter((x) => x.confidence !== "Medium");
   }
 
-  const promiseAt = groups.findIndex((g) => /^Promises/.test(g.section));
-  const pairIdx = promiseAt > 0 ? [0, promiseAt] : groups.length > 1 && groups[0].items.length + groups[1].items.length > 2 ? [0, 1] : [];
-  const pair = pairIdx.map((k) => groups[k]);
-  const rest = groups.filter((_, k) => !pairIdx.includes(k));
+  const first = groups[0];
+  const later = groups.slice(1);
+  // Below the first row: the promises beside the next section, then the rest.
+  const promiseAt = later.findIndex((g) => /^Promises/.test(g.section));
+  const lead = promiseAt >= 0 ? [later[promiseAt], ...later.filter((_, k) => k !== promiseAt)] : later;
+  const after1 = lead.slice(0, 2);
+  const after2 = lead.slice(2);
+  // Which line of the first section names each person in the meeting.
+  const mentions: Record<string, string> = {};
+  for (const name of m.attendees) {
+    const hit = first?.items.find((x) => textOf(s, x).includes(name) || textOf(s, x).includes(name.split(" ")[0]));
+    if (hit) mentions[name] = textOf(s, hit);
+  }
   const pins = groups.flatMap((g) => g.items).filter((x) => s.pinned.includes(x.id) && entryOf(s, x.id).status !== "dismissed");
   const waitingFromLog = m.fromLog ? pending(s, (x) => x.meeting === m.fromLog).length : 0;
   const total = groups.reduce((n, g) => n + g.items.filter((x) => x.kind !== "fix").length, 0);
@@ -87,8 +136,9 @@ export function Brief({ id }: { id: string }) {
           : `DRAFTED BY AI FROM ${new Set(groups.flatMap((g) => g.items.flatMap((x) => x.sources))).size} SOURCES · A PRIVATE DRAFT, NOTHING HERE SAVES`}
       </p>
 
-      <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1fr)_20rem] 2xl:grid-cols-[minmax(0,1fr)_24rem]">
-        <div className="space-y-8">
+      {/* The people in the meeting sit beside what changed, each level with the line that names them (decision 0129). */}
+      <div ref={row} className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1fr)_20rem] 2xl:grid-cols-[minmax(0,1fr)_24rem]">
+        <div className="min-w-0 space-y-8" data-brief-first>
           {groups.length === 0 ? (
             <div className="proto-card p-5">
               <p className="font-semibold">Nothing approved from Nov 12 yet</p>
@@ -101,15 +151,52 @@ export function Brief({ id }: { id: string }) {
               </Link>
             </div>
           ) : null}
-          {/* What changed and the promises still open sit side by side; the rest follow full width (decision 0128). */}
-          {pair.length ? (
-            <div className="grid gap-6 xl:grid-cols-2 xl:items-start">
-              {pair.map((g, k) => (
-                <BriefGroup key={g.section} g={g} tone={k === 0 ? "pane" : "promise"} />
+          {first ? <BriefGroup g={first} tone="pane" /> : null}
+        </div>
+
+        <aside className="gw-block brief-side lg:self-stretch">
+          {/* Leaves clipped to the block, so the pointers can reach out of it toward the lines. */}
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-[inherit]">
+            <Leaves seed={31} count={6} scale={0.7} />
+          </div>
+          <section aria-labelledby="h-people" className="flex h-full flex-col">
+            <h2 id="h-people" className="text-h3 font-semibold">
+              In this meeting
+            </h2>
+            <ul className="people-col relative mt-3 flex-1" style={{ minHeight: placed ? placedHeight : undefined }}>
+              {m.attendees.map((name) => {
+                const p = a.people.find((x) => x.name === name);
+                const y = placed?.[name];
+                return (
+                  <li
+                    key={name}
+                    className={`person-pin ${y !== undefined ? "is-placed" : ""} ${mentions[name] ? "has-line" : ""}`}
+                    style={y !== undefined ? { top: y } : undefined}
+                  >
+                    <p className="font-medium">{name}</p>
+                    <p className="text-small text-ink-2">{p ? p.role : "Not in the record yet"}</p>
+                    {mentions[name] ? <span className="sr-only">. Mentioned in: {mentions[name]}</span> : null}
+                  </li>
+                );
+              })}
+            </ul>
+            <Link href={`/prototype/accounts/${a.id}`} className="mt-4 inline-block text-small font-medium underline underline-offset-4">
+              Open the {a.name} record
+            </Link>
+          </section>
+        </aside>
+      </div>
+
+      <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_20rem] 2xl:grid-cols-[minmax(0,1fr)_24rem]">
+        <div className="min-w-0 space-y-8">
+          {after1.length ? (
+            <div className={`grid gap-6 xl:items-start ${after1.length > 1 ? "xl:grid-cols-2" : ""}`}>
+              {after1.map((g) => (
+                <BriefGroup key={g.section} g={g} tone={/^Promises/.test(g.section) ? "promise" : "pane"} />
               ))}
             </div>
           ) : null}
-          {rest.map((g) => (
+          {after2.map((g) => (
             <BriefGroup key={g.section} g={g} tone="pane" />
           ))}
           {hidden ? (
@@ -131,29 +218,7 @@ export function Brief({ id }: { id: string }) {
             </p>
           ) : null}
         </div>
-
-        <aside className="gw-block brief-side space-y-6 lg:self-start">
-          <Leaves seed={31} count={6} scale={0.7} />
-          <section aria-labelledby="h-people">
-            <h2 id="h-people" className="text-h3 font-semibold">
-              In this meeting
-            </h2>
-            <ul className="mt-3 space-y-3">
-              {m.attendees.map((name) => {
-                const p = a.people.find((x) => x.name === name);
-                return (
-                  <li key={name}>
-                    <p className="font-medium">{name}</p>
-                    <p className="text-small text-ink-2">{p ? p.role : "Not in the record yet"}</p>
-                  </li>
-                );
-              })}
-            </ul>
-            <Link href={`/prototype/accounts/${a.id}`} className="mt-4 inline-block text-small font-medium underline underline-offset-4">
-              Open the {a.name} record
-            </Link>
-          </section>
-
+        <aside className="space-y-6 lg:self-start">
           {pins.length ? (
             <section aria-labelledby="h-pins" className="border-t border-line pt-5">
               <h2 id="h-pins" className="text-h3 font-semibold">
@@ -171,7 +236,6 @@ export function Brief({ id }: { id: string }) {
               </ul>
             </section>
           ) : null}
-
           <section className="border-t border-dashed border-line-strong pt-4">
             <h2 className="font-mono text-meta tracking-wide text-ink-2">HOW TO READ THIS BRIEF</h2>
             <p className="mt-2 text-small text-ink-2">
@@ -179,7 +243,6 @@ export function Brief({ id }: { id: string }) {
               it waits for you.
             </p>
           </section>
-
           {m.hasLog ? (
             <Link href={`/prototype/log/${m.id}`} className="sig-btn">
               After the call: review the log

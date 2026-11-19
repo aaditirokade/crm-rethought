@@ -122,3 +122,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0126 | [Flat: no elevation anywhere](0126-flat.md) | 2026-11-19 |
 | 0127 | [Today's side panel turns, with arrows](0127-side-panel-carousel.md) | 2026-11-19 |
 | 0128 | [The brief: what changed and the open promises side by side](0128-brief-layout.md) | 2026-11-19 |
+| 0129 | [The people in a meeting sit level with the lines that name them](0129-people-beside-lines.md) | 2026-11-19 |
