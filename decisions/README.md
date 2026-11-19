@@ -126,3 +126,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0130 | [One block from the top](0130-one-block-from-the-top.md) | 2026-11-19 |
 | 0131 | [Ask answers in bullets; the next move in rose](0131-ask-bullets.md) | 2026-11-19 |
 | 0132 | [Confidence as bars and a color](0132-confidence-bars.md) | 2026-11-19 |
+| 0133 | [Case study clips re-recorded in the new look](0133-case-media-new-look.md) | 2026-11-19 |

@@ -187,7 +187,7 @@ export default function Home() {
               name="ask"
               width={1520}
               height={960}
-              alt="Ask about any account: a person picks “Why is Fernhill slipping?”, the AI reads emails, tickets, the last call and usage, then answers with a source on every claim, three numbers, a suggested next move and suggested actions. Choosing “Draft it” drafts a note, and “Review it” opens Review with that note at the top, ready to approve."
+              alt="Ask about any account: a person picks “Why is Fernhill slipping?”, the AI reads emails, tickets, the last call and usage, then answers in three bullets with a source on every claim, three numbers, a suggested next move and suggested actions. Choosing “Draft it” drafts a note, and “Review it” opens Review, where the note waits under Drafted from Ask, ready to approve."
             />
           </div>
         </header>
