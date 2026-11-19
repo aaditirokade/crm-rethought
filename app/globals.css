@@ -4412,3 +4412,27 @@ html:root .pipe-card:hover {
   transform: none;
   box-shadow: none;
 }
+
+/* No elevation on the glass cards either (decision 0125): Reach out this week and Account pulse keep their glass
+   fill and a thin bright edge, without a drop shadow, in every state. */
+html:root .reach-card.pulse-glass,
+html:root .reach-card.pulse-glass:hover,
+html:root .reach-card.pulse-glass:focus-within,
+html:root .board-item.proto-card.pulse-glass,
+html:root .board-item.proto-card.pulse-glass:hover,
+html:root .board-item.proto-card.pulse-glass:focus-within {
+  border-color: var(--line);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.9);
+}
+html[data-theme="dark"] .reach-card.pulse-glass,
+html[data-theme="dark"] .reach-card.pulse-glass:hover,
+html[data-theme="dark"] .reach-card.pulse-glass:focus-within,
+html[data-theme="dark"] .board-item.proto-card.pulse-glass,
+html[data-theme="dark"] .board-item.proto-card.pulse-glass:hover,
+html[data-theme="dark"] .board-item.proto-card.pulse-glass:focus-within {
+  border-color: rgb(255 255 255 / 0.1);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.1);
+}
+html:root .board-item.proto-card.pulse-glass.is-hit {
+  box-shadow: 0 0 0 2px var(--accent);
+}

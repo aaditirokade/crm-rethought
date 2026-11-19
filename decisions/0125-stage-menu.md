@@ -4,7 +4,7 @@
 
 **Decision:** the stage field on each pipeline card ("In Qualified") is a field drawn like the cards, and choosing it opens a small panel right below it with the four stages, the current one checked in rose. It replaces the system's native menu, which opened over the card in the operating system's own style.
 
-**Flat cards (same day):** the pipeline cards and the AI's suggestion cards have no shadow and no longer lift under the pointer; a thin line edges them. They can still be dragged.
+**Flat cards (same day):** the pipeline cards and the AI's suggestion cards have no shadow and no longer lift under the pointer; a thin line edges them. They can still be dragged. The glass cards on Opportunities (Reach out this week) and Today (Account pulse) lose their drop shadow too, keeping a thin edge.
 
 **Why:** the native menu jumped over the card and looked foreign next to the glass cards and pills.
 
