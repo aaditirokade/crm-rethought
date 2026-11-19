@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { EVENTS } from "@/content/more";
 import { account, MEETINGS, NOW } from "@/content/prototype";
 import { Ask } from "../Ask";
@@ -184,6 +184,28 @@ type Slide = { id: string; title: string; sub: string; body: React.ReactNode };
 function SidePanel({ slides }: { slides: Slide[] }) {
   const [i, setI] = useState(0);
   const at = Math.min(i, slides.length - 1);
+  const box = useRef<HTMLElement>(null);
+  // The panel lines up with the first row of pulse tiles beside it: same top, same height, whatever it holds.
+  const [fit, setFit] = useState<{ top: number; height: number } | null>(null);
+  useEffect(() => {
+    const el = box.current;
+    const tile = document.querySelector<HTMLElement>(".pulse-glass");
+    if (!el || !tile) return;
+    const measure = () => {
+      if (!window.matchMedia("(min-width: 1024px)").matches) return setFit(null);
+      const parent = el.parentElement!.getBoundingClientRect().top;
+      const t = tile.getBoundingClientRect();
+      setFit({ top: Math.round(t.top - parent), height: Math.round(t.height) });
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(tile);
+    window.addEventListener("resize", measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
   const cur = slides[at];
   useEffect(() => {
     const toTasks = () => setI(Math.max(0, slides.findIndex((x) => x.id === "tasks")));
@@ -195,7 +217,13 @@ function SidePanel({ slides }: { slides: Slide[] }) {
     window.setTimeout(() => document.getElementById("side-h")?.focus({ preventScroll: true }), 0);
   };
   return (
-    <section aria-roledescription="carousel" aria-label="Your day, more" className="gw-block side-panel lg:self-start">
+    <section
+      ref={box}
+      aria-roledescription="carousel"
+      aria-label="Your day, more"
+      className="gw-block side-panel lg:self-start"
+      style={fit ? { marginTop: fit.top, height: fit.height, minHeight: 0 } : undefined}
+    >
       <Leaves seed={7 + at} count={6} scale={0.7} />
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0" aria-live="polite">

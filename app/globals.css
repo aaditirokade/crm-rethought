@@ -4549,3 +4549,9 @@ html:root .gw-block.side-panel .gw-leaves {
 .gw-block.side-panel > .side-slide {
   flex: 1;
 }
+/* With a fixed height, a long section scrolls inside the panel instead of stretching it (decision 0127). */
+.gw-block.side-panel > .side-slide {
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}

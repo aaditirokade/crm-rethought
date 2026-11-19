@@ -170,7 +170,7 @@ export function PulseTiles({ s, focus }: { s: State; focus: string[] }) {
           return (
             <li key={a.id} className={`board-item proto-card pulse-glass p-4 ${dim ? "is-dim" : ""} ${hit ? "is-hit" : ""}`}>
               <div className="flex items-start justify-between gap-2">
-                <div>
+                <div className="min-w-0 flex-1">
                   <p className="font-mono text-meta text-ink-2">{String(i + 1).padStart(2, "0")}</p>
                   <h3 className="font-semibold">
                     <Link href={`/prototype/accounts/${a.id}`} className="hover:underline">
