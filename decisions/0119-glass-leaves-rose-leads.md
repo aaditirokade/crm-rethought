@@ -20,6 +20,8 @@
 
 **Pulse tiles, details (next day):** each tile shows this week's dashboard views as a number, with the count 8 weeks ago; the sparkline's end dot is periwinkle and sits on the line's end (a dash bug had cut the line short); the account name no longer underlines on hover, and the tiles and reach cards no longer lift, deepen their shadow or move their streak under the pointer, since they are not links; a health reason always starts beside its tag.
 
+**Lists, AA and size (next day):** text in Lists is a size up (15px; labels 12.5px); the placeholder is a solid light gray (7.8:1), the disabled Make list button a solid muted fill (7.6:1) instead of half transparent pink, and the leaves behind it are faint enough that, at the brightest point of the block, white text is 7:1 or more and secondary text 4.6:1 or more.
+
 **Options:** twelve rounds, kept in research/color-exploration: dusk palettes with circles; glass cubes, tetrahedra and prisms on dark blocks; many faced polyhedra; rounded glass cubes; six light patterns (pearl cubes, rose quartz, crystal shards, prism facets, holographic folds, ink marble); grass in two shapes; the broad leaves in six palettes; a blend of periwinkle and rose quartz with either color leading.
 
 **Why:** the art carries the weight, so the colors stay light. On a page that is mostly periwinkle and lavender, rose is the one warm color, so the actions stand out; a periwinkle button blended in. Leaves in more than one place make the whole app read as one thing.

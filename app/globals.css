@@ -4571,3 +4571,42 @@ html:root .gw-block.side-panel .gw-leaves {
 html:root .gw-block.brief-side .gw-leaves {
   opacity: 0.4;
 }
+
+/* Lists on the night block, larger and checked for AA (decision 0119): small text a size up (15px, labels 12.5px),
+   the placeholder a solid light gray (7.6:1 or more), and the disabled button a solid muted fill whose label still
+   reads (5.3:1) instead of a half transparent pink. */
+.gw-night {
+  font-size: 1rem;
+}
+.gw-night .text-small,
+.gw-night .sig-btn,
+.gw-night .proto-input {
+  font-size: 0.9375rem;
+  line-height: 1.45rem;
+}
+.gw-night .text-meta {
+  font-size: 0.78125rem;
+  line-height: 1.15rem;
+}
+.gw-night .text-h3 {
+  font-size: 1.1875rem;
+}
+.gw-night .proto-input::placeholder {
+  color: #b8bdd6;
+  opacity: 1;
+}
+html:root .gw-night .sig-btn.sig-btn-primary:disabled {
+  opacity: 1;
+  background: #4a3a5e;
+  border-color: #4a3a5e;
+  color: #e4dcea;
+}
+.gw-night .sig-source {
+  font-size: 0.8125rem;
+}
+/* Text runs right across Lists, so its leaves stay faint enough that every line keeps AA where it crosses them. */
+html:root section.gw-night[aria-labelledby="h-lists"] .gw-leaves {
+  opacity: 0.14;
+}
+/* Every text color here is checked against the brightest point of the block behind it: ink 7:1 or more, secondary
+   text 4.6:1 or more, so no rose text sits on the block (the rose stays on the button, which has its own fill). */
