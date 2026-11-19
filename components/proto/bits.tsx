@@ -14,12 +14,13 @@ export function Health({ a }: { a: Pick<Account, "health" | "healthWhy"> }) {
           <span aria-hidden="true">{icon} </span>
           {a.health}
         </span>
-        <span className="text-ink-2">
+        {/* The reason wears the tag's color, so the two read as one (decision 0120); every pair passes AA. */}
+        <span className={`font-medium ${tone}`}>
           {" \u00B7 "}
           {first}
         </span>
       </span>
-      {rest.length ? <span className="text-ink-2"> {rest.join(" ")}</span> : null}
+      {rest.length ? <span className={`font-medium ${tone}`}> {rest.join(" ")}</span> : null}
     </span>
   );
 }

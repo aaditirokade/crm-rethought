@@ -174,3 +174,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - 2026-11-19: Reach out cards and Account pulse tiles lose their drop shadow (decision 0125).
 - 2026-11-19: no drop shadows anywhere; floating panels keep a firmer edge (decision 0126).
 - 2026-11-19: Today: the side sections are one wider panel that turns with arrows (decision 0127).
+- 2026-11-19: health reasons take their tag's color (decision 0120).
