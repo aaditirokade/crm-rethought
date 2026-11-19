@@ -114,3 +114,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0108 | [The new contact at Fernhill is Nora Castell](0108-new-contact-name.md) | 2026-11-14 |
 | 0119 | [Glass leaves and rose leads](0119-glass-leaves-rose-leads.md) | 2026-11-18 |
 | 0120 | [Reach out as a row of cards; health as a filled tag](0120-reach-out-row.md) | 2026-11-19 |
+| 0121 | [Sources open in a popover, not a drawer](0121-source-popover.md) | 2026-11-19 |

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { EVENTS } from "@/content/more";
 import { SOURCES, SUGGESTIONS, type Source } from "@/content/prototype";
@@ -32,49 +32,105 @@ export function useSource(id: string): Source | undefined {
 }
 
 /**
- * The signature source chip. Opens a drawer with the excerpt the line rests on.
- * The drawer is portaled to the body only while open, so a chip can sit inside any text.
+ * The signature source chip. Opens a small popover beside the chip with the excerpt the line rests on, sized to its
+ * content and pointing at the chip (decision 0121; it was a full height side drawer). It sits below the chip, or
+ * above when there is no room, and closes with Escape, a click outside or its Close button, returning focus to the
+ * chip. Portaled to the body only while open, so a chip can sit inside any text.
  */
 export function SourceChip({ id }: { id: string }) {
   const [open, setOpen] = useState(false);
+  const [pos, setPos] = useState<{ top: number; left: number; arrow: number; above: boolean } | null>(null);
+  const chip = useRef<HTMLButtonElement>(null);
+  const pop = useRef<HTMLDivElement>(null);
   const src = useSource(id);
-  if (!src) return null;
   const titleId = `src-${id.replace(/[^a-z0-9]/gi, "")}-${Math.abs(hash(id))}`;
+
+  const place = useCallback(() => {
+    const c = chip.current?.getBoundingClientRect();
+    const p = pop.current;
+    if (!c || !p) return;
+    const w = p.offsetWidth;
+    const h = p.offsetHeight;
+    const gap = 10;
+    const margin = 12;
+    const above = c.bottom + gap + h > window.innerHeight - margin && c.top - gap - h > margin;
+    const center = c.left + c.width / 2;
+    const left = Math.min(Math.max(center - w / 2, margin), window.innerWidth - w - margin);
+    setPos({ top: above ? c.top - gap - h : c.bottom + gap, left, arrow: Math.min(Math.max(center - left, 18), w - 18), above });
+  }, []);
+
+  const close = useCallback((refocus = true) => {
+    setOpen(false);
+    setPos(null);
+    if (refocus) chip.current?.focus();
+  }, []);
+
+  useLayoutEffect(() => {
+    if (!open) return;
+    place();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+    };
+    const onDown = (e: PointerEvent) => {
+      const t = e.target as Node;
+      if (!pop.current?.contains(t) && !chip.current?.contains(t)) close(false);
+    };
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("pointerdown", onDown);
+    window.addEventListener("resize", place);
+    window.addEventListener("scroll", place, true);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("resize", place);
+      window.removeEventListener("scroll", place, true);
+    };
+  }, [open, place, close]);
+
+  // Focus moves into the popover once it is placed (it is hidden until then, and hidden things cannot take focus).
+  const placed = pos !== null;
+  useEffect(() => {
+    if (open && placed) pop.current?.focus();
+  }, [open, placed]);
+
+  if (!src) return null;
   return (
     <>
-      <button type="button" className="sig-source" onClick={() => setOpen(true)}>
+      <button
+        ref={chip}
+        type="button"
+        className="sig-source"
+        aria-expanded={open}
+        aria-haspopup="dialog"
+        onClick={() => (open ? close() : setOpen(true))}
+      >
         <b>{src.kind}</b> {src.when}
         <span className="sr-only">, open source</span>
       </button>
       {open
         ? createPortal(
-            <dialog
-              ref={(el) => {
-                if (el && !el.open) el.showModal();
-              }}
+            <div
+              ref={pop}
+              role="dialog"
               aria-labelledby={titleId}
-              className="sig proto-drawer"
-              onClose={() => setOpen(false)}
-              onClick={(e) => {
-                if (e.target === e.currentTarget) e.currentTarget.close();
-              }}
+              tabIndex={-1}
+              className={`sig src-pop ${pos?.above ? "is-above" : ""}`}
+              style={pos ? { top: pos.top, left: pos.left, ["--arrow" as string]: `${pos.arrow}px` } : { visibility: "hidden", top: 0, left: 0 }}
             >
-              <div className="flex h-full flex-col p-6">
-                <p className="font-mono text-meta tracking-wide text-ink-2">
-                  SOURCE · {src.kind} · {src.when}
-                </p>
-                <h2 id={titleId} className="mt-1 text-h3 font-semibold">
-                  {src.title}
-                </h2>
-                <blockquote className="mt-5 border-l-2 border-line-strong pl-4 leading-relaxed">{src.excerpt}</blockquote>
-                <p className="mt-6 text-small text-ink-2">
-                  In a live product this opens the email, ticket, record or call recording at this exact moment.
-                </p>
-                <form method="dialog" className="mt-auto pt-6">
-                  <button className="sig-btn">Close</button>
-                </form>
+              <p className="font-mono text-meta tracking-wide text-ink-2">
+                SOURCE · {src.kind} · {src.when}
+              </p>
+              <h2 id={titleId} className="mt-1 font-semibold">
+                {src.title}
+              </h2>
+              <blockquote className="mt-3 border-l-2 border-accent pl-3 text-small leading-relaxed">{src.excerpt}</blockquote>
+              <div className="mt-3 flex items-end justify-between gap-4">
+                <p className="text-meta text-ink-2">A live product opens the email, ticket or call at this moment.</p>
+                <button type="button" className="sig-btn shrink-0" onClick={() => close()}>
+                  Close
+                </button>
               </div>
-            </dialog>,
+            </div>,
             document.body,
           )
         : null}
