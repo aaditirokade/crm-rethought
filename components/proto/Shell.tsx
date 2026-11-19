@@ -59,7 +59,10 @@ export function Shell({ children }: { children: React.ReactNode }) {
         Skip to content
       </a>
 
-      <header className="w-full px-5 md:px-8 lg:pl-32 lg:pr-8 flex items-center justify-between gap-3 pt-5">
+      {/* The top bar sits on the page's title block (decision 0130): the block reaches up under it, so the logo and the
+          title share one background, and its content lines up with the title inside the block. */}
+      <header className="gw-topbar relative z-10 w-full px-5 md:px-8 lg:pl-32 lg:pr-8 pt-5">
+        <div className="flex items-center justify-between gap-3 px-6 sm:px-9">
         <Link href="/prototype" className="flex items-center gap-2 font-semibold">
           <span aria-hidden="true" className="grid h-7 w-7 place-items-center rounded-2xl bg-ink font-mono text-meta text-bg">
             G
@@ -76,6 +79,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
           <a href={BASE || "/"} className="sig-btn whitespace-nowrap">
             <span aria-hidden="true">←</span> Case study
           </a>
+        </div>
         </div>
       </header>
 
@@ -122,7 +126,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
         </div>
       </nav>
 
-      <main id="main" tabIndex={-1} className="relative w-full px-5 md:px-8 lg:pl-32 lg:pr-8 pt-10 pb-32 outline-none lg:pb-12">
+      <main id="main" tabIndex={-1} className="relative w-full px-5 md:px-8 lg:pl-32 lg:pr-8 pt-3 pb-32 outline-none lg:pb-12">
         <div className="relative">{children}</div>
         <ScrollNext key={path} next={next} prev={prev} />
       </main>

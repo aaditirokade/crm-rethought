@@ -4646,3 +4646,23 @@ html:root section.gw-night[aria-labelledby="h-lists"] .gw-leaves {
 .gw-block.brief-side {
   overflow: visible;
 }
+
+/* One block from the top (decision 0130): Today's greeting and every page title reach up behind the top bar, so the
+   logo, the bar and the title sit on the same leaves block, and the title moves up. */
+.gw-topbar ~ main .gw-hero,
+.gw-topbar ~ main .gw-head {
+  margin-top: -3.5rem;
+  padding-top: 4.5rem;
+}
+.gw-topbar ~ main .gw-head {
+  padding-bottom: 2.25rem;
+}
+@media (min-width: 640px) {
+  .gw-topbar ~ main .gw-hero {
+    padding-top: 5rem;
+  }
+  .gw-topbar ~ main .gw-head {
+    padding-top: 4.75rem;
+    padding-bottom: 2.75rem;
+  }
+}
