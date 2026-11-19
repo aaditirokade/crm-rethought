@@ -4555,3 +4555,19 @@ html:root .gw-block.side-panel .gw-leaves {
   overflow-y: auto;
   scrollbar-width: thin;
 }
+
+/* Brief (decision 0128): sections on surfaces instead of the bare page, and the side on the leaves block. */
+.promise-pane {
+  border: 1px solid color-mix(in srgb, var(--warn) 22%, transparent);
+  border-radius: 24px;
+  padding: 1.25rem 1.5rem;
+  background:
+    radial-gradient(140% 110% at 100% 0%, color-mix(in srgb, var(--warn) 10%, transparent), transparent 65%),
+    color-mix(in srgb, var(--warn) 5%, var(--surface));
+}
+.gw-block.brief-side {
+  padding: 1.5rem;
+}
+html:root .gw-block.brief-side .gw-leaves {
+  opacity: 0.4;
+}

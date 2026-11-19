@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { forMeeting, meeting, type Suggestion } from "@/content/prototype";
 import { PageHead } from "../bits";
+import { Leaves } from "../Leaves";
 import { BriefLine, FixBox, FlagBox } from "../Lines";
 import { Meta } from "../Source";
 import { actions, entryOf, liveAccount, pending, saved, textOf, useProto, type State } from "../store";
@@ -52,6 +53,10 @@ export function Brief({ id }: { id: string }) {
     for (const g of groups) g.items = g.items.filter((x) => x.confidence !== "Medium");
   }
 
+  const promiseAt = groups.findIndex((g) => /^Promises/.test(g.section));
+  const pairIdx = promiseAt > 0 ? [0, promiseAt] : groups.length > 1 && groups[0].items.length + groups[1].items.length > 2 ? [0, 1] : [];
+  const pair = pairIdx.map((k) => groups[k]);
+  const rest = groups.filter((_, k) => !pairIdx.includes(k));
   const pins = groups.flatMap((g) => g.items).filter((x) => s.pinned.includes(x.id) && entryOf(s, x.id).status !== "dismissed");
   const waitingFromLog = m.fromLog ? pending(s, (x) => x.meeting === m.fromLog).length : 0;
   const total = groups.reduce((n, g) => n + g.items.filter((x) => x.kind !== "fix").length, 0);
@@ -82,7 +87,7 @@ export function Brief({ id }: { id: string }) {
           : `DRAFTED BY AI FROM ${new Set(groups.flatMap((g) => g.items.flatMap((x) => x.sources))).size} SOURCES · A PRIVATE DRAFT, NOTHING HERE SAVES`}
       </p>
 
-      <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem] 2xl:grid-cols-[minmax(0,1fr)_22rem]">
+      <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1fr)_20rem] 2xl:grid-cols-[minmax(0,1fr)_24rem]">
         <div className="space-y-8">
           {groups.length === 0 ? (
             <div className="proto-card p-5">
@@ -96,25 +101,16 @@ export function Brief({ id }: { id: string }) {
               </Link>
             </div>
           ) : null}
-          {groups.map((g) => (
-            <section key={g.section} aria-labelledby={`h-${g.items[0].id}`}>
-              <h2 id={`h-${g.items[0].id}`} className="text-h3 font-semibold">
-                {g.section}
-              </h2>
-              <ul className="proto-card mt-3 divide-y divide-line px-4">
-                {g.items.map((x) =>
-                  x.kind === "fix" ? (
-                    <li key={x.id} className="pb-4 pt-1">
-                      <FixBox sug={x} />
-                    </li>
-                  ) : x.kind === "flag" ? (
-                    <FlagLine key={x.id} sug={x} />
-                  ) : (
-                    <BriefLine key={x.id} sug={x} />
-                  ),
-                )}
-              </ul>
-            </section>
+          {/* What changed and the promises still open sit side by side; the rest follow full width (decision 0128). */}
+          {pair.length ? (
+            <div className="grid gap-6 xl:grid-cols-2 xl:items-start">
+              {pair.map((g, k) => (
+                <BriefGroup key={g.section} g={g} tone={k === 0 ? "pane" : "promise"} />
+              ))}
+            </div>
+          ) : null}
+          {rest.map((g) => (
+            <BriefGroup key={g.section} g={g} tone="pane" />
           ))}
           {hidden ? (
             <p className="flex flex-wrap items-center gap-3 text-small text-ink-2">
@@ -136,8 +132,9 @@ export function Brief({ id }: { id: string }) {
           ) : null}
         </div>
 
-        <aside className="tone-block space-y-6 lg:self-start">
-          <section aria-labelledby="h-people" className="proto-card p-4">
+        <aside className="gw-block brief-side space-y-6 lg:self-start">
+          <Leaves seed={31} count={6} scale={0.7} />
+          <section aria-labelledby="h-people">
             <h2 id="h-people" className="text-h3 font-semibold">
               In this meeting
             </h2>
@@ -158,7 +155,7 @@ export function Brief({ id }: { id: string }) {
           </section>
 
           {pins.length ? (
-            <section aria-labelledby="h-pins" className="proto-card p-4">
+            <section aria-labelledby="h-pins" className="border-t border-line pt-5">
               <h2 id="h-pins" className="text-h3 font-semibold">
                 Your pins
               </h2>
@@ -219,5 +216,35 @@ function FlagLine({ sug }: { sug: Suggestion }) {
       </div>
       <FlagBox />
     </li>
+  );
+}
+
+/** One group of brief lines on its own surface: glass for most, a warm wash for promises still owed (decision 0128). */
+function BriefGroup({ g, tone }: { g: { section: string; items: Suggestion[] }; tone: "pane" | "promise" }) {
+  const hid = `h-${g.items[0].id}`;
+  return (
+    <section aria-labelledby={hid} className={`min-w-0 ${tone === "promise" ? "promise-pane" : "glass-pane"}`}>
+      <div className="flex items-baseline justify-between gap-3">
+        <h2 id={hid} className="text-h3 font-semibold">
+          {g.section}
+        </h2>
+        <span className="font-mono text-meta tracking-wide text-ink-2">
+          {g.items.length} {g.items.length === 1 ? "LINE" : "LINES"}
+        </span>
+      </div>
+      <ul className="mt-2 divide-y divide-line">
+        {g.items.map((x) =>
+          x.kind === "fix" ? (
+            <li key={x.id} className="pb-4 pt-1">
+              <FixBox sug={x} />
+            </li>
+          ) : x.kind === "flag" ? (
+            <FlagLine key={x.id} sug={x} />
+          ) : (
+            <BriefLine key={x.id} sug={x} />
+          ),
+        )}
+      </ul>
+    </section>
   );
 }

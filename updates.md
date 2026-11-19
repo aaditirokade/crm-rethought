@@ -176,3 +176,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - 2026-11-19: Today: the side sections are one wider panel that turns with arrows (decision 0127).
 - 2026-11-19: health reasons take their tag's color (decision 0120).
 - 2026-11-19: Today's side panel lines up with the first row of pulse tiles, one fixed height (decision 0127).
+- 2026-11-19: briefs: what changed and the open promises side by side on their own surfaces; side panel on the leaves block (decision 0128).
