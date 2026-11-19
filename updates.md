@@ -163,3 +163,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - 2026-11-19: Accounts: no box around the portfolio map (decision 0119).
 - 2026-11-19: Accounts map tooltip fades in place instead of sliding (decision 0122).
 - 2026-11-19: Accounts map: no dark ring on hover; keyboard focus keeps it (decision 0122).
+- 2026-11-19: Accounts: a map bubble opens the account in a side panel; the record page has an All accounts button (decision 0124).

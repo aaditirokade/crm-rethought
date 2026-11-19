@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { PULSE } from "@/content/ask";
+import { AccountDrawer } from "./AccountDrawer";
 import type { LiveAccount } from "./store";
 
 const W = 760;
@@ -29,6 +30,7 @@ export function PortfolioMap({ accounts }: { accounts: LiveAccount[] }) {
   const svg = useRef<SVGSVGElement>(null);
   const [cursor, setCursor] = useState<number | null>(null);
   const [tip, setTip] = useState<string | null>(null);
+  const [open, setOpen] = useState<string | null>(null);
   const today = Date.parse("2026-11-12");
   const pts = accounts.map((a) => {
     const days = Math.round((Date.parse(a.renewalDate) - today) / 864e5);
@@ -112,6 +114,13 @@ export function PortfolioMap({ accounts }: { accounts: LiveAccount[] }) {
               onPointerLeave={() => setTip(null)}
               onFocus={() => setTip(p.a.id)}
               onBlur={() => setTip(null)}
+              onClick={(e) => {
+                // A plain click opens the side panel; a click that asks for a new tab still follows the link.
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                e.preventDefault();
+                setTip(null);
+                setOpen(p.a.id);
+              }}
             >
               <circle className="bubble-in" style={{ animationDelay: `${pts.indexOf(p) * 90}ms` }} cx={p.x} cy={p.y} r={p.r} fill={tone(p.a.health)} stroke="var(--bg)" strokeWidth="2" />
               <text x={right ? p.x + p.r + 6 : p.x - p.r - 6} y={p.y - 2} textAnchor={right ? "start" : "end"} fontSize="12.5" fontWeight="600" fill="var(--ink)">
@@ -155,8 +164,9 @@ export function PortfolioMap({ accounts }: { accounts: LiveAccount[] }) {
         );
       })()}
       </div>
+      {open ? <AccountDrawer id={open} onClose={() => setOpen(null)} /> : null}
       <p className="mt-2 text-small text-ink-2">
-        New accounts sit at the top while they ramp up. Select a bubble to open the account. The same data is in the table below.
+        New accounts sit at the top while they ramp up. Select a bubble to see the account. The same data is in the table below.
       </p>
     </section>
   );

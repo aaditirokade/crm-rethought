@@ -34,12 +34,9 @@ export function AccountView({ id }: { id: string }) {
     <div>
       <PageHead
         kicker={
-          <>
-            <Link href="/prototype/accounts" className="hover:underline">
-              ACCOUNTS
-            </Link>{" "}
-            / RECORD
-          </>
+          <Link href="/prototype/accounts" className="sig-btn mb-2 normal-case tracking-normal">
+            <span aria-hidden="true">{"\u2190"}</span> All accounts
+          </Link>
         }
         title={a.name}
         sub={

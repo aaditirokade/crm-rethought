@@ -4171,3 +4171,16 @@ html[data-theme="dark"] .map-tip {
   white-space: nowrap;
   text-wrap: nowrap;
 }
+
+/* The account panel over Accounts (decision 0124): the drawer, a little wider, on the same glass as the panes. */
+.proto-drawer.acct-drawer {
+  width: min(32rem, 100vw);
+  background:
+    radial-gradient(120% 60% at 100% 0%, rgb(171 192 246 / 0.22), transparent 60%),
+    var(--surface);
+}
+html[data-theme="dark"] .proto-drawer.acct-drawer {
+  background:
+    radial-gradient(120% 60% at 100% 0%, rgb(143 156 240 / 0.14), transparent 60%),
+    #1a1a2b;
+}
