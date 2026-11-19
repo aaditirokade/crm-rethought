@@ -4666,3 +4666,9 @@ html:root section.gw-night[aria-labelledby="h-lists"] .gw-leaves {
     padding-bottom: 2.75rem;
   }
 }
+
+/* Ask's heading a step down (decision 0119): it labels the field, which carries the emphasis. */
+html:root .ask-wrap #ask-h {
+  font-size: 1.1875rem;
+  line-height: 1.6rem;
+}
