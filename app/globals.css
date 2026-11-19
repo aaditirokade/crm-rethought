@@ -3957,3 +3957,26 @@ html[data-theme="dark"] .reach-card.pulse-glass {
     linear-gradient(160deg, rgb(36 38 72 / 0.9), rgb(26 27 46 / 0.85));
   box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12), 0 16px 32px -20px rgb(0 0 0 / 0.7);
 }
+
+/* Closed reach cards are all the same height (decision 0120): the health line and the top reason keep to two lines
+   each, and the toggle sits at the foot of the card. Opening a card lets it grow. */
+html:root .reach-card.pulse-glass {
+  display: flex;
+  flex-direction: column;
+}
+html:root .reach-card.pulse-glass:not(.is-open) {
+  height: 14rem;
+}
+html:root .reach-card.pulse-glass:not(.is-open) .reach-clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.reach-toggle {
+  align-self: flex-start;
+  margin-top: auto;
+}
+html:root .reach-card.pulse-glass.is-open .reach-toggle {
+  margin-top: 0.75rem;
+}

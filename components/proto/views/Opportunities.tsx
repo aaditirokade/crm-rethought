@@ -87,10 +87,10 @@ export function Opportunities() {
                     {r.signals.length} {r.signals.length === 1 ? "REASON" : "REASONS"}
                   </span>
                 </div>
-                <p className="mt-1 text-small">
+                <p className="reach-clamp mt-1 text-small">
                   <Health a={r.account} />
                 </p>
-                {first ? <Signal sig={first} /> : null}
+                {first ? <Signal sig={first} clamp /> : null}
 
                 <div id={bodyId} hidden={!isOpen}>
                   {rest.length ? (
@@ -121,7 +121,7 @@ export function Opportunities() {
 
                 <button
                   type="button"
-                  className="reach-toggle mt-3"
+                  className="reach-toggle"
                   aria-expanded={isOpen}
                   aria-controls={bodyId}
                   onClick={() => setOpen((o) => (isOpen ? o.filter((x) => x !== r.account.id) : [...o, r.account.id]))}
@@ -158,14 +158,14 @@ export function Opportunities() {
 
 type Sig = ReturnType<typeof outreach>[number]["signals"][number];
 
-function Signal({ sig, bare = false }: { sig: Sig; bare?: boolean }) {
+function Signal({ sig, bare = false, clamp = false }: { sig: Sig; bare?: boolean; clamp?: boolean }) {
   const [cls, icon] = sig.tone ? TONE[sig.tone] : ["text-ink-2", "\u2022"];
   return (
     <p className={`${bare ? "" : "mt-2 "}flex items-baseline gap-2 text-small`}>
       <span className={`shrink-0 ${cls}`} aria-hidden="true">
         {icon}
       </span>
-      <span>
+      <span className={clamp ? "reach-clamp" : undefined}>
         {sig.text} <SourceChip id={sig.source} />
       </span>
     </p>
