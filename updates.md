@@ -193,3 +193,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - 2026-11-19: the phone app in the new look: leaves on more screens, the agenda highlighted, sources kept on the phone, Daniel's role shown; a silver phone in the walkthrough (decision 0134).
 - 2026-11-19: the case study plays the phone loop as a recording; the live app moved behind a link (decision 0135).
 - 2026-11-19: every case clip recorded again with the phone app's new look and Daniel's role in the top bar (decision 0134).
+- 2026-11-19: the account record's interactions run in two columns, tinted by family; the phone recordings' Pause button sits under the phone; the phone loop tightened to 15 seconds (decision 0136).

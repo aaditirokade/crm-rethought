@@ -4806,3 +4806,36 @@ html:root .ask-wrap #m-ask {
 .src-pop.is-phone h2 {
   font-size: 0.9375rem;
 }
+
+/* Interactions on the account record (decision 0136): each entry carries its family's color, a firm left edge and a
+   faint wash, so a scan down the list reads calls, meetings, email and tickets apart without reading the dates. */
+.inter-item {
+  box-shadow: inset 3px 0 0 var(--inter-edge, var(--line-strong));
+}
+.inter-item[data-kind="call"] { --inter-edge: #6576d4; background: #f1f3fd; }
+.inter-item[data-kind="meet"] { --inter-edge: #1b9471; background: #ecf7f3; }
+.inter-item[data-kind="email"] { --inter-edge: #9b6ec8; background: #f6f0fb; }
+.inter-item[data-kind="ticket"] { --inter-edge: #c98a1b; background: #fbf4e8; }
+html[data-theme="dark"] .inter-item[data-kind="call"] { --inter-edge: #8f9cf0; background: #1d2038; }
+html[data-theme="dark"] .inter-item[data-kind="meet"] { --inter-edge: #3fd0a4; background: #16251f; }
+html[data-theme="dark"] .inter-item[data-kind="email"] { --inter-edge: #bf9bea; background: #241e33; }
+html[data-theme="dark"] .inter-item[data-kind="ticket"] { --inter-edge: #f7b955; background: #282114; }
+
+/* On the phone recordings the Play and Pause button sits under the silver phone, off the screen (decision 0136).
+   The button is a child of the figure, not the frame, so the frame's overflow does not clip it. */
+.case-demo {
+  position: relative;
+}
+.case-demo.is-phone {
+  margin-bottom: 3.5rem;
+}
+.case-demo.is-phone .case-demo-btn {
+  bottom: -3.25rem;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+/* The interaction entries keep their colored left edge through the flat pass above: it is a marker, not an elevation. */
+html:root body .proto-card.inter-item {
+  box-shadow: inset 3px 0 0 var(--inter-edge, var(--line-strong)) !important;
+}

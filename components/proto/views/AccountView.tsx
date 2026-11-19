@@ -16,6 +16,14 @@ const FILTERS: { name: string; types: InteractionType[] }[] = [
   { name: "Tickets", types: ["Ticket"] },
 ];
 
+/** The family an interaction belongs to, for its tint: conversations, meetings in the room, email, tickets. */
+function kindOf(t: InteractionType): string {
+  if (t === "Call" || t === "Video") return "call";
+  if (t === "In person" || t === "Event") return "meet";
+  if (t === "Email") return "email";
+  return "ticket";
+}
+
 export function AccountView({ id }: { id: string }) {
   const s = useProto();
   const [filter, setFilter] = useState("All");
@@ -89,10 +97,11 @@ export function AccountView({ id }: { id: string }) {
               </button>
             ))}
           </div>
-          <ol className="mt-3 space-y-3">
+          {/* Two columns when there is room, and each entry tinted by its kind (decision 0136). */}
+          <ol className="mt-3 xl:columns-2 xl:gap-4">
             {shown.length === 0 ? <li className="proto-card p-4 text-small text-ink-2">No interactions of this type.</li> : null}
             {shown.map((t) => (
-              <li key={t.key} className="proto-card p-4">
+              <li key={t.key} className="proto-card inter-item mb-3 p-4 xl:break-inside-avoid" data-kind={kindOf(t.type)}>
                 <p className="flex flex-wrap gap-x-2 font-mono text-meta tracking-wide text-ink-2">
                   <span>{t.date.toUpperCase()}</span>
                   <span>· {t.type.toUpperCase()}</span>

@@ -96,6 +96,8 @@ export function Demo({
             aria-hidden="true"
           />
         ) : null}
+      </div>
+      {/* Outside the frame div, so on the phone recordings it can sit under the phone, off the screen (decision 0136). */}
         <button type="button" className="case-demo-btn" aria-pressed={!playing} aria-label={`${playing ? "Pause" : "Play"} the recording`} onClick={toggle}>
           {playing ? (
             <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
@@ -109,7 +111,6 @@ export function Demo({
           )}
           <span aria-hidden="true">{playing ? "Pause" : "Play"}</span>
         </button>
-      </div>
     </figure>
   );
 }
