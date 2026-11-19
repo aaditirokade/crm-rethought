@@ -113,7 +113,7 @@ const WALKTHROUGH: Step[] = [
     video: "review",
     width: 1520,
     height: 960,
-    alt: "Review: a person approves a record fix, which saves at once, and the next card turns indigo under the pointer; then they approve an opportunity Spotted by AI, whose cards always sit on the indigo.",
+    alt: "Review: a person opens the source behind a drafted line, today’s call at 12:05, and the quote shows in place; they approve the line, then approve an opportunity Spotted by AI, which saves to the record at once.",
   },
   {
     title: "Say the list you want",
@@ -121,7 +121,7 @@ const WALKTHROUGH: Step[] = [
     video: "lists",
     width: 1520,
     height: 960,
-    alt: "Lists: a person picks “quiet for 2 weeks with more than 10 stores”, the AI shows how it understood it as two filter chips with a reason beside each account, and removing one chip widens the list.",
+    alt: "Accounts: a person points at Fernhill on the portfolio map and its numbers appear, then picks “quiet for 2 weeks with more than 10 stores” under Lists; the AI shows how it understood it as two filter chips with a reason beside each account, and removing one chip drops that reason.",
   },
   {
     title: "Keep going between meetings",
@@ -130,7 +130,7 @@ const WALKTHROUGH: Step[] = [
     width: 750,
     height: 1484,
     phone: true,
-    alt: "Mobile app: from Next up, a person opens the drafts waiting for them and approves one card, then opens Ask, picks “Why is Fernhill slipping?” reads the answer with its sources, three numbers and suggested actions, and chooses “Draft it”, which offers “Review it”.",
+    alt: "Mobile app: from Next up, a person opens the drafts waiting for them and approves one card, then opens Ask, picks “Why is Fernhill slipping?”, reads the answer in bullets with its sources, three numbers and suggested actions, and chooses “Draft it”, which offers “Review it”.",
   },
 ];
 

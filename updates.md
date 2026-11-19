@@ -189,3 +189,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - 2026-11-19: Ask's confidence and sources lines merge into one (decision 0131).
 - 2026-11-19: Ask's Play demo button removed (decision 0131).
 - 2026-11-19: the case study hero clip is recorded again in the new look, light and dark (decision 0133).
+- 2026-11-19: the Review, Lists and phone clips are recorded again in the new look, light and dark (decision 0133).
