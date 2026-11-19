@@ -125,3 +125,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0129 | [The people in a meeting sit level with the lines that name them](0129-people-beside-lines.md) | 2026-11-19 |
 | 0130 | [One block from the top](0130-one-block-from-the-top.md) | 2026-11-19 |
 | 0131 | [Ask answers in bullets; the next move in rose](0131-ask-bullets.md) | 2026-11-19 |
+| 0132 | [Confidence as bars and a color](0132-confidence-bars.md) | 2026-11-19 |

@@ -4714,3 +4714,29 @@ html:root .ask-wrap .ask-bullets > li::before {
 html[data-theme="dark"] .ask-wrap .ask-bullets > li::before {
   background: #f394c4;
 }
+
+/* Confidence (decision 0132): three rising bars, filled by level, in the level's color; the label keeps ink-2. */
+.conf {
+  color: var(--ink-2);
+}
+.conf-bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 13px;
+}
+.conf-bars i {
+  display: block;
+  width: 4px;
+  border-radius: 1.5px;
+  background: color-mix(in srgb, var(--ink-2) 28%, transparent);
+}
+.conf.is-high .conf-bars i.on {
+  background: var(--viz-good);
+}
+.conf.is-medium .conf-bars i.on {
+  background: var(--viz-warn);
+}
+.conf.is-low .conf-bars i.on {
+  background: var(--viz-risk);
+}

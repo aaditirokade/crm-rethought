@@ -183,3 +183,5 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - 2026-11-19: Ask's heading a step smaller (19px) (decision 0119).
 - 2026-11-19: the top bar reads DANIEL ORRO · SAMPLE DATA (decision 0130).
 - 2026-11-19: Ask's answers list their findings as bullets, and the suggested next move is in rose (decision 0131).
+- 2026-11-19: every Ask answer lists its findings as bullets (decision 0131).
+- 2026-11-19: confidence shows as bars and a color before its words, everywhere (decision 0132).

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Confidence } from "../Source";
 import { COLUMNS, FIELDS, FILE, MORE_ROWS, RULES, SAMPLE } from "@/content/imports";
 
 const PREVIEW = [...SAMPLE, ...MORE_ROWS];
@@ -141,7 +142,7 @@ export function Imports() {
                 </select>
               </label>
               <span className="text-small">
-                {c.why} <span className="font-mono text-meta text-ink-2">CONFIDENCE {c.confidence.toUpperCase()}</span>
+                {c.why} <Confidence level={c.confidence} />
               </span>
             </li>
           ))}
@@ -201,7 +202,9 @@ export function Imports() {
                         </li>
                       ))}
                     </ul>
-                    <p className="mt-1 font-mono text-meta text-ink-2">CONFIDENCE {r.confidence.toUpperCase()}</p>
+                    <p className="mt-1">
+                      <Confidence level={r.confidence} />
+                    </p>
                     <div className="mt-2 flex flex-wrap gap-2">
                       {d ? (
                         <button type="button" className="sig-btn" onClick={() => actions.decideRule(r.id, "", "Fix reopened.")}>

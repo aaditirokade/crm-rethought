@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { answerBlocks, answerFor, confidenceOf, SUGGESTED, type Answer, type Segment, type Stat, type SuggestedAction } from "@/content/ask";
 import { SOURCES } from "@/content/prototype";
-import { SourceChip } from "./Source";
+import { SourceChip, Confidence } from "./Source";
 import { REASONS, actions as store, useProto } from "./store";
 
 const STEP_MS = 420;
@@ -157,9 +157,8 @@ function AnswerTrust({ answer }: { answer: Answer }) {
   const cited = [...new Set(answer.segments.flatMap((g) => g.cite ?? []))];
   return (
     <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-line pt-3">
-      <p className="font-mono text-meta tracking-wide text-ink-2">
-        CONFIDENCE {c.level.toUpperCase()}
-        {c.level !== "High" ? " · CHECK THIS" : ""} · {c.why.toUpperCase()}
+      <p>
+        <Confidence level={c.level} extra={c.why} />
       </p>
       {open ? (
         <div className="flex flex-wrap items-center gap-1.5" role="group" aria-label="Why was this answer wrong?">

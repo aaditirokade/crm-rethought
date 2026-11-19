@@ -69,14 +69,11 @@ const WRITTEN: (Answer & { match: (q: string) => boolean })[] = [
     match: (q) => /renew/.test(q) && !ACCOUNTS.some((a) => q.includes(a.id) || q.includes(a.name.split(" ")[0].toLowerCase())),
     steps: ["Checking 5 renewal dates", "Reading recent touches", "Checking open tickets"],
     segments: [
-      { text: "Three accounts renew in the next 120 days. " },
-      { text: "Harbor Lane Books needs you most: no reply to the renewal proposal in 21 days", cite: ["hEmail"] },
-      { text: ", renewal Feb 14", cite: ["hRecord"] },
-      { text: ". " },
-      { text: "Fernhill Outfitters renews Jan 25 with usage down since their reorg", cite: ["usage"] },
-      { text: ". " },
-      { text: "Alder & Finch is healthy, but ticket 4877 should close before the Dec 1 kickoff", cite: ["aTicket", "aRecord"] },
-      { text: "." },
+      { text: "Three accounts renew in the next 120 days:" },
+      { text: "Harbor Lane Books needs you most: no reply to the renewal proposal in 21 days,", cite: ["hEmail"], item: 1 },
+      { text: " renewal Feb 14.", cite: ["hRecord"], item: 1 },
+      { text: "Fernhill Outfitters renews Jan 25 with usage down since their reorg.", cite: ["usage"], item: 2 },
+      { text: "Alder & Finch is healthy, but ticket 4877 should close before the Dec 1 kickoff.", cite: ["aTicket", "aRecord"], item: 3 },
     ],
     stats: [
       { label: "Renewals within 120 days", value: 3 },
@@ -97,11 +94,11 @@ const WRITTEN: (Answer & { match: (q: string) => boolean })[] = [
     match: (q) => /bright/.test(q) && /(promis|track|owe|commit)/.test(q),
     steps: ["Reading the Oct 29 kickoff call", "Checking your tasks", "Checking weekly usage"],
     segments: [
-      { text: "Two promises from the Oct 29 kickoff. " },
-      { text: "A training session for store managers by Nov 15", cite: ["bwPromise"] },
-      { text: ": the invite is still on your task list, due tomorrow. " },
-      { text: "Single sign on before rolling out to all 18 stores", cite: ["bwKickoff"] },
-      { text: ": no date yet. " },
+      { text: "Two promises from the Oct 29 kickoff:" },
+      { text: "A training session for store managers by Nov 15:", cite: ["bwPromise"], item: 1 },
+      { text: " the invite is still on your task list, due tomorrow.", item: 1 },
+      { text: "Single sign on before rolling out to all 18 stores:", cite: ["bwKickoff"], item: 2 },
+      { text: " no date yet.", item: 2 },
       { text: "Two of five store managers haven’t logged in since setup", cite: ["bwUsage"] },
       { text: ", so the training matters more than it looks." },
     ],
@@ -136,12 +133,10 @@ export function answerFor(question: string): Answer {
     const segments: Segment[] = [
       { text: `${a.name} is ${a.health.toLowerCase()}: ${a.healthWhy}. It renews ${a.renewal}, in ${days} days, and the last touch was ${a.lastTouch}. ` },
     ];
+    // Every finding is its own bullet, as in the written answers (decision 0131).
     if (signals.length) {
-      segments.push({ text: "What stands out: " });
-      signals.forEach((s, i) => {
-        segments.push({ text: s.text.charAt(0).toLowerCase() + s.text.slice(1), cite: [s.source] });
-        segments.push({ text: i === signals.length - 1 ? ". " : "; " });
-      });
+      segments.push({ text: "What stands out:" });
+      signals.forEach((s, i) => segments.push({ text: `${s.text.replace(/\.$/, "")}.`, cite: [s.source], item: i + 1 }));
     }
     if (opps.length) segments.push({ text: `Open opportunities: ${opps.map((o) => `${o.name.toLowerCase()} (${o.stage.toLowerCase()})`).join(", ")}.` });
     return {

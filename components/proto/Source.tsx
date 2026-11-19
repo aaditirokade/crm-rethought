@@ -150,10 +150,30 @@ export function Meta({ sources, confidence }: { sources: string[]; confidence: s
       {sources.map((id) => (
         <SourceChip key={id} id={id} />
       ))}
-      <span className="font-mono text-meta text-ink-2">
-        CONFIDENCE {confidence.toUpperCase()}
-        {confidence === "Medium" ? " · CHECK THIS" : ""}
-      </span>
+      <Confidence level={confidence} />
     </div>
+  );
+}
+
+/**
+ * How sure the AI is, as three bars and a word (decision 0132): three filled bars in green for high, two in amber for
+ * medium with "check this", one in coral for low. The word always shows, so color and bars are never the only cue.
+ */
+export function Confidence({ level, extra }: { level: string; extra?: string }) {
+  const n = level === "High" ? 3 : level === "Medium" ? 2 : 1;
+  const tone = level === "High" ? "is-high" : level === "Medium" ? "is-medium" : "is-low";
+  return (
+    <span className={`conf ${tone} inline-flex items-center gap-1.5 font-mono text-meta tracking-wide`}>
+      <span className="conf-bars" aria-hidden="true">
+        {[1, 2, 3].map((k) => (
+          <i key={k} className={k <= n ? "on" : ""} style={{ height: `${4 + k * 3}px` }} />
+        ))}
+      </span>
+      <span>
+        CONFIDENCE {level.toUpperCase()}
+        {level !== "High" ? " · CHECK THIS" : ""}
+        {extra ? ` · ${extra.toUpperCase()}` : ""}
+      </span>
+    </span>
   );
 }
