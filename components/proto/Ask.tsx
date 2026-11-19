@@ -155,7 +155,7 @@ export function AskActions({
  * How sure the answer is, and a way to say it was wrong (decision 0107). A flag goes to the team with its reason
  * ("What people corrected" on Review); choosing the same reason again takes it back.
  */
-function AnswerTrust({ answer }: { answer: Answer }) {
+function AnswerTrust({ answer, tail }: { answer: Answer; tail?: React.ReactNode }) {
   const s = useProto();
   const c = confidenceOf(answer);
   const flag = (s.askFlags ?? []).find((f) => f.id === answer.id);
@@ -163,8 +163,9 @@ function AnswerTrust({ answer }: { answer: Answer }) {
   const cited = [...new Set(answer.segments.flatMap((g) => g.cite ?? []))];
   return (
     <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-line pt-3">
+      {/* One line for trust (decision 0131): how sure, what was read, and that nothing changed. */}
       <p>
-        <Confidence level={c.level} extra={c.why} />
+        <Confidence level={c.level} extra={`${c.why} · nothing in the record changed`} />
       </p>
       {open ? (
         <div className="flex flex-wrap items-center gap-1.5" role="group" aria-label="Why was this answer wrong?">
@@ -182,9 +183,12 @@ function AnswerTrust({ answer }: { answer: Answer }) {
           ))}
         </div>
       ) : (
-        <button type="button" className="why-chip" onClick={() => setOpen(true)}>
-          Flag this answer
-        </button>
+        <div className="flex items-center gap-3">
+          <button type="button" className="why-chip" onClick={() => setOpen(true)}>
+            Flag this answer
+          </button>
+          {tail}
+        </div>
       )}
     </div>
   );
@@ -323,7 +327,6 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
     });
   })();
 
-  const sourceCount = answer ? new Set(answer.segments.flatMap((s) => s.cite ?? [])).size : 0;
   const clearBtn = (
         <button
           type="button"
@@ -484,16 +487,7 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
 
               {answer.actions?.length && done ? <AskActions key={answer.id} items={answer.actions} answer={answer} clear={clearBtn} /> : null}
 
-              {done ? <AnswerTrust key={`trust-${answer.id}`} answer={answer} /> : null}
-
-              {done ? (
-                <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
-                  <p className="font-mono text-meta tracking-wide text-ink-2">
-                    {sourceCount ? `DRAFTED FROM ${sourceCount} SOURCES · ` : ""}NOTHING IN THE RECORD CHANGED
-                  </p>
-                  {answer.actions?.length ? null : clearBtn}
-                </div>
-              ) : null}
+              {done ? <AnswerTrust key={`trust-${answer.id}`} answer={answer} tail={answer.actions?.length ? null : clearBtn} /> : null}
             </div>
           ) : null}
         </div>
