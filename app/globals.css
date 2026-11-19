@@ -4037,3 +4037,17 @@ html[data-theme="dark"] .src-pop::before {
     animation: none;
   }
 }
+
+/* Imports, 2 · Columns (decision 0121): the draft mapping sits on a periwinkle wash with a periwinkle edge instead of
+   the blush, so the page is not all rose; the DRAFT MAPPING tag and the Confirm button keep the rose. */
+.map-draft {
+  --line: rgb(101 118 212 / 0.18);
+  border-radius: 16px;
+  background: rgb(171 192 246 / 0.16);
+  box-shadow: inset 3px 0 0 rgb(101 118 212 / 0.6);
+}
+html[data-theme="dark"] .map-draft {
+  --line: rgb(143 156 240 / 0.16);
+  background: rgb(143 156 240 / 0.08);
+  box-shadow: inset 3px 0 0 rgb(143 156 240 / 0.6);
+}

@@ -153,3 +153,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - 2026-11-19: Opportunities: Reach out as a sideways row of cards that open, the pipeline full width below; health as a filled tag everywhere (decision 0120).
 - 2026-11-19: closed Reach out cards share one height (decision 0120).
 - 2026-11-19: source chips open a small popover pointing at the chip instead of a side drawer (decision 0121).
+- 2026-11-19: Imports: the draft column mapping on a periwinkle wash instead of blush (decision 0119).

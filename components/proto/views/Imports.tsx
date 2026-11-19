@@ -117,7 +117,7 @@ export function Imports() {
           {imp.mappingOk ? <span className="sig-approved-tag">{"✓"} CONFIRMED BY DANIEL</span> : <span className="sig-draft-tag">DRAFT MAPPING</span>}
         </div>
         <p className="text-small text-ink-2">The AI matched each column to a field and says why. Change any of them before you confirm.</p>
-        <ul className={`mt-3 divide-y divide-line rounded-xl ${imp.mappingOk ? "" : "sig-row-draft"}`}>
+        <ul className={`mt-3 divide-y divide-line rounded-xl ${imp.mappingOk ? "" : "map-draft"}`}>
           {COLUMNS.map((c) => (
             <li key={c.col} className="grid gap-2 px-3 py-3 sm:grid-cols-[10rem_14rem_minmax(0,1fr)] sm:items-center">
               <span className="font-mono text-meta font-medium tracking-wide">{c.col.toUpperCase()}</span>
