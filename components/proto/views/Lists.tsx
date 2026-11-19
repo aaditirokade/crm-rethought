@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { ACCOUNTS } from "@/content/prototype";
 import { parseList, runList } from "@/lib/listQuery";
+import { Leaves } from "../Leaves";
 import { SourceChip } from "../Source";
 import { actions, liveAccount, useProto, type LiveAccount } from "../store";
 
@@ -30,7 +31,8 @@ export function Lists() {
   };
 
   return (
-    <section aria-labelledby="h-lists" className="tone-ai mt-6">
+    <section aria-labelledby="h-lists" className="gw-night mt-6">
+      <Leaves seed={14} count={6} scale={0.6} />
       <h2 id="h-lists" className="text-h3 font-semibold">
         Lists
       </h2>

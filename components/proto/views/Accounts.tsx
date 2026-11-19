@@ -17,7 +17,7 @@ export function Accounts() {
         <PortfolioMap accounts={ACCOUNTS.map((a) => liveAccount(s, a.id)).filter(Boolean) as LiveAccount[]} />
         <Lists />
       </div>
-      <div className="proto-card relative mt-6 overflow-x-auto" role="region" aria-label="Accounts table" tabIndex={0}>
+      <div className="glass-pane relative mt-6 overflow-x-auto" role="region" aria-label="Accounts table" tabIndex={0}>
         <table className="w-full min-w-[46rem] text-left">
           <caption className="sr-only">Accounts with health, renewal, last touch and lines waiting for approval</caption>
           <thead className="border-b border-line font-mono text-meta tracking-wide text-ink-2">
