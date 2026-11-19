@@ -3659,24 +3659,6 @@ html[data-theme="dark"] .ask-wrap .sig-btn.sig-btn-primary:disabled {
   color: var(--accent-ink);
 }
 
-/* Little leaves (decision 0119, round two): small sprigs of the same leaves in the corners of the soft highlights,
-   so the material turns up across the app and not only at the top right: Ask and Lists, the two larger panels.
-   (They came off the small cards the same day: too fussy at that size.) Baked into the background. */
-:root {
-  --sprig-r: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 120 80%22%3E%3Cpath d=%22M105.5,86.7 Q81.7,65 73.6,29.1 Q107.5,46.2 118.5,77.3 Z%22 fill=%22%23abc0f6%22 fill-opacity=%220.75%22 stroke=%22%23fff%22 stroke-opacity=%22.8%22 stroke-width=%22.8%22/%3E%3Cpath d=%22M112,82 Q94.6,55.6 73.6,29.1%22 fill=%22none%22 stroke=%22%23fff%22 stroke-opacity=%22.7%22 stroke-width=%22.8%22/%3E%3Cpath d=%22M99.6,87.5 Q76.6,79 69,54.1 Q94,57.1 108.4,76.5 Z%22 fill=%22%23fbb7cf%22 fill-opacity=%220.75%22 stroke=%22%23fff%22 stroke-opacity=%22.8%22 stroke-width=%22.8%22/%3E%3Cpath d=%22M104,82 Q85.3,68 69,54.1%22 fill=%22none%22 stroke=%22%23fff%22 stroke-opacity=%22.7%22 stroke-width=%22.8%22/%3E%3Cpath d=%22M110.2,83.5 Q100.6,65.2 106,42.4 Q123.8,59.3 121.8,80.5 Z%22 fill=%22%23c8b6ff%22 fill-opacity=%220.7%22 stroke=%22%23fff%22 stroke-opacity=%22.8%22 stroke-width=%22.8%22/%3E%3Cpath d=%22M116,82 Q112.2,62.2 106,42.4%22 fill=%22none%22 stroke=%22%23fff%22 stroke-opacity=%22.7%22 stroke-width=%22.8%22/%3E%3Cpath d=%22M94.3,86.7 Q79.4,87.4 73.1,74 Q86.1,68.5 97.7,77.3 Z%22 fill=%22%23fedcd2%22 fill-opacity=%220.75%22 stroke=%22%23fff%22 stroke-opacity=%22.8%22 stroke-width=%22.8%22/%3E%3Cpath d=%22M96,82 Q82.7,78 73.1,74%22 fill=%22none%22 stroke=%22%23fff%22 stroke-opacity=%22.7%22 stroke-width=%22.8%22/%3E%3C/svg%3E");
-}
-html:root .tone-ai,
-html:root .proto-card.tone-ai {
-  background: var(--sprig-r) right 0.75rem bottom 0 / 5.5rem auto no-repeat, var(--draft);
-}
-html:not([data-theme="dark"]) .ask-wrap.ask-wrap.ask-wrap.proto-card,
-html:not([data-theme="dark"]) .ask-wrap.ask-wrap.ask-wrap.proto-card:has(.ask-panel.is-open) {
-  background: var(--sprig-r) right 1rem bottom 0 / 7rem auto no-repeat, radial-gradient(120% 150% at 0% 0%, rgb(255 255 255 / 0.55), transparent 55%), #e2e5fb;
-}
-html[data-theme="dark"] .ask-wrap.ask-wrap.ask-wrap.proto-card,
-html[data-theme="dark"] .ask-wrap.ask-wrap.ask-wrap.proto-card:has(.ask-panel.is-open) {
-  background: var(--sprig-r) right 1rem bottom 0 / 7rem auto no-repeat, radial-gradient(120% 150% at 0% 0%, rgb(140 148 255 / 0.16), transparent 58%), #25274f;
-}
 /* The hero's wandering leaves: wide, low and faint. */
 .gw-block .gw-leaves.gw-leaves-low {
   bottom: 3rem; /* rooted behind Ask's top edge, so they grow out from under it */
@@ -3705,12 +3687,12 @@ html[data-theme="dark"] .ask-wrap.ask-wrap.ask-wrap.proto-card::before {
 /* Ask is near white over the lavender block (dark: a deeper night), so it reads as the one thing to use on Today. */
 html:not([data-theme="dark"]) .ask-wrap.ask-wrap.ask-wrap.ask-wrap.ask-wrap.proto-card {
   border-color: #ebe8f4;
-  background: var(--sprig-r) right 1rem bottom 0 / 7rem auto no-repeat, rgb(255 255 255 / 0.92);
+  background: rgb(255 255 255 / 0.92);
   box-shadow: 0 1px 2px rgb(30 33 64 / 0.05), 0 18px 40px -20px rgb(80 70 140 / 0.35);
 }
 html[data-theme="dark"] .ask-wrap.ask-wrap.ask-wrap.ask-wrap.ask-wrap.proto-card {
   border-color: #2c2d4a;
-  background: var(--sprig-r) right 1rem bottom 0 / 7rem auto no-repeat, #1c1d33;
+  background: #1c1d33;
 }
 html:not([data-theme="dark"]) .ask-wrap.ask-wrap .sig-btn:not(.sig-btn-primary):not(.ask-action .sig-btn) {
   background: #f1eff9;
