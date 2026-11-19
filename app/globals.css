@@ -4436,3 +4436,72 @@ html[data-theme="dark"] .board-item.proto-card.pulse-glass:focus-within {
 html:root .board-item.proto-card.pulse-glass.is-hit {
   box-shadow: 0 0 0 2px var(--accent);
 }
+
+/* Flat everywhere (decision 0126): no drop shadows anywhere in the prototype. Surfaces are told apart by fill and
+   a thin edge; floating things (popovers, menus, tooltips, the panel, the dock) keep a firmer edge instead of a
+   shadow. Inset strokes that carry meaning stay: the rose edge on drafts, focus rings, the "Ask is talking about
+   this" ring, and the bright top line on glass. */
+:root,
+:root[data-theme="dark"] {
+  --shadow: none;
+  --shadow-lift: none;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --shadow: none;
+    --shadow-lift: none;
+  }
+}
+html:root body :is(
+    .ask-wrap,
+    .ask-wrap.proto-card,
+    .gw-night,
+    .action-bar,
+    .mob-ai,
+    .proto-card,
+    .board-item,
+    .tone-block,
+    .ask-tile,
+    .open-row,
+    .case-demo-frame,
+    .aa-pic,
+    .ask-stats,
+    .proto-nav,
+    .proto-drawer,
+    .src-pop,
+    .map-tip,
+    .stage-panel,
+    .theme-fab,
+    .dock,
+    .mob-ask-entry,
+    .triage-card,
+    .sig-btn,
+    .mob-ask-go,
+    .proto-input
+  ) {
+  box-shadow: none !important;
+}
+/* Buttons that are rose keep only the soft top highlight. */
+html:root body :is(.sig-btn-primary, .mob-ask-go, .ask-wrap .sig-btn.sig-btn-primary) {
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.25) !important;
+}
+/* Glass keeps its bright top line. */
+html:root body .glass-pane,
+html:root body .pulse-glass {
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.9) !important;
+}
+html[data-theme="dark"] body .glass-pane,
+html[data-theme="dark"] body .pulse-glass {
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.1) !important;
+}
+/* Drafts and the AI's lines keep their rose edge; "Ask is talking about this" keeps its ring. */
+html:root body :is(.mob-wash, .tone-ai, .proto-card.tone-ai, .ai-wash, .gate-row.sig-row-draft, .gate-row.sig-row-draft:hover) {
+  box-shadow: inset 3px 0 0 color-mix(in srgb, var(--accent) 70%, transparent) !important;
+}
+html:root body .board-item.proto-card.pulse-glass.is-hit {
+  box-shadow: 0 0 0 2px var(--accent) !important;
+}
+/* Floating things get a firmer edge in place of the shadow. */
+html:root body :is(.src-pop, .map-tip, .stage-panel, .proto-drawer, .dock, .theme-fab) {
+  border: 1px solid color-mix(in srgb, var(--line-strong) 45%, transparent);
+}

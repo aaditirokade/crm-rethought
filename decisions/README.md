@@ -119,3 +119,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0123 | [Review: Ask's drafts and spotted opportunities side by side](0123-review-side-by-side.md) | 2026-11-19 |
 | 0124 | [A bubble on the map opens the account in a side panel](0124-account-panel.md) | 2026-11-19 |
 | 0125 | [The pipeline's stage menu in the app's own style](0125-stage-menu.md) | 2026-11-19 |
+| 0126 | [Flat: no elevation anywhere](0126-flat.md) | 2026-11-19 |
