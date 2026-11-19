@@ -112,3 +112,5 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0106 | [Fixes from a review of 2026's top portfolios](0106-review-fixes.md) | 2026-11-14 |
 | 0107 | [Designed for the moment the AI is wrong](0107-when-the-ai-is-wrong.md) | 2026-11-14 |
 | 0108 | [The new contact at Fernhill is Nora Castell](0108-new-contact-name.md) | 2026-11-14 |
+| 0119 | [Glass leaves and rose leads](0119-glass-leaves-rose-leads.md) | 2026-11-18 |
+| 0120 | [Reach out as a row of cards; health as a filled tag](0120-reach-out-row.md) | 2026-11-19 |

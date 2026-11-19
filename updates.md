@@ -150,3 +150,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - 2026-11-19: Account pulse glass in periwinkle alone, no blush (decision 0119).
 - 2026-11-19: Accounts portfolio map in solid, bright health colors, with a rose wash for the renewing soon zone (decision 0119).
 - 2026-11-19: page titles on a leaves block; Accounts map and table on glass panes, Lists on the night block; hover washes in periwinkle (decision 0119).
+- 2026-11-19: Opportunities: Reach out as a sideways row of cards that open, the pipeline full width below; health as a filled tag everywhere (decision 0120).
