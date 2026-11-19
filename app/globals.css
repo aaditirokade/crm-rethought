@@ -4051,3 +4051,26 @@ html[data-theme="dark"] .map-draft {
   background: rgb(143 156 240 / 0.08);
   box-shadow: inset 3px 0 0 rgb(143 156 240 / 0.6);
 }
+
+/* Imports, 1 · File: the first 30 rows in a table of fixed height that scrolls, its header pinned (decision 0119). */
+.file-scroll {
+  max-height: 26rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+  overscroll-behavior: contain;
+}
+.file-head th {
+  position: sticky;
+  top: -1px;
+  z-index: 1;
+  background: var(--surface);
+  box-shadow: inset 0 -1px 0 var(--line);
+}
+.file-scroll tbody tr:nth-child(even) td {
+  background-color: color-mix(in srgb, var(--surface-2) 35%, transparent);
+}
+.file-scroll tbody tr:nth-child(even) td.bg-draft {
+  background-color: var(--draft);
+}

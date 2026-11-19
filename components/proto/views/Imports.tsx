@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { COLUMNS, FIELDS, FILE, RULES, SAMPLE } from "@/content/imports";
+import { COLUMNS, FIELDS, FILE, MORE_ROWS, RULES, SAMPLE } from "@/content/imports";
+
+const PREVIEW = [...SAMPLE, ...MORE_ROWS];
 import { PageHead } from "../bits";
 import { actions, useProto } from "../store";
 import { Leaves } from "../Leaves";
@@ -79,12 +81,15 @@ export function Imports() {
         <p className="mt-1">
           <span className="font-mono text-meta tracking-wide">{FILE.name.toUpperCase()}</span> · {FILE.rows} rows · from {FILE.from}
         </p>
-        <p className="text-small text-ink-2">A sample file for the demo. The first 8 rows are shown; highlighted cells have a problem the AI found.</p>
-        <div className="relative mt-3 overflow-x-auto" role="region" aria-label="First 8 rows of the file" tabIndex={0}>
+        <p className="text-small text-ink-2">A sample file for the demo: the first {PREVIEW.length} rows, scroll the table to see them. Highlighted cells have a problem the AI found.</p>
+        <div className="file-scroll relative mt-3 overflow-auto" role="region" aria-label={`First ${PREVIEW.length} rows of the file, scrolls`} tabIndex={0}>
           <table className="w-full min-w-[56rem] text-left text-small">
-            <caption className="sr-only">First 8 rows of {FILE.name}</caption>
-            <thead className="border-b border-line font-mono text-meta tracking-wide text-ink-2">
+            <caption className="sr-only">First {PREVIEW.length} rows of {FILE.name}</caption>
+            <thead className="file-head font-mono text-meta tracking-wide text-ink-2">
               <tr>
+                <th scope="col" className="w-10 px-3 py-2 font-medium">
+                  <span className="sr-only">Row</span>#
+                </th>
                 {COLUMNS.map((c) => (
                   <th key={c.col} scope="col" className="px-3 py-2 font-medium">
                     {c.col.toUpperCase()}
@@ -93,8 +98,9 @@ export function Imports() {
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
-              {SAMPLE.map((r, i) => (
+              {PREVIEW.map((r, i) => (
                 <tr key={i}>
+                  <td className="px-3 py-2 font-mono text-meta text-ink-2">{i + 1}</td>
                   <td className="px-3 py-2">{r.name}</td>
                   {cell(r.company, "company")}
                   <td className="px-3 py-2">{r.title || <span className="text-ink-2">blank</span>}</td>
@@ -152,7 +158,7 @@ export function Imports() {
         </div>
       </section>
 
-      <section aria-labelledby="h-fixes" className="proto-card min-w-0 p-4 sm:p-5">
+      <section aria-labelledby="h-fixes" className="proto-card @container min-w-0 p-4 sm:p-5">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <h2 id="h-fixes" className="text-h3 font-semibold">
             3 · Fixes
@@ -162,7 +168,7 @@ export function Imports() {
           </span>
         </div>
         <p className="text-small text-ink-2">Each fix shows its rows before and after. Calls about people stay with you; the AI lists the options and picks none.</p>
-        <ul className="mt-3 space-y-3">
+        <ul className="mt-3 grid gap-3 @xl:grid-cols-2">
           {RULES.map((r) => {
             const d = imp.rules[r.id];
             return (

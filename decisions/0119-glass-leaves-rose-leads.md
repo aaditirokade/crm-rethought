@@ -14,7 +14,7 @@
 
 **Accounts and hover (next day):** the map and the table sit on frosted periwinkle glass panes, Lists on the night block with leaves, and every hover wash is periwinkle instead of gray.
 
-**Imports (next day):** the draft column mapping sits on a periwinkle wash with a periwinkle edge instead of the blush, so the page isn't all rose; its tag and Confirm button stay rose. From 1280px, Columns sits on the left and Fixes on the right, so both steps are in view together.
+**Imports (next day):** the draft column mapping sits on a periwinkle wash with a periwinkle edge instead of the blush, so the page isn't all rose; its tag and Confirm button stay rose. From 1280px, Columns sits on the left and Fixes on the right, so both steps are in view together; inside Fixes the four fixes sit two across. 1 · File shows the first 30 rows in a table of fixed height that scrolls, its header pinned.
 
 **Options:** twelve rounds, kept in research/color-exploration: dusk palettes with circles; glass cubes, tetrahedra and prisms on dark blocks; many faced polyhedra; rounded glass cubes; six light patterns (pearl cubes, rose quartz, crystal shards, prism facets, holographic folds, ink marble); grass in two shapes; the broad leaves in six palettes; a blend of periwinkle and rose quartz with either color leading.
 

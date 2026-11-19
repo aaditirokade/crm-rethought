@@ -1,5 +1,5 @@
 /**
- * Sample import for the prototype: a lead list from a trade show, 214 rows, of which 8 are shown.
+ * Sample import for the prototype: a lead list from a trade show, 214 rows, of which the first 30 are shown.
  * Every name, company and address here is made up.
  */
 
@@ -29,6 +29,32 @@ export const SAMPLE: Row[] = [
   { name: "Ines Carvalho", company: "Marlow Street Market", title: "COO", email: "ines@marlowstreet.example", date: "11/10/2026", note: "30 stores, runs on spreadsheets", rep: "Daniel O." },
   { name: "Theo Marsh", company: "Harbor Lane Books", title: "Owner", email: "theo@harborlane.example", date: "10 Nov 2026", note: "Said he’d reply about the renewal this week", rep: "Daniel O.", account: "harbor" },
   { name: "Ken Ruiz", company: "Dovetail Outdoor", title: "", email: "ken@dovetail.example", date: "11/10/2026", note: "", rep: "Daniel O." },
+];
+
+/** Rows 9 to 30, shown in the scrolling preview only (new companies, so they touch no account). */
+export const MORE_ROWS: Row[] = [
+  { name: "Priya Nair", company: "Lumen & Lane", title: "Category Manager", email: "priya@lumenlane.example", date: "11/10/2026", note: "Follow up on the pilot pricing", rep: "Daniel O." },
+  { name: "Owen Bradley", company: "Copperfield Goods", title: "CEO", email: "owen@copperfield.example", date: "10 Nov 2026", note: "12 stores in the Midwest", rep: "Daniel O." },
+  { name: "Lucia Ferraro", company: "Marlow Street Market", title: "Head of Merchandising", email: "lucia@marlowstreet.example", date: "11/10/2026", note: "Wants the inventory view", rep: "Daniel O." },
+  { name: "Dev Raman", company: "Northpine Supply", title: "IT Director", email: "", date: "11/10/2026", note: "Asked about single sign on", rep: "Daniel O." },
+  { name: "Hana Kim", company: "Saltbox Kitchen", title: "Operations Lead", email: "hana@saltbox.example", date: "11/10/2026", note: "Seasonal staff, needs mobile", rep: "Daniel O." },
+  { name: "Marcus Webb", company: "Dovetail Outdoor", title: "Regional Manager", email: "marcus@dovetail.example", date: "10 Nov 2026", note: "", rep: "Daniel O." },
+  { name: "Elena Sokolova", company: "Brightline Pharmacy", title: "VP Operations", email: "elena@brightline.example", date: "11/10/2026", note: "Compliance questions", rep: "Daniel O." },
+  { name: "Tomás Rivera", company: "Copperfield Goods", title: "Store Planner", email: "tomas@copperfield.example", date: "11/10/2026", note: "Sketched a floor plan with us", rep: "Daniel O." },
+  { name: "Grace Liu", company: "Juniper & Ash", title: "Founder", email: "grace@juniperash.example", date: "10 Nov 2026", note: "Two shops, opening a third", rep: "Daniel O." },
+  { name: "Felix Bauer", company: "Northpine Supply", title: "Procurement", email: "felix@northpine.example", date: "11/10/2026", note: "Send the security pack", rep: "Daniel O." },
+  { name: "Amara Okafor", company: "Saltbox Kitchen", title: "Finance Director", email: "", date: "11/10/2026", note: "Budget opens in March", rep: "Daniel O." },
+  { name: "Ryan Doyle", company: "Tidewater Books", title: "Owner", email: "ryan@tidewater.example", date: "11/10/2026", note: "Knows Theo at Harbor Lane", rep: "Daniel O." },
+  { name: "Yuki Sato", company: "Brightline Pharmacy", title: "Data Analyst", email: "yuki@brightline.example", date: "10 Nov 2026", note: "Wants an export to their warehouse", rep: "Daniel O." },
+  { name: "Carmen Diaz", company: "Juniper & Ash", title: "Store Manager", email: "carmen@juniperash.example", date: "11/10/2026", note: "", rep: "Daniel O." },
+  { name: "Ben Holloway", company: "Granite Peak Sports", title: "COO", email: "ben@granitepeak.example", date: "11/10/2026", note: "Twenty stores, replacing a legacy tool", rep: "Daniel O." },
+  { name: "Aisha Rahman", company: "Granite Peak Sports", title: "Head of Ecommerce", email: "aisha@granitepeak.example", date: "10 Nov 2026", note: "Online and in store in one view", rep: "Daniel O." },
+  { name: "Leo Marchetti", company: "Fieldstone Grocers", title: "Buyer", email: "", date: "11/10/2026", note: "Met at the coffee bar", rep: "Daniel O." },
+  { name: "Ruth Anders", company: "Fieldstone Grocers", title: "VP Stores", email: "ruth@fieldstone.example", date: "11/10/2026", note: "Call after the holidays", rep: "Daniel O." },
+  { name: "Sanjay Mehta", company: "Tidewater Books", title: "Manager", email: "sanjay@tidewater.example", date: "11/10/2026", note: "Prefers email", rep: "Daniel O." },
+  { name: "Olivia Park", company: "Kite & Kettle", title: "Co-founder", email: "olivia@kiteandkettle.example", date: "10 Nov 2026", note: "Small team, wants it simple", rep: "Daniel O." },
+  { name: "Nate Ellison", company: "Copperfield Goods", title: "Loss Prevention", email: "nate@copperfield.example", date: "11/10/2026", note: "Asked about shrink reports", rep: "Daniel O." },
+  { name: "Zoe Laurent", company: "Kite & Kettle", title: "Co-founder", email: "", date: "11/10/2026", note: "Came with Olivia", rep: "Daniel O." },
 ];
 
 /**
