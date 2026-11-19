@@ -49,13 +49,19 @@ export function SourceChip({ id }: { id: string }) {
     const c = chip.current?.getBoundingClientRect();
     const p = pop.current;
     if (!c || !p) return;
+    // Inside the phone app, the popover stays on the phone's screen, not the page around it (decision 0134).
+    const phone = chip.current?.closest(".mob-frame");
+    const inApp = Boolean(chip.current?.closest(".mob-scroll"));
+    const b = phone ? phone.getBoundingClientRect() : { left: 0, top: 0, right: window.innerWidth, bottom: window.innerHeight };
+    const gap = 10;
+    const margin = phone ? 20 : 12;
+    p.style.maxWidth = phone ? `${b.right - b.left - margin * 2}px` : "";
+    p.classList.toggle("is-phone", inApp);
     const w = p.offsetWidth;
     const h = p.offsetHeight;
-    const gap = 10;
-    const margin = 12;
-    const above = c.bottom + gap + h > window.innerHeight - margin && c.top - gap - h > margin;
+    const above = c.bottom + gap + h > b.bottom - margin && c.top - gap - h > b.top + margin;
     const center = c.left + c.width / 2;
-    const left = Math.min(Math.max(center - w / 2, margin), window.innerWidth - w - margin);
+    const left = Math.min(Math.max(center - w / 2, b.left + margin), b.right - w - margin);
     setPos({ top: above ? c.top - gap - h : c.bottom + gap, left, arrow: Math.min(Math.max(center - left, 18), w - 18), above });
   }, []);
 

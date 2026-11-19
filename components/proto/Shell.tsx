@@ -72,8 +72,9 @@ export function Shell({ children }: { children: React.ReactNode }) {
         </Link>
         <div className="flex items-center gap-3 sm:gap-4">
           <p className="whitespace-nowrap font-mono text-meta tracking-wide text-ink-2">
-            {/* Just who is signed in and that the data is made up (decision 0130). */}
-            <span className="hidden sm:inline">{me.name.toUpperCase()} · </span>SAMPLE DATA
+            {/* Who is signed in, their role, and that the data is made up (decisions 0130, 0134). */}
+            <span className="hidden sm:inline">{me.name.toUpperCase()} · </span>
+            <span className="hidden lg:inline">{`${me.role}, ${me.company}`.toUpperCase()} · </span>SAMPLE DATA
           </p>
           {/* A full page load: behind the portfolio's forwarding, a client route to the app's root fails (decision 0040). */}
           <a href={BASE || "/"} className="sig-btn whitespace-nowrap">

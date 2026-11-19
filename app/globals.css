@@ -4740,3 +4740,69 @@ html[data-theme="dark"] .ask-wrap .ask-bullets > li::before {
 .conf.is-low .conf-bars i.on {
   background: var(--viz-risk);
 }
+
+/* The phone recording in the walkthrough sits in a silver phone (decision 0134): a brushed band lit from the top
+   left, the same one the home page tile uses, with a thin black bezel around the screen. Silver in both themes. */
+.case-demo.is-phone {
+  max-width: 320px;
+  margin-inline: auto;
+  padding: 10px;
+  border-radius: 46px;
+  background: linear-gradient(110deg, #f6f7f9 0%, #cfd2d8 38%, #eceef1 62%, #b8bcc4 100%);
+  box-shadow:
+    inset 0 0 0 1px #a9adb5,
+    inset 0 1px 0 rgb(255 255 255 / 0.9),
+    0 22px 44px -26px rgb(40 36 70 / 0.5);
+}
+.case-demo.is-phone .case-demo-frame {
+  max-width: none;
+  margin: 0;
+  border-radius: 36px;
+  outline: 3px solid #111216;
+  outline-offset: 0;
+  box-shadow: none;
+}
+@media (min-width: 1024px) {
+  .case-step-phone .case-demo.is-phone {
+    margin-left: 0;
+  }
+}
+
+/* Phone screens' titles on the leaves block (decision 0134): the subtitle keeps to the plain left side, so the
+   leaves never pass behind text. */
+.mob-head .mob-head-sub {
+  max-width: 68%;
+}
+
+/* On the phone, the question in Ask is a size the field can hold: a chosen question fits on one line. 18px also
+   keeps iOS from zooming into the field. */
+html:root .ask-wrap #m-ask {
+  font-size: 1.125rem;
+  line-height: 1.4;
+}
+
+/* The phone brief's Suggested agenda on the draft wash with the rose edge, like the drafted cards (decision 0134). */
+.mob-agenda {
+  margin-inline: -0.25rem;
+  padding: 0.875rem 1rem 1rem;
+  border-radius: 20px;
+  background: var(--draft);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+.mob-agenda li:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+.mob-agenda li {
+  border-color: var(--rule);
+}
+
+/* The source popover inside the phone app is phone sized (decision 0134). */
+.src-pop.is-phone {
+  padding: 0.7rem 0.8rem 0.7rem;
+  border-radius: 14px;
+  font-size: 0.875rem;
+}
+.src-pop.is-phone h2 {
+  font-size: 0.9375rem;
+}

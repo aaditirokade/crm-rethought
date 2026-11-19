@@ -57,6 +57,16 @@ export function MobileApp() {
   );
 }
 
+/** A screen's title on the leaves block (decision 0134), as on Next up; each screen draws its own arrangement. */
+function ScreenHead({ seed, label, children }: { seed: number; label: string; children: React.ReactNode }) {
+  return (
+    <section aria-label={label} className="gw-block gw-head mob-head -mx-1">
+      <Leaves seed={seed} count={7} scale={0.85} spread={[0.74, 1.04]} />
+      {children}
+    </section>
+  );
+}
+
 function Home({ go, waiting }: { go: (s: Screen) => void; waiting: number }) {
   const s = useProto();
   const next = MEETINGS[0];
@@ -73,6 +83,9 @@ function Home({ go, waiting }: { go: (s: Screen) => void; waiting: number }) {
           {NOW.day.toUpperCase()} · {NOW.time}
         </p>
         <h1 className="text-h2 font-semibold">Hi {me.short}</h1>
+        <p className="text-small text-ink-2">
+          {me.role}, {me.company}
+        </p>
       </section>
 
       <section aria-labelledby="m-next" className="mt-5">
@@ -166,15 +179,18 @@ function Brief({ back }: { back: () => void }) {
   const sections = [...new Set(items.map((x) => x.section))];
   return (
     <div>
-      <button type="button" className="sig-btn" onClick={back}>
+      <button type="button" className="sig-btn mb-3" onClick={back}>
         {"‹"} Next up
       </button>
-      <h1 className="mt-3 text-h2 font-semibold">{account(m.account)?.name}</h1>
-      <p className="text-small text-ink-2">
-        {m.title} · {m.time} · {m.lastTouch}
-      </p>
+      <ScreenHead seed={33} label="The brief">
+        <h1 className="text-h2 font-semibold">{account(m.account)?.name}</h1>
+        <p className="mob-head-sub text-small text-ink-2">
+          {m.title} · {m.time} · {m.lastTouch}
+        </p>
+      </ScreenHead>
       {sections.map((sec) => (
-        <section key={sec} className="mt-5" aria-label={sec}>
+        // The suggested agenda is the AI's proposal for the meeting, so it sits on the draft wash (decision 0134).
+        <section key={sec} className={`mt-5 ${sec === "Suggested agenda" ? "mob-agenda" : ""}`} aria-label={sec}>
           <h2 className="font-mono text-meta tracking-wide text-ink-2">{sec.toUpperCase()}</h2>
           <ul className="mt-2 space-y-3">
             {items
@@ -232,8 +248,10 @@ function Approve() {
 
   return (
     <div>
-      <h1 className="text-h2 font-semibold">Approve</h1>
-      <p className="text-small text-ink-2">Swipe right to approve, left to dismiss. Nothing saves without you.</p>
+      <ScreenHead seed={12} label="Approve">
+        <h1 className="text-h2 font-semibold">Approve</h1>
+        <p className="mob-head-sub text-small text-ink-2">Swipe right to approve, left to dismiss. Nothing saves without you.</p>
+      </ScreenHead>
 
       {cur ? (
         <>
@@ -469,10 +487,12 @@ function VoiceNote() {
 
   return (
     <div>
-      <h1 className="text-h2 font-semibold">Voice note</h1>
-      <p className="text-small text-ink-2">
-        {ev.title} with {ev.with}, {ev.day}. No recording of the conversation; just your words afterwards.
-      </p>
+      <ScreenHead seed={21} label="Voice note">
+        <h1 className="text-h2 font-semibold">Voice note</h1>
+        <p className="mob-head-sub text-small text-ink-2">
+          {ev.title} with {ev.with}, {ev.day}. No recording of the conversation; just your words afterwards.
+        </p>
+      </ScreenHead>
 
       <div className="mt-5 grid place-items-center">
         <button

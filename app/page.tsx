@@ -7,7 +7,6 @@ import { ChapterRail, type Chapter as RailChapter } from "@/components/case/Chap
 import { ProblemReel } from "@/components/case/ProblemReel";
 import { ThemeButton } from "@/components/case/ThemeButton";
 import { BASE } from "@/lib/base";
-import { MobileApp } from "@/components/mobile/MobileApp";
 import { AskAnatomy } from "@/components/case/AskAnatomy";
 import { SiteNav } from "@/components/case/SiteNav";
 import { BuiltInCode } from "@/components/case/BuiltInCode";
@@ -217,11 +216,12 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Nov 2026 (decision 0118): the working phone app, right after the story, so a reader can use it before the
-            chapters. The same app as /mobile, live, in the phone frame. */}
+        {/* Nov 2026 (decision 0118): the phone, right after the story. Since decision 0135 it plays the whole phone
+            loop as a recording, so a reader sees the workflow without having to click through it; the live app is one
+            link away at /mobile. */}
         <section aria-labelledby="phone-h" className="mt-16 grid items-center gap-10 border-t border-[var(--rule)] pt-12 lg:grid-cols-12 lg:gap-16 lg:pt-16">
           <div className="lg:col-span-6">
-            <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-ink-2">Try it on the phone</p>
+            <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-ink-2">On the phone</p>
             <h2 id="phone-h" className="mt-3 text-[1.75rem] font-medium leading-tight tracking-tight sm:text-[2rem]">For the minutes between meetings</h2>
             <p className="mt-5 max-w-[52ch] text-[17px] leading-relaxed text-ink-2">
               On the way to a meeting, the phone shows what to know, not a dashboard. After it, a minute logs it. Same rule as
@@ -234,13 +234,17 @@ export default function Home() {
               <li><span className="font-medium">Voice note:</span> <span className="text-ink-2">each sentence becomes a line to approve.</span></li>
             </ul>
             <p className="mt-6 text-small text-ink-2">
-              The working app, with sample data. <Link href="/mobile" className="font-medium text-ink underline underline-offset-4">Open it full screen</Link>.
+              The recording plays the loop above. <Link href="/mobile" className="font-medium text-ink underline underline-offset-4">Try the working app</Link> with sample data.
             </p>
           </div>
-          <div className="flex justify-center lg:col-span-6">
-            <div className="mob-frame" aria-label="Groundwork on a phone, working" role="region">
-              <MobileApp />
-            </div>
+          <div className="lg:col-span-6">
+            <Demo
+              name="phone-tour"
+              phone
+              width={750}
+              height={1484}
+              alt="The phone loop, recorded: from Next up, a person approves a waiting card, asks why Fernhill is slipping and reads the sourced answer, then records a voice note, whose words become lines to approve as Draft log lines."
+            />
           </div>
         </section>
 

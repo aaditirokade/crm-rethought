@@ -127,3 +127,5 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0131 | [Ask answers in bullets; the next move in rose](0131-ask-bullets.md) | 2026-11-19 |
 | 0132 | [Confidence as bars and a color](0132-confidence-bars.md) | 2026-11-19 |
 | 0133 | [Case study clips re-recorded in the new look](0133-case-media-new-look.md) | 2026-11-19 |
+| 0134 | [The phone app in the new look, and who Daniel is](0134-phone-in-the-new-look.md) | 2026-11-19 |
+| 0135 | [The case study plays the phone loop instead of embedding the app](0135-phone-loop-recorded.md) | 2026-11-19 |
