@@ -23,7 +23,7 @@ export function AccountDrawer({ id, onClose }: { id: string; onClose: () => void
   const titleId = `acct-${id}`;
   const facts: [string, React.ReactNode][] = [
     ["RENEWAL", a.renewal],
-    ["USAGE, 8 WEEKS", t.isNew ? "New, ramping up" : `${t.pct >= 0 ? "+" : "−"}${Math.abs(t.pct)}%`],
+    ["USAGE · 8 WK", t.isNew ? "New" : `${t.pct >= 0 ? "+" : "−"}${Math.abs(t.pct)}%`],
     ["LAST TOUCH", a.lastTouch],
     ["STORES", a.stores],
   ];
@@ -61,21 +61,22 @@ export function AccountDrawer({ id, onClose }: { id: string; onClose: () => void
               </button>
             </form>
           </div>
-          <dl className="mt-5 grid grid-cols-2 gap-2">
+          <dl className="mt-4 grid grid-cols-4 gap-1.5">
             {facts.map(([k, v]) => (
               <div key={k} className="acct-fact">
-                <dt className="font-mono text-meta tracking-wide text-ink-2">{k}</dt>
-                <dd className="mt-0.5 text-[1.0625rem] font-semibold">{v}</dd>
+                <dt className="font-mono text-[0.6875rem] tracking-wide text-ink-2">{k}</dt>
+                <dd className="mt-0.5 font-semibold">{v}</dd>
               </div>
             ))}
           </dl>
-          <p className="mt-4 text-small">
-            <span className="font-mono text-meta tracking-wide text-ink-2">NEXT STEP · </span>
-            {a.nextStep}
-          </p>
         </header>
 
-        <div className="flex flex-1 flex-col px-6 pb-6">
+        {/* The block's lower edge is an S: it rounds off on the left and runs a little further down on the right. */}
+        <div className="acct-body flex flex-1 flex-col px-6 pb-6">
+        <p className="mt-2 text-small">
+          <span className="font-mono text-meta tracking-wide text-ink-2">NEXT STEP · </span>
+          {a.nextStep}
+        </p>
         {waiting.length ? (
           <p className="sig-row-draft mt-6 rounded-xl px-3 py-2 text-small">
             {waiting.length} {waiting.length === 1 ? "line waits" : "lines wait"} for your approval.{" "}

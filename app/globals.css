@@ -4222,3 +4222,38 @@ html[data-theme="dark"] .gw-night.acct-head {
 .gw-night.acct-head::after {
   background: linear-gradient(200deg, transparent 30%, rgb(29 31 61 / 0.85) 70%);
 }
+
+/* Lighter head (decision 0124): shorter, with the four numbers in one row, and an S shaped lower edge that blends
+   into the panel like the reference: the block rounds off at the lower left, and a curve of the same night runs on
+   down the right edge into the light part. */
+.gw-night.acct-head {
+  border-radius: 0 0 0 36px;
+  padding: 1.25rem 1.5rem 1.25rem;
+  margin-bottom: 0;
+}
+.acct-fact {
+  padding: 0.45rem 0.6rem;
+  border-radius: 12px;
+}
+.acct-body {
+  position: relative;
+}
+.acct-body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  pointer-events: none;
+  background: radial-gradient(circle at 0 100%, transparent 35.5px, #36223c 36px);
+}
+/* So the curve that runs on down the right edge matches the block exactly, the leaves fade out before the block's
+   lower edge and the shade sits behind the text on the left, not over the lower right. */
+.gw-night.acct-head::after {
+  background: linear-gradient(90deg, #1d1f3d 30%, transparent 72%);
+}
+.gw-night.acct-head .gw-leaves {
+  -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 92%);
+  mask-image: linear-gradient(to bottom, #000 45%, transparent 92%);
+}
