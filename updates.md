@@ -187,3 +187,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - 2026-11-19: confidence shows as bars and a color before its words, everywhere (decision 0132).
 - 2026-11-19: Ask's Clear button sits on the Suggested actions line (decision 0131).
 - 2026-11-19: Ask's confidence and sources lines merge into one (decision 0131).
+- 2026-11-19: Ask's Play demo button removed (decision 0131).

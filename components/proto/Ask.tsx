@@ -213,7 +213,6 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
   const [input, setInput] = useState("");
   const [answer, setAnswer] = useState<Answer | null>(null);
   const [elapsed, setElapsed] = useState(0);
-  const [playing, setPlaying] = useState(false);
   const frame = useRef(0);
   const timers = useRef<number[]>([]);
   const focused = useRef(false);
@@ -281,25 +280,6 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
     later(() => run(q, then), q.length * TYPE_MS + 350);
   };
 
-  const playDemo = () => {
-    stopAll();
-    setPlaying(true);
-    const step = (i: number) => {
-      if (i >= SUGGESTED.length) {
-        setPlaying(false);
-        return;
-      }
-      typeAndAsk(SUGGESTED[i], () => step(i + 1));
-    };
-    step(0);
-  };
-
-  const stopDemo = () => {
-    stopAll();
-    setPlaying(false);
-    if (answer) setElapsed(timeline(answer).total);
-  };
-
   const tl = answer ? timeline(answer) : null;
   const done = !!tl && elapsed >= tl.total;
   const writing = !!tl && elapsed >= tl.writeStart;
@@ -333,7 +313,6 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
           className="ask-clear"
           onClick={() => {
             stopAll();
-            setPlaying(false);
             setAnswer(null);
             setInput("");
             onFocus([]);
@@ -368,7 +347,6 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
           e.preventDefault();
           if (input.trim()) {
             stopAll();
-            setPlaying(false);
             run(input.trim());
           }
         }}
@@ -397,16 +375,12 @@ export function Ask({ onFocus }: { onFocus: (ids: string[]) => void }) {
             className="sig-btn"
             onClick={() => {
               stopAll();
-              setPlaying(false);
               typeAndAsk(q);
             }}
           >
             {q}
           </button>
         ))}
-        <button type="button" className="sig-btn" aria-pressed={playing} onClick={playing ? stopDemo : playDemo}>
-          {playing ? "Stop demo" : "▶ Play demo"}
-        </button>
       </div>
 
       <div className={`ask-panel ${answer ? "is-open" : ""}`}>
