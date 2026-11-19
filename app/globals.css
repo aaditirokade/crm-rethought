@@ -3761,3 +3761,23 @@ html[data-theme="dark"] .board-item.proto-card.pulse-glass::before {
     transform: none;
   }
 }
+
+/* Health marks in charts (decision 0119): solid and bright, checked as a set for colorblind separation in each
+   theme (healthy, needs a look, at risk). Marks only; health text keeps the good, warn and risk text tokens. */
+:root {
+  --viz-good: #1fab84;
+  --viz-warn: #e8891c;
+  --viz-risk: #ec4a68;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --viz-good: #19a37d;
+    --viz-warn: #d27a10;
+    --viz-risk: #ee4d72;
+  }
+}
+:root[data-theme="dark"] {
+  --viz-good: #19a37d;
+  --viz-warn: #d27a10;
+  --viz-risk: #ee4d72;
+}

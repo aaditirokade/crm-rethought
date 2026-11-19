@@ -148,3 +148,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - 2026-11-19: no corner leaves on Ask or Lists; the leaves stay in the blocks, title bands and commit bars (decision 0119).
 - 2026-11-19: Account pulse tiles on Today are frosted glass, lavender and blush tinted, with a mirror streak on hover (decision 0119).
 - 2026-11-19: Account pulse glass in periwinkle alone, no blush (decision 0119).
+- 2026-11-19: Accounts portfolio map in solid, bright health colors, with a rose wash for the renewing soon zone (decision 0119).

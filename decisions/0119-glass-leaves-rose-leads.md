@@ -10,6 +10,8 @@
 
 **Account pulse (next day):** each account tile on Today is a pane of frosted glass, near white with a periwinkle tint, the cooler of the two colors and not both (night periwinkle in the dark), with a bright top edge and a mirror streak that slides across under the pointer. Text keeps its contrast on the near white and the night.
 
+**Health in charts (next day):** the portfolio map on Accounts draws its bubbles in solid, bright health colors (mint, amber, coral; a step deeper at night) with a ring of the page around each, instead of pale tints of the text colors. The set passes the colorblind separation check in both themes; the health words and their shapes stay beside every bubble, so color is never the only cue. The renewing soon zone is a rose wash.
+
 **Options:** twelve rounds, kept in research/color-exploration: dusk palettes with circles; glass cubes, tetrahedra and prisms on dark blocks; many faced polyhedra; rounded glass cubes; six light patterns (pearl cubes, rose quartz, crystal shards, prism facets, holographic folds, ink marble); grass in two shapes; the broad leaves in six palettes; a blend of periwinkle and rose quartz with either color leading.
 
 **Why:** the art carries the weight, so the colors stay light. On a page that is mostly periwinkle and lavender, rose is the one warm color, so the actions stand out; a periwinkle button blended in. Leaves in more than one place make the whole app read as one thing.

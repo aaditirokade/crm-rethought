@@ -31,7 +31,8 @@ export function PortfolioMap({ accounts }: { accounts: LiveAccount[] }) {
     const t = trendOf(a.id);
     return { a, days, t, x: X(days), y: Y(t.isNew ? 55 : t.pct), r: 6 + Math.sqrt(a.stores) * 1.6 };
   });
-  const tone = (h: string) => (h === "At risk" ? "var(--risk)" : h === "Needs a look" ? "var(--warn)" : "var(--good)");
+  // Solid, bright health colors for the marks (decision 0119); text stays in ink, so the labels carry the meaning too.
+  const tone = (h: string) => (h === "At risk" ? "var(--viz-risk)" : h === "Needs a look" ? "var(--viz-warn)" : "var(--viz-good)");
   const icon = (h: string) => (h === "At risk" ? "\u25A0" : h === "Needs a look" ? "\u25B2" : "\u25CF");
   const xTicks = [0, 90, 180, 270, 365];
   const yTicks = [60, 30, 0, -30, -60];
@@ -46,8 +47,8 @@ export function PortfolioMap({ accounts }: { accounts: LiveAccount[] }) {
         <p className="font-mono text-meta tracking-wide text-ink-2">RENEWAL × 8 WEEK USAGE TREND · SIZE = STORES</p>
       </div>
       <svg viewBox={`0 0 ${W} ${H}`} className="mt-3 w-full max-w-[920px]" role="group" aria-label="Portfolio map: days to renewal against usage trend">
-        <rect x={L} y={Y(0)} width={X(120) - L} height={Y(-60) - Y(0)} fill="var(--risk)" fillOpacity="0.07" />
-        <text x={L + 8} y={Y(0) + 18} fontSize="11.5" fill="var(--risk)" className="font-mono">
+        <rect x={L} y={Y(0)} width={X(120) - L} height={Y(-60) - Y(0)} rx="10" fill="var(--accent)" fillOpacity="0.08" />
+        <text x={L + 8} y={Y(0) + 18} fontSize="11.5" fill="var(--accent)" className="font-mono">
           RENEWING SOON AND FALLING
         </text>
         {yTicks.map((v) => (
@@ -74,12 +75,12 @@ export function PortfolioMap({ accounts }: { accounts: LiveAccount[] }) {
           const label = `${p.a.name}: ${p.a.health}, renews in ${p.days} days, usage ${p.t.isNew ? "new and ramping" : `${p.t.pct >= 0 ? "up" : "down"} ${Math.abs(p.t.pct)}%`}, ${p.a.stores} stores`;
           return (
             <Link key={p.a.id} href={`/prototype/accounts/${p.a.id}`} aria-label={label} className="map-dot">
-              <circle className="bubble-in" style={{ animationDelay: `${pts.indexOf(p) * 90}ms` }} cx={p.x} cy={p.y} r={p.r} fill={tone(p.a.health)} fillOpacity="0.18" stroke={tone(p.a.health)} strokeWidth="1.5" />
+              <circle className="bubble-in" style={{ animationDelay: `${pts.indexOf(p) * 90}ms` }} cx={p.x} cy={p.y} r={p.r} fill={tone(p.a.health)} stroke="var(--bg)" strokeWidth="2" />
               <text x={right ? p.x + p.r + 6 : p.x - p.r - 6} y={p.y - 2} textAnchor={right ? "start" : "end"} fontSize="12.5" fontWeight="600" fill="var(--ink)">
                 {p.a.name}
               </text>
               <text x={right ? p.x + p.r + 6 : p.x - p.r - 6} y={p.y + 13} textAnchor={right ? "start" : "end"} fontSize="11" fill="var(--ink-2)" className="font-mono">
-                {icon(p.a.health)} {p.a.health.toUpperCase()} · {p.t.isNew ? "NEW" : `${p.t.pct >= 0 ? "+" : "\u2212"}${Math.abs(p.t.pct)}%`}
+                <tspan fill={tone(p.a.health)}>{icon(p.a.health)}</tspan> {p.a.health.toUpperCase()} · {p.t.isNew ? "NEW" : `${p.t.pct >= 0 ? "+" : "\u2212"}${Math.abs(p.t.pct)}%`}
               </text>
               <title>{label}</title>
             </Link>
