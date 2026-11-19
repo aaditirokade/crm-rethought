@@ -4505,3 +4505,47 @@ html:root body .board-item.proto-card.pulse-glass.is-hit {
 html:root body :is(.src-pop, .map-tip, .stage-panel, .proto-drawer, .dock, .theme-fab) {
   border: 1px solid color-mix(in srgb, var(--line-strong) 45%, transparent);
 }
+
+/* Today's side panel (decision 0127): one wide leaves block with arrows; each section slides in on the same block. */
+.gw-block.side-panel {
+  padding: 1.25rem 1.25rem 1rem;
+}
+.side-slide {
+  animation: side-in 220ms cubic-bezier(0.3, 0.6, 0.2, 1);
+}
+@keyframes side-in {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+}
+.side-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ink-2) 35%, transparent);
+  transition: width 200ms ease, background 200ms ease;
+}
+.side-dot.is-on {
+  width: 18px;
+  background: var(--accent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .side-slide,
+  .side-dot {
+    animation: none;
+    transition: none;
+  }
+}
+/* The panel is narrow, so text sits over the leaves: they stay faint here, and the panel keeps one height as it turns. */
+html:root .gw-block.side-panel .gw-leaves {
+  opacity: 0.4;
+}
+.gw-block.side-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 21.5rem;
+}
+.gw-block.side-panel > .side-slide {
+  flex: 1;
+}

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { EVENTS } from "@/content/more";
 import { account, MEETINGS, NOW } from "@/content/prototype";
 import { Ask } from "../Ask";
@@ -50,17 +50,20 @@ export function Today() {
       <div className="mt-14 space-y-14">
         <DayStrip s={s} focus={focus} />
 
-        <div className="grid gap-x-12 gap-y-14 lg:grid-cols-[minmax(0,1fr)_18rem] 2xl:grid-cols-[minmax(0,1fr)_24rem]">
+        <div className="grid gap-x-12 gap-y-14 lg:grid-cols-[minmax(0,1fr)_22rem] 2xl:grid-cols-[minmax(0,1fr)_28rem]">
           <PulseTiles s={s} focus={focus} />
 
-          <aside className="tone-block space-y-10 lg:self-start">
-            <section aria-labelledby="h-waiting" className="gw-block p-5">
-              <Leaves seed={7} count={6} scale={0.7} />
-              <h2 id="h-waiting" className="text-h3 font-semibold">
-                Waiting for you
-              </h2>
-              <p className="mt-1 text-small text-ink-2">Nothing here reaches the record until you approve it.</p>
-              {groups.length ? (
+          {/* One panel that turns, with arrows (decision 0127): Waiting for you, Ended without a recording, Later this
+              week and Your tasks, each on the same leaves block. */}
+          <SidePanel
+            slides={[
+              {
+                id: "waiting",
+                title: "Waiting for you",
+                sub: "Nothing here reaches the record until you approve it.",
+                body: (
+                  <>
+{groups.length ? (
                 <ul className="proto-card mt-3 divide-y divide-line">
                   {groups.map(({ origin, items }) => (
                     <li key={origin.key} className="p-3">
@@ -79,13 +82,17 @@ export function Today() {
               ) : (
                 <p className="proto-card mt-3 p-3 text-small text-ink-2">All clear.</p>
               )}
-            </section>
-
-            {unlogged.length ? (
-              <section aria-labelledby="h-unrecorded">
-                <h2 id="h-unrecorded" className="text-h3 font-semibold">
-                  Ended without a recording
-                </h2>
+                  </>
+                ),
+              },
+              ...(unlogged.length
+                ? [
+                    {
+                      id: "unrecorded",
+                      title: "Ended without a recording",
+                      sub: "Log them from your notes while they are fresh.",
+                      body: (
+                        <>
                 <ul className="proto-card mt-3 divide-y divide-line">
                   {unlogged.map((e) => (
                     <li key={e.id} className="p-3">
@@ -99,13 +106,18 @@ export function Today() {
                     </li>
                   ))}
                 </ul>
-              </section>
-            ) : null}
-
-            <section aria-labelledby="h-next">
-              <h2 id="h-next" className="text-h3 font-semibold">
-                Later this week
-              </h2>
+              
+                        </>
+                      ),
+                    },
+                  ]
+                : []),
+              {
+                id: "later",
+                title: "Later this week",
+                sub: "Briefs are ready the morning of each meeting.",
+                body: (
+                  <>
               <ul className="proto-card mt-3 divide-y divide-line">
                 {later.map((m) => {
                   const ready = m.fromLog ? saved(s, (x) => x.meeting === m.fromLog && x.kind !== "fix").length > 0 : true;
@@ -129,12 +141,16 @@ export function Today() {
                   );
                 })}
               </ul>
-            </section>
-
-            <section aria-labelledby="h-tasks">
-              <h2 id="h-tasks" className="text-h3 font-semibold">
-                Your tasks
-              </h2>
+            
+                  </>
+                ),
+              },
+              {
+                id: "tasks",
+                title: "Your tasks",
+                sub: "Yours to do; the AI never sends anything.",
+                body: (
+                  <>
               <ul className="proto-card mt-3 divide-y divide-line">
                 {myTasks.map((t) => (
                   <li key={t.text} id={t.askId ? `task-${t.askId}` : undefined} tabIndex={t.askId ? -1 : undefined} className="task-row p-3">
@@ -147,10 +163,67 @@ export function Today() {
                   </li>
                 ))}
               </ul>
-            </section>
-          </aside>
+            
+                  </>
+                ),
+              },
+            ]}
+          />
         </div>
       </div>
     </div>
+  );
+}
+
+type Slide = { id: string; title: string; sub: string; body: React.ReactNode };
+
+/**
+ * Today's side panel as a carousel (decision 0127): one section at a time on the leaves block, with arrows and a
+ * count. Turning to a section moves focus to its heading, so a screen reader hears where it landed.
+ */
+function SidePanel({ slides }: { slides: Slide[] }) {
+  const [i, setI] = useState(0);
+  const at = Math.min(i, slides.length - 1);
+  const cur = slides[at];
+  useEffect(() => {
+    const toTasks = () => setI(Math.max(0, slides.findIndex((x) => x.id === "tasks")));
+    window.addEventListener("gw-show-tasks", toTasks);
+    return () => window.removeEventListener("gw-show-tasks", toTasks);
+  }, [slides]);
+  const go = (d: number) => {
+    setI((at + d + slides.length) % slides.length);
+    window.setTimeout(() => document.getElementById("side-h")?.focus({ preventScroll: true }), 0);
+  };
+  return (
+    <section aria-roledescription="carousel" aria-label="Your day, more" className="gw-block side-panel lg:self-start">
+      <Leaves seed={7 + at} count={6} scale={0.7} />
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0" aria-live="polite">
+          <p className="font-mono text-meta tracking-wide text-ink-2">
+            {at + 1} OF {slides.length}
+          </p>
+          <h2 id="side-h" tabIndex={-1} className="mt-1 text-h3 font-semibold outline-none">
+            {cur.title}
+          </h2>
+        </div>
+        <div className="flex shrink-0 gap-1.5">
+          <button type="button" className="sig-btn icon-act" aria-label={`Previous: ${slides[(at - 1 + slides.length) % slides.length].title}`} onClick={() => go(-1)}>
+            <span aria-hidden="true">{"\u2190"}</span>
+          </button>
+          <button type="button" className="sig-btn icon-act" aria-label={`Next: ${slides[(at + 1) % slides.length].title}`} onClick={() => go(1)}>
+            <span aria-hidden="true">{"\u2192"}</span>
+          </button>
+        </div>
+      </div>
+      <p className="mt-1 text-small text-ink-2">{cur.sub}</p>
+      <div key={cur.id} className="side-slide">
+        {cur.body}
+      </div>
+      <div className="mt-4 flex justify-center gap-1.5" aria-hidden="true">
+        {slides.map((x, k) => (
+          <span key={x.id} className={`side-dot ${k === at ? "is-on" : ""}`} />
+        ))}
+      </div>
+    </section>
   );
 }

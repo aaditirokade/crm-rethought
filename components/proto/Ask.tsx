@@ -43,11 +43,15 @@ const KIND: Record<SuggestedAction["kind"], { tag: string; verb: string; done: s
  */
 /** Scrolls to a task added from Ask on Your tasks and puts focus on it (decision 0100). */
 function showTask(id: string) {
-  const el = document.getElementById(`task-${id}`);
-  if (!el) return;
-  const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  el.scrollIntoView({ behavior: still ? "auto" : "smooth", block: "center" });
-  el.focus({ preventScroll: true });
+  // Today's side panel is a carousel (decision 0127): ask it to turn to Your tasks first.
+  window.dispatchEvent(new Event("gw-show-tasks"));
+  window.setTimeout(() => {
+    const el = document.getElementById(`task-${id}`);
+    if (!el) return;
+    const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollIntoView({ behavior: still ? "auto" : "smooth", block: "center" });
+    el.focus({ preventScroll: true });
+  }, 60);
 }
 
 export function AskActions({
