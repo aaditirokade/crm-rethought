@@ -8,7 +8,7 @@
 
 **Ask on Today (same day):** Ask was lavender on the lavender block and merged into it. It is now near white with a soft shadow (a deeper night in the dark), with a thin rose edge fading out from its top left corner, and pale lavender suggestion pills. Text on it is 8.6:1 or more, the pills' text 10.0:1, the field line 4.5:1. Chosen over the edge alone and the white alone.
 
-**Account pulse (next day):** each account tile on Today is a pane of frosted glass, near white tinted lavender at one corner and blush at the other (night periwinkle in the dark), with a bright top edge and a mirror streak that slides across under the pointer. Text keeps its contrast on the near white and the night.
+**Account pulse (next day):** each account tile on Today is a pane of frosted glass, near white with a periwinkle tint, the cooler of the two colors and not both (night periwinkle in the dark), with a bright top edge and a mirror streak that slides across under the pointer. Text keeps its contrast on the near white and the night.
 
 **Options:** twelve rounds, kept in research/color-exploration: dusk palettes with circles; glass cubes, tetrahedra and prisms on dark blocks; many faced polyhedra; rounded glass cubes; six light patterns (pearl cubes, rose quartz, crystal shards, prism facets, holographic folds, ink marble); grass in two shapes; the broad leaves in six palettes; a blend of periwinkle and rose quartz with either color leading.
 
