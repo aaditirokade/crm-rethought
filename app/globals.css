@@ -4147,7 +4147,13 @@ html[data-theme="dark"] .gw-head::before {
   color: var(--ink);
   font-size: var(--text-small);
   box-shadow: 0 14px 30px -14px rgb(60 50 130 / 0.45);
-  animation: src-pop-in 140ms ease;
+  /* Fades in where it stands; the shared pop-in moved it, since that animation sets its own transform. */
+  animation: map-tip-in 120ms ease;
+}
+@keyframes map-tip-in {
+  from {
+    opacity: 0;
+  }
 }
 html[data-theme="dark"] .map-tip {
   border-color: #2c2e50;
