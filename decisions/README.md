@@ -130,3 +130,4 @@ One file per decision: `NNNN-short-name.md`. Each answers four things in a few l
 | 0134 | [The phone app in the new look, and who Daniel is](0134-phone-in-the-new-look.md) | 2026-11-19 |
 | 0135 | [The case study plays the phone loop instead of embedding the app](0135-phone-loop-recorded.md) | 2026-11-19 |
 | 0136 | [Interactions in color, and the Pause button off the phone](0136-interactions-and-pause.md) | 2026-11-19 |
+| 0137 | [A data visualization chapter](0137-dataviz-chapter.md) | 2026-11-19 |

@@ -87,10 +87,10 @@ const PLAN: [string, string][] = [
 /** The test I'd run first: line by line approval, or the meeting at once. It tests the product's own core rule. */
 export function ApprovalExperiment() {
   return (
-    <section aria-labelledby="ch-07" className="border-t border-[var(--rule)] py-16 lg:py-24">
+    <section aria-labelledby="ch-08" className="border-t border-[var(--rule)] py-16 lg:py-24">
       <div className="max-w-[60ch]">
-        <p className="font-mono text-meta tracking-wide text-accent">07 · THE TEST I’D RUN FIRST</p>
-        <h2 id="ch-07" className="mt-3 text-[1.75rem] font-medium leading-tight tracking-tight sm:text-[2rem]">
+        <p className="font-mono text-meta tracking-wide text-accent">08 · THE TEST I’D RUN FIRST</p>
+        <h2 id="ch-08" className="mt-3 text-[1.75rem] font-medium leading-tight tracking-tight sm:text-[2rem]">
           Approve every line, or approve the meeting?
         </h2>
         <div className="mt-5 space-y-4 text-[17px] leading-relaxed text-ink-2">

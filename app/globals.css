@@ -4839,3 +4839,16 @@ html[data-theme="dark"] .inter-item[data-kind="ticket"] { --inter-edge: #f7b955;
 html:root body .proto-card.inter-item {
   box-shadow: inset 3px 0 0 var(--inter-edge, var(--line-strong)) !important;
 }
+
+/* Chapter 04's pictures (decision 0137): square on a hairline like the recordings (decision 0062). */
+.dv-shot {
+  display: block;
+}
+.dv-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.dv-frame img {
+  outline: 1px solid var(--rule);
+}

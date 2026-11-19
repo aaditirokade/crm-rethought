@@ -4,6 +4,7 @@ import { Coverage } from "@/components/case/Coverage";
 import { Demo } from "@/components/case/Demo";
 import { ScrollSteps, type Step } from "@/components/case/ScrollSteps";
 import { ChapterRail, type Chapter as RailChapter } from "@/components/case/ChapterRail";
+import { DataViz } from "@/components/case/DataViz";
 import { ProblemReel } from "@/components/case/ProblemReel";
 import { ThemeButton } from "@/components/case/ThemeButton";
 import { BASE } from "@/lib/base";
@@ -97,11 +98,12 @@ const CHAPTERS: RailChapter[] = [
   { id: "ch-02", label: "Research" },
   { id: "ch-03", label: "Ask" },
   { id: "how", label: "How it works" },
-  { id: "ch-04", label: "Design system" },
-  { id: "ch-05", label: "Built in the open" },
-  { id: "ch-06", label: "Built in code" },
-  { id: "ch-07", label: "The test" },
-  { id: "ch-08", label: "Next" },
+  { id: "ch-04", label: "Data" },
+  { id: "ch-05", label: "Design system" },
+  { id: "ch-06", label: "Built in the open" },
+  { id: "ch-07", label: "Built in code" },
+  { id: "ch-08", label: "The test" },
+  { id: "ch-09", label: "Next" },
   { id: "try", label: "Try it" },
 ];
 
@@ -309,8 +311,11 @@ export default function Home() {
 
           <WhenWrong />
 
+          {/* Nov 2026 (decision 0137): the data visualization work as its own chapter, before the design system. */}
+          <DataViz />
+
           <Chapter
-            n="04"
+            n="05"
             kicker="Design system"
             title="Calm to use all day, rose where the AI asks you to act"
             flip
@@ -351,7 +356,7 @@ export default function Home() {
           <DirectionsNotTaken />
 
           <Chapter
-            n="05"
+            n="06"
             kicker="Built in the open"
             title="Every prompt, decision and commit is public"
             visual={
@@ -388,7 +393,7 @@ export default function Home() {
           <ApprovalExperiment />
 
           <Chapter
-            n="08"
+            n="09"
             kicker="Next"
             title="What I’d want to learn next, and how I’d measure it"
             visual={
