@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { account, type Stage } from "@/content/prototype";
 import { Meta } from "./Source";
 import { actions, allSugs, entryOf, liveOpps, useProto } from "./store";
@@ -72,7 +72,7 @@ export function Pipeline() {
                         key={`${o.id}-${o.stage}`}
                         draggable
                         onDragStart={(e) => e.dataTransfer.setData("text/plain", o.id)}
-                        className="pipe-card cursor-grab rounded-xl border border-line bg-surface p-3 active:cursor-grabbing"
+                        className="pipe-card relative cursor-grab rounded-xl border border-line bg-surface p-3 active:cursor-grabbing"
                       >
                         <p className="text-small font-semibold">
                           <Link href={`/prototype/accounts/${o.account}`} className="hover:underline">
@@ -90,22 +90,11 @@ export function Pipeline() {
                         {p && p.effect?.type === "stage" ? (
                           <p className="mt-1 font-mono text-meta text-accent">AI SUGGESTS {"→"} {p.effect.to.toUpperCase()}</p>
                         ) : null}
-                        <label className="mt-2 block">
-                          <span className="sr-only">
-                            Move {account(o.account)?.name} {o.name} to
-                          </span>
-                          <select
-                            className="proto-input py-1 text-small"
-                            value={o.stage}
-                            onChange={(e) => actions.moveOpp(o.id, e.target.value as Stage)}
-                          >
-                            {STAGES.map((st) => (
-                              <option key={st} value={st}>
-                                {st === o.stage ? `In ${st}` : `Move to ${st}`}
-                              </option>
-                            ))}
-                          </select>
-                        </label>
+                        <StageMenu
+                          stage={o.stage}
+                          label={`Move ${account(o.account)?.name} ${o.name}`}
+                          onPick={(st) => actions.moveOpp(o.id, st)}
+                        />
                       </li>
                     );
                   })}
@@ -133,5 +122,109 @@ export function Pipeline() {
         </ol>
       </div>
     </section>
+  );
+}
+
+/**
+ * The stage menu on a pipeline card (decision 0125): a field in the cards' own style that opens a small panel right
+ * below it, instead of the system's native menu, which jumped over the card. A listbox: arrow keys move, Enter picks,
+ * Escape or a click outside closes, and focus returns to the field.
+ */
+function StageMenu({ stage, label, onPick }: { stage: Stage; label: string; onPick: (s: Stage) => void }) {
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState(STAGES.indexOf(stage));
+  const btn = useRef<HTMLButtonElement>(null);
+  const list = useRef<HTMLUListElement>(null);
+  const id = useId();
+
+  useEffect(() => {
+    if (!open) return;
+    list.current?.focus();
+    const onDown = (e: PointerEvent) => {
+      const t = e.target as Node;
+      if (!list.current?.contains(t) && !btn.current?.contains(t)) setOpen(false);
+    };
+    window.addEventListener("pointerdown", onDown);
+    return () => window.removeEventListener("pointerdown", onDown);
+  }, [open]);
+
+  const close = () => {
+    setOpen(false);
+    btn.current?.focus();
+  };
+  const pick = (st: Stage) => {
+    if (st !== stage) onPick(st);
+    close();
+  };
+
+  return (
+    <div className="stage-menu mt-2" draggable={false} onDragStart={(e) => e.preventDefault()}>
+      <button
+        ref={btn}
+        type="button"
+        className="stage-field"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-controls={open ? `${id}-list` : undefined}
+        aria-label={`${label}: in ${stage}`}
+        onClick={() => {
+          setActive(STAGES.indexOf(stage));
+          setOpen((v) => !v);
+        }}
+        onKeyDown={(e) => {
+          if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+            e.preventDefault();
+            setActive(STAGES.indexOf(stage));
+            setOpen(true);
+          }
+        }}
+      >
+        <span>In {stage}</span>
+        <span aria-hidden="true" className={`stage-chev ${open ? "is-open" : ""}`}>
+          {"\u2304"}
+        </span>
+      </button>
+      {open ? (
+        <ul
+          ref={list}
+          id={`${id}-list`}
+          role="listbox"
+          tabIndex={-1}
+          aria-label={label}
+          aria-activedescendant={`${id}-${active}`}
+          className="stage-panel"
+          onKeyDown={(e) => {
+            if (e.key === "ArrowDown") {
+              e.preventDefault();
+              setActive((i) => Math.min(STAGES.length - 1, i + 1));
+            } else if (e.key === "ArrowUp") {
+              e.preventDefault();
+              setActive((i) => Math.max(0, i - 1));
+            } else if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              pick(STAGES[active]);
+            } else if (e.key === "Escape" || e.key === "Tab") {
+              e.preventDefault();
+              close();
+            }
+          }}
+        >
+          {STAGES.map((st, i) => (
+            <li
+              key={st}
+              id={`${id}-${i}`}
+              role="option"
+              aria-selected={st === stage}
+              className={`stage-opt ${i === active ? "is-active" : ""}`}
+              onPointerEnter={() => setActive(i)}
+              onClick={() => pick(st)}
+            >
+              <span>{st === stage ? `In ${st}` : `Move to ${st}`}</span>
+              {st === stage ? <span aria-hidden="true">{"\u2713"}</span> : null}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </div>
   );
 }
