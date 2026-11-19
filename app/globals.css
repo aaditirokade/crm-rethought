@@ -4257,3 +4257,22 @@ html[data-theme="dark"] .gw-night.acct-head {
   -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 92%);
   mask-image: linear-gradient(to bottom, #000 45%, transparent 92%);
 }
+/* Both sides curve (decision 0124): the light part is a sheet with two rounded top corners, laid over the foot of
+   the block, so the night runs down both edges and curves in on each side. */
+.gw-night.acct-head {
+  border-radius: 0;
+  padding-bottom: calc(1.25rem + 32px);
+}
+.acct-body {
+  z-index: 1;
+  margin-top: -32px;
+  padding-top: 0.75rem;
+  border-radius: 32px 32px 0 0;
+  background: #ffffff;
+}
+html[data-theme="dark"] .acct-body {
+  background: #1a1a2b;
+}
+.acct-body::before {
+  content: none;
+}

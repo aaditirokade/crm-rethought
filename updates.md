@@ -166,3 +166,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - 2026-11-19: Accounts: a map bubble opens the account in a side panel; the record page has an All accounts button (decision 0124).
 - 2026-11-19: account panel head on a night block with leaves and frosted number tiles (decision 0124).
 - 2026-11-19: account panel head shorter, numbers in one row, S shaped lower edge (decision 0124).
+- 2026-11-19: account panel: the head curves in on both sides (decision 0124).

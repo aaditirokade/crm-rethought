@@ -4,7 +4,7 @@
 
 **Decision:** on Accounts, picking a bubble on the portfolio map opens the account in a side panel over the page: health, renewal, the 8 week usage change, last touch, stores, the next step, lines waiting for approval, people, opportunities and the latest interactions, with "Open the full record" at the foot. Escape, the close button or a click outside closes it, and the map is where you left it. A click that asks for a new tab still opens the full record. The full record page gets a clear "All accounts" button at the top.
 
-**The panel's head (same day):** the name, health and numbers sit on a night periwinkle block with the leaves, its lower edge an S that blends into the panel (rounding off on the left, running on down the right edge); renewal, usage, last touch and stores sit in one row of small frosted tiles, and the next step moved below, so the head is short.
+**The panel's head (same day):** the name, health and numbers sit on a night periwinkle block with the leaves, its lower edge curving in on both sides: the light part is a sheet with two rounded top corners laid over the foot of the block; renewal, usage, last touch and stores sit in one row of small frosted tiles, and the next step moved below, so the head is short.
 
 **Options:** a back link on the record page alone; or the panel. The author preferred the panel.
 
