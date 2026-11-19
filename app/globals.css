@@ -4394,3 +4394,21 @@ html[data-theme="dark"] .stage-panel {
 .pipe-card:has(.stage-panel) {
   z-index: 30;
 }
+
+/* Pipeline cards sit flat (decision 0125): no shadow, and nothing changes under the pointer; a thin line edges them.
+   They can still be dragged, and pressing one still nudges it. */
+html:root .pipe-card,
+html:root .pipe-ghost,
+html:root .pipe-col[data-stage="Idea"] :is(.pipe-card, .pipe-ghost) {
+  box-shadow: none;
+}
+html:root .pipe-card {
+  border-color: var(--line);
+}
+html:root .pipe-col[data-stage="Idea"] .pipe-card {
+  border-color: transparent;
+}
+html:root .pipe-card:hover {
+  transform: none;
+  box-shadow: none;
+}
