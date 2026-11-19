@@ -67,7 +67,7 @@ function Home({ go, waiting }: { go: (s: Screen) => void; waiting: number }) {
   return (
     <div>
       {/* The greeting on the leaves block (decision 0119). */}
-      <section aria-label="Your morning" className="gw-block -mx-1 px-4 pb-8 pt-4">
+      <section aria-label="Your morning" className="gw-block gw-head -mx-1">
         <Leaves seed={4} count={8} />
         <p className="font-mono text-meta tracking-wide text-ink-2">
           {NOW.day.toUpperCase()} · {NOW.time}

@@ -36,7 +36,7 @@
   --accent: #b03c77; /* rose: the AI and the actions it asks for (drafts, Ask, approve, waiting counts); 4.6:1 or more */
   --accent-hover: #97305f;
   --accent-ink: #ffffff; /* 5.6:1 on accent */
-  --draft: #fbedf4; /* blush wash behind lines the AI drafted */
+  --draft: #f0f2fd; /* very light periwinkle behind lines the AI drafted; the rose edge marks them (decision 0119) */
   --data: #6576d4; /* charts in periwinkle, so they never read as the AI; 3.4:1 or more */
   --good: #2b7550; /* 4.9:1 or more */
   --warn: #b54708; /* 5.1:1 or more */
@@ -62,7 +62,7 @@
     --accent: #f394c4; /* rose, lifted for the dark; 7.0:1 or more */
     --accent-hover: #f9b6d8;
     --accent-ink: #2b0d1d; /* 8.3:1 on accent */
-    --draft: #262036;
+    --draft: #1f2140;
     --data: #8f9cf0; /* periwinkle */
     --good: #8ad9ae;
     --warn: #ffab70;
@@ -1487,7 +1487,7 @@ li.proto-card:focus-within {
   --accent: #f394c4; /* rose, lifted for the dark; 7.0:1 or more */
   --accent-hover: #f9b6d8;
   --accent-ink: #2b0d1d; /* 8.3:1 on accent */
-  --draft: #262036;
+  --draft: #1f2140;
   --data: #8f9cf0; /* periwinkle */
   --good: #8ad9ae;
   --warn: #ffab70;
@@ -4073,4 +4073,54 @@ html[data-theme="dark"] .map-draft {
 }
 .file-scroll tbody tr:nth-child(even) td.bg-draft {
   background-color: var(--draft);
+}
+
+/* Open ended title blocks (decision 0119): Today's greeting and every page title keep their rounded top, but the
+   block has no bottom edge. Its color, its leaves and a glass sheen fade out downward into the page, like a mirror
+   dissolving. Only the background layers fade; the text above them stays at full contrast. */
+.gw-hero,
+.gw-head {
+  background: none;
+  border-radius: 28px 28px 0 0;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.85);
+}
+.gw-hero::before,
+.gw-head::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  background:
+    linear-gradient(115deg, transparent 32%, rgb(255 255 255 / 0.34) 44%, rgb(255 255 255 / 0.08) 50%, transparent 58%),
+    linear-gradient(180deg, rgb(255 255 255 / 0.45), transparent 22%),
+    var(--gw-block-bg);
+}
+.gw-hero::before,
+.gw-hero::after,
+.gw-hero .gw-leaves,
+.gw-head::before,
+.gw-head::after,
+.gw-head .gw-leaves {
+  -webkit-mask-image: linear-gradient(to bottom, #000 40%, rgb(0 0 0 / 0.55) 70%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 40%, rgb(0 0 0 / 0.55) 70%, transparent 100%);
+}
+.gw-head {
+  padding-bottom: 3.5rem;
+}
+@media (min-width: 640px) {
+  .gw-head {
+    padding-bottom: 4rem;
+  }
+}
+html[data-theme="dark"] .gw-hero,
+html[data-theme="dark"] .gw-head {
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.1);
+}
+html[data-theme="dark"] .gw-hero::before,
+html[data-theme="dark"] .gw-head::before {
+  background:
+    linear-gradient(115deg, transparent 32%, rgb(255 255 255 / 0.07) 44%, rgb(255 255 255 / 0.02) 50%, transparent 58%),
+    linear-gradient(180deg, rgb(255 255 255 / 0.06), transparent 22%),
+    var(--gw-block-bg);
 }

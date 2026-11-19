@@ -11,15 +11,15 @@ export type ColorToken = {
 };
 
 export const BACKGROUNDS = {
-  light: { bg: "#f9f8fc", surface: "#ffffff", surface2: "#ece9f5", draft: "#fbedf4", accent: "#b03c77", ink: "#1e2140" },
-  dark: { bg: "#11111c", surface: "#1a1a2b", surface2: "#24243a", draft: "#262036", accent: "#f394c4", ink: "#eceefa" },
+  light: { bg: "#f9f8fc", surface: "#ffffff", surface2: "#ece9f5", draft: "#f0f2fd", accent: "#b03c77", ink: "#1e2140" },
+  dark: { bg: "#11111c", surface: "#1a1a2b", surface2: "#24243a", draft: "#1f2140", accent: "#f394c4", ink: "#eceefa" },
 };
 
 export const COLORS: ColorToken[] = [
   { name: "bg", role: "The page: lavender white by day, night periwinkle at night", light: "#f9f8fc", dark: "#11111c", check: "background" },
   { name: "surface", role: "The few things that lift: Ask, triage, menus", light: "#ffffff", dark: "#1a1a2b", check: "background" },
   { name: "surface-2", role: "Quiet fills: chips, inputs, tracks", light: "#ece9f5", dark: "#24243a", check: "background" },
-  { name: "draft", role: "Blush wash behind lines the AI drafted", light: "#fbedf4", dark: "#262036", check: "background" },
+  { name: "draft", role: "Very light periwinkle behind lines the AI drafted", light: "#f0f2fd", dark: "#1f2140", check: "background" },
   { name: "ink", role: "Text people read; primary buttons", light: "#1e2140", dark: "#eceefa", check: "text" },
   { name: "ink-2", role: "Quiet text, labels", light: "#52566f", dark: "#a6a9c2", check: "text" },
   { name: "accent", role: "Rose: the AI and the actions it asks for (drafts, Ask, approve, waiting counts)", light: "#b03c77", dark: "#f394c4", check: "text" },

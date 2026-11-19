@@ -89,7 +89,7 @@ const SWATCHES = [
   { name: "Mist", light: "#ece9f5", dark: "#24243a" },
   { name: "Ink", light: "#1e2140", dark: "#eceefa" },
   { name: "Rose: AI, actions", light: "#b03c77", dark: "#f394c4" },
-  { name: "Draft wash", light: "#fbedf4", dark: "#262036" },
+  { name: "Draft wash", light: "#f0f2fd", dark: "#1f2140" },
   { name: "Charts", light: "#6576d4", dark: "#8f9cf0" },
 ];
 
