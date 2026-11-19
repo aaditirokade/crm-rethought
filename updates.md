@@ -158,3 +158,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - 2026-11-19: Imports: the file preview scrolls through 30 rows with a pinned header; fixes sit two across (decision 0119).
 - 2026-11-19: Imports: the file note is just the key, highlighted in the same blush as the cells (decision 0119).
 - 2026-11-19: title blocks open ended, fading down with a glass sheen; AI drafts on very light periwinkle with the rose edge (decision 0119).
+- 2026-11-19: Accounts map: a dotted line follows the pointer with its day, and each bubble has a tooltip with its numbers (decision 0122).

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRef, useState } from "react";
 import { PULSE } from "@/content/ask";
 import type { LiveAccount } from "./store";
 
@@ -25,6 +26,9 @@ export function trendOf(id: string) {
  * Renewing soon and falling is the corner to watch. Bubble size is store count.
  */
 export function PortfolioMap({ accounts }: { accounts: LiveAccount[] }) {
+  const svg = useRef<SVGSVGElement>(null);
+  const [cursor, setCursor] = useState<number | null>(null);
+  const [tip, setTip] = useState<string | null>(null);
   const today = Date.parse("2026-11-12");
   const pts = accounts.map((a) => {
     const days = Math.round((Date.parse(a.renewalDate) - today) / 864e5);
@@ -46,7 +50,22 @@ export function PortfolioMap({ accounts }: { accounts: LiveAccount[] }) {
         </h2>
         <p className="font-mono text-meta tracking-wide text-ink-2">RENEWAL × 8 WEEK USAGE TREND · SIZE = STORES</p>
       </div>
-      <svg viewBox={`0 0 ${W} ${H}`} className="mt-3 w-full max-w-[920px]" role="group" aria-label="Portfolio map: days to renewal against usage trend">
+      <div className="relative mt-3 w-full max-w-[920px]">
+      <svg
+        ref={svg}
+        viewBox={`0 0 ${W} ${H}`}
+        className="w-full"
+        role="group"
+        aria-label="Portfolio map: days to renewal against usage trend"
+        onPointerMove={(e) => {
+          const el = svg.current;
+          const m = el?.getScreenCTM();
+          if (!el || !m) return;
+          const pt = new DOMPoint(e.clientX, e.clientY).matrixTransform(m.inverse());
+          setCursor(pt.x >= L && pt.x <= W - R && pt.y >= T && pt.y <= H - B ? pt.x : null);
+        }}
+        onPointerLeave={() => setCursor(null)}
+      >
         <rect x={L} y={Y(0)} width={X(120) - L} height={Y(-60) - Y(0)} rx="10" fill="var(--accent)" fillOpacity="0.08" />
         <text x={L + 8} y={Y(0) + 18} fontSize="11.5" fill="var(--accent)" className="font-mono">
           RENEWING SOON AND FALLING
@@ -70,11 +89,30 @@ export function PortfolioMap({ accounts }: { accounts: LiveAccount[] }) {
         <text x={14} y={(T + H - B) / 2} textAnchor="middle" fontSize="11.5" fill="var(--ink-2)" transform={`rotate(-90 14 ${(T + H - B) / 2})`}>
           Usage, last 8 weeks
         </text>
+        {/* A dotted line follows the pointer across the plot, with the day it marks (decision 0122). */}
+        {cursor !== null ? (
+          <g aria-hidden="true" className="pointer-events-none">
+            <line x1={cursor} x2={cursor} y1={T} y2={H - B} stroke="var(--ink-2)" strokeWidth="1" strokeDasharray="2 4" />
+            <rect x={cursor - 22} y={H - B - 20} width="44" height="17" rx="8.5" fill="var(--surface)" stroke="var(--line)" />
+            <text x={cursor} y={H - B - 8} textAnchor="middle" fontSize="11" fill="var(--ink)" className="font-mono">
+              {Math.round(((cursor - L) / (W - L - R)) * 365)}D
+            </text>
+          </g>
+        ) : null}
         {pts.map((p) => {
           const right = p.x < W - 200;
           const label = `${p.a.name}: ${p.a.health}, renews in ${p.days} days, usage ${p.t.isNew ? "new and ramping" : `${p.t.pct >= 0 ? "up" : "down"} ${Math.abs(p.t.pct)}%`}, ${p.a.stores} stores`;
           return (
-            <Link key={p.a.id} href={`/prototype/accounts/${p.a.id}`} aria-label={label} className="map-dot">
+            <Link
+              key={p.a.id}
+              href={`/prototype/accounts/${p.a.id}`}
+              aria-label={label}
+              className="map-dot"
+              onPointerEnter={() => setTip(p.a.id)}
+              onPointerLeave={() => setTip(null)}
+              onFocus={() => setTip(p.a.id)}
+              onBlur={() => setTip(null)}
+            >
               <circle className="bubble-in" style={{ animationDelay: `${pts.indexOf(p) * 90}ms` }} cx={p.x} cy={p.y} r={p.r} fill={tone(p.a.health)} stroke="var(--bg)" strokeWidth="2" />
               <text x={right ? p.x + p.r + 6 : p.x - p.r - 6} y={p.y - 2} textAnchor={right ? "start" : "end"} fontSize="12.5" fontWeight="600" fill="var(--ink)">
                 {p.a.name}
@@ -82,11 +120,35 @@ export function PortfolioMap({ accounts }: { accounts: LiveAccount[] }) {
               <text x={right ? p.x + p.r + 6 : p.x - p.r - 6} y={p.y + 13} textAnchor={right ? "start" : "end"} fontSize="11" fill="var(--ink-2)" className="font-mono">
                 <tspan fill={tone(p.a.health)}>{icon(p.a.health)}</tspan> {p.a.health.toUpperCase()} · {p.t.isNew ? "NEW" : `${p.t.pct >= 0 ? "+" : "\u2212"}${Math.abs(p.t.pct)}%`}
               </text>
-              <title>{label}</title>
             </Link>
           );
         })}
       </svg>
+      {/* The numbers behind a bubble, on hover or focus (decision 0122). The link's own label already says them. */}
+      {(() => {
+        const p = pts.find((q) => q.a.id === tip);
+        if (!p) return null;
+        const left = (p.x / W) * 100;
+        const top = ((p.y - p.r) / H) * 100;
+        return (
+          <div aria-hidden="true" className="map-tip" style={{ left: `${left}%`, top: `${top}%`, ["--shift" as string]: left > 70 ? "-88%" : left < 25 ? "-12%" : "-50%" }}>
+            <p className="font-semibold">{p.a.name}</p>
+            <dl className="mt-1 grid grid-cols-[auto_auto] gap-x-4 gap-y-0.5">
+              <dt className="text-ink-2">Health</dt>
+              <dd>{p.a.health}</dd>
+              <dt className="text-ink-2">Renews</dt>
+              <dd>
+                {p.a.renewal} · in {p.days} days
+              </dd>
+              <dt className="text-ink-2">Usage, 8 weeks</dt>
+              <dd>{p.t.isNew ? "New, ramping up" : `${p.t.pct >= 0 ? "+" : "\u2212"}${Math.abs(p.t.pct)}%`}</dd>
+              <dt className="text-ink-2">Stores</dt>
+              <dd>{p.a.stores}</dd>
+            </dl>
+          </div>
+        );
+      })()}
+      </div>
       <p className="mt-2 text-small text-ink-2">
         New accounts sit at the top while they ramp up. Select a bubble to open the account. The same data is in the table below.
       </p>
