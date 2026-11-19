@@ -168,3 +168,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - 2026-11-19: account panel head shorter, numbers in one row, S shaped lower edge (decision 0124).
 - 2026-11-19: account panel: the head curves in on both sides (decision 0124).
 - 2026-11-19: Account pulse: this week's views as a number, the end dot on the line in periwinkle, no underline on hover, health reasons beside their tags (decision 0119).
+- 2026-11-19: pulse tiles and reach cards no longer react to hover (decision 0119).

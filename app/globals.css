@@ -4287,3 +4287,33 @@ html[data-theme="dark"] .acct-body {
 .health-why {
   text-wrap: wrap;
 }
+
+/* The pulse tiles and the reach cards are not links, so nothing about them answers the pointer (decision 0119):
+   no lift, no deeper shadow, no moving streak, no thicker line. Their links and buttons keep their own states. */
+html:root .board-item.proto-card.pulse-glass:hover,
+html:root .board-item.proto-card.pulse-glass:focus-within,
+html:root .reach-card.pulse-glass:hover,
+html:root .reach-card.pulse-glass:focus-within {
+  transform: none;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 1),
+    0 1px 2px rgb(60 60 120 / 0.05),
+    0 16px 32px -20px rgb(90 80 160 / 0.4);
+}
+html[data-theme="dark"] .board-item.proto-card.pulse-glass:hover,
+html[data-theme="dark"] .board-item.proto-card.pulse-glass:focus-within,
+html[data-theme="dark"] .reach-card.pulse-glass:hover,
+html[data-theme="dark"] .reach-card.pulse-glass:focus-within {
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12), 0 16px 32px -20px rgb(0 0 0 / 0.7);
+}
+html:root .board-item.proto-card.pulse-glass:hover::before,
+html:root .board-item.proto-card.pulse-glass:focus-within::before {
+  opacity: 0.55;
+  transform: translateX(-35%);
+}
+.board-item.pulse-glass:hover .spark-draw {
+  stroke-width: 1.75;
+}
+.board-item.pulse-glass:hover .spark-dot {
+  stroke-width: 6;
+}
