@@ -156,3 +156,4 @@ One line per commit: the commit message. Newest day at the bottom. Never rewrite
 - 2026-11-19: Imports: the draft column mapping on a periwinkle wash instead of blush (decision 0119).
 - 2026-11-19: Imports: Columns on the left, Fixes on the right from 1280px (decision 0119).
 - 2026-11-19: Imports: the file preview scrolls through 30 rows with a pinned header; fixes sit two across (decision 0119).
+- 2026-11-19: Imports: the file note is just the key, highlighted in the same blush as the cells (decision 0119).

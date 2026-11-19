@@ -81,7 +81,8 @@ export function Imports() {
         <p className="mt-1">
           <span className="font-mono text-meta tracking-wide">{FILE.name.toUpperCase()}</span> · {FILE.rows} rows · from {FILE.from}
         </p>
-        <p className="text-small text-ink-2">A sample file for the demo: the first {PREVIEW.length} rows, scroll the table to see them. Highlighted cells have a problem the AI found.</p>
+        {/* The note doubles as the key: it wears the same blush as the cells it describes. */}
+        <p className="mt-2 inline-block rounded-lg bg-draft px-2.5 py-1 text-small font-medium text-ink">Highlighted cells have a problem the AI found.</p>
         <div className="file-scroll relative mt-3 overflow-auto" role="region" aria-label={`First ${PREVIEW.length} rows of the file, scrolls`} tabIndex={0}>
           <table className="w-full min-w-[56rem] text-left text-small">
             <caption className="sr-only">First {PREVIEW.length} rows of {FILE.name}</caption>
