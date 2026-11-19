@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { MEETINGS } from "@/content/prototype";
 import { Health } from "./bits";
+import { Leaves } from "./Leaves";
 import { trendOf } from "./PortfolioMap";
 import { SourceChip } from "./Source";
 import { liveAccount, liveOpps, pending, useProto } from "./store";
@@ -39,39 +40,44 @@ export function AccountDrawer({ id, onClose }: { id: string; onClose: () => void
         if (e.target === e.currentTarget) e.currentTarget.close();
       }}
     >
-      <div className="flex min-h-full flex-col p-6">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <p className="font-mono text-meta tracking-wide text-ink-2">ACCOUNT · {a.segment.toUpperCase()}</p>
-            <h2 id={titleId} className="mt-1 text-h2 font-semibold">
-              {a.name}
-            </h2>
-          </div>
-          <form method="dialog">
-            <button className="sig-btn icon-act" aria-label="Close">
-              <span aria-hidden="true">{"✕"}</span>
-            </button>
-          </form>
-        </div>
-        <p className="mt-2 text-small">
-          <Health a={a} />
-        </p>
-
-        <dl className="mt-5 grid grid-cols-2 gap-x-6 gap-y-3">
-          {facts.map(([k, v]) => (
-            <div key={k}>
-              <dt className="font-mono text-meta tracking-wide text-ink-2">{k}</dt>
-              <dd className="mt-0.5 text-small font-medium">{v}</dd>
+      <div className="flex min-h-full flex-col">
+        {/* The head is a color block (decision 0124): night periwinkle with the leaves, the name and the numbers on it,
+            curving off into the panel at its lower left corner. */}
+        <header className="gw-night acct-head">
+          <Leaves seed={[...id].reduce((n, c) => n + c.charCodeAt(0), 0)} count={8} scale={0.8} />
+          <div className="flex items-start justify-between gap-4">
+            <div className="min-w-0">
+              <p className="font-mono text-meta tracking-wide text-ink-2">ACCOUNT · {a.segment.toUpperCase()}</p>
+              <h2 id={titleId} className="mt-1 text-h2 font-semibold">
+                {a.name}
+              </h2>
+              <p className="mt-2 text-small">
+                <Health a={a} />
+              </p>
             </div>
-          ))}
-          <div className="col-span-2">
-            <dt className="font-mono text-meta tracking-wide text-ink-2">NEXT STEP</dt>
-            <dd className="mt-0.5 text-small">{a.nextStep}</dd>
+            <form method="dialog">
+              <button className="sig-btn icon-act" aria-label="Close">
+                <span aria-hidden="true">{"\u2715"}</span>
+              </button>
+            </form>
           </div>
-        </dl>
+          <dl className="mt-5 grid grid-cols-2 gap-2">
+            {facts.map(([k, v]) => (
+              <div key={k} className="acct-fact">
+                <dt className="font-mono text-meta tracking-wide text-ink-2">{k}</dt>
+                <dd className="mt-0.5 text-[1.0625rem] font-semibold">{v}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-4 text-small">
+            <span className="font-mono text-meta tracking-wide text-ink-2">NEXT STEP · </span>
+            {a.nextStep}
+          </p>
+        </header>
 
+        <div className="flex flex-1 flex-col px-6 pb-6">
         {waiting.length ? (
-          <p className="sig-row-draft mt-5 rounded-xl px-3 py-2 text-small">
+          <p className="sig-row-draft mt-6 rounded-xl px-3 py-2 text-small">
             {waiting.length} {waiting.length === 1 ? "line waits" : "lines wait"} for your approval.{" "}
             <Link href={logMeeting ? `/prototype/log/${logMeeting.id}` : "/prototype/review"} className="font-medium underline underline-offset-4">
               Review
@@ -137,6 +143,7 @@ export function AccountDrawer({ id, onClose }: { id: string; onClose: () => void
           <Link href={`/prototype/accounts/${id}`} className="sig-btn sig-btn-primary">
             Open the full record <span aria-hidden="true">{"→"}</span>
           </Link>
+        </div>
         </div>
       </div>
     </dialog>

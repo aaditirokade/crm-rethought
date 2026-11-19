@@ -4184,3 +4184,41 @@ html[data-theme="dark"] .proto-drawer.acct-drawer {
     radial-gradient(120% 60% at 100% 0%, rgb(143 156 240 / 0.14), transparent 60%),
     #1a1a2b;
 }
+
+/* The account panel's head (decision 0124): a night block with leaves; its lower left corner curves away, like the
+   color blocking in the references, and the numbers sit on small frosted tiles. */
+.proto-drawer.acct-drawer {
+  padding: 0;
+  overflow-x: hidden;
+}
+.gw-night.acct-head {
+  border-radius: 0 0 0 44px;
+  padding: 1.5rem 1.5rem 1.75rem;
+  margin-bottom: 0.5rem;
+  box-shadow: none;
+}
+.gw-night.acct-head::after {
+  background: linear-gradient(200deg, transparent 20%, #1d1f3d 65%);
+}
+.acct-fact {
+  border-radius: 14px;
+  padding: 0.6rem 0.75rem;
+  background: rgb(255 255 255 / 0.08);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12);
+  backdrop-filter: blur(6px);
+}
+.gw-night .sig-btn.icon-act {
+  border-color: rgb(255 255 255 / 0.3);
+  background: rgb(255 255 255 / 0.08);
+  color: var(--ink);
+}
+html[data-theme="dark"] .gw-night.acct-head {
+  border: 0;
+  border-bottom: 1px solid #2c2e50;
+}
+.gw-night.acct-head .gw-leaves {
+  opacity: 0.9;
+}
+.gw-night.acct-head::after {
+  background: linear-gradient(200deg, transparent 30%, rgb(29 31 61 / 0.85) 70%);
+}
